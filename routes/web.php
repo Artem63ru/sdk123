@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 //Групировка от бана
-Route::group(['middleware' => 'forbid-banned-user',], function () {
+//Route::group(['middleware' => 'forbid-banned-user',], function () {
     Route::get('/', 'MenuController@view_menu')->name('gda')->middleware('auth');   //Главная
     Route::get('/opo/{opo}', function ($opo) {
         return view('opo', ['opo' => $opo]);
@@ -88,7 +88,7 @@ Route::group(['middleware' => 'forbid-banned-user',], function () {
         Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'Auth\RegisterController@register');
     }); //'role:admin'
-}); //'forbid-banned-user'
+//}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Auth::routes();
 Route::get('/logout', function () {
@@ -96,6 +96,11 @@ Route::get('/logout', function () {
     return Redirect::to('login');
 });
 //Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+
+
+//Смена пароля
+Route::get('/change-password', 'ChangePasswordController@index');
+Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
 

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     // Запись логов
-    public function log_record($message)
+    public static function log_record($message)
     {
         $ip = request()->ip();
         event(new WasUnbanned(Auth::user()->name,  $message, $ip));  //пишем в журнал
@@ -32,7 +32,7 @@ class AdminController extends Controller
     // Вывод логов
     public function log_view()
     {
-
+        AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
         return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
     }
 
