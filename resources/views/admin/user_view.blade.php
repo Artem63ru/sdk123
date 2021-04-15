@@ -26,7 +26,7 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <th scope="row-4">{{ $user->id }}</th>
-                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->surname.' '.$user->name.' '.$user->middle_name }} </td>
                                     {{--                                        @if($user->hasPermission('manage-users'))--}}
                                     {{--                                            <td>--}}
                                     {{--                                                <input class="form-check-input" type="checkbox" id="flexCheckCheckedDisabled" checked disabled>--}}
@@ -62,8 +62,14 @@
                                                    id="flexCheckCheckedDisabled"  disabled></td>
                                     @endif
 
-                                    <td><a href = 'delete/{{ $user->id }}' class="btn btn-primary mb-2">Удалить</a></td>
-                                    <td><a href = 'edit/{{ $user->id }}' class="btn btn-primary mb-2">Редактировать</a></td>
+                                    <td><a href = 'delete/{{ $user->id }}' class="btn btn-danger ">Удалить</a></td>
+                                    <td><a href = 'edit/{{ $user->id }}' class="btn btn-primary ">Редактировать</a></td>
+                                    @if ($user->isBanned())
+                                        <td><a href = 'unban/{{ $user->id }}' class="btn btn-secondary ">Разблокировать</a></td>
+                                    @endif
+                                    @if ($user->isNotBanned())
+                                         <td><a href = 'ban/{{ $user->id }}' class="btn btn-warning ">Блок</a></td>
+                                    @endif
                                     {{--                                <td>{{ $user->ip }}</td>--}}
                                     {{--                              <td>{{ $user->created_at }}</td>--}}
                                 </tr>

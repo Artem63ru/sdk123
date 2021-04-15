@@ -37,6 +37,14 @@ class EventServiceProvider extends ServiceProvider
             [
                 'App\Listeners\Log_pdf',
             ],
+        '\App\Events\WasBanned'=>
+            [
+                'App\Listeners\Log_Baned',
+            ],
+        'App\Events\WasUnbanned'=>
+            [
+                'App\Listeners\Log_Unbanned',
+            ],
     ];
 
 

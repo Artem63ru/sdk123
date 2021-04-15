@@ -54,7 +54,7 @@
     <div class="time">
         <div id="timer">Время  <?php echo (date("H:i:s"));?> </div>
         <div id="date">Дата <?php echo (date("d  F  Y "));?></div>
-        <a href="{{ route('logout') }}"> <i class="large material-icons">assignment_ind</i> {{ auth()->user()->name }}</a>
+         <a href="{{ route('logout') }}"> <i class="large material-icons">assignment_ind</i> {{ auth()->user()->name }}</a>
     </div>
     <div class="butt">
        <a href="/php"> &#128438</a>
@@ -66,7 +66,7 @@
         &#128448
     </div>
     <div class="butt">
-        <a href="{{ route('logout') }}"> <i class="large material-icons">build</i></a>
+        <a href="{{ route('admin') }}"> <i class="large material-icons">build</i></a>
     </div>
      <div class="butt">
          <a href="{{ route('logout') }}"> <i class="large material-icons">cancel</i></a>

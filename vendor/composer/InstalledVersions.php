@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '11b01d9eae6c7f9599cbdff6f999435e96ab7cd0',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -68,6 +68,15 @@ private static $installed = array (
       array (
         0 => '*',
       ),
+    ),
+    'cybercog/laravel-ban' => 
+    array (
+      'pretty_version' => '4.6.1',
+      'version' => '4.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6b2a898dc17ddf89a62dfe37315a6f24a510fc14',
     ),
     'davedevelopment/hamcrest-php' => 
     array (
@@ -477,12 +486,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '11b01d9eae6c7f9599cbdff6f999435e96ab7cd0',
     ),
     'laravel/tinker' => 
     array (
