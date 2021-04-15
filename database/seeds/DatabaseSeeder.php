@@ -11,12 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'login' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

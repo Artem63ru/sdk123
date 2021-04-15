@@ -52,3 +52,19 @@ Route::resource('/images','ImageController');
 Route::get('upload',['as' => 'upload_form', 'uses' => 'UploadController@getForm']);
 Route::post('upload',['as' => 'upload_file','uses' => 'UploadController@upload']);
 
+//настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
+Route::group(['middleware' => 'role:admin'], function() {
+    Route::get('/admin', 'AdminController@log_view'); // Главная админка логи
+    Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
+    Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
+    Route::post('add_user', 'AdminController@add_user')->name('add_user');
+    Route::post('update_user', 'AdminController@update_user')->name('update_user');
+    Route::get('admin/delete/{id}','AdminController@destroy_user');  //Удаление пользователя
+    Route::get('admin/edit/{id}','AdminController@edit_user');  //Удаление пользователя
+    Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
+    Route::get('/admin/roles', 'AdminController@role_view');
+    Route::get('/admin/perm', 'AdminController@perm_view');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+});
+

@@ -30,8 +30,9 @@ class Log_pdf
     {
         Logs::create([
         'username' => $event->user_name,
+        'ip' => $event->ip,
             'created_at' =>Carbon::now(),
-            'description' => 'Пользователь вывел на печать и сохранил '.$event->data.' файл пользователем '.$event->user_name
+            'description' => 'Пользователь вывел на печать и сохранил '.$event->data.' файл '
 
     ]);
     }

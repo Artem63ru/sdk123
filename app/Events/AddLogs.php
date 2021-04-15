@@ -21,10 +21,12 @@ class AddLogs
      * @return void
      */
 
-    public function __construct($user_name, $data)
+    public function __construct($user_name, $data, $ip)
     {
         $this->user_name = $user_name;
         $this->data = $data;
+        $this->ip = $ip;
+
     }
 
     /**
