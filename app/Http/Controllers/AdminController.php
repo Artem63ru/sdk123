@@ -77,7 +77,7 @@ class AdminController extends Controller
         return view('admin.new_user', ['perms' => Permission::all()]);
     }
 
-    // Добавить нового пользователя
+    // Сохранить нового пользователя
     public function add_user(Request $request)
     {
 
@@ -141,8 +141,8 @@ class AdminController extends Controller
 //            $role = Role::find(2);
 //            $role->users()->save($user);
 //        }
-        $user = User::find($request->input('id'));
-        $this->log_record('Изменил данные пользователя '.$user->name);//пишем в журнал
+
+        $this->log_record('Изменил данные пользователя '.$request->input('name'));//пишем в журнал
         return redirect('/admin/users');
     }
 
@@ -161,8 +161,59 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         $user->unban();
-        $ip = request()->ip();
         $this->log_record('Разблокировал пользователя '.$user->name);//пишем в журнал
         return redirect('/admin/users');
     }
+
+    // Добавить новую роль пользователя
+    public function reg_role()
+    {
+
+        return view('admin.new_role', ['update' => 0]);
+    }
+
+    // Сохранить новую роль пользователя
+    public function add_role(Request $request)
+    {
+      $role = new Role(
+            ['name' => $request->input('name'),
+                'slug' => $request->input('slug'),
+             ]);
+     $role->save();
+        $this->log_record('Добавил роль '.$role->name);//пишем в журнал
+      return redirect('/admin/roles');
+    }
+    // Удалить пользователя
+    public function destroy_role($id)
+    {
+        $role = Role::find($id);
+        $this->log_record('Удалил роль '.$role->name);//пишем в журнал
+        DB::delete('delete from roles where id = ?', [$id]);
+
+        return redirect('/admin/roles');
+    }
+
+    // Редактировать пользователя
+    public function edit_role($id)
+    {
+        $role = Role::find($id);
+        return view('admin.new_role', ['roles' => $role, 'update' => 1]);
+    }
+
+    // Сохранить редактирование пользователя
+    public function update_role(Request $request)
+    {
+
+        // $user = User::find($request->input('id'));
+
+        Role::whereId($request->input('id'))->update([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+
+        ]);
+
+        $this->log_record('Изменил роль '. $request->input('name'));//пишем в журнал
+        return redirect('/admin/roles');
+    }
+
 }

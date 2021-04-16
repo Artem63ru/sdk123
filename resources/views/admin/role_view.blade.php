@@ -25,13 +25,13 @@
                                 <tr>
                                     <th scope="row-4">{{ $role->id }}</th>
                                     <td>{{ $role->name }}</td>
-
-
+                                    <td><a href = 'delete_roles/{{ $role->id }}' class="btn btn-danger ">Удалить</a></td>
+                                    <td><a href = 'edit_roles/{{ $role->id }}' class="btn btn-primary ">Редактировать</a></td>
                                 </tr>
                             @endforeach
 
 
-
+                            <a href=" {{ route('reg_role')  }}" class="btn btn-primary mb-2">Добавить роль</a>
 
                             </tbody>
                         </table>

@@ -75,11 +75,19 @@ use Illuminate\Support\Facades\Auth;
     Route::group(['middleware' => 'role:admin',], function () {
         Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
         Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
+
         Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
         Route::post('add_user', 'AdminController@add_user')->name('add_user');
         Route::post('update_user', 'AdminController@update_user')->name('update_user');
         Route::get('admin/delete/{id}', 'AdminController@destroy_user');  //Удаление пользователя
         Route::get('admin/edit/{id}', 'AdminController@edit_user');  //Редактирование данных пользователя
+
+        Route::get('reg_role', 'AdminController@reg_role')->name('reg_role')->middleware('password.confirm');
+        Route::post('add_role', 'AdminController@add_role')->name('add_role');
+        Route::post('update_role', 'AdminController@update_role')->name('update_role');
+        Route::get('admin/delete_roles/{id}', 'AdminController@destroy_role');  //Удаление пользователя
+        Route::get('admin/edit_roles/{id}', 'AdminController@edit_role');  //Редактирование данных пользователя
+
         Route::get('admin/ban/{id}', 'AdminController@ban1_user');  //Блокировка пользователя
         Route::get('admin/unban/{id}', 'AdminController@unban_user');  //Разблокировка пользователя
         Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
