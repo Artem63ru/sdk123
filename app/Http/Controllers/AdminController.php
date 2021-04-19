@@ -74,7 +74,7 @@ class AdminController extends Controller
     public function reg_user()
     {
 
-        return view('admin.new_user', ['perms' => Permission::all()]);
+        return view('admin.new_user', ['roles' => Role::all()]);
     }
 
     // Сохранить нового пользователя
@@ -89,16 +89,12 @@ class AdminController extends Controller
                 'password' => Hash::make($request->input('password')),
 
             ]);
-        if ($request->has('checkbox')) {
-            $role = Role::find(1);
-            $role->users()->save($user);
-        }
-        if ($request->has('checkbox1')) {
-            $role = Role::find(2);
-            $role->users()->save($user);
-        }
 
-        $this->log_record('Добавил пользователя '.$user->name);//пишем в журнал
+            $role = Role::find($request->input('role'));
+            $role->users()->save($user);
+
+
+        $this->log_record('Добавил пользователя '.$user->name. 'с ролью '.$role->name);//пишем в журнал
 
         return redirect('/admin/users');
     }
@@ -117,7 +113,7 @@ class AdminController extends Controller
     public function edit_user($id)
     {
         $user = User::find($id);
-        return view('admin.edit_user', ['users' => $user]);
+        return view('admin.edit_user', ['users' => $user, 'roles' => Role::all()]);
     }
 
     // Сохранить редактирование пользователя
@@ -126,21 +122,16 @@ class AdminController extends Controller
 
         // $user = User::find($request->input('id'));
 
-        User::whereId($request->input('id'))->update([
+        $user=User::whereId($request->input('id'))->update([
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
             'middle_name' => $request->input('middle_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
-//        if ($request->has('checkbox')) {
-//            $role = Role::find(1);
-//            $role->users()->save($user);
-//        }
-//        if ($request->has('checkbox1')) {
-//            $role = Role::find(2);
-//            $role->users()->save($user);
-//        }
+
+        $role = Role::find($request->input('role'));
+        $role->users()->save($user);
 
         $this->log_record('Изменил данные пользователя '.$request->input('name'));//пишем в журнал
         return redirect('/admin/users');
@@ -169,7 +160,7 @@ class AdminController extends Controller
     public function reg_role()
     {
 
-        return view('admin.new_role', ['update' => 0]);
+        return view('admin.new_role', ['update' => 0, 'perms' => Permission::all()]);
     }
 
     // Сохранить новую роль пользователя

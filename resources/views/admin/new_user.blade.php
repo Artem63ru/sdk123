@@ -89,26 +89,21 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
+                            <div class="form-group row ">
+                                <label  for="name" class="col-md-4 col-form-label text-md-right">{{ __('Выберите роль пользователя') }}</label>
+                                <div class="col-md-6">
+                                <select id="role" name="role" class="form-select" aria-label="Default select example">
+                                    {{--                                        <option selected>Open this select menu</option>--}}
+
+                                    @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+
+                                </select>
+                                </div>
+
                                 <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="checkbox" value="123" id="flexCheckChecked" >
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                            Роль Администратора
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="checkbox1" value="False" id="flexCheckChecked" >
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                            Роль Инженера
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" >
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                            Роль Оператора
-                                        </label>
-                                    </div>
+
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>

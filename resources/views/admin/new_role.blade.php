@@ -54,8 +54,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+
+                                            @foreach ($perms as $perm)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="{{$perm->name}}" value="{{$perm->id}}" id="{{$perm->id}}" >
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    {{$perm->name}}
+                                                </label>
+                                            </div>
+                                            @endforeach
+
+
 
                                     <button type="submit" class="btn btn-primary">
                                         @if ($update)
@@ -66,7 +77,8 @@
 
                                     </button>
                                 </div>
-                            </div>
+                                </div>
+
                         </form>
 
                     </div>
