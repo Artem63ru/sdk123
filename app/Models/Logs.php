@@ -34,7 +34,7 @@ class Logs extends Model
     public function setLogInLog(){
         $this->insert(
             ['username' => Auth::user()->name,
-                'description' => 'Пользователь вошел в системы',
+                'description' => 'Пользователь вошел в систему',
                 'ip'=>request()->getClientIp(),
                // 'role' =>Auth::user()->role,
                 'created_at' =>Carbon::now(),

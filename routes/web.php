@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
-    Route::get('/', 'MenuController@view_menu')->name('gda')->middleware('auth');   //Главная
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
     Route::get('/opo/{opo}', function ($opo) {
         return view('opo', ['opo' => $opo]);
     })->name('opo')->middleware('auth');  // Уровень ОПО главная
@@ -100,11 +101,7 @@ use Illuminate\Support\Facades\Auth;
   //  }); //'role:admin'
 //}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Auth::routes();
-Route::get('/logout', function () {
-    Auth::logout();
-    return Redirect::to('login');
-});
+
 //Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
 
 
@@ -113,10 +110,15 @@ Route::get('/change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
-Route::group(['middleware' => ['auth']], function() {
+//Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
+  });
+Auth::routes();
+Route::get('/logout', function () {
+    Auth::logout();
+    return Redirect::to('login');
 });
 
 

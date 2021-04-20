@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-permission": "^4.0",
+        "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

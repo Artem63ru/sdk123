@@ -24,7 +24,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
 
     /**
      * Where to redirect users after login.
@@ -33,7 +35,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
     // Блокировка при неудачном вводе пароля
-    protected $maxAttempts = 2;  // количество неудачных попыток
+    protected $maxAttempts = 15;  // количество неудачных попыток
     protected $decayMinutes = 1; // время блокировки в минутах
 
     /**
@@ -83,12 +85,17 @@ class LoginController extends Controller
         $post->save();
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Cache::forget('user-is-online-' . Auth::user()->id);
-        Auth::logout();
+//        Cache::forget('user-is-online-' . Auth::user()->id);
+//        Auth::logout();
+        $this->guard()->logout();
 
-        return redirect('');
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return Redirect::to('/');
     }
 }
 
