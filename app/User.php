@@ -7,11 +7,12 @@ use Cog\Contracts\Ban\Bannable as BannableContract;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\HasRolesAndPermissions;
+//use App\Traits\HasRolesAndPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, HasRolesAndPermissions, Bannable;
+    use Notifiable, HasRoles, Bannable; /// HasRolesAndPermissions,
 
     /**
      * The attributes that are mass assignable.

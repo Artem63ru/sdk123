@@ -34,33 +34,33 @@
                                     {{--                                        @else--}}
                                     {{--                                            <td>нет</td>--}}
                                     {{--                                        @endif--}}
-                                    @if($user->hasRole('admin'))
-                                        <td>
-                                            <input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled" checked disabled>
-                                        </td>
-                                    @else
-                                        <td><input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled"  disabled></td>
-                                    @endif
-                                    @if($user->hasRole('ingener'))
-                                        <td>
-                                            <input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled" checked disabled>
-                                        </td>
-                                    @else
-                                        <td><input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled"  disabled></td>
-                                    @endif
-                                    @if($user->hasRole('operator'))
-                                        <td>
-                                            <input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled" checked disabled>
-                                        </td>
-                                    @else
-                                        <td><input class="form-check-input" type="checkbox"
-                                                   id="flexCheckCheckedDisabled"  disabled></td>
-                                    @endif
+{{--                                    @if($user->hasRole('admin'))--}}
+{{--                                        <td>--}}
+{{--                                            <input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled" checked disabled>--}}
+{{--                                        </td>--}}
+{{--                                    @else--}}
+{{--                                        <td><input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled"  disabled></td>--}}
+{{--                                    @endif--}}
+{{--                                    @if($user->hasRole('ingener'))--}}
+{{--                                        <td>--}}
+{{--                                            <input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled" checked disabled>--}}
+{{--                                        </td>--}}
+{{--                                    @else--}}
+{{--                                        <td><input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled"  disabled></td>--}}
+{{--                                    @endif--}}
+{{--                                    @if($user->hasRole('operator'))--}}
+{{--                                        <td>--}}
+{{--                                            <input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled" checked disabled>--}}
+{{--                                        </td>--}}
+{{--                                    @else--}}
+{{--                                        <td><input class="form-check-input" type="checkbox"--}}
+{{--                                                   id="flexCheckCheckedDisabled"  disabled></td>--}}
+{{--                                    @endif--}}
 
                                     <td><a href = 'delete/{{ $user->id }}' class="btn btn-danger ">Удалить</a></td>
                                     <td><a href = 'edit/{{ $user->id }}' class="btn btn-primary ">Редактировать</a></td>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
     Route::get('/', 'MenuController@view_menu')->name('gda')->middleware('auth');   //Главная
@@ -72,7 +73,8 @@ use Illuminate\Support\Facades\Auth;
     Route::post('upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
 
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
-    Route::group(['middleware' => 'role:admin',], function () {
+  //  Route::group(['middleware' => 'role:admin',], function () {
+  //  Route::group(['middleware' => 'role:admin',], function () {
         Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
         Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
 
@@ -95,7 +97,7 @@ use Illuminate\Support\Facades\Auth;
         Route::get('/admin/perm', 'AdminController@perm_view');
         Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'Auth\RegisterController@register');
-    }); //'role:admin'
+  //  }); //'role:admin'
 //}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Auth::routes();
@@ -110,6 +112,12 @@ Route::get('/logout', function () {
 Route::get('/change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+
+});
 
 
 

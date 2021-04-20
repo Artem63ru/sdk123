@@ -8,14 +8,14 @@ use App\Events\WasBanned;
 use App\Events\WasUnbanned;
 use App\Models\Logs;
 use App\Models\Permission;
-use App\Models\Role;
+//use App\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use PDF;
 use Carbon\Carbon;
-
-
+use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +32,7 @@ class AdminController extends Controller
     // Вывод логов
     public function log_view()
     {
-        AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
+       // AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
         return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
     }
 
@@ -81,20 +81,33 @@ class AdminController extends Controller
     public function add_user(Request $request)
     {
 
-        $user = new User(
-            ['name' => $request->input('name'),
-                'surname' => $request->input('surname'),
-                'middle_name' => $request->input('middle_name'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
 
-            ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'middle_name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required'
+        ]);
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
+//        $user = new User(
+//            ['name' => $request->input('name'),
+//                'surname' => $request->input('surname'),
+//                'middle_name' => $request->input('middle_name'),
+//                'email' => $request->input('email'),
+//                'password' => Hash::make($request->input('password')),
+//
+//            ]);
 
-            $role = Role::find($request->input('role'));
-            $role->users()->save($user);
+         //   $role = Role::find($request->input('role'));
+       //     $role->users()->save($user);
+            $user->assignRole($request->input('role'));
 
 
-        $this->log_record('Добавил пользователя '.$user->name. 'с ролью '.$role->name);//пишем в журнал
+        $this->log_record('Добавил пользователя '.$user->name. 'с ролью '.$request->input('role'));//пишем в журнал
 
         return redirect('/admin/users');
     }
@@ -121,18 +134,35 @@ class AdminController extends Controller
     {
 
         // $user = User::find($request->input('id'));
-
-        $user=User::whereId($request->input('id'))->update([
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'middle_name' => $request->input('middle_name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+        $id = $request->input('id');
+//        $user=User::whereId($request->input('id'))->update([
+//            'name' => $request->input('name'),
+//            'surname' => $request->input('surname'),
+//            'middle_name' => $request->input('role'),
+//            'email' => $request->input('email'),
+//            'password' => Hash::make($request->input('password')),
+//        ]);
+        $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'middle_name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required'
         ]);
 
-        $role = Role::find($request->input('role'));
-        $role->users()->save($user);
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));
+        }
 
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('role'));
         $this->log_record('Изменил данные пользователя '.$request->input('name'));//пишем в журнал
         return redirect('/admin/users');
     }
@@ -143,7 +173,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->ban();
         $this->log_record('Заблокировал пользователя '.$user->name);//пишем в журнал
-        return redirect('/admin/users');
+        return redirect('/users');
     }
 
     //Разблокировка пользователя
@@ -153,7 +183,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->unban();
         $this->log_record('Разблокировал пользователя '.$user->name);//пишем в журнал
-        return redirect('/admin/users');
+        return redirect('/users');
     }
 
     // Добавить новую роль пользователя

@@ -26,12 +26,12 @@ trait HasRolesAndPermissions
      */
     public function hasRole(...$roles)
     {
-        foreach ($roles as $role) {
-            if ($this->roles->contains('slug', $role)) {
+      //  foreach ($roles as $role) {
+       //     if ($this->roles->contains('slug', $role)) {
                 return true;
-            }
-        }
-        return false;
+        //    }
+//        }
+//        return false;
     }
     /**
      * @param $permission
