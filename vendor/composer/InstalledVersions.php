@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ec0137a4f0c168b0305727eccb4e7c451dd7bde6',
+    'reference' => '4a66ff9796af5c5c7b6769dfe0d438f0090e4d5f',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -482,7 +482,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ec0137a4f0c168b0305727eccb4e7c451dd7bde6',
+      'reference' => '4a66ff9796af5c5c7b6769dfe0d438f0090e4d5f',
     ),
     'laravel/tinker' => 
     array (
@@ -537,6 +537,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
+    ),
+    'livewire/livewire' => 
+    array (
+      'pretty_version' => 'v2.4.3',
+      'version' => '2.4.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3',
     ),
     'mockery/mockery' => 
     array (

@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
+        "livewire/livewire": "^2.4",
         "spatie/laravel-permission": "^4.0",
         "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev"
     },
@@ -59,7 +60,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

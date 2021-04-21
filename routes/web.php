@@ -113,6 +113,10 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
 //Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::get('/tu', function (){
+        return view('tu.index');
+    }
+    );
 
   });
 Auth::routes();
