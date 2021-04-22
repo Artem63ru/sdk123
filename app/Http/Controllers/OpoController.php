@@ -163,5 +163,27 @@ class OpoController extends Controller
 
 
     }
+    public static function view_jas_15()
+//       ********************** Вывести последние 15 событий *****************************
+    {
+       return Jas::orderBy('id','DESC')->paginate(15);
+    }
+     public function view_opo_main()
+//       ********************** Вывести данные на страницу *****************************
+    {
+       $jas = OpoController::view_jas_15();
+       $opo = Ref_opo::orderBy('idOPO')->get();
+       $id = 2;
+       return view('web.index', compact('jas', 'opo', 'id'));
+    }
+    public function view_opo_id($id)
+//       ********************** Вывести данные на страницу *****************************
+    {
+       $id_opo = $id;
+       $jas = OpoController::view_jas_15();
+       $opo = Ref_opo::orderBy('idOPO')->get();
+       return view('web.index', compact('jas', 'opo', 'id'));
+    }
+
 
 }

@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Auth;
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
-    Route::get('/opo/{opo}', function ($opo) {
-        return view('opo', ['opo' => $opo]);
-    })->name('opo')->middleware('auth');  // Уровень ОПО главная
+//    Route::get('/opo/{opo}', function ($opo) {
+//        return view('opo', ['opo' => $opo]);
+////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
+
+    Route::get('/opo/{id}','OpoController@view_opo_id');
+
     Route::get('/opo_plan/{opo}', function ($opo) {
         return view('opo_plan', ['opo' => $opo]);
     })->name('opo')->middleware('auth');  // Уровень ОПО план
@@ -34,6 +37,7 @@ Route::group(['middleware' => ['auth']], function() {
     })->name('opo_day');
     Route::get('opo/charts/fetch-data', 'Opo_dayController@view_day')->name('opo/charts/fetch-data');
     Route::get('charts/fetch-data', 'Opo_dayController@view_day')->name('charts/fetch-data');
+   // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
     Route::get('/charts/chart_ip_opo', function () {
         return view('charts/chart_ip_opo');
@@ -113,12 +117,15 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
 //Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+ //*******************************************
     Route::get('/tu', function (){
         return view('tu.index');
     }
     );
+    Route::get('/new', 'OpoController@view_opo_main');
 
   });
+//*******************************************
 Auth::routes();
 Route::get('/logout', function () {
     Auth::logout();

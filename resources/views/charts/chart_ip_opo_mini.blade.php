@@ -1,7 +1,7 @@
 
 
 
-<div id="chart1" style="height: 190px"></div>
+<div id="chart_mini" style="height: 100px; padding-top: 20px"></div>
 
 <script language="JavaScript">
     $(document).ready(function() {
@@ -15,7 +15,7 @@
                 }
             },
             chart: {
-                renderTo: 'chart1',
+                renderTo: 'chart_mini',
                 type: 'area',
                 plotAreaWidth: 300,
                 plotAreaHeight: 75,
@@ -25,10 +25,11 @@
                     load: function () {
                         var series = this.series[0];
                         setInterval(() => {
-                            $.getJSON({
-                                url: '/charts/fetch-data',
-                                method: 'GET',
-                                success: function (data) {
+                            // $.getJSON({
+                            //     url: '/charts/fetch-data',
+                            //     method: 'GET',
+                            //     success: function (data) {
+                            data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}
                                     if (data[data.length-1][0] > old_date) {
                                         var x = data[data.length - 1][0],
                                             y = data[data.length - 1][1];
@@ -37,9 +38,9 @@
                                         console.log('Внутри');
                                     }
 
-                                }
+                           //     }
 
-                            });
+                         //   });
                         }, 10000);
                     }
                 }
@@ -117,15 +118,16 @@
                 },
             }]
         };
-        $.getJSON({
-            url: '/charts/fetch-data',
-            method: 'GET',
-            success: function (data) {
+        // $.getJSON({
+        //     url: '/charts/fetch-data',
+        //     method: 'GET',
+        //     success: function (data) {
+                data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}
                 options.series[0].data = data;
                 var chart = new Highcharts.Chart(options);
                 old_date = data[data.length-1][0];
-            }
-        });
+        //     }
+        // });
     });
 
 </script>

@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'HeliosCond';
+    src: url('HeliosCond.eot');
+    src: url('HeliosCond.eot?') format('embedded-opentype'),
+        url('HeliosCond.woff2') format('woff2'),
+        url('HeliosCond.woff') format('woff'),
+        url('HeliosCond.ttf') format('truetype'),
+        url('HeliosCond.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HeliosCond';
+    src: url('HeliosCond-Bold.eot');
+    src: url('HeliosCond-Bold.eot?') format('embedded-opentype'),
+        url('HeliosCond-Bold.woff2') format('woff2'),
+        url('HeliosCond-Bold.woff') format('woff'),
+        url('HeliosCond-Bold.ttf') format('truetype'),
+        url('HeliosCond-Bold.svg') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+html,
+body{ font-family: 'HeliosCond'!important;font-weight: normal;}
+.bold{font-weight: bold;}

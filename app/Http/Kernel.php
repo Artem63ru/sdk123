@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\UserActivity::class,
-            \App\Http\Middleware\SessionTimeout::class,
+         //   \App\Http\Middleware\SessionTimeout::class,   //раскоментировать выбивает пользователя при простое 90 сек
 
         ],
 

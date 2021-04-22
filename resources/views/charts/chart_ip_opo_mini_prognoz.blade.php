@@ -1,7 +1,7 @@
 
 
 
-<div id="chart1" style="height: 190px"></div>
+<div id="chart_mini_prognoz" style="height: 100px; margin-top: 20px"></div>
 
 <script language="JavaScript">
     $(document).ready(function() {
@@ -15,7 +15,7 @@
                 }
             },
             chart: {
-                renderTo: 'chart1',
+                renderTo: 'chart_mini_prognoz',
                 type: 'area',
                 plotAreaWidth: 300,
                 plotAreaHeight: 75,
@@ -46,7 +46,8 @@
             },
             xAxis: {
                 type: 'datetime',
-                gridLineWidth: 1
+                gridLineWidth: 0.5,
+
             },
             legend: {
                 enabled: false
@@ -60,6 +61,9 @@
                     style: {
                         display: 'none'
                     }
+                },
+                labels: {
+                    enabled:false
                 },
                 minorGridLineWidth: 0,
                 gridLineWidth: 0,
@@ -115,6 +119,7 @@
                 marker: {
                     enabled: false
                 },
+               color :"#e9c199",
             }]
         };
         $.getJSON({

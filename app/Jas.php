@@ -8,8 +8,9 @@ class Jas extends Model
 {
 
 
+    protected $dateFormat = 'd.m.Y';
 
-    protected $table = 'public.jas';
+    protected $table = 'public.jas_1';
 
     public $timestamps = false;
 
@@ -27,6 +28,7 @@ class Jas extends Model
                     ->take(10)
                     ->get();
     }
+
 
     //
  //

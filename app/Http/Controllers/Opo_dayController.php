@@ -7,7 +7,7 @@ use App\Opo_day;
 
 class Opo_dayController extends Controller
 {
-    public static function view_day ()
+    public static function view_day ($id)
     {
 
       $result = Opo_day::all();
@@ -19,6 +19,7 @@ class Opo_dayController extends Controller
 //        echo '<BR>';
       $my = array();
       $data1 = array();
+      $id_opo = $id;
 
       if($result->Count() < 1)
         {
@@ -28,12 +29,12 @@ class Opo_dayController extends Controller
         {
             foreach ($result as $row)
             {
-                $my[] = $row->ip_opo_1;
+                $my[] = $row->toArray('ip_opo_2');
             }
             $result_ip = str_replace('"','',json_encode($my));
             foreach ($result as $row)
             {
-                $data1[] = array (strtotime($row->date)*1000, $row->ip_opo_1);
+                $data1[] = array (strtotime($row->date)*1000, $row['ip_opo_'.$id_opo]);
             }
         }
         $result_data = str_replace('"','',json_encode(array_reverse($data1, false)));
