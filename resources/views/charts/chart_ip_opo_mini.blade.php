@@ -25,11 +25,11 @@
                     load: function () {
                         var series = this.series[0];
                         setInterval(() => {
-                            // $.getJSON({
-                            //     url: '/charts/fetch-data',
-                            //     method: 'GET',
-                            //     success: function (data) {
-                            data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}
+                            $.getJSON({
+                                url: '/charts/fetch-data/{{$id}}',
+                                method: 'GET',
+                                success: function (data) {
+                            {{--data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}--}}
                                     if (data[data.length-1][0] > old_date) {
                                         var x = data[data.length - 1][0],
                                             y = data[data.length - 1][1];
@@ -38,9 +38,9 @@
                                         console.log('Внутри');
                                     }
 
-                           //     }
+                               }
 
-                         //   });
+                           });
                         }, 10000);
                     }
                 }
@@ -118,16 +118,16 @@
                 },
             }]
         };
-        // $.getJSON({
-        //     url: '/charts/fetch-data',
-        //     method: 'GET',
-        //     success: function (data) {
-                data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}
+        $.getJSON({
+             url: '/charts/fetch-data/{{$id}}',
+            method: 'GET',
+            success: function (data) {
+                {{--data = {{\App\Http\Controllers\Opo_dayController::view_day($id)}}--}}
                 options.series[0].data = data;
                 var chart = new Highcharts.Chart(options);
                 old_date = data[data.length-1][0];
-        //     }
-        // });
+            }
+        });
     });
 
 </script>

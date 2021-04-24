@@ -26,7 +26,7 @@
                         var series = this.series[0];
                         setInterval(() => {
                             $.getJSON({
-                                url: '/charts/fetch-data',
+                                url: '/charts/fetch-data_day/{{$id}}',
                                 method: 'GET',
                                 success: function (data) {
                                     if (data[data.length-1][0] > old_date) {
@@ -118,7 +118,7 @@
             }]
         };
         $.getJSON({
-            url: '/charts/fetch-data',
+            url: '/charts/fetch-data_day/{{$id}}',
             method: 'GET',
             success: function (data) {
                 options.series[0].data = data;

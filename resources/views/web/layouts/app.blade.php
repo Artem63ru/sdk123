@@ -19,13 +19,14 @@
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/hchart/highcharts.src.js"></script>
-    <script src="/js/hchart/highcharts-more.js"></script>
+{{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
     <script src="/js/hchart/solid-gauge.js"></script>
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">--}}
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

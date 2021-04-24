@@ -174,15 +174,40 @@ class OpoController extends Controller
        $jas = OpoController::view_jas_15();
        $opo = Ref_opo::orderBy('idOPO')->get();
        $id = 2;
+
        return view('web.index', compact('jas', 'opo', 'id'));
     }
     public function view_opo_id($id)
-//       ********************** Вывести данные на страницу *****************************
+//       ********************** Вывести данные на страницу Конкретного ОПО по ИД *****************************
     {
-       $id_opo = $id;
-       $jas = OpoController::view_jas_15();
-       $opo = Ref_opo::orderBy('idOPO')->get();
-       return view('web.index', compact('jas', 'opo', 'id'));
+
+       $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
+       $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
+       $ver_opo =  Ref_opo::find($id);
+       $jas_opo =  $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
+       $mins_opos = $ver_opo->opo_to_calc_day_min->first();
+       $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
+       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
+       return view('web.index', compact('jas', 'opo', 'id', 'jas_opo','mins_opos','mins_opo_months','mins_opo_year'));
+    }
+    ///************************* Формирование данных для мини графика **********************************
+    public static function view_ip_last ($id)
+    {
+
+        $opos = Ref_opo::find($id);
+        foreach ($opos->opo_to_calc30 as $ip)
+        {
+            $data1[] = array (strtotime($ip->date)*1000, $ip['ip_opo']);
+        }
+        // return $opos->opo_to_calc_day('2021-02-20') ;//->first()->date;
+        return str_replace('"','',json_encode(array_reverse($data1, false)));//$opos->opo_to_calc30;//->first()->date;
+    }
+    ///************************* Формирование IP_OPO текущего для конкрентного ОПО **********************************
+    public static function view_ip_opo ($id)
+    {
+        $opos = Ref_opo::find($id);
+
+        return  $opos->opo_to_calc1->first()->ip_opo;//$opos->opo_to_calc30;//->first()->date;
     }
 
 

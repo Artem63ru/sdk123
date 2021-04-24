@@ -6,42 +6,27 @@ use Illuminate\Support\Facades\Auth;
 
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
-Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
 //    Route::get('/opo/{opo}', function ($opo) {
 //        return view('opo', ['opo' => $opo]);
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
 
     Route::get('/opo/{id}','OpoController@view_opo_id');
 
-    Route::get('/opo_plan/{opo}', function ($opo) {
-        return view('opo_plan', ['opo' => $opo]);
-    })->name('opo')->middleware('auth');  // Уровень ОПО план
-    Route::get('/element/{elem}', function ($elem) {
-        return view('element', ['elem' => $elem]);
-    })->name('element')->middleware('auth');  // Уровень Элемента главная
-    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {
-        return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);
-    })->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
+    Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
+    Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
+    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
 
-    Route::get('/trend', function () {
-        return view('trend');
-    })->name('trend');
-    Route::get('/php', function () {
-        phpinfo();
-    });
+    Route::get('/trend', function () {        return view('trend');    })->name('trend');
+    Route::get('/php', function () {        phpinfo();    });
 
-    Route::get('/opo_day', function () {
-        return view('opo_day');
-    })->name('opo_day');
+    Route::get('/opo_day', function () {        return view('opo_day');    })->name('opo_day');
     Route::get('opo/charts/fetch-data', 'Opo_dayController@view_day')->name('opo/charts/fetch-data');
     Route::get('charts/fetch-data', 'Opo_dayController@view_day')->name('charts/fetch-data');
    // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
-    Route::get('/charts/chart_ip_opo', function () {
-        return view('charts/chart_ip_opo');
-    })->name('chart_ip_opo');
+    Route::get('/charts/chart_ip_opo', function () {        return view('charts/chart_ip_opo');    })->name('chart_ip_opo');
 
 //***************Login and prochee
 
@@ -118,19 +103,17 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
  //*******************************************
-    Route::get('/tu', function (){
-        return view('tu.index');
-    }
-    );
-    Route::get('/new', 'OpoController@view_opo_main');
+    Route::get('/tu', function (){        return view('tu.index');    }    );
+
+    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
+    Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
+
+    Route::get('/new/{id}', 'Opo_dayController@view_last');
 
   });
 //*******************************************
 Auth::routes();
-Route::get('/logout', function () {
-    Auth::logout();
-    return Redirect::to('login');
-});
+Route::get('/logout', function () {    Auth::logout();    return Redirect::to('login');});
 
 
 
