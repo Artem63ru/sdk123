@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('title')
-    Проба
+    Главная ОПО
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                         <div class="sidebar_top_single info">
                             <div class="class_rate good">1</div>
                             <div class="class_name">
-                                <p class="bold blue_text">ПАО Газпром {{$id}}</p>
+                                <p class="bold blue_text">ПАО Газпром</p>
                                 <p class="grey_text">ПАО "Газпром автоматизация"</p>
                             </div>
                         </div>

@@ -30,4 +30,12 @@ class Ref_obj extends Model
         return $this->hasMany('App\Models\Tu', 'from_el_opo', 'idObj');
 
     }
+    public function obj_to_opo()   //Отношение к ОПО
+    {
+        return $this->belongsTo('App\Ref_opo', 'idOPO', 'idOPO');
+    }
+    public function obj_to_type() // Отношение к типу оборудования
+    {
+        return $this->belongsTo('App\Models\Type_obj', 'typeObj', 'type_id');
+    }
 }

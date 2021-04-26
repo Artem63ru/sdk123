@@ -190,6 +190,17 @@ class OpoController extends Controller
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
        return view('web.index', compact('jas', 'opo', 'id', 'jas_opo','mins_opos','mins_opo_months','mins_opo_year'));
     }
+    public function view_opo_main_shema ($id)
+//       ********************** Вывести схему на страницу Конкретного ОПО по ИД *****************************
+    {
+
+       $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
+       $ver_opo =  Ref_opo::find($id);  // Ссылка на ОПО
+       $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
+//
+       return view('web.opo_shema_main', compact('jas', 'ver_opo', 'elems_opo'));
+
+    }
     ///************************* Формирование данных для мини графика **********************************
     public static function view_ip_last ($id)
     {
