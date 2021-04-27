@@ -11,7 +11,7 @@
 
             <div class="func_passport_bottom">
                 <h4>Перечень несоответствий выявленных при проведении производственного контроля</h4>
-                <div class="ppr_date_single">Всего несоответствий <span>0</span></div>
+                <div class="ppr_date_single">Всего несоответствий <span>{{$this_elem_apk->count()}}</span></div>
                 <table>
                     <thead>
                     <tr>
@@ -22,24 +22,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach ($this_elem_apk as $this_tb_apk)
                     <tr>
-                        <td>Трубопровод 57х4 - шлейф очищенного газа от скважины до коллектора скв. 73</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
+                        <td>{{$this_tb_apk->Details}}</td>
+                        <td>{{$this_tb_apk->Document}} </td>
+                        <td>{{$this_tb_apk->CompleteDate}}</td>
+                        <td>{{$this_tb_apk->Weight}}</td>
                     </tr>
-                    <tr>
-                        <td>Трубопровод 57х4 - шлейф очищенного газа от скважины до коллектора скв. 73</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
-                    </tr>
-                    <tr>
-                        <td>Трубопровод 57х4 - шлейф очищенного газа от скважины до коллектора скв. 73</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

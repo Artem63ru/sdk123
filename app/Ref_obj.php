@@ -38,4 +38,9 @@ class Ref_obj extends Model
     {
         return $this->belongsTo('App\Models\Type_obj', 'typeObj', 'type_id');
     }
+    //**************** Отношение к журналу отклонений по АПК ************************************
+    public function elem_to_APK()
+    {
+        return $this->hasMany('App\Models\APK_SDK', 'idObj', 'idObj');
+    }
 }

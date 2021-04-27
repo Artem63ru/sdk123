@@ -10,7 +10,12 @@
                     <p class="descript">"Наименование документа схемы. Наименование документа схемы."</p>
                     <a href="#" class="download_scheme">Скачать <img alt="" src="{{asset('assets/images/icons/download.svg')}}"></a>
                 </div>
-                <div class="tech_scheme_right"><img alt="" src="{{asset('replace/scheme.png')}}" class="replace"></div>
+                <div class="tech_scheme_right">
+{{--                    <img alt="" src="{{asset('replace/scheme.png')}}" class="replace">--}}
+                    <object width="1000" height="450" type="application/pdf" data="{{asset('replace/Mannesmann.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0')}}">
+                        <p>Insert your error message here, if the PDF cannot be displayed.</p>
+                    </object>
+                </div>
             </div>
         </div>
     </section>
