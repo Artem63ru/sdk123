@@ -269,12 +269,12 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 .numbs_line .numbs_single.active span{background:#fff;}
 
 
-.opo_page_left{width:64%;float:left;}
-.opo_page_right{width:34%;float:right;}
+.opo_page_left{width:64%;}
+.opo_page_right{width:34%;}
 
 .clearfix{clear:both;}
 
-.opo_block{display:block;clear:both;}
+.opo_block{}
 .opo_page_square {
     background: #fff;
     border-radius: 30px;
@@ -288,13 +288,14 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 .opo_page_square p{font-size:12px;color:#828282;}
 
 
+input[type="radio"]#main_opo:checked + .period_block{width:100%;}
+input[type="radio"]#main_opo:checked + .per_sood{display:none;}
 
+input[type="radio"]#opo_pass:checked + .period_block{width:33%;}
+input[type="radio"]#opo_pass:checked + .per_sood{display:block;width:75%;}
 
-
-
-
-
-
+.opo_tabs .inside_tab_padding{height:26vh;}
+.opo_tabs{height:35vh;}
 
 
 
@@ -395,7 +396,7 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
   .func_passport_bottom.tabled_rate table td.rating{width:28%;}
   .func_passport_bottom.tabled_rate table td.integral{width:16%;}
   .func_passport_bottom.tabled_rate table td{height:100%;text-align:left;}
-  .func_passport_bottom.tabled_rate table td div{background:#fff;border-radius:10px;padding:20px;margin:5px;height:13vh;}
+  .func_passport_bottom.tabled_rate table td div{background:#fff;border-radius:10px;padding:20px;    margin: 5px 5px -8px 5px;height:12vh;}
   .func_passport_bottom.tabled_rate table td:first-of-type div{margin-left:0;}
   .func_passport_bottom.tabled_rate table td:last-of-type div{margin-right:0;}
   .func_passport_bottom.tabled_rate table{padding:0;}
@@ -414,7 +415,7 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 
 
 
-.tabs-container {max-width: 100%;margin: -15px 0 0 0;}
+.tabs-container {max-width: 100%;margin: 0px 0 0 0;}
 .tabs {list-style-type: none;padding-left:0;border-bottom:1px solid #ccc;}
 .tabs li a {display: block;font-size:13px;position: relative;top: 0;text-decoration:none;padding: 10px;color:#9c9b9b;border-bottom:2px solid transparent;}
 .tabs li.active a{opacity: 1;color:#3394ce;border-bottom:2px solid #3394ce;text-decoration:none;}
@@ -435,17 +436,86 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 
 .inside_tab_padding .row_block img.replace{width:100%;}
 
+.func_passport_bottom tr td.rating{border:none;}
 
 
 
+/* КАРТА */
+
+
+.map_block img{width:100%;margin:auto;text-align:center;}
+.risk_color span{width:15px;height:15px;float:left;border-radius:5px;margin-right:5px;}
+
+.risk_color{display:inline-block;color:#999999;margin-right:20px;line-height:15px;}
+.risk_color.high_risk span{background:#f26161;}
+.risk_color.middle_risk span{background:#f58b2c;}
+.risk_color.low_risk span{background:#ffca45;}
+.risk_color.no_risk span{background:#49ce56;}
+.risk_color.bad_info_risk span{background:#864acc;}
+
+.map_info{background:#fff;border-radius:8px;padding:20px;margin-bottom:30px;    width: 330px;}
+.map_info img{width:20px;position:absolute;margin-left:-15px;margin-top:-15px;}
+.map_info table tr td{padding:3px;}
+.map_info table tr td:first-of-type{color:#b3b3b3;padding-right:20px;}
+.map_info table tr td:last-of-type{color:#033e67;border-left:1px solid #e7e7e7;padding-left:25px;}
+
+.map_info table tr td.high_risk{font-weight:bold;color:#f26161;}
+.map_info table tr td.middle_risk{font-weight:bold;color:#f58b2c;}
+.map_info table tr td.low_risk{font-weight:bold;color:#ffca45;}
+.map_info table tr td.no_risk{font-weight:bold;color:#49ce56;}
+.map_info table tr td.bad_info_risk{font-weight:bold;color:#864acc;}
+
+.map_bottom_blocks{position:absolute;bottom:45px;}
+
+
+.period_block.opo_period{background:transparent;}
+.period_block.opo_period .func_passport_bottom{width:93.7%;float:left;}
+.period_block.opo_period .period_info.inside_type{width:35%;}
+
+.tech_passport_tab.opo tr td:nth-child(4), .tech_passport_tab.opo tr td:nth-child(7), .tech_passport_tab.opo tr td:nth-child(8){color:#575756;}
 
 
 
+.opo_left{float:left;width:62%;margin-right:0px;}
+.opo_right{float:right;width:35%;}
 
 
+.opo_left .tab.two_col_tab {width: 46%;}
+.opo_left .ppr_date_single {font-size: 12px; margin-right: 18px;}
 
+.tech_passport_tab .noborders thead tr th,
+.tech_passport_tab .noborders tbody tr td{border:none;padding:10px;}
+.tech_passport_tab .noborders tbody tr td{font-weight:bold;color:#575756;font-size:17px;}
+.tech_passport_tab .noborders tbody tr td.good{font-size:13px;font-weight:normal;}
+.tech_passport_tab .noborders tbody tr td.good span{padding:5px;background:#eff9ef;color:#71ca65;}
+.tech_passport_tab .noborders tbody tr td.bad{font-size:13px;font-weight:normal;}
+.tech_passport_tab .noborders tbody tr td.bad span{padding:5px;background:#f9eaea;color:#ea6a6a;}
+.tech_passport_tab .noborders tbody tr td.middle{font-size:13px;font-weight:normal;}
+.tech_passport_tab .noborders tbody tr td.middle span{padding:5px;background:#f9f2e4;color:#f2b140;}
 
+img.edit_icon{width:20px;position:absolute;right:12px;margin-top:-10px;}
+img.edit_icon:hover{opacity:.7;}
 
+.opo_left .func_passport_bottom{margin-top:.4vh;}
+
+.period_info.inside_type{height: 21vh;background: #fff; border-radius: 8px;clear:both;    margin-top: 38vh;}
+.opo_squares{display:block;margin-bottom:1vh;clear:both;}
+
+.opo_squares .opo_page_square{width:45%;margin:auto;height: 16vh;}
+.opo_squares .opo_page_square:nth-child(1){margin:0 5px 5px 0;}
+.opo_squares .opo_page_square:nth-child(2){margin:0 0 5px 5px;}
+.opo_squares .opo_page_square:nth-child(3){margin:5px 5px 0 0;}
+.opo_squares .opo_page_square:nth-child(4){margin:5px 0 0 5px;}
+
+.opo_page_square a{text-decoration:none;}
+.third_col{width:25%;float:left;}
+.third_col:first-of-type{width:49%;}
+.third_col img{width:100%;}
+.third_col:first-of-type img{width:80%;}
+
+.inside_tab_padding .row_block .third_col img.replace{width:80%;}
+.inside_tab_padding .row_block .third_col:first-of-type img.replace{width:100%;}
+.inside_tab_padding .row_block .third_col p{font-size:13px; color:#828282;}
 /* АДАПТИВ */
 
 
@@ -476,6 +546,18 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 @media screen and (max-width:1382px){
 .tab{width:22%;}
 .tech_block_search input{width:90px;}
+.opo_left .tab.two_col_tab {width: 45%;}
+.opo_page_square p {font-size: 11px;}
+.opo_squares .opo_page_square { width: 44%;}
+
+.tech_passport_tab .noborders tbody tr td.good span {
+    padding: 5px; line-height: 1.8em;}
+    .tech_passport_tab .noborders tbody tr td {
+    font-size: 14px;
+}
+.opo_grid .tab_title{font-size:12px;}
+.opo_grid .func_passport_bottom h4{font-size:11px;}
+.opo_grid .opo_left .ppr_date_single { font-size: 11px; margin-right: 0px;}
 }
 
 @media screen and (max-width:1351px){
@@ -486,6 +568,8 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 }
 
 @media screen and (max-width:1333px){
+  .func_passport_bottom.tabled_rate p {font-size: 11px;}
+  .func_passport_bottom.tabled_rate h3 {margin: 0 5px 0 0;}
   .numbs_line .numbs_single{padding:8px 3px;}
   .main_info_col .tripple_cols{width:25%;padding:0 7px;}
   .main_info_col .tripple_cols:first-of-type{padding:0 4px 0 0;}
@@ -501,7 +585,7 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
   .td_button.blue_button::after{margin-left: 16px;}
   .td_button.blue_button a{    padding: 7px 6px 5px 12px;}
   .td_date,.td_status,.td_opo,.td_element,.td_number,.td_event{vertical-align: top;}
-
+.tabs li a{font-size:11px;}
 }
 
 @media screen and (max-width:1316px){
@@ -511,14 +595,21 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 
 
 @media screen and (max-width:1273px){
+  .period_block.opo_period .func_passport_bottom {
+    width: 92%;}
   .third_size {width: 31.8%;}
   .table_head_block{    padding: 6px 31px 6px 36px;}
   .top_table_inside{font-size:11px;}
   img.table_left_corner{margin-left:-40px;}
   .tab {width: 21.5%;}
+  .func_passport_bottom.tabled_rate h3 {font-size: 18px;}
+  .func_passport_bottom.tabled_rate h3.blue{width:30px;}
+  .func_passport_bottom.tabled_rate p { margin: -3px 0 0 0;}
 }
 
 @media screen and (max-width:1223px){
+
+  .tab.two_col_tab {width: 46.6%;text-align: center;margin-right: 19px;}
 .numbs_line .numbs_single{margin:3px 1px;}
 }
 
@@ -554,6 +645,7 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
   .func_passport_top h4{margin-bottom:25px;}
   .func_passport_bottom{height:17vh;}
   .tabs-container {margin: 5px 0 0 0;}
+
 }
 
 
@@ -566,15 +658,21 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 
 @media screen and (max-height:890px){
   .sidebar .sidebar_bottom { height: 64.2vh;}
-
+.map_block img {width: 85%;}
+.opo_grid .func_passport_bottom{height:16.5vh;}
+.opo_page_square img { width: 76%; margin-bottom: -8px;}
+.inside_tab_padding .row_block .third_col img.replace{width:70%;margin-bottom:-5px;}
 }
 
 @media screen and (max-height:825px){
+
   .main_info_col .tripple_cols .lined{    margin-top: 12px; margin-bottom: 9px;}
   .main_info_col img.replace{height:70px;}
+  .inside_tab_padding .row_block .third_col img.replace{width:60%;margin-bottom:-15px;}
 }
 
 @media screen and (max-height:799px){
+  .map_block img {width: 75%;}
   .inside_main_info.left p{font-size:13px;}
   .inside_main_info.left img {height: 16px;}
   .inside_main_info.right p {font-size: 20px;margin-top:-3px;}
@@ -595,6 +693,13 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
   .tabs-container h4 { margin-bottom: 0; margin-top: -7px;}
   .inform {margin-top: -6px;}
   .tabs-panel img.replace { width: 90%;}
+
+  .opo_grid .func_passport_bottom {height: 16vh;}
+  .opo_tabs .inside_tab_padding { height: 25vh;}
+
+  img.edit_icon {right: 7px; top: 16px;  }
+  .opo_grid .tabs{border:none;}
+  .opo_page_square img { width: 62%;}
 }
 
 @media screen and (max-height:770px){
@@ -624,6 +729,10 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 }
 
 @media screen and (max-height:690px){
+
+  .map_block img {width: 80%;}
+  .map_bottom_blocks {position: relative;}
+  .content.map_content{overflow-y:scroll;}
   .func_passport_top { height: 24vh;  }
   .func_passport_bottom.tabled_rate table td div{padding:12px;}
   .func_passport_bottom.tabled_rate img.replace{width:75%;margin:auto!important;}
@@ -689,17 +798,36 @@ img.table_left_corner {height: 28px;margin-top: -5px;margin-left: -28px;}
     .func_passport_bottom.tabled_rate {height: 140px;  }
     .func_passport_bottom.tabled_rate table td div{height:140px;}
     .inside_tab_padding.not_white{height:420px;}
+
+.opo_squares .opo_page_square{height:115px;}
+.period_info.inside_type { height: 135px; margin-top: 275px;}
+
+.opo_tabs .inside_tab_padding {height: 180px;}
+.opo_grid .func_passport_bottom{height:96px;}
+
+.period_block.opo_period .func_passport_bottom{margin-top:38px;}
+
+.opo_grid .opo_block {height: 228px;}
 }
 
+@media screen and (min-width:1499px){
+.opo_page_square img {width: 80%;}
 
+}
 
 
 @media screen and (min-width:1589px){
   .main_info_col .tripple_cols .lined {margin-top: -6px; margin-bottom: 5px;}
   .main_info_col .tripple_cols p.title{margin-top:3px;}
+  .map_block img { width: 1300px;}
 
 }
 
+@media screen and (min-width:1599px){
+.opo_page_square img {width: 130px;}
+  .inside_tab_padding .row_block .third_col img.replace{width:60%;margin-bottom:-15px;}
+
+}
 
 
 @media screen and (min-width:1589px) and (min-height:820px){
