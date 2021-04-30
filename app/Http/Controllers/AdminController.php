@@ -19,6 +19,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -235,6 +236,16 @@ class AdminController extends Controller
 
         $this->log_record('Изменил роль '. $request->input('name'));//пишем в журнал
         return redirect('/admin/roles');
+    }
+
+    public function xml_view ()
+    {
+
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">";
+
+
+       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+
     }
 
 }

@@ -63,6 +63,16 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'remote-sftp' => [
+            'driver' => 'sftp',
+            'host' => '10.25.164.137',
+            'username' => 'sdksftp',
+            'password' => 'Potok-DU',
+            'visibility' => 'public',
+            'permPublic' => 0766, /// <- this one did the trick
+            'root' => '/upload',
+
+        ],
 
     ],
 
