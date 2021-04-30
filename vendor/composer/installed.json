@@ -810,17 +810,17 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.8.3",
-            "version_normalized": "2.8.3.0",
+            "version": "2.8.4",
+            "version_normalized": "2.8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d"
+                "reference": "87fb348dab0ae1a7c206c3e902a5a44ba541742f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/a8201d51aae83addceaef9344592a3b068b5d64d",
-                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/87fb348dab0ae1a7c206c3e902a5a44ba541742f",
+                "reference": "87fb348dab0ae1a7c206c3e902a5a44ba541742f",
                 "shasum": ""
             },
             "require": {
@@ -844,7 +844,7 @@
             "suggest": {
                 "laravel/telescope": "^3.1"
             },
-            "time": "2021-04-09T20:45:59+00:00",
+            "time": "2021-04-29T13:55:26+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1007,17 +1007,17 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.12.0",
-            "version_normalized": "2.12.0.0",
+            "version": "2.12.1",
+            "version_normalized": "2.12.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
-                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/c13c0be93cff50f88bbd70827d993026821914dd",
+                "reference": "c13c0be93cff50f88bbd70827d993026821914dd",
                 "shasum": ""
             },
             "require": {
@@ -1033,7 +1033,7 @@
                 "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
                 "whoops/soap": "Formats errors as SOAP responses"
             },
-            "time": "2021-03-30T12:00:00+00:00",
+            "time": "2021-04-25T12:00:00+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1069,7 +1069,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.12.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.1"
             },
             "funding": [
                 {
@@ -1352,17 +1352,17 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
-            "version_normalized": "1.8.1.0",
+            "version": "1.8.2",
+            "version_normalized": "1.8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -1380,7 +1380,7 @@
             "suggest": {
                 "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
-            "time": "2021-03-21T16:25:00+00:00",
+            "time": "2021-04-26T09:17:50+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1424,7 +1424,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "install-path": "../guzzlehttp/psr7"
         },
@@ -2335,17 +2335,17 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.3",
-            "version_normalized": "2.4.3.0",
+            "version": "v2.4.4",
+            "version_normalized": "2.4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3"
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
-                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/33101c83b75728651b9e668a4559f97def7c9138",
+                "reference": "33101c83b75728651b9e668a4559f97def7c9138",
                 "shasum": ""
             },
             "require": {
@@ -2364,7 +2364,7 @@
                 "phpunit/phpunit": "^8.4|^9.0",
                 "psy/psysh": "@stable"
             },
-            "time": "2021-04-16T14:27:45+00:00",
+            "time": "2021-04-28T15:31:15+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2398,7 +2398,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.3"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.4"
             },
             "funding": [
                 {
