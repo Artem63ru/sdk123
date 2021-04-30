@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '839d03250feadd337d7f6c5c76a08c80fea17ad1',
+    'reference' => '080f0cf3c765b82935d6ffd8928f56a7448528a2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -450,15 +450,6 @@ private static $installed = array (
       ),
       'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
     ),
-    'jailtonsc/laravel-response-xml' => 
-    array (
-      'pretty_version' => 'v3.0.1',
-      'version' => '3.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd7debb3893693fc50b9afd29bf9492f9a43506b3',
-    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -491,7 +482,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '839d03250feadd337d7f6c5c76a08c80fea17ad1',
+      'reference' => '080f0cf3c765b82935d6ffd8928f56a7448528a2',
     ),
     'laravel/tinker' => 
     array (
@@ -537,15 +528,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '9be3b16c877d477357c015cec057548cf9b2a14a',
-    ),
-    'league/flysystem-sftp' => 
-    array (
-      'pretty_version' => '1.0.22',
-      'version' => '1.0.22.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'cab59dd2277e02fe46f5f23195672a02ed49774d',
     ),
     'league/mime-type-detection' => 
     array (
@@ -703,15 +685,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '994ecccd8f3283ecf5ac33254543eb0ac946d525',
-    ),
-    'phpseclib/phpseclib' => 
-    array (
-      'pretty_version' => '2.0.31',
-      'version' => '2.0.31.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '233a920cb38636a43b18d428f9a8db1f0a1a08f4',
     ),
     'phpspec/prophecy' => 
     array (

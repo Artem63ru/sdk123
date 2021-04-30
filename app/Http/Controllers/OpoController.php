@@ -198,7 +198,7 @@ class OpoController extends Controller
        $ver_opo =  Ref_opo::find($id);  // Ссылка на ОПО
        $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
 //
-       return view('web.opo_shema_main', compact('jas', 'ver_opo', 'elems_opo'));
+       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo'));
 
     }
     ///************************* Формирование данных для мини графика **********************************
