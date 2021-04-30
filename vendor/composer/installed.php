@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '4a66ff9796af5c5c7b6769dfe0d438f0090e4d5f',
+    'reference' => '080f0cf3c765b82935d6ffd8928f56a7448528a2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -126,12 +126,12 @@
     ),
     'facade/ignition' => 
     array (
-      'pretty_version' => '2.8.3',
-      'version' => '2.8.3.0',
+      'pretty_version' => '2.8.4',
+      'version' => '2.8.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a8201d51aae83addceaef9344592a3b068b5d64d',
+      'reference' => '87fb348dab0ae1a7c206c3e902a5a44ba541742f',
     ),
     'facade/ignition-contracts' => 
     array (
@@ -153,12 +153,12 @@
     ),
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.12.0',
-      'version' => '2.12.0.0',
+      'pretty_version' => '2.12.1',
+      'version' => '2.12.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd501fd2658d55491a2295ff600ae5978eaad7403',
+      'reference' => 'c13c0be93cff50f88bbd70827d993026821914dd',
     ),
     'fruitcake/laravel-cors' => 
     array (
@@ -198,12 +198,12 @@
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '1.8.1',
-      'version' => '1.8.1.0',
+      'pretty_version' => '1.8.2',
+      'version' => '1.8.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '35ea11d335fd638b5882ff1725228b3d35496ab1',
+      'reference' => 'dc960a912984efb74d0a90222870c72c87f10c91',
     ),
     'hamcrest/hamcrest-php' => 
     array (
@@ -458,7 +458,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '4a66ff9796af5c5c7b6769dfe0d438f0090e4d5f',
+      'reference' => '080f0cf3c765b82935d6ffd8928f56a7448528a2',
     ),
     'laravel/tinker' => 
     array (
@@ -516,12 +516,12 @@
     ),
     'livewire/livewire' => 
     array (
-      'pretty_version' => 'v2.4.3',
-      'version' => '2.4.3.0',
+      'pretty_version' => 'v2.4.4',
+      'version' => '2.4.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3',
+      'reference' => '33101c83b75728651b9e668a4559f97def7c9138',
     ),
     'mockery/mockery' => 
     array (
