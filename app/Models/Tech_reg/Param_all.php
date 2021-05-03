@@ -20,6 +20,10 @@ class Param_all extends Model
     {
         return $this->belongsTo('App\Models\Tech_reg\Type_param', 'type', 'typeid');
     }
-
+    //***************** Отношение параметра к таблице техрегламента *********************************
+    public function param_to_reglament()
+    {
+        return $this->hasMany('App\Models\Tech_reg\Tech_reglament', 'from_param_all', 'id');
+    }
 
 }

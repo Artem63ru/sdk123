@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ref_obj;
 use App\Ref_opo;
+use App\Models\Tech_reg\Tech_reglament;
 use Illuminate\Http\Request;
 
 class ObjController extends Controller
@@ -18,8 +19,9 @@ class ObjController extends Controller
         $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
         $this_elem = Ref_obj::find($id_obj); // Ссылка на элемен
         $this_elem_apk = Ref_obj::find($id_obj)->elem_to_APK;  // перечень всех несоответствий АПК по элементу
+        $reglaments = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
 //
-        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo'));
+        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments'));
 
     }
 }

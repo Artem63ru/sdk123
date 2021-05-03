@@ -57,69 +57,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($reglaments as $reglament)
                                     <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
+                                        <td>{{$reglament->reglament_to_param->asutp_name}}</td>
+                                        <td>{{$reglament->reglament_to_param->full_name}}</td>
+                                        <td>{{$reglament->min}}</td>
+                                        <td>{{$reglament->max}}</td>
+                                        <td>{{$reglament->koef}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>pi012_xm01</td>
-                                        <td>Давление ГЖС до устьевого подогревателя</td>
-                                        <td>1</td>
-                                        <td>40</td>
-                                        <td>0.2</td>
-                                    </tr>
+                                    @endforeach
 
                                     </tbody>
                                 </table>
@@ -144,7 +90,7 @@
 
             <div class="func_passport_bottom">
                 <h4>Перечень несоответствий производственного контроля</h4>
-                <div class="ppr_date_single">Всего несоответствий <span>0</span></div>
+                <div class="ppr_date_single">Всего несоответствий <span>{{$this_elem->elem_to_APK->count()}}</span></div>
                 <table>
                     <thead>
                     <tr>
@@ -155,24 +101,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach ($this_elem->elem_to_APK as $apk)
                     <tr>
-                        <td>Наименование несоответствия</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
+                        <td>{{$apk->Details}}</td>
+                        <td>{{$apk->Document}} </td>
+                        <td>{{$apk->CompleteDate}}</td>
+                        <td>{{$apk->Weight}}</td>
                     </tr>
-                    <tr>
-                        <td>Наименование несоответствия</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
-                    </tr>
-                    <tr>
-                        <td>Наименование несоответствия</td>
-                        <td>ЦДГиГК, ГП-1, Скважина 20-Э; </td>
-                        <td>30.07.2020</td>
-                        <td>.82</td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
