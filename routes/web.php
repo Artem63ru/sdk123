@@ -121,6 +121,10 @@ Route::get('/logout', function () {    Auth::logout();    return Redirect::to('l
 
 
 Route::get('/xml', 'AdminController@xml_view'); // Главная xml
+Route::get('/search/{id_s}', function ($id_s){
+       return view('web.opo_shema_main', ['name' => $id_s]);
+}); // Главная xml
+
 
 
 
