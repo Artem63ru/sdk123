@@ -197,8 +197,9 @@ class OpoController extends Controller
        $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
        $ver_opo =  Ref_opo::find($id);  // Ссылка на ОПО
        $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
+       $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
 //
-       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo'));
+       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo'));
 
     }
     ///************************* Формирование данных для мини графика **********************************

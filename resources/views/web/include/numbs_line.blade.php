@@ -2,7 +2,7 @@
 
 
     @foreach ($all_opo as $this_opo)
-        <a href="/opo/{{$this_opo->idOPO}}">
+        <a href="/opo/{{$this_opo->idOPO}}/main">
     <div class="numbs_single good">{{$this_opo->descOPO}}<span>{{$this_opo->opo_to_calc1->first()->ip_opo}}</span></div>
         </a>
     @endforeach

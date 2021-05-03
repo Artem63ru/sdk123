@@ -56,13 +56,18 @@
                 <div>
                     @foreach ($elems_opo as $elem)
                     <label class="accordion">
+                     @if (isset($id_obj))
                         @if ($elem->idObj == $id_obj)
                         <input type='checkbox' name='checkbox-accordion' checked>
                         @else
                         <input type='checkbox' name='checkbox-accordion'>
                         @endif
-
-                        <div class="accordion__header">{{$elem->nameObj}}</div>
+                     @else
+                        <input type='checkbox' name='checkbox-accordion'>
+                     @endif
+                        <div class="accordion__header">
+                            <a href="/opo/{{$ver_opo->idOPO}}/elem/{{$elem->idObj}}"> {{$elem->nameObj}}</a>
+                        </div>
 
                         <div class="accordion__content">
                             @foreach ($elem->obj_to_type->type_to_tb as $tb)
@@ -73,20 +78,7 @@
                     </label>
                     @endforeach
 
-                        <label class="accordion">
-                            <input type='checkbox' name='checkbox-accordion' checked>
-                            <div class="accordion__header">789456</div>
 
-                            <div class="accordion__content">
-
-                                    <a href="">2222222</a>
-                                    <a href="">2222222</a>
-                                    <a href="">2222222</a>
-                                    <a href="">2222222</a>
-
-                            </div>
-
-                        </label>
 
                 </div>
 

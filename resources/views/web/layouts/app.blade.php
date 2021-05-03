@@ -18,9 +18,9 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/hchart/highcharts.src.js"></script>
+{{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
-    <script src="/js/hchart/solid-gauge.js"></script>
+{{--    <script src="/js/hchart/solid-gauge.js"></script>--}}
 
 
     <!-- Fonts -->
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div class="side_menu">

@@ -43,4 +43,9 @@ class Ref_obj extends Model
     {
         return $this->hasMany('App\Models\APK_SDK', 'idObj', 'idObj');
     }
+    //*************** Отношение к Статусу работы элемента *****************************
+    public function obj_to_status()
+    {
+        return $this->belongsTo('App\Models\Status_obj', 'status', 'id_status');
+    }
 }

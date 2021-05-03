@@ -11,27 +11,27 @@
                         <tbody>
                         <tr>
                             <td>Наименование ОПО:</td>
-                            <td>Фонд скважин</td>
+                            <td>{{$ver_opo->descOPO}}</td>
                         </tr>
                         <tr>
                             <td>Полное наименование ОПО:</td>
-                            <td>Фонд скважин Астраханского газоконденсатного месторождения</td>
+                            <td>{{$ver_opo->fullDescOPO}}</td>
                         </tr>
                         <tr>
                             <td>Класс опасности:</td>
-                            <td></td>
+                            <td>{{$ver_opo->classHazard}}</td>
                         </tr>
                         <tr class="padding_tabl">
                             <td>Регистрационный номер ОПО:</td>
-                            <td>A38-00528-0011</td>
+                            <td>{{$ver_opo->regNumOPO}}</td>
                         </tr>
                         <tr>
                             <td>Дата регистрации:</td>
-                            <td>30.07.2004</td>
+                            <td>{{$ver_opo->dateReg}}</td>
                         </tr>
                         <tr>
                             <td>Статус:</td>
-                            <td></td>
+                            <td>{{$ver_opo->flDel}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -43,7 +43,10 @@
                         <tbody>
                         <tr>
                             <td class="inntegral">
-                                <div><img alt="" src="replace/rate0.png" class="replace"></div></td>
+                                <div   id="chartdiv" style="padding: 10%">
+                                    @include('charts.chart_1')
+                                </div>
+                            </td>
                             <td class="rating"><div><h3 class="red">4</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
                                     <img alt="" src="replace/rate1.png" class="replace"></div></td>
                             <td class="rating"><div><h3 class="blue">95%</h3> <p>Оценка эффективности<br/>проведения ПБ</p>
