@@ -11,7 +11,20 @@
                         @include('charts.Collumn_tb')
                     </div>
                     <div class="third_col centered"><img alt="" src="{{asset('replace/func2.png')}}" class="replace"><p>Обобщенный показатель<br/>состояния эксплуатации<p></div>
-                    <div class="third_col centered"><img alt="" src="{{asset('replace/func2.png')}}" class="replace"><p>Обобщенный показатель<br/>отклонений<p></div>
+
+                    <div  class="third_col centered">
+                        <style>
+                            #chartdiv {
+                                width: 100%;
+                                height: 300px;
+                            }
+
+                        </style>
+
+                        <div id="chartdiv"></div>
+                        @include('charts.function_pass_tb.chart_2')
+                        <p>Обобщенный показатель<br/>отклонений<p>
+                    </div>
                 </div>
             </div>
 
