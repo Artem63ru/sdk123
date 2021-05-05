@@ -4,7 +4,7 @@
     <section class="tab_content">
         <div class="inside_tab_padding">
             <div class="row_block">
-                <img alt="" src="{{asset('replace/tb.png')}}" class="replace">
+              <img alt="" src="{{asset($image)}}" class="replace">
             </div>
         </div>
     </section>
