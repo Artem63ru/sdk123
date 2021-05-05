@@ -14,10 +14,12 @@ class Tb extends Controller
         $ver_opo =  Ref_opo::find($id_opo);  // Ссылка на ОПО
         $all_opo = Ref_opo::all(); //Сыслка на все ОПО
         $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
-        $this_elem = Ref_obj::find($id_obj)->elem_to_tu->where('from_type_obor', '=', $id_tb);  // перечень элементов ТУ входящих в состав ТБ
-        $this_elem_apk = Ref_obj::find($id_obj)->elem_to_APK->where('idOTO', '=', $id_tb);  // перечень элементов ТУ входящих в состав ТБ
+        $Obj = Ref_obj::find($id_obj); //Ссылка на элемент ОПО выбраный
+        $this_elem = $Obj->elem_to_tu->where('from_type_obor', '=', $id_tb);  // перечень элементов ТУ входящих в состав ТБ
+        $this_elem_apk = $Obj->elem_to_APK->where('idOTO', '=', $id_tb);  // перечень элементов ТУ входящих в состав ТБ
+        $this_calc_tb = $Obj->elem_to_calc_tb->where('from_oto', '=', $id_tb)->first(); ;
 
       //  return $this_elem;
-       return view('web.tb', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo'));
+       return view('web.tb', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'this_calc_tb'));
     }
 }

@@ -1,9 +1,7 @@
 
-
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-
+{{--<script src="https://cdn.amcharts.com/lib/4/core.js"></script>--}}
+{{--<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>--}}
+{{--<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>--}}
 
 
 <script language="JavaScript">
@@ -32,8 +30,8 @@
 
     // Add data
     chart.data = [{
-        "category": "Rh",
-        "value": 0.80,
+        "category": "АПК",
+        "value": {{$this_calc_tb->n_fapk}},
         "full": 1
     }];
 
@@ -70,7 +68,7 @@
     valueAxis.strictMinMax = true;
 
     var yearLabel = chart.radarContainer.createChild(am4core.Label);
-    yearLabel.text = "[bold]0.8[/]";
+    yearLabel.text = "[bold]{{$this_calc_tb->n_fapk}}[/]";
     yearLabel.horizontalCenter = 'middle'
     yearLabel.verticalCenter = 'middle'
     yearLabel.x = am4core.percent(100);
@@ -94,8 +92,8 @@
     gradient.addColor(am4core.color("red"));
     gradient.addColor(am4core.color("green")); */
 
-    let rgm = new am4core.RadialGradientModifier();
-    rgm.brightnesses.push(-0.8, -0.8, -0.8, 0, - 0.3);
+    // let rgm = new am4core.RadialGradientModifier();
+    // rgm.brightnesses.push(-0.8, -0.8, -0.8, 0, - 0.3);
 
 
     var series2 = chart.series.push(new am4charts.RadarColumnSeries());

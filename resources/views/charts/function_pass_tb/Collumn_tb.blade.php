@@ -41,10 +41,10 @@
             },
             xAxis: {
                 categories: [
-                    ' Обобщеный показатель ',
-                    ' ',
-                    ' ',
-                    ' ',
+                    ' n_to ',
+                    ' n_h_tu ',
+                    ' n_fp_tu ',
+                    ' n_fapk ',
 
                 ],
                 crosshair: true
@@ -81,7 +81,7 @@
             series: [{
                 name: 'Tokyo',
 
-                data: [0.9, 0.5, 0.4, 0.2],
+                data: [{{$this_calc_tb->n_to}},{{$this_calc_tb->n_h_tu}},{{$this_calc_tb->n_fp_tu}},{{$this_calc_tb->n_fapk}}],
                 color: {
                     linearGradient: {
                         x1: 0,

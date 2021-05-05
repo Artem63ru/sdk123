@@ -6,22 +6,34 @@
 
             <div class="func_passport_top">
                 <h4>Расчетные показатели промышленной безопасности технического блока</h4>
-                <div class="row_block">
+                        <div class="row_block">
                     <div class="third_col centered">
-                        @include('charts.Collumn_tb')
+                        @include('charts.function_pass_tb.Collumn_tb')
                     </div>
-                    <div class="third_col centered"><img alt="" src="{{asset('replace/func2.png')}}" class="replace"><p>Обобщенный показатель<br/>состояния эксплуатации<p></div>
-
-                    <div  class="third_col centered">
+                    <div class="third_col centered">
                         <style>
                             #chartdiv {
                                 width: 100%;
-                                height: 300px;
+                                height: 220px;
                             }
 
                         </style>
 
                         <div id="chartdiv"></div>
+                        @include('charts.function_pass_tb.chart_1')
+                        <p>Обобщенный показатель<br/>состояния эксплуатации<p>
+                    </div>
+
+                    <div  class="third_col centered">
+                        <style>
+                            #chartdiv1 {
+                                width: 100%;
+                                height: 220px;
+                            }
+
+                        </style>
+
+                        <div id="chartdiv1"></div>
                         @include('charts.function_pass_tb.chart_2')
                         <p>Обобщенный показатель<br/>отклонений<p>
                     </div>

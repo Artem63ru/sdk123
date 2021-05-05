@@ -20,6 +20,12 @@ class Ref_obj extends Model
         return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj');
 
     }
+    //************************ Находим посление вычисления по ТБ для элемента ОПО
+    public function elem_to_calc_tb()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_tb', 'from_obj', 'idObj')->orderByDesc('id')->take(10);
+
+    }
     public function elem_to_oto()
     {
         return $this->hasMany('App\Models\ref_oto', 'typeObj', 'typeObj');
