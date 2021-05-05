@@ -43,8 +43,8 @@
                         <tbody>
                         <tr>
                             <td class="inntegral">
-                                <div   id="chartdiv" style="padding: 10%">
-                                    @include('charts.chart_1')
+                                <div   id="chartdiv" >
+                                    @include('charts.elem_main_charts.chart_1')
                                 </div>
                             </td>
                             <td class="rating"><div><h3 class="red">4</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
