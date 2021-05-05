@@ -14,12 +14,13 @@ class Search extends Component
     public $searchTerm = '';
     public $users;
     public $id_opo;
+    public $id_obj;
 
     public function render()
     {
         $searchTerm = '%' . $this->searchTerm . '%';
         //    $this->users = $ver_opo->opo_to_obj->where('nameObj', 'ilike', $searchTerm); // Перечень всех лементов ОПО
-        $this->users = Ref_obj::where([['nameObj', 'ilike', $searchTerm], ['idOPO', '=', $this->id_opo]])->get();
+        $this->users = Ref_obj::where([['nameObj', 'ilike', $searchTerm], ['idOPO', '=', $this->id_opo],['InUse', '!=', '0']])->get();
         return view('livewire.search');
     }
 
