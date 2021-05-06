@@ -1,5 +1,5 @@
 <div class="table_head_block">
-    <img alt="" src="assets/images/t_left.svg" class="table_left_corner">
+    <img alt="" src="{{asset('assets/images/t_left.svg')}}" class="table_left_corner">
     <table>
         <tbody>
         <tr>

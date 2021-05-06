@@ -24,7 +24,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        {{$this_elem->elem_to_calc_40}}
+{{--                                        {{$this_elem->elem_to_calc_40}}--}}
                                         <td>{{$this_elem->nameObj}}</td>
                                         <td class="good"><span>{{$this_elem->obj_to_status->desc_work}}</span></td>
                                         <td>Маннесманн</td>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="period_info inside_type">
-            <img alt="" src="{{asset('replace/1.png')}}">
+            @include('charts.elem_main_charts.chart_elem_all')
         </div>
     </div>
 

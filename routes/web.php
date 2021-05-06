@@ -21,6 +21,13 @@ Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuCo
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
 
+    //*******************************************
+    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
+    Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
+    Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');
+
+    //*******************************************************
+
     Route::get('/trend', function () {        return view('trend');    })->name('trend');
     Route::get('/php', function () {        phpinfo();    });
 
@@ -105,11 +112,7 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
 //Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
- //*******************************************
 
-
-    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
-    Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
 
     Route::get('/new/{id}', 'Opo_dayController@view_last');
 

@@ -24,7 +24,7 @@ class Ref_obj extends Model
     //************************** Последнее значение расчетных параметров 40 шт для елемента ОПО **********************************************
     public function elem_to_calc_40()
     {
-        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj')->orderByDesc('id')->take(40);
+        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj')->orderByDesc('id')->select('ip_elem','date')->take(40);
 
     }
     //*************** Находим посление вычисления по ТБ (10 шт по количеству технологических блоков) для элемента ОПО *********************************************

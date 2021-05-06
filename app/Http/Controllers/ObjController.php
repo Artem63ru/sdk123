@@ -24,4 +24,17 @@ class ObjController extends Controller
         return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments'));
 
     }
+    //*************************  Вывод для графика 40 значений ip_elem   *************************************
+    public function calc_elem_all ( $id_obj)
+    {
+
+        foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
+        {
+            $my[] =array (strtotime($row->date)*1000, $row->ip_elem);
+
+        }
+//        $result_data = str_replace('"','',json_encode(array_reverse($my, false)));
+        return str_replace('"','',json_encode(array_reverse($my, false)));
+        //return Ref_obj::find($id_obj)->elem_to_calc_40;
+    }
 }
