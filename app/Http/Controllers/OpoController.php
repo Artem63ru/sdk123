@@ -7,7 +7,7 @@ use App\Ref_opo;
 use App\Models\Calc_opo;
 use App\Models\Calc_elem;
 use App\Models\ref_oto;
-use App\Ref_obj;
+use App\Models\Ref_obj;
 use App\User;
 use App\Jas;
 use Illuminate\Http\Request;

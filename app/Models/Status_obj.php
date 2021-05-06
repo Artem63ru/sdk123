@@ -11,6 +11,6 @@ class Status_obj extends Model
     public $primaryKey = 'id';
     public function status_to_elem()
     {
-        return $this->hasMany('App\Ref_obj', 'status', 'id_status');
+        return $this->hasMany('App\Models\Ref_obj', 'status', 'id_status');
     }
 }

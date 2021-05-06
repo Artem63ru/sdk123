@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ref_oto;
-use App\Ref_obj;
+use App\Models\Ref_obj;
 use App\Ref_opo;
 use Illuminate\Http\Request;
 

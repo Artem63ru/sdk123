@@ -44,7 +44,7 @@
                         <tr>
                             <td class="inntegral">
                                 <div   id="chartdiv" >
-                                    @include('charts.elem_main_charts.chart_1')
+                                    @include('charts.chart_1')
                                 </div>
                             </td>
                             <td class="rating"><div><h3 class="red">4</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
@@ -84,8 +84,8 @@
                         </ul>
                         <div class="tabs-content">
                             <div class="tabs-panel active" data-index="0">
-                                <h4>Расчет показателя готовности организации и персонала ОПО </br>к локализации аварий и инцидентов</h4>
-                                <img alt="" src="replace/opo.png" class="replace">
+                                <h4>Расчет оценки эффективности ПК </h4>
+                                @include('charts.effect_apk.Performance_apk')
                                 <div class="inform">
                                     <div class="inform_left">
                                         <table class="opo_info">
@@ -106,8 +106,8 @@
                                 </div>
                             </div>
                             <div class="tabs-panel" data-index="1">
-                                <h4>Расчет показателя готовности организации и персонала ОПО </br>к локализации аварий и инцидентов</h4>
-                                <img alt="" src="replace/opo.png" class="replace">
+                                <h4>Расчет показателя безопасности ОПО</h4>
+                                @include('charts.effect_apk.safety_indicator')
                                 <div class="inform">
                                     <div class="inform_left">
                                         <table class="opo_info">
@@ -128,8 +128,8 @@
                                 </div>
                             </div>
                             <div class="tabs-panel" data-index="2">
-                                <h4>Расчет показателя готовности организации и персонала ОПО </br>к локализации аварий и инцидентов</h4>
-                                <img alt="" src="replace/opo.png" class="replace">
+                                <h4>Расчет показателя безаварийности ОПО</h4>
+                                @include('charts.effect_apk.Accident-free_indicator')
                                 <div class="inform">
                                     <div class="inform_left">
                                         <table class="opo_info">
@@ -150,8 +150,8 @@
                                 </div>
                             </div>
                             <div class="tabs-panel" data-index="3">
-                                <h4>Расчет показателя готовности организации и персонала ОПО </br>к локализации аварий и инцидентов</h4>
-                                <img alt="" src="replace/opo.png" class="replace">
+                                <h4>Расчет показателя готовности организации и персонала ОПО к локализации аварий и инцидентов</h4>
+                                @include('charts.effect_apk.Readiness_indicator')
                                 <div class="inform">
                                     <div class="inform_left">
                                         <table class="opo_info">

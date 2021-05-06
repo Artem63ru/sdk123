@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calc_elem;
-use App\Ref_Obj;
+use App\Models\Ref_Obj;
 use App\Models\ref_oto;
 
 class ElemController extends Controller

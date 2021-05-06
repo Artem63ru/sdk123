@@ -54,5 +54,6 @@
 </div>
 
 @livewireScripts
+<script src="{{asset('assets/js/tabs.js')}}"></script>
 </body>
 </html>

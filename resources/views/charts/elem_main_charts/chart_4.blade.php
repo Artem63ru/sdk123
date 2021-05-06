@@ -18,7 +18,7 @@
     // Add data
     chart.data = [{
         "category": "ОП Ртр",
-        "value": 0.87,
+        "value": {{$this_elem->elem_to_calc->first()->op_el}},
         "full": 1
     }];
 
@@ -57,7 +57,7 @@
     valueAxis.strictMinMax = true;
 
     var yearLabel = chart.radarContainer.createChild(am4core.Label);
-    yearLabel.text = "[bold]0.87[/]";
+    yearLabel.text = "[bold]{{$this_elem->elem_to_calc->first()->op_el}}[/]";
     yearLabel.horizontalCenter = 'middle'
     yearLabel.verticalCenter = 'middle'
     yearLabel.x = am4core.percent(100);
@@ -94,7 +94,7 @@
     // series2.columns.template.strokeModifier = rgm;
     series2.columns.template.strokeOpacity = 0.4;
     series2.columns.template.strokeWidth = 0;
-    series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
+    series2.columns.template.tooltipText = "{category}: [bold]{value.formatNumber('#.00')}[/]";
     series2.columns.template.radarColumn.cornerRadius = 60;
 
 

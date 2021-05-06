@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,12 +15,19 @@ class Ref_obj extends Model
         return $this->hasMany('App\Jas', 'from_elem_opo', 'idObj');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
     }
+    //************************** Последнее значение расчетных параметров для елемента ОПО **********************************************
     public function elem_to_calc()
     {
-        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj');
+        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj')->orderByDesc('id')->take(1);
 
     }
-    //************************ Находим посление вычисления по ТБ для элемента ОПО
+    //************************** Последнее значение расчетных параметров 40 шт для елемента ОПО **********************************************
+    public function elem_to_calc_40()
+    {
+        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj')->orderByDesc('id')->take(40);
+
+    }
+    //*************** Находим посление вычисления по ТБ (10 шт по количеству технологических блоков) для элемента ОПО *********************************************
     public function elem_to_calc_tb()
     {
         return $this->hasMany('App\Models\Dynamic\Calc_tb', 'from_obj', 'idObj')->orderByDesc('id')->take(10);

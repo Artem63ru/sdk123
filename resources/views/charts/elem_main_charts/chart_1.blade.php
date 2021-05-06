@@ -23,7 +23,7 @@
     // Add data
     chart.data = [{
         "category": "ИП Рэл",
-        "value": 0.8,
+        "value": {{$this_elem->elem_to_calc->first()->ip_elem}},
         "full": 1
     }];
 
@@ -62,12 +62,12 @@
     valueAxis.strictMinMax = true;
 
     var yearLabel = chart.radarContainer.createChild(am4core.Label);
-    yearLabel.text = "[bold]0.8[/]";
+    yearLabel.text = "[bold]{{$this_elem->elem_to_calc->first()->ip_elem}}[/]";
     yearLabel.horizontalCenter = 'middle'
     yearLabel.verticalCenter = 'middle'
     yearLabel.x = am4core.percent(100);
     yearLabel.y = am4core.percent(100);
-    yearLabel.fontSize = 40; // irrelevant, can be omitted
+    yearLabel.fontSize = 35; // irrelevant, can be omitted
 
 
 
@@ -99,7 +99,7 @@
     // series2.columns.template.strokeModifier = rgm;
     series2.columns.template.strokeOpacity = 0.4;
     series2.columns.template.strokeWidth = 0;
-    series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
+    series2.columns.template.tooltipText = "{category}: [bold]{value.formatNumber('#.00')}[/]";
     series2.columns.template.radarColumn.cornerRadius = 60;
 
 

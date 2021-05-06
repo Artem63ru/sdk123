@@ -12,6 +12,6 @@ class Calc_tb extends Model
     //************** Отношение к элементу вычислений
     public function calc_tb_to_elem()
     {
-        return $this->belongsTo('App\Ref_Obj', 'from_obj', 'idObj');
+        return $this->belongsTo('App\Models\Ref_Obj', 'from_obj', 'idObj');
     }
 }

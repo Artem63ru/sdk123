@@ -24,6 +24,7 @@
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        {{$this_elem->elem_to_calc_40}}
                                         <td>{{$this_elem->nameObj}}</td>
                                         <td class="good"><span>{{$this_elem->obj_to_status->desc_work}}</span></td>
                                         <td>Маннесманн</td>

@@ -12,6 +12,6 @@ class APK_SDK extends Model
 //**************** Отношение к елементам ОПО ************************************
     public function APK_to_elem()
     {
-        return $this->belongsTo('App\Ref_Obj', 'idObj', 'idObj');
+        return $this->belongsTo('App\Models\Ref_Obj', 'idObj', 'idObj');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Ref_obj;
+use App\Models\Ref_obj;
 use App\Ref_opo;
 use App\Models\Tech_reg\Tech_reglament;
 use Illuminate\Http\Request;

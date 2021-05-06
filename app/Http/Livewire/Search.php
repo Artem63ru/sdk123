@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Ref_obj;
+use App\Models\Ref_obj;
 use App\Ref_opo;
 use App\User;
 use Livewire\Component;

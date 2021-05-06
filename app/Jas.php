@@ -20,7 +20,7 @@ class Jas extends Model
     }
     public function jas_to_elem()
     {
-        return $this->belongsTo('App\Ref_Obj', 'from_elem_opo', 'idObj');
+        return $this->belongsTo('App\Models\Ref_Obj', 'from_elem_opo', 'idObj');
     }
     public function jas_to_10()
     {
