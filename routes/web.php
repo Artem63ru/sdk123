@@ -15,13 +15,15 @@ Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuCo
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
+    Route::get('/glossary', "GlossaryControllers@showHelp"); // страница Справки
+
 
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
 
-    //*******************************************
+    //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
     Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');
