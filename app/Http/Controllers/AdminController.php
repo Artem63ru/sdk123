@@ -34,7 +34,8 @@ class AdminController extends Controller
     public function log_view()
     {
        // AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
-        return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
+       // return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
+        return view('web.admin.admin_main', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
     }
 
     // Вывод Пользователей

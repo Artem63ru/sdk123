@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('web.layouts.app_admin')
 @section('title')
     Админ панель
 @endsection

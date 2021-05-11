@@ -78,7 +78,9 @@ Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuCo
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
   //  Route::group(['middleware' => 'role:admin',], function () {
   //  Route::group(['middleware' => 'role:admin',], function () {
+       // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
         Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
+
         Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
 
         Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');

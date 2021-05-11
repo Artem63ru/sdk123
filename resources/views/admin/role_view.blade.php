@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('web.layouts.app_admin')
 @section('title')
     Админ панель
 @endsection
@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                 @include('admin.inc.menu')
+                 @include('web.admin.inc.menu')
                     <div class="card-header"> Список Ролей</div>
 
                     <div class="card-body">
