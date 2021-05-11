@@ -84,8 +84,8 @@
     gradient.addColor(am4core.color("red"));
     gradient.addColor(am4core.color("green")); */
 
-    let rgm = new am4core.RadialGradientModifier();
-    rgm.brightnesses.push(-0.8, -0.8, -0.8, 0, - 0.3);
+    // let rgm = new am4core.RadialGradientModifier();
+    // rgm.brightnesses.push(-0.8, -0.8, -0.8, 0, - 0.3);
 
 
     var series2 = chart.series.push(new am4charts.RadarColumnSeries());
@@ -93,10 +93,10 @@
     series2.dataFields.categoryY = "category";
     series2.clustered = false;
     series2.columns.template.fill = am4core.color("#4990ff");
-    series2.columns.template.fillModifier = rgm;
-    series2.columns.template.strokeModifier = rgm;
-    series2.columns.template.strokeOpacity = 0.4;
-    series2.columns.template.strokeWidth = 0;
+    // series2.columns.template.fillModifier = rgm;
+    // series2.columns.template.strokeModifier = rgm;
+    // series2.columns.template.strokeOpacity = 0.4;
+    // series2.columns.template.strokeWidth = 0;
     series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
     series2.columns.template.radarColumn.cornerRadius = 60;
 

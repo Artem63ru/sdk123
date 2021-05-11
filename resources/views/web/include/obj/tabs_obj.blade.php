@@ -121,7 +121,7 @@
 
     <div class="opo_right">
         <div class="opo_squares">
-            <div class="opo_page_square">
+            <div class="opo_page_square" id = "1">
 
                     <style>
                         #chartdiv, #chartdiv1, #chartdiv2, #chartdiv3 {
@@ -133,15 +133,15 @@
                     @include('charts.elem_main_charts.chart_1')
                     Интегральный показатель <br/>состояния ПБ
             </div>
-            <div class="opo_page_square"><a href="#">
+            <div class="opo_page_square" id = "2"><a href="#">
                     <div id="chartdiv1"></div>
                     @include('charts.elem_main_charts.chart_2')
                     <p>Обобщенный показатель <br/>по комплексным сценариям</p></a></div>
-            <div class="opo_page_square"><a href="#">
+            <div class="opo_page_square" id = "3"><a href="#">
                 <div id="chartdiv2"></div>
                 @include('charts.elem_main_charts.chart_3')
                     <p>Обобщенный показатель <br/>регламентных значений</p></a></div>
-            <div class="opo_page_square"><a href="#">
+            <div class="opo_page_square" id = "4"><a href="#">
                     <div id="chartdiv3"></div>
                     @include('charts.elem_main_charts.chart_4')
                     <p>Обобщенный показатель <br/>регламентных значений</p></a></div>

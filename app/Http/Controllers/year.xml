@@ -1,0 +1,169 @@
+<do id="gda">
+    <organization_info>
+        <name>ООО "Газпром добыча Астрахань"</name>
+        <id>254853</id>
+        <inn>3006006420</inn>
+        <ogrn>1023001538460</ogrn>
+        <kpp>997250001</kpp>
+        <start_period>2019-01-01</start_period>
+        <finish_period>2019-12-31</finish_period>
+    </organization_info>
+    <!--Таблица раздела 1.1-->
+    <section id="1.1">
+        <!--Строка таблицы-->
+        <record>
+            <reg_number_opo>А 38-00528-0011</reg_number_opo>   <!--Регистрационный номер ОПО -->
+            <name_of_the_activity>А 38-00528-0011</name_of_the_activity>   <!--Наименование мероприятия -->
+            <execution_date>А 38-00528-0011</execution_date>   <!--Срок исполнения -->
+            <senior_Executive>
+                <name> </name>
+                <surname> </surname>
+                <middle_name> </middle_name>
+            </senior_Executive>   <!-- Ответственный исполнитель-->
+            <completion>А 38-00528-0011</completion>   <!--Дата выполнения -->
+            <transfer>А 38-00528-0011</transfer>   <!--Дата переноса -->
+            <reason>А 38-00528-0011</reason>   <!--Основание переноса срока -->
+            <mark>А 38-00528-0011</mark>   <!--Отметка о выполнении мероприятия -->
+            <note>А 38-00528-0011</note>   <!--Примечание -->
+        </record>
+        <!--следующие записи .....................-->
+    </section>
+    <!--Таблица раздела 2.1-->
+    <section id="2.1">
+        <!--Строка таблицы-->
+        <record>
+            <reg_number_opo>А 38-00528-0011</reg_number_opo>   <!--Регистрационный номер ОПО -->
+            <name_of_the_activity>166</name_of_the_activity>   <!--Численность сотрудников, работающих на ОПО, успешно прошедших обучение действиям в случае возникновения аварии на ОПО -->
+            <execution_date>Нет</execution_date>   <!--Наличие специальных стендов, тренажеров и тому подобное для тренировок по планам ликвидации аварий-->
+            <senior_Executive> Готов</senior_Executive>   <!--Оценка готовности работников к действиям во время аварии-->
+            <regulations>Готов</regulations>   <!--Наличие положения о расследовании причин инцидентов, согласованного с надзорными органами -->
+            <reg_numb_regulations>05780913.23.3 - 2017</reg_numb_regulations>   <!--Регистрационный номер положения о расследовании причин инцидентов, согласованного с надзорными органами-->
+            <training_sessions>224</training_sessions>   <!--Проведено учебно-тренировочных занятий по готовности персонала к действиям в случае возникновения аварии на ОПО согласно графику-->
+            <training_alarms>25</training_alarms>   <!--Проведено учебных тревог по готовности персонала к действиям в случае возникновения аварии на ОПО согласно графику-->
+            <planned_training_sessions>5</planned_training_sessions>   <!--Запланировано в отчетном периоде учебно-тренировочных занятий по действиям персонала в случае аварий и инцидентов-->
+            <first_planned_training_sessions>5</first_planned_training_sessions>   <!--Запланировано на следующий отчетный период учебно-тренировочных занятий по действиям персонала в случае аварий и инцидентов-->
+            <planned_training_alarms>2</planned_training_alarms>   <!--Запланировано в отчетном периоде учебных тревог по действиям персонала в случае возникновения аварий-->
+            <first_planned_training_alarms>2</first_planned_training_alarms>   <!--Запланировано на следующий отчетный период учебных тревог по действиям персонала в случае аварий-->
+            <number_of_workers>255</number_of_workers>   <!--Численность работников эксплуатирующей организации, занятых на ОПО-->
+       </record>
+    </section>
+
+    <!--Таблица раздела 2.2-->
+    <section id="2.2">
+    <!--Строка таблицы-->
+    <record>
+<accident> </accident> <!--Наименование аварии-->
+<level_accident> </level_accident> <!--Уровень аварии -->
+<place_accident> </place_accident> <!--Место аварии -->
+<signs_accident> </signs_accident> <!--Опознавательные признаки аварии -->
+<protections> </protections> <!--Оптимальные способы противоаварийной защиты -->
+<technical_means> </technical_means> <!--Технические средства (системы) противоаварийной защиты, применяемые при подавлении и локализации аварии -->
+<manager>  <!-- Ответственный руководитель работ по локализации и ликвидации аварии-->
+    <surname> </surname> <!--Фамилия-->
+    <name> </name> <!--Имя -->
+    <patronymic> </patronymic> <!--Отчество -->
+    <educational> </educational> <!--Образование -->
+    <experience> </experience> <!-- Стаж работы-->
+    <certifications> </certifications> <!-- Дата последней аттестации-->
+    <actions> </actions> <!-- Порядок действий-->
+    <remark> </remark> <!-- Комментарий к оценке готовности-->
+</manager>
+    </record>
+    </section>
+    <!--Таблица раздела 3.1-->
+    <section id="3.1">
+    <!--Строка таблицы-->
+    <record id="1">
+        <registration_number> </registration_number> <!--Регистрационный номер ОПО -->
+        <equipment_number> </equipment_number> <!--Регистрационный (учетный) номер оборудования ТУ -->
+        <name> </name> <!--Наименование ТУ -->
+        <serial_number> </serial_number> <!--Серийный номер ТУ -->
+        <state_registration> </state_registration> <!--Государственный регистрационный знак -->
+        <serial_number> </serial_number> <!--Заводской номер ТУ -->
+        <type_tu> </type_tu> <!--Тип ТУ-->
+        <vid_tu> </vid_tu> <!--Вид ТУ -->
+        <brand> </brand> <!--Марка ТУ -->
+        <normative_period> </normative_period> <!--Нормативный срок эксплуатации (лет) -->
+        <year_entry> </year_entry> <!--Год ввода в эксплуатацию -->
+        <wear> </wear> <!--Процент износа -->
+        <date_examination> </date_examination> <!--Дата проведения экспертизы промышленной безопасности -->
+        <date_next_examination> </date_next_examination> <!--Дата следующей экспертизы промышленной безопасности -->
+        <date_check> </date_check> <!--Дата очередной проверки (технического освидетельствования) -->
+        <date_next_check> </date_next_check> <!--Дата следующей проверки (технического освидетельствования) -->
+        <allowed_limit> </allowed_limit> <!--Разрешенный срок эксплуатации -->
+        <safety_device> </safety_device> <!--Наличие предохранительного устройства -->
+        <type_safety_device> </type_safety_device> <!--Тип предохранительного устройства-->
+        <object>    <!--Объекты использования, переработки, образования, хранения, транспортировки, уничтожения опасных веществ -->
+            <volume> </volume> <!--Объем (м3) -->
+            <pressure> </pressure> <!--Давление, МПа-->
+            <diameter> </diameter> <!--Dy, мм -->
+        </object>
+        <lifting_facilities>    <!--Грузоподъемные сооружения -->
+            <type> </type> <!--Тип -->
+            <subtype> </subtype> <!--Подтип-->
+            <carrying> </carrying> <!--Грузоподъёмность -->
+        </lifting_facilities>
+        <equipment>    <!--Оборудование, работающее при избыточном давлении >0,07 МПа или при температуре >1150С -->
+            <volume> </volume> <!--Объем, т-->
+            <pressure> </pressure> <!--Давление, МПа-->
+        </equipment>
+        <upgrade_Information>    <!--Сведения о модернизации -->
+            <year_modernization> </year_modernization> <!--Год модернизации -->
+            <activities_carried> </activities_carried> <!--Проведенные мероприятия-->
+        </upgrade_Information>
+        <certification_Information>    <!--Сведения о сертификации -->
+            <type> </type> <!--Тип -->
+            <number> </number> <!--Номер-->
+            <date> </date> <!--Дата -->
+            <issued> </issued> <!--Кем выдан -->
+        </certification_Information>
+
+    </record>
+        <record id="2">
+        <registration_number> </registration_number> <!--Регистрационный номер ОПО -->
+        <equipment_number> </equipment_number> <!--Регистрационный (учетный) номер оборудования ТУ -->
+        <name> </name> <!--Наименование ТУ -->
+        <serial_number> </serial_number> <!--Серийный номер ТУ -->
+        <state_registration> </state_registration> <!--Государственный регистрационный знак -->
+        <serial_number> </serial_number> <!--Заводской номер ТУ -->
+        <type_tu> </type_tu> <!--Тип ТУ-->
+        <vid_tu> </vid_tu> <!--Вид ТУ -->
+        <brand> </brand> <!--Марка ТУ -->
+        <normative_period> </normative_period> <!--Нормативный срок эксплуатации (лет) -->
+        <year_entry> </year_entry> <!--Год ввода в эксплуатацию -->
+        <wear> </wear> <!--Процент износа -->
+        <date_examination> </date_examination> <!--Дата проведения экспертизы промышленной безопасности -->
+        <date_next_examination> </date_next_examination> <!--Дата следующей экспертизы промышленной безопасности -->
+        <date_check> </date_check> <!--Дата очередной проверки (технического освидетельствования) -->
+        <date_next_check> </date_next_check> <!--Дата следующей проверки (технического освидетельствования) -->
+        <allowed_limit> </allowed_limit> <!--Разрешенный срок эксплуатации -->
+        <safety_device> </safety_device> <!--Наличие предохранительного устройства -->
+        <type_safety_device> </type_safety_device> <!--Тип предохранительного устройства-->
+        <object>    <!--Объекты использования, переработки, образования, хранения, транспортировки, уничтожения опасных веществ -->
+            <volume> </volume> <!--Объем (м3) -->
+            <pressure> </pressure> <!--Давление, МПа-->
+            <diameter> </diameter> <!--Dy, мм -->
+        </object>
+        <lifting_facilities>    <!--Грузоподъемные сооружения -->
+            <type> </type> <!--Тип -->
+            <subtype> </subtype> <!--Подтип-->
+            <carrying> </carrying> <!--Грузоподъёмность -->
+        </lifting_facilities>
+        <equipment>    <!--Оборудование, работающее при избыточном давлении >0,07 МПа или при температуре >1150С -->
+            <volume> </volume> <!--Объем, т-->
+            <pressure> </pressure> <!--Давление, МПа-->
+        </equipment>
+        <upgrade_Information>    <!--Сведения о модернизации -->
+            <year_modernization> </year_modernization> <!--Год модернизации -->
+            <activities_carried> </activities_carried> <!--Проведенные мероприятия-->
+        </upgrade_Information>
+        <certification_Information>    <!--Сведения о сертификации -->
+            <type> </type> <!--Тип -->
+            <number> </number> <!--Номер-->
+            <date> </date> <!--Дата -->
+            <issued> </issued> <!--Кем выдан -->
+        </certification_Information>
+
+    </record>
+    </section>
+</do>

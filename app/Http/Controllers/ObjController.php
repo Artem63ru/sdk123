@@ -33,8 +33,38 @@ class ObjController extends Controller
             $my[] =array (strtotime($row->date)*1000, $row->ip_elem);
 
         }
-//        $result_data = str_replace('"','',json_encode(array_reverse($my, false)));
         return str_replace('"','',json_encode(array_reverse($my, false)));
-        //return Ref_obj::find($id_obj)->elem_to_calc_40;
-    }
+     }
+     //*************************  Вывод для графика 40 значений op_m   *************************************
+    public function calc_elem_op_m ( $id_obj)
+    {
+
+        foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
+        {
+            $my[] =array (strtotime($row->date)*1000, $row->op_m);
+
+        }
+        return str_replace('"','',json_encode(array_reverse($my, false)));
+     }
+     //*************************  Вывод для графика 40 значений op_r   *************************************
+    public function calc_elem_op_r ( $id_obj)
+    {
+
+        foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
+        {
+            $my[] =array (strtotime($row->date)*1000, $row->op_r);
+
+        }
+        return str_replace('"','',json_encode(array_reverse($my, false)));
+     }     //*************************  Вывод для графика 40 значений op_el   *************************************
+    public function calc_elem_op_el ( $id_obj)
+    {
+
+        foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
+        {
+            $my[] =array (strtotime($row->date)*1000, $row->op_el);
+
+        }
+        return str_replace('"','',json_encode(array_reverse($my, false)));
+     }
 }

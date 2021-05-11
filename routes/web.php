@@ -27,7 +27,10 @@ Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuCo
     //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
-    Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');
+    Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');          // вывод интегрального показателя элемента ОПО
+    Route::get('charts/fetch-data_elem_op_m/{id_obj}', 'ObjController@calc_elem_op_m');    //вывод Обобщенного показателя по матричным сценариям
+    Route::get('charts/fetch-data_elem_op_r/{id_obj}', 'ObjController@calc_elem_op_r');    //вывод Обобщенного показателя по регламентным значениям
+    Route::get('charts/fetch-data_elem_op_el/{id_obj}', 'ObjController@calc_elem_op_el');    //вывод Обобщенного показателя по елементу
 
     //*******************************************************
 

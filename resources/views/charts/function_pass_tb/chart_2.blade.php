@@ -101,10 +101,10 @@
     series2.dataFields.categoryY = "category";
     series2.clustered = false;
     series2.columns.template.fill = am4core.color("#4990ff");
-    series2.columns.template.fillModifier = rgm;
-    series2.columns.template.strokeModifier = rgm;
-    series2.columns.template.strokeOpacity = 0.4;
-    series2.columns.template.strokeWidth = 0;
+    // series2.columns.template.fillModifier = rgm;
+    // series2.columns.template.strokeModifier = rgm;
+    // series2.columns.template.strokeOpacity = 0.4;
+    // series2.columns.template.strokeWidth = 0;
     series2.columns.template.tooltipText = "{category}: [bold]{value}[/]";
     series2.columns.template.radarColumn.cornerRadius = 60;
 

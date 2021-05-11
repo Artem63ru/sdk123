@@ -5,7 +5,7 @@
 
 <script language="JavaScript">
     $(document).ready(function() {
-
+        var data_path = '/charts/fetch-data_elem/{{$id_obj}}';
         var old_date;
         var options = {
             title: {
@@ -27,7 +27,7 @@
                         var series = this.series[0];
                         setInterval(() => {
                             $.getJSON({
-                                url: '/charts/fetch-data_elem/{{$id_obj}}',
+                                url: data_path,
                                 method: 'GET',
                                 success: function (data) {
                                     if (data[data.length-1][0] > old_date) {
@@ -112,14 +112,50 @@
             },
 
             series: [{
-                 name: 'IP ОПО',
+                name: 'IP ОПО',
                 marker: {
                     enabled: false
                 },
-            }]
+            }//,
+                // {
+                //     name: 'УППГ-1',
+                //     data: [
+                //         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                //         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                //         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                //         1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                //     ]
+                // }
+            ]
         };
+        $button = $('.opo_page_square');
+        $button.click(function () {
+          //  var series = chart.series[0];
+            var clickId = $(this).attr('id');
+            if (clickId == 1) {
+                data_path = '/charts/fetch-data_elem/{{$id_obj}}';
+            }
+            if (clickId == 2) {
+                data_path = '/charts/fetch-data_elem_op_m/{{$id_obj}}';
+            }  if (clickId == 3) {
+                data_path = '/charts/fetch-data_elem_op_r/{{$id_obj+1}}';
+            }  if (clickId == 4) {
+                data_path = '/charts/fetch-data_elem_op_el/{{$id_obj+1}}';
+            }
+            $.getJSON({
+                url: data_path,
+                method: 'GET',
+                success: function (data) {
+                    options.series[0].data = data;
+                    var chart = new Highcharts.Chart(options);
+                    old_date = data[data.length-1][0];
+                }
+            });
+        });
+
+
         $.getJSON({
-            url: '/charts/fetch-data_elem/{{$id_obj}}',
+            url: data_path,
             method: 'GET',
             success: function (data) {
                 options.series[0].data = data;
