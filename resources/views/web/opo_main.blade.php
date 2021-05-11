@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('title')
-    Технологический блок
+    Паспорт ОПО
 @endsection
 
 @section('content')
@@ -20,3 +20,6 @@
 </div>
 
 @endsection
+@push('scripts')
+    <script src="{{ asset('assets/js/tabs.js') }}" defer></script>
+@endpush

@@ -1,83 +1,14 @@
 @extends('web.layouts.app')
 @section('title')
-    Главная ОПО
+    Главная страница ОПО
 @endsection
 
 @section('content')
-{{--    <script src="https://code.highcharts.com/highcharts.js"></script>--}}
-{{--    <script type="text/javascript" src="/js/charts/chart_column_PK.js"></script>--}}
-{{--    <script type="text/javascript" src="/js/charts/chart_column_event.js"></script>--}}
-    <div class="sidebar">
-        <div class="inside_sidebar">
-
-            <div class="sidebar_top">
-                <div class="sidebar_top_single main rounded white_bg">
-                    <a href="index.html#">
-                        <div class="sidebar_top_single info">
-                            <div class="class_rate good">1</div>
-                            <div class="class_name">
-                                <p class="bold blue_text">ПАО Газпром</p>
-                                <p class="grey_text">ПАО "Газпром автоматизация"</p>
-                            </div>
-                        </div>
-                        <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}" class="more_arrow_icon"></div>
-                    </a>
-                </div>
-                <div class="sidebar_top_single main rounded white_bg">
-                    <a href="index.html#">
-                        <div class="sidebar_top_single info">
-                            <div class="class_rate good">1</div>
-                            <div class="class_name">
-                                <p class="bold blue_text">ГД Астрахань</p>
-                                <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
-                            </div>
-                        </div>
-                        <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}" class="more_arrow_icon"></div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="sidebar_bottom rounded">
 
 
+@include('web.include.sidebar_opo')
 
-                @foreach ($opo as $opo_val)
-                <div class="sidebar_bottom_single">
-                    <a href="/opo/{{$opo_val->idOPO}}">
-                        <div class="clear">
-                            <div class="single_fond_name rounded">
-                                <p class="light_blue_text">{{$opo_val->descOPO}}</p>
-                                <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
-                            </div>
-                            <div class="single_fond_rate clear">
-{{--                                <p class="bold dark_grey_text clear">{{\App\Http\Controllers\OpoController::ip_opo($opo_val->idOPO)}}</p>--}}
-                                <p class="bold dark_grey_text clear">{{ $ip_opo=$opo_val->opo_to_calc1->first()->ip_opo}}</p>
-{{--opo_to_calci()->orderBy('id', 'desc')->limit(1)->get()--}}
-                                <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-{{--                        <div class="rate_line"></div>--}}
-                        <div class="progress">
-                            @php
-                        //    $ip_opo=$opo_val->opo_to_calc1->first()->ip_opo*100
-                            @endphp
-                            <div class="progress-bar
-                            @if ($ip_opo<0.3)
-                                bg-danger"
-                            @elseif  ($ip_opo<0.6 && $ip_opo>0.3 )
-                                bg-warning"
-                            @elseif  ($ip_opo<1 && $ip_opo>0.6 )
-                                bg-success"
-                            @endif
-                               role="progressbar" style="width: {{$ip_opo*100}}%" aria-valuenow="0.3" aria-valuemin="0" aria-valuemax="1"></div>
-                        </div>
-                    </a>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+
 
 
 

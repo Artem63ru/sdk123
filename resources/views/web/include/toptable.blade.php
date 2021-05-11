@@ -9,8 +9,7 @@
             <td class="td_element">Элемент ОПО</td>
             <td class="td_number">Состояние</td>
             <td class="td_event">Событие</td>
-
-            <td class="td_button blue_button"><a href="index.html#">Открыть полностью</a></td>
+            <td class="td_btn "><a href="{{ url('/jas_full') }}">Открыть полностью</a></td>
         </tr>
         </tbody>
     </table>

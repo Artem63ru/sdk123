@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('title')
-    Технологический блок
+    Элемент ОПО
 @endsection
 
 @section('content')

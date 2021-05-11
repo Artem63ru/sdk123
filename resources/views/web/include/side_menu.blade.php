@@ -7,7 +7,7 @@
 <div class="links_block">
     <ul>
         <li class=""><a href="index.html#"><img alt="Главная" src="{{asset('assets/images/icons/home.svg')}}" class="links_block_icon"></a></li>
-        <li class="active"><a href="index.html#"><img alt="Настройки" src="{{asset('assets/images/icons/settings.svg')}}" class="links_block_icon"></a></li>
+        <li class="active"><a href="{{asset('/opo/1')}}"><img alt="Настройки" src="{{asset('assets/images/icons/settings.svg')}}" class="links_block_icon"></a></li>
         <li class=""><a href="index.html#"><img alt="Документация" src="{{asset('assets/images/icons/docs.svg')}}" class="links_block_icon"></a></li>
     </ul>
 </div>

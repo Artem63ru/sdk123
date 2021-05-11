@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuCo
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('/glossary', "GlossaryControllers@showHelp"); // страница Справки
+    Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
 
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план

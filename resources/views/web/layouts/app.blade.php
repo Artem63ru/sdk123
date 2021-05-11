@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="/js/charts/highcharts.js"></script>
+    <script src="{{asset('/js/charts/highcharts.js')}}"></script>
     <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>
     <script src="{{asset('/js/jquery.min.js')}}"></script>
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
@@ -54,6 +54,7 @@
 </div>
 
 @livewireScripts
-<script src="{{asset('assets/js/tabs.js')}}"></script>
+@stack('scripts')
+
 </body>
 </html>
