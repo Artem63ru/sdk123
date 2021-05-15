@@ -109,7 +109,14 @@
                 </div>
             </div>
             <div class="period_info">
-                @include('charts.chart_ip_opo')
+<?php
+                $url = $get['page'];
+//                $url = explode('/', $url);
+//                $url = $url[1];
+
+                echo $url;
+                ?>
+                  @include('charts.chart_ip_opo')
 {{--                <img alt="" src="replace/1.png">--}}
             </div>
         </div>

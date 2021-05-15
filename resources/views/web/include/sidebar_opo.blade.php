@@ -80,12 +80,21 @@
 
 
             @foreach ($opo as $opo_val)
-                <div class="sidebar_bottom_single">
-                    <a href="/opo/{{$opo_val->idOPO}}">
+                @if ($id == $opo_val->idOPO )
+                          <div class="sidebar_bottom_single active">
+                @else
+                          <div class="sidebar_bottom_single">
+                @endif
+
                         <div class="clear">
                             <div class="single_fond_name rounded">
-                                <p class="light_blue_text">{{$opo_val->descOPO}}</p>
+                                <a class="light_blue_text" href="/opo/{{$opo_val->idOPO}}">
+                               {{$opo_val->descOPO}}
+                                </a>
+                                <a href="#2"><img alt="" src="{{asset('assets/images/icons/settings.svg')}}"></a>
                                 <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
+
+
                             </div>
                             <div class="single_fond_rate clear">
 
@@ -95,6 +104,7 @@
                                      class="rate_icon clear">
                             </div>
                         </div>
+
                         <div class="clearfix"></div>
                         {{--                        <div class="rate_line"></div>--}}
 
@@ -114,7 +124,7 @@
                             aria-valuemax="1">
                         </div>
                 </div>
-                </a>
+
         </div>
         @endforeach
     </div>

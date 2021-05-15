@@ -16,6 +16,6 @@ class MenuController extends Controller
 //       foreach ($v_menu) {
 //           echo $descOPO->text;
 //       }
-      return view('gda', ['name' => $v_menu]);
+      return view('web.gda', ['name' => $v_menu]);
    }
 }

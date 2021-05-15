@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
-Route::group(['middleware' => ['auth']], function() {    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
 //    Route::get('/opo/{opo}', function ($opo) {
 //        return view('opo', ['opo' => $opo]);
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная

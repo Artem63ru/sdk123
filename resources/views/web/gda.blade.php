@@ -4,7 +4,6 @@
 @endsection
 
 @section('content')
-
-
+    @include('web.include.map.map')
 
 @endsection
