@@ -110,12 +110,12 @@
             </div>
             <div class="period_info">
 <?php
-                $url = $get['page'];
-//                $url = explode('/', $url);
-//                $url = $url[1];
-
-                echo $url;
-                ?>
+//                $url = $get['page'];
+////                $url = explode('/', $url);
+////                $url = $url[1];
+//
+//                echo $url;
+            ?>
                   @include('charts.chart_ip_opo')
 {{--                <img alt="" src="replace/1.png">--}}
             </div>

@@ -14,23 +14,13 @@
         <div class="tab">
             <input type="radio" id="safety" name="tab_group">
             <label for="safety" class="tab_title razd_col_tab">Показатели пром. безопасности</label>
-            <section class="tab_content">
-                <div class="inside_tab_padding">
-                    <div class="row_block">
-                    </div>
-                </div>
-            </section>
+            @include('web.glossary.tabs.desc_PB')
         </div>
 
         <div class="tab">
             <input type="radio" id="term" name="tab_group">
             <label for="term" class="tab_title razd_col_tab">Термины и определения</label>
-            <section class="tab_content">
-                <div class="inside_tab_padding">
-                    <div class="row_block">
-                    </div>
-                </div>
-            </section>
+            @include('web.glossary.tabs.termin')
         </div>
 
         <div class="tab">
@@ -43,12 +33,7 @@
         <div class="tab">
             <input type="radio" id="sokr" name="tab_group">
             <label for="sokr" class="tab_title razd_col_tab">Сокращения</label>
-            <section class="tab_content">
-                <div class="inside_tab_padding">
-                    <div class="row_block">
-                    </div>
-                </div>
-            </section>
+            @include('web.glossary.tabs.abbrev')
         </div>
 
 
