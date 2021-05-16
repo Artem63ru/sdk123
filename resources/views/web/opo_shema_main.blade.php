@@ -14,8 +14,8 @@
     <div class="top_table">
 {{--  @include('web.include.toptable')--}}
 
-        @livewire('search', ['id_opo'=>$name])
-        {{$name}}
+        @livewire('post.show')
+
     </div>
 
 

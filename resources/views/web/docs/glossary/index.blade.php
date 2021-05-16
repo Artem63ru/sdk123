@@ -13,6 +13,6 @@
   @include('web.include.toptable')
     </div>
 
-@include('web.glossary.content')
+@include('web.docs.glossary.content')
 
 @endsection

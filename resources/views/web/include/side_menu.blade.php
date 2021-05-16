@@ -13,7 +13,7 @@
 </div>
 <div class="info_block">
     <ul>
-        <li class=""><a href="{{ url('/glossary') }}"><img alt="Справка" src="{{asset('assets/images/icons/info.svg')}}" class="side_menu_faq"></a></li>
+        <li class=""><a href="{{ url('/docs/glossary') }}"><img alt="Справка" src="{{asset('assets/images/icons/info.svg')}}" class="side_menu_faq"></a></li>
     </ul>
 </div>
 <script language="JavaScript">

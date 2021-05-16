@@ -19,7 +19,7 @@ class GlossaryControllers extends Controller
         $desc_pbs = Table_desc_PB::orderBy('id')->get();
         $termins = Table_termin::orderBy('id')->get();
         $abbrevs = Table_abbrev::orderBy('id')->get();
-        return view('web.glossary.index', compact('jas', 'events' , 'desc_pbs', 'termins', 'abbrevs'));
+        return view('web.docs.glossary.index', compact('jas', 'events' , 'desc_pbs', 'termins', 'abbrevs'));
 
     }
 }

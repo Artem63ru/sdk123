@@ -44,16 +44,16 @@ class User extends Authenticatable implements BannableContract
     {
         return Cache::has('user-is-online-' . $this->id);
     }
-    public static function search($query)
-    {
-        return empty($query) ? static::query()->where('surname', 'wer')
-            : static::where('surname', 'wer')
-                ->where(function($q) use ($query) {
-                    $q
-                        ->where('name', 'LIKE', '%'. $query . '%')
-                        ->orWhere('email', 'LIKE', '%' . $query . '%')
-                        ->orWhere('middle_name', 'LIKE ', '%' . $query . '%');
-                });
-    }
+//    public static function search($query)
+//    {
+//        return empty($query) ? static::query()->where('surname', 'wer')
+//            : static::where('surname', 'wer')
+//                ->where(function($q) use ($query) {
+//                    $q
+//                        ->where('name', 'LIKE', '%'. $query . '%')
+//                        ->orWhere('email', 'LIKE', '%' . $query . '%')
+//                        ->orWhere('middle_name', 'LIKE ', '%' . $query . '%');
+//                });
+//    }
 
 }

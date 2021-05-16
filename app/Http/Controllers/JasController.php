@@ -10,6 +10,6 @@ class JasController extends Controller
 {
     public function showJas()
     {
-        return view('web.jas.index', ['jas' => Jas::orderByDesc('data')->paginate(20), 'opo' => Ref_opo::orderBy('idOPO')->get() ]);
+        return view('web.jas.index', ['jas' => Jas::orderByDesc('data')->paginate(20), 'opo' => Ref_opo::orderBy('idOPO')->get(), 'id'=>'1']);
     }
 }

@@ -91,7 +91,7 @@
                                 <a class="light_blue_text" href="/opo/{{$opo_val->idOPO}}">
                                {{$opo_val->descOPO}}
                                 </a>
-                                <a href="#2"><img alt="" src="{{asset('assets/images/icons/settings.svg')}}"></a>
+                                <a href="/opo/{{$opo_val->idOPO}}/main"><img alt="" src="{{asset('assets/images/icons/settings.svg')}}"></a>
                                 <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
 
 

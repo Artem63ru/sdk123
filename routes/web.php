@@ -12,13 +12,16 @@ Route::group(['middleware' => ['auth']], function() {
 //        return view('opo', ['opo' => $opo]);
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
 
+//********************* Технологический блок ****************************************
     Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
-    Route::get('/glossary', "GlossaryControllers@showHelp"); // страница Справки
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
+//****************** Документарный блок *************************************
+    Route::get('/docs/glossary', "GlossaryControllers@showHelp"); // страница Справки
+    Route::get('/docs/events', "GlossaryControllers@showHelp"); // страница Возможных событий матрицы
 
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
@@ -41,14 +44,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/opo_day', function () {        return view('opo_day');    })->name('opo_day');
     Route::get('opo/charts/fetch-data', 'Opo_dayController@view_day')->name('opo/charts/fetch-data');
     Route::get('charts/fetch-data', 'Opo_dayController@view_day')->name('charts/fetch-data');
-   // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
+    // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
     Route::get('/charts/chart_ip_opo', function () {        return view('charts/chart_ip_opo');    })->name('chart_ip_opo');
 
 //***************Login and prochee
 
 
-  //  Route::get('/home', 'HomeController@index')->name('home');
+    //  Route::get('/home', 'HomeController@index')->name('home');
 
 //*********** Проба загрузки выгрузки не работает
     Route::get('user/{id}/avatar', function ($id) {
@@ -80,33 +83,33 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
 
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
-  //  Route::group(['middleware' => 'role:admin',], function () {
-  //  Route::group(['middleware' => 'role:admin',], function () {
-       // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
-        Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
+    //  Route::group(['middleware' => 'role:admin',], function () {
+    //  Route::group(['middleware' => 'role:admin',], function () {
+    // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
+    Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
 
-        Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
+    Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
 
-        Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
-        Route::post('add_user', 'AdminController@add_user')->name('add_user');
-        Route::post('update_user', 'AdminController@update_user')->name('update_user');
-        Route::get('admin/delete/{id}', 'AdminController@destroy_user');  //Удаление пользователя
-        Route::get('admin/edit/{id}', 'AdminController@edit_user');  //Редактирование данных пользователя
+    Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
+    Route::post('add_user', 'AdminController@add_user')->name('add_user');
+    Route::post('update_user', 'AdminController@update_user')->name('update_user');
+    Route::get('admin/delete/{id}', 'AdminController@destroy_user');  //Удаление пользователя
+    Route::get('admin/edit/{id}', 'AdminController@edit_user');  //Редактирование данных пользователя
 
-        Route::get('reg_role', 'AdminController@reg_role')->name('reg_role')->middleware('password.confirm');
-        Route::post('add_role', 'AdminController@add_role')->name('add_role');
-        Route::post('update_role', 'AdminController@update_role')->name('update_role');
-        Route::get('admin/delete_roles/{id}', 'AdminController@destroy_role');  //Удаление пользователя
-        Route::get('admin/edit_roles/{id}', 'AdminController@edit_role');  //Редактирование данных пользователя
+    Route::get('reg_role', 'AdminController@reg_role')->name('reg_role')->middleware('password.confirm');
+    Route::post('add_role', 'AdminController@add_role')->name('add_role');
+    Route::post('update_role', 'AdminController@update_role')->name('update_role');
+    Route::get('admin/delete_roles/{id}', 'AdminController@destroy_role');  //Удаление пользователя
+    Route::get('admin/edit_roles/{id}', 'AdminController@edit_role');  //Редактирование данных пользователя
 
-        Route::get('admin/ban/{id}', 'AdminController@ban1_user');  //Блокировка пользователя
-        Route::get('admin/unban/{id}', 'AdminController@unban_user');  //Разблокировка пользователя
-        Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
-        Route::get('/admin/roles', 'AdminController@role_view');
-        Route::get('/admin/perm', 'AdminController@perm_view');
-        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'Auth\RegisterController@register');
-  //  }); //'role:admin'
+    Route::get('admin/ban/{id}', 'AdminController@ban1_user');  //Блокировка пользователя
+    Route::get('admin/unban/{id}', 'AdminController@unban_user');  //Разблокировка пользователя
+    Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
+    Route::get('/admin/roles', 'AdminController@role_view');
+    Route::get('/admin/perm', 'AdminController@perm_view');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+    //  }); //'role:admin'
 //}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
@@ -114,8 +117,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 //Смена пароля
-Route::get('/change-password', 'ChangePasswordController@index');
-Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
+    Route::get('/change-password', 'ChangePasswordController@index');
+    Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
 //Route::group(['middleware' => ['auth']], function() {
@@ -126,7 +129,7 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
     Route::get('/new/{id}', 'Opo_dayController@view_last');
 
 
-  });
+});
 //*******************************************
 Auth::routes();
 Route::get('/logout', function () {    Auth::logout();    return Redirect::to('login');});
