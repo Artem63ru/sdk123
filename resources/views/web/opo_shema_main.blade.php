@@ -14,7 +14,7 @@
     <div class="top_table">
 {{--  @include('web.include.toptable')--}}
 
-        @livewire('post.show')
+        @livewire('event-types')
 
     </div>
 

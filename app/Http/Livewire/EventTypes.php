@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Post;
+namespace App\Http\Livewire;
 
 use App\Models\Matrix\Event_types;
 use Livewire\WithPagination;
 use App\User;
 use Livewire\Component;
 
-
-class Show extends Component
+class EventTypes extends Component
 {
     use WithPagination;
     public $search = '';
@@ -16,14 +15,6 @@ class Show extends Component
     public $name;
     public $from_type_obj;
     public $event_id;
-   // public $filters = '';
-    public $showEditModal = false;
-  //  public Event_types $editing;
-
-
-
-
-
 
     private function resetInputFields(){
         $this->name = '';
@@ -36,31 +27,23 @@ class Show extends Component
             'name' => 'required',
             'from_type_obj' => 'required',
         ]);
-         Event_types::create($validatedDate);
-
-       // session()->flash('message', 'Events Created Successfully.');
-
-         $this->resetInputFields();
-
-      //  $this->emit('userStore'); // Close model to using to jquery
-        return redirect()->to('/search/1');
+        Event_types::create($validatedDate);
+        $this->resetInputFields();
+        return redirect()->to('/docs/events');
 
     }
+
     public function render()
     {
         if ($this->search <>'') {
-            $search = '%' . $this->search . '%';
-         //   $this->events = Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->get();
-            return view('livewire.post.show', [
-                'events'=> Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->simplePaginate(20),
+           return view('livewire.event-types', [
+                'events'=> Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->get(),
             ]);
         }
         else
         {
-            //  $search = '%' . $this->search . '%';
-          //  $this->users = Event_types::orderby('id')->paginate(15);
-            return view('livewire.post.show', [
-                'events'=>Event_types::orderby('id')->simplePaginate(20),
+           return view('livewire.event-types', [
+                'events'=>Event_types::orderby('id')->get(),
             ]);
         }
 
@@ -98,8 +81,7 @@ class Show extends Component
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
-
+            return redirect()->to('/docs/events');
         }
     }
-
 }
