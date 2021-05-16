@@ -14,7 +14,7 @@
     <div class="top_table">
 {{--  @include('web.include.toptable')--}}
 
-        @livewire('event-types')
+        @livewire('calc-koef')
 
     </div>
 

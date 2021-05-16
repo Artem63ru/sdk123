@@ -42,8 +42,9 @@
                         <input type='checkbox' name='checkbox-accordion'>
                         <div class="accordion__header">Справочники</div>
                         <div class="accordion__content">
-                            <a href="#">Возможные опасные события</a>
+                            <a href="/docs/events">Возможные опасные события</a>
                             <a href="#">Сценарии</a>
+                            <a href="/search/1">Коэффициенты</a>
                         </div>
                     </label>
                     <label class="accordion">

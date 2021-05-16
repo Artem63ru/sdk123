@@ -49,7 +49,7 @@
             <table>
                 <tbody>
                 <tr>
-                    <td><p>Всего записей: 70</p><p>  </p></td>
+                    <td><p>Всего записей: {{$events->count()}}</p><p>  </p></td>
 {{--                    <td>{{ $events->links() }}</td>--}}
                     <td><a href="#openModal"><button id="" class="create">Добавить <img alt="" src="{{asset('assets/images/icons/dot.svg')}}"></button></a></td>
                 </tr>

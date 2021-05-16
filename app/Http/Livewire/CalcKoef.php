@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\Dynamic\Calc_koef;
+use Livewire\WithPagination;
+use Livewire\Component;
+
+class CalcKoef extends Component
+{
+    public $name;
+    public $from_oto;
+    public $koef_id;
+    public $koef;
+
+    public function render()
+    {
+        return view('livewire.calc-koef', [
+            'koefs'=> Calc_koef::orderby('id')->get(),
+        ]);
+    }
+    public function edit($id)
+    {
+        $this->updateMode = true;
+        $event= Calc_koef::where('id',$id)->first();
+        $this->koef_id = $id;
+        $this->name = $event->description;
+        $this->from_oto = $event->from_oto;
+        $this->koef = $event->koef;
+
+    }
+    public function update()
+    {
+        $validatedDate = $this->validate([
+            'name' => 'required',
+            'from_oto' => 'required',
+            'koef' => 'required|numeric|min:0|max:1',
+        ]);
+
+        if ($this->koef_id) {
+            $event = Calc_koef::find($this->koef_id);
+            $event->update([
+                'koef' => $this->koef,
+            ]);
+            $this->updateMode = false;
+            session()->flash('message', 'Users Updated Successfully.');
+            $this->resetInputFields();
+            return redirect()->to('/search/1');
+        }
+    }
+    private function resetInputFields(){
+        $this->name = '';
+        $this->from_oto = '';
+        $this->koef = '';
+
+    }
+}

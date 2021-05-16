@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function() {
 //****************** Документарный блок *************************************
     Route::get('/docs/glossary', "GlossaryControllers@showHelp"); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
+    Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
 
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
