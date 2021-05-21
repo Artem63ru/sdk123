@@ -13,5 +13,9 @@ class Calc_elem extends Model
     {
         return $this->belongsTo('App\Models\Ref_Obj', 'from_elem', 'idObj');
     }
+    public function calc_elem_to_status()
+    {
+        return $this->belongsTo('App\Models\Status_work', 'status_ip_el', 'id');
+    }
 
 }

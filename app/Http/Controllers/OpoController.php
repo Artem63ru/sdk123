@@ -166,7 +166,7 @@ class OpoController extends Controller
     public static function view_jas_15()
 //       ********************** Вывести последние 15 событий *****************************
     {
-       return Jas::orderBy('id','DESC')->paginate(15);
+       return Jas::orderBy('id','DESC')->take(15)->get();
     }
      public function view_opo_main()
 //       ********************** Вывести данные на страницу *****************************
@@ -222,5 +222,12 @@ class OpoController extends Controller
         return  $opos->opo_to_calc1->first()->ip_opo;//$opos->opo_to_calc30;//->first()->date;
     }
 
+    //************************ Отображение ситуационного плана ОПО ФС *************************
+    public function Show_FS_Plan()
+
+    {
+
+
+    }
 
 }

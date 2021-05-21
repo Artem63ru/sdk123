@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
 
+ //**************** Ситуационный план ***************************************************
+    Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
+
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
@@ -39,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //*******************************************************
 
-    Route::get('/trend', function () {        return view('trend');    })->name('trend');
+    Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
     Route::get('/php', function () {        phpinfo();    });
 
     Route::get('/opo_day', function () {        return view('opo_day');    })->name('opo_day');

@@ -52,7 +52,7 @@ class EventTypes extends Component
     {
         if($id){
             Event_types::where('id',$id)->delete();
-            session()->flash('message', 'Users Deleted Successfully.');
+            session()->flash('message', 'Events Deleted Successfully.');
         }
     }
 
@@ -79,7 +79,7 @@ class EventTypes extends Component
                 'from_type_obj' => $this->from_type_obj,
             ]);
             $this->updateMode = false;
-            session()->flash('message', 'Users Updated Successfully.');
+            session()->flash('message', 'Events Updated Successfully.');
             $this->resetInputFields();
             return redirect()->to('/docs/events');
         }

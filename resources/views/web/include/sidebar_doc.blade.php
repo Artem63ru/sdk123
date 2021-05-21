@@ -44,7 +44,7 @@
                         <div class="accordion__content">
                             <a href="/docs/events">Возможные опасные события</a>
                             <a href="#">Сценарии</a>
-                            <a href="/search/1">Коэффициенты</a>
+                            <a href="/docs/koef">Коэффициенты</a>
                         </div>
                     </label>
                     <label class="accordion">

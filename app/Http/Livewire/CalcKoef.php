@@ -45,7 +45,7 @@ class CalcKoef extends Component
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
-            return redirect()->to('/search/1');
+            return redirect()->to('/docs/koef');
         }
     }
     private function resetInputFields(){
