@@ -17,24 +17,6 @@ class OpoController extends Controller
 {
     public function view_opo ()
     {
-//        $model1 = new Jas();
-//     //   $ref_opo1 = new Ref_opo();
-//        $model =  $model1->where('from_opo', 1)
-//            ->orderBy('data', 'desc')
-//            ->take(10)
-//            ->get();
-//       $ref_opo2 = Ref_opo::all(); // Выведет все записи из БД
-//       foreach ($model as $jas1)
-//        {
-//      echo $jas1->from_opo;
-//       //   echo $ref_opo1 = $jas1->opo_to_jas()->from_opo;
-//        }
-//       foreach ($ref_opo2 as $jas1)
-//        {
-//      echo $jas1->descOPO;
-//          echo  $jas1->opo_to_jas()->from_opo;
-//        }
-
     $jas = Jas::find(200);
     $jas1 = Ref_opo::find(1)->opo_to_jas;
         echo $jas->jas_to_opo->descOPO;
@@ -61,24 +43,13 @@ class OpoController extends Controller
 //       ********************** Определение Ид по имени ОПО*****************************
     // *************************  Вывод всех данных по ОПО *************************
     {
-        $result = Ref_opo::all()->where('descOPO',$opo)->first();
-
-          //  $ip_opo =  $result->idOPO;
-
-        return $result;
+       return  Ref_opo::all()->where('descOPO',$opo)->first();
     }
     public static function id_elem_from_name($elem)
 //       ********************** Определение Ид по имени Елемента*****************************
     // *************************  Вывод всех данных по Элементу *************************
     {
-        $result = Ref_obj::all()->where('nameObj',$elem)->last();
-
-          //  $ip_opo =  $result->idOPO;
-//        echo $result->elem_to_calc->take(-1)->first()->op_m;
-//        foreach ($result->elem_to_calc->take(-1) as $row ) {
-//            echo $row->ip_elem;
-//        }
-        return $result;
+      return Ref_obj::all()->where('nameObj',$elem)->last();
     }
     public static function ip_elem($id_elem)
 //       ********************** Вывод последних расчетных данных по элементу*****************************
@@ -95,12 +66,6 @@ class OpoController extends Controller
 //       ********************** Вывод последних расчетных 20 данных по элементу*****************************
 
     {
-//        $ip_elem = Calc_elem::where('from_elem',$id_elem)
-//           ->orderBy('id', 'desc')
-//           ->take(30)->get();
-//       $ip_elem1 = collect($ip_elem);
-   //     $ip_elem = Ref_obj::find($id_elem)->elem_to_calc->take(30);
-//        $my = array();
         foreach (Ref_obj::find($id_elem)->elem_to_calc->take(40) as $row)
         {
             $my[] =array (strtotime($row->date)*1000, $row->op_m);
@@ -217,9 +182,9 @@ class OpoController extends Controller
     ///************************* Формирование IP_OPO текущего для конкрентного ОПО **********************************
     public static function view_ip_opo ($id)
     {
-        $opos = Ref_opo::find($id);
+       // $opos = Ref_opo::find($id);
 
-        return  $opos->opo_to_calc1->first()->ip_opo;//$opos->opo_to_calc30;//->first()->date;
+        return  Ref_opo::find($id)->opo_to_calc1->first()->ip_opo;
     }
 
     //************************ Отображение ситуационного плана ОПО ФС *************************

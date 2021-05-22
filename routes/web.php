@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth']], function() {
  //**************** Ситуационный план ***************************************************
     Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
 
+
+ //**************** Все остальное *******************************************************
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
@@ -74,7 +76,7 @@ Route::group(['middleware' => ['auth']], function() {
         $user = App\User::find(1);
         $user->avatar = $contents;
         $user->save();
-    })->name('uploaded');;
+    })->name('uploaded');
 
 //*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
     Route::get('invoices/download', 'InvoiceController@download');
@@ -83,8 +85,13 @@ Route::group(['middleware' => ['auth']], function() {
 
 //*********** Проба загрузки выгрузки
     Route::resource('/images', 'ImageController');
-    Route::get('upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']);
-    Route::post('upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
+    Route::get('docs/upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']);
+    Route::post('docs/upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
+    Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']);
+    Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']);
+
+
+
 
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
     //  Route::group(['middleware' => 'role:admin',], function () {

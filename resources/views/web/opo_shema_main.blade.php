@@ -12,11 +12,12 @@
 
 
     <div class="top_table">
-{{--  @include('web.include.toptable')--}}
-
-        @livewire('calc-koef')
-
     </div>
+  @include('upload-form')
+
+{{--        @livewire('calc-koef')--}}
+
+
 
 
 

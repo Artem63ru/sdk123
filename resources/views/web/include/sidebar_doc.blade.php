@@ -52,7 +52,7 @@
                         <div class="accordion__header">Документация</div>
                         <div class="accordion__content">
                             <a href="#">Справочник технологических регламентов</a>
-                            <a href="#">Перечень нормативной документации</a>
+                            <a href={{route('upload_form')}}>Перечень нормативной документации</a>
                         </div>
                     </label>
                     <label class="accordion">
