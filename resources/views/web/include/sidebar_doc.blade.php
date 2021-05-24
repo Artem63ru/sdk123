@@ -51,7 +51,7 @@
                         <input type='checkbox' name='checkbox-accordion'>
                         <div class="accordion__header">Документация</div>
                         <div class="accordion__content">
-                            <a href="#">Справочник технологических регламентов</a>
+                            <a href={{route('reglament')}}>Справочник технологических регламентов</a>
                             <a href={{route('upload_form')}}>Перечень нормативной документации</a>
                         </div>
                     </label>

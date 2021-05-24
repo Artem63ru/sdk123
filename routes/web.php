@@ -23,6 +23,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/glossary', "GlossaryControllers@showHelp"); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
+    Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов
+    Route::get('/docs/reglament',['as' => 'reglament', 'uses' =>'MatrixControllers@Showregl']); // страница справочника регламентных значений
+
+    Route::get('docs/upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']); //Отображение списка файлов
+    Route::post('docs/upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']); // Загрузка файла на сервер
+    Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']); // Просмотр файла
+    Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']); //Удаление файла
 
  //**************** Ситуационный план ***************************************************
     Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
@@ -85,10 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 //*********** Проба загрузки выгрузки
     Route::resource('/images', 'ImageController');
-    Route::get('docs/upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']);
-    Route::post('docs/upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
-    Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']);
-    Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']);
+
 
 
 
