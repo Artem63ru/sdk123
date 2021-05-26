@@ -117,9 +117,9 @@ class ActionPlan extends Component
 
         ]);
 
-        if ($this-> action_id) {
-            $action = Action_plan_pb::find($this-> action_id);
-            $action ->update([
+        if ($this->action_id) {
+            $action = Action_plan_pb::find($this->action_id);
+            $action->update([
                 'reg_num_opo' => $this->reg_num_opo,
                 'name_event' => $this->name_event,
                 'date_perfom' => $this->date_perfom,
@@ -139,6 +139,7 @@ class ActionPlan extends Component
             $this->resetInputFields();
             return redirect()->to('/docs/events');
         }
+        return redirect()->to('/');
     }
 
 
