@@ -61,7 +61,11 @@
 
                     <div class="tripple_cols">
                         <p class="title">Сутки:</p>
-                          <p class="value">{{$mins_opos->calc_to_status->status}}</p>
+                          <p class="value @if ($mins_opos->status == '1') good
+                                  @elseif ($mins_opos->status == '2') normal
+                                  @elseif ($mins_opos->status == '3') critical
+                                @else bad
+                                @endif">{{$mins_opos->calc_to_status->status}}</p>
                            <div class="lined"></div>
                            <div class="value_numb">
                          <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
@@ -72,7 +76,11 @@
 
                     <div class="tripple_cols bordered">
                         <p class="title">Месяц:</p>
-                        <p class="value">{{$mins_opo_months->calc_to_status->status}}</p>
+                        <p class="value @if ($mins_opo_months->status == '1') good
+                                  @elseif ($mins_opo_months->status == '2') normal
+                                  @elseif ($mins_opo_months->status == '3') critical
+                                @else bad
+                                @endif">{{$mins_opo_months->calc_to_status->status}}</p>
                         <div class="lined"></div>
                         <div class="value_numb">
                             <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
@@ -82,7 +90,14 @@
 
                     <div class="tripple_cols">
                         <p class="title">Год:</p>
-                        <p class="value">{{$mins_opo_year->calc_to_status->status}}</p>
+                        <p class="value
+                         @if ($mins_opo_year->status == '1') good
+                                  @elseif ($mins_opo_year->status == '2') normal
+                                  @elseif ($mins_opo_year->status == '3') critical
+                                @else bad
+                                @endif
+
+                        " >{{$mins_opo_year->calc_to_status->status}}</p>
                         <div class="lined"></div>
                         <div class="value_numb">
                             <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">

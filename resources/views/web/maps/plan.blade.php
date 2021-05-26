@@ -7,6 +7,9 @@
     @if ($id == '1')
         @livewire('fs-map')
     @endif
+    @if ($id == '2')
+        @livewire('maps.spt')
+    @endif
     @if ($id == '3')
         @livewire('maps.u-p-p-g1')
     @endif

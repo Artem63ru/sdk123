@@ -153,7 +153,7 @@ class OpoController extends Controller
        $mins_opos = $ver_opo->opo_to_calc_day_min->first();
        $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
-       return view('web.index', compact('jas', 'opo', 'id', 'jas_opo','mins_opos','mins_opo_months','mins_opo_year'));
+       return view('web.index', compact('jas', 'opo','ver_opo', 'id', 'jas_opo','mins_opos','mins_opo_months','mins_opo_year'));
     }
     public function view_opo_main_shema ($id)
 //       ********************** Вывести схему на страницу Конкретного ОПО по ИД *****************************
