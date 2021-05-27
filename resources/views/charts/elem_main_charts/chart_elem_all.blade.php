@@ -138,9 +138,9 @@
             if (clickId == 2) {
                 data_path = '/charts/fetch-data_elem_op_m/{{$id_obj}}';
             }  if (clickId == 3) {
-                data_path = '/charts/fetch-data_elem_op_r/{{$id_obj+1}}';
+                data_path = '/charts/fetch-data_elem_op_r/{{$id_obj}}';
             }  if (clickId == 4) {
-                data_path = '/charts/fetch-data_elem_op_el/{{$id_obj+1}}';
+                data_path = '/charts/fetch-data_elem_op_el/{{$id_obj}}';
             }
             $.getJSON({
                 url: data_path,

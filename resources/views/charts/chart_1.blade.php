@@ -38,10 +38,10 @@
         am4core.addLicense("ch-custom-attribution"),
         {
             "autoMargins": false,
-            "marginTop": 2,
-            "marginBottom": 2,
-            "marginLeft": 2,
-            "marginRight": 2
+            "marginTop": 0,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0
         }
 
     );
@@ -49,23 +49,25 @@
     // Add data
     chart.data = [{
         "category": "Rh",
-        "value": 0.80,
+        "value": {{$ver_opo->opo_to_calc1->first()->ip_opo}},
         "full": 1
     }];
     // Make chart not full circle
     chart.startAngle = -250;
     chart.endAngle = 70;
-    chart.innerRadius = am4core.percent(60);
+    chart.radius = am4core.percent(100);
+    chart.innerRadius = am4core.percent(70);
+    chart.colors.saturation = 0.9;
 
     // Set number format
     //chart.numberFormatter.numberFormat = "#.#";
 
 
-    // Create axes
     var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = "category";
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.grid.template.strokeOpacity = 0;
+    categoryAxis.renderer.labels.template.disabled = true
     categoryAxis.renderer.grid.template.disabled = true;
 
     //categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -81,6 +83,16 @@
     valueAxis.max = 1;
     valueAxis.renderer.labels.template.disabled = true
     valueAxis.strictMinMax = true;
+
+    var yearLabel = chart.radarContainer.createChild(am4core.Label);
+    yearLabel.text = "[bold]{{$ver_opo->opo_to_calc1->first()->ip_opo}}[/]";
+    yearLabel.horizontalCenter = 'middle'
+    yearLabel.verticalCenter = 'middle'
+    yearLabel.x = am4core.percent(100);
+    yearLabel.y = am4core.percent(100);
+    yearLabel.fontSize = 35; // irrelevant, can be omitted
+
+
 
     // Create series
     var series1 = chart.series.push(new am4charts.RadarColumnSeries());

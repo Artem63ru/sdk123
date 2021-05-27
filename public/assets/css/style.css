@@ -417,12 +417,13 @@ input[type="radio"]#opo_pass:checked + .per_sood{display:block;width:75%;}
   .func_passport_bottom.tabled_rate table td.rating{width:28%;}
   .func_passport_bottom.tabled_rate table td.integral{width:16%;}
   .func_passport_bottom.tabled_rate table td{height:100%;text-align:left;}
-  .func_passport_bottom.tabled_rate table td div{background:#fff;border-radius:10px;padding:20px;    margin: 5px 5px -8px 5px;height:12vh;}
+  .func_passport_bottom.tabled_rate table td .div1{background:#fff;border-radius:10px;padding:20px;    margin: 5px 5px -8px 5px;height:12vh;}
+  .func_passport_bottom.tabled_rate table td .div2{background:#fff;border-radius:10px;padding:0px;    margin: 0px 0px -0px 0px;height:12vh;}
   .func_passport_bottom.tabled_rate table td:first-of-type div{margin-left:0;}
   .func_passport_bottom.tabled_rate table td:last-of-type div{margin-right:0;}
   .func_passport_bottom.tabled_rate table{padding:0;}
   .func_passport_bottom.tabled_rate tr td{padding:0;}
-  .func_passport_bottom.tabled_rate img.replace{width:100%;margin-top:10px;}
+  .func_passport_bottom.tabled_rate .replace{width:100%;margin-top:10px;}
   .func_passport_bottom.tabled_rate h3{font-size:27px;float:left;margin:0 10px 0 0;}
   .func_passport_bottom.tabled_rate p{font-size:13px;float:left;margin:2px 0 0 0;color:#828282;}
 
@@ -430,7 +431,7 @@ input[type="radio"]#opo_pass:checked + .per_sood{display:block;width:75%;}
   .func_passport_bottom.tabled_rate h3.blue{color:#3394ce;background:#fff;width:50px;text-align:center;border-radius:10px;}
   .func_passport_bottom.tabled_rate h3.green{color:#49ce56;background:#eff9ef;width:35px;text-align:center;border-radius:10px;}
 
-.func_passport_bottom.tabled_rate .inntegral img.replace{margin-top:0px;}
+.func_passport_bottom.tabled_rate .inntegral .replace{margin-top:0px;}
 .rate_page h4{font-weight:normal;font-size:14px;line-height:1.4em;}
 
 
@@ -1652,8 +1653,9 @@ img.trub_arrow {width:1242px;}
   .tab_title{padding: 9px 12px;}
   .inside_tab_padding { padding: 10px 10px 20px 20px;}
   .func_passport_top{height:26vh;}
-.func_passport_bottom.tabled_rate img.replace{width:100%;margin:auto;}
-  .func_passport_bottom.tabled_rate .inntegral img.replace {margin-top: -11px;}
+.func_passport_bottom.tabled_rate .replace{width:100%;margin:auto;}
+  /*.func_passport_bottom.tabled_rate .inntegral .replace {margin-top: -11px;}*/
+  .func_passport_bottom.tabled_rate .inntegral .replace {margin-top: -11px;}
   .map_block{    transform: scale(0.7);margin-top: -7vh;}
 
   .block_rate h5{margin-bottom:4vh;}
@@ -1683,7 +1685,7 @@ img.trub_arrow {width:1242px;}
   .content.map_content{overflow-y:scroll;}
   .func_passport_top { height: 24vh;  }
   .func_passport_bottom.tabled_rate table td div{padding:12px;}
-  .func_passport_bottom.tabled_rate img.replace{width:75%;margin:auto!important;}
+  .func_passport_bottom.tabled_rate .replace{width:75%;margin:auto!important;}
 
   .main_info_col .tripple_cols p.title{margin-bottom:-3px;}
   .main_info_col .tripple_cols .lined{width:100%;height:1px;background:#ccc;margin-top:-3px;margin-bottom:7px;}
@@ -1739,9 +1741,9 @@ img.table_left_corner {height: 28px;margin-top: -5px;margin-left: -28px;}
 .func_passport_top img.replace { width: 90%;}
 .func_passport_bottom { height: 98px;}
 
-  .func_passport_bottom.tabled_rate .inntegral img.replace {margin-top: -6px;}
-  .func_passport_bottom.tabled_rate img.replace{width:100%;margin:auto!important;}
-    .func_passport_bottom.tabled_rate .inntegral img.replace {margin-top: -7px!important;}
+  .func_passport_bottom.tabled_rate .inntegral .replace {margin-top: -6px;}
+  .func_passport_bottom.tabled_rate .replace{width:100%;margin:auto!important;}
+    .func_passport_bottom.tabled_rate .inntegral .replace {margin-top: -7px!important;}
 
     .func_passport_bottom.tabled_rate {height: 140px;  }
     .func_passport_bottom.tabled_rate table td div{height:140px;}
