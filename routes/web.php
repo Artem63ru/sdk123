@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Auth;
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+    Route::get('/', ['as' => 'gazprom', 'uses' => 'MenuController@view_menu']);   //Главная
 //    Route::get('/opo/{opo}', function ($opo) {
 //        return view('opo', ['opo' => $opo]);
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
 
 //********************* Технологический блок ****************************************
-    Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
+    Route::get('/opo/{id}', "OpoController@view_opo_id");  //страница опо с графиками
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
 //****************** Документарный блок *************************************
-    Route::get('/docs/glossary', "GlossaryControllers@showHelp"); // страница Справки
+    Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
     Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов

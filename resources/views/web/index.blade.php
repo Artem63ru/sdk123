@@ -2,36 +2,15 @@
 @section('title')
     Главная страница ОПО
 @endsection
-
 @section('content')
 
-
 @include('web.include.sidebar_opo')
-
-
-
-
-
     <div class="top_table">
-@include('web.include.toptable')
-
+        @include('web.include.toptable')
     </div>
-
-
-
-
     <div class="inside_content">
 
         <div class="row_block centered">
-
-{{--            <div class="third_size col_block centered">--}}
-
-{{--                @include('charts.chart_ip_opo_singl')--}}
-{{--                @include('charts.chart_ip_opo_singl_prognoz')--}}
-{{--                @include('charts.chart_ip_opo_mini')--}}
-
-{{--            </div>--}}
-
             <div class="third_size col_block main_info_col">
                 <div class="padding_ins">
                     <div class="inside_main_info left"><p>Текущий показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
