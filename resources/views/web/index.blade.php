@@ -36,7 +36,7 @@
                 <div class="padding_ins">
                     <div class="inside_main_info left"><p>Текущий показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
                     <div class="inside_main_info right">
-                        <p class="bold dark_grey_text clear">{{\App\Http\Controllers\OpoController::view_ip_opo($id)}}</p>
+                        <p class="bold dark_grey_text clear">{{$ver_opo->opo_to_calc1->first()->ip_opo}}</p>
                         <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
                     </div>
                     <div class="clearfix"></div>

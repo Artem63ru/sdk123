@@ -8,7 +8,7 @@
     <ul>
         <li ><a href="/"><img alt="Главная" src="{{asset('assets/images/icons/home.svg')}}" class="links_block_icon"></a></li>
         <li ><a href="{{asset('/opo/1')}}"><img alt="Настройки" src="{{asset('assets/images/icons/settings.svg')}}" class="links_block_icon"></a></li>
-        <li ><a href="#"><img alt="Документация" src="{{asset('assets/images/icons/docs.svg')}}" class="links_block_icon"></a></li>
+        <li ><a href="{{ url('/docs/rtn') }}"><img alt="Документация" src="{{asset('assets/images/icons/docs.svg')}}" class="links_block_icon"></a></li>
     </ul>
 </div>
 <div class="info_block">

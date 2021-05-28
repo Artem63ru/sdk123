@@ -1,6 +1,6 @@
-<div>
+{{--<div>--}}
     <div class="tab">
-        <input type="radio" id="r11" name="tab_group">
+        <input type="radio" id="r11" name="tab_group" checked>
         <label for="r11" class="tab_title razd_col_tab">Раздел 1.1</label>
         <section class="tab_content">
             <div class="inside_tab_padding plan_new">
@@ -133,4 +133,4 @@
         </div>
     </div>
 
-</div>
+{{--</div>--}}

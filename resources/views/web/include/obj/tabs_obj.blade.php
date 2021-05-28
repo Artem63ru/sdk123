@@ -125,8 +125,9 @@
 
                     <style>
                         #chartdiv, #chartdiv1, #chartdiv2, #chartdiv3 {
-                            width: 120%;
+                            width: 100%;
                             height: 150px;
+                            margin-top: -10px;
                         }
                     </style>
                     <div id="chartdiv"></div>

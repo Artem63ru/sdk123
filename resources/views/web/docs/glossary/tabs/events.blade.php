@@ -10,10 +10,10 @@
                             <div class="class_icon yellow">С2</div>
                             <div class="class_name"><b>Предаварийные условия функционирования</b><br/>
                 @elseif($event->id == 3)
-                            <div class="class_icon yellow">С3</div>
+                            <div class="class_icon light_yellow">С3</div>
                             <div class="class_name"><b>Нормальные условия функционирования с предпосылкой к инциденту</b><br/>
                 @elseif($event->id == 4)
-                            <div class="class_icon yellow">С3</div>
+                            <div class="class_icon green">С4</div>
                             <div class="class_name"><b>Нормальные условия функционирования</b><br/>
                 @endif
 

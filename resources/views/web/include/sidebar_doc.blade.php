@@ -43,7 +43,7 @@
                         <div class="accordion__header">Справочники</div>
                         <div class="accordion__content">
                             <a href="/docs/events">Возможные опасные события</a>
-                            <a href="#">Сценарии</a>
+                            <a href="{{route('matrix')}}">Сценарии</a>
                             <a href="/docs/koef">Коэффициенты</a>
                         </div>
                     </label>
@@ -57,7 +57,9 @@
                     </label>
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion'>
-                        <div class="accordion__header">План мероприятий по обеспечению ПБ</div>
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/rtn') }}> План мероприятий по обеспечению ПБ</a>
+                        </div>
                         <div class="accordion__content">
                             <a href="#">Общие сведения</a>
                             <a href="#">Раздел 1.1</a>
@@ -72,8 +74,10 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' checked>
-                        <div class="accordion__header">Глоссарий применяемых сокращений</div>
+                        <input type='checkbox' name='checkbox-accordion' >
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
+                        </div>
                         <div class="accordion__content">
                             <a href="#">Сокращения</a>
                             <a href="#">Термины и определения</a>

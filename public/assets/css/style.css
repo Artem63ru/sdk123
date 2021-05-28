@@ -607,11 +607,20 @@ table.plan_table tr td p.light_plan{font-size:12px;color:#b1b1b1;margin:0;}
 
 .glossary_sigle .class_icon{width:45px;height:45px;font-size:21px;color:#fff;border-radius:12px;text-align:center;line-height:2.2em;float:left;margin-right:10px;}
 .glossary_sigle .class_icon.red{
-  background: rgb(245,139,45);
-  background: linear-gradient(0deg, rgba(245,139,45,1) 0%, rgba(255,85,104,1) 100%);}
-  .glossary_sigle .class_icon.yellow{
+    background: rgb(245,139,45);
+    background: linear-gradient(0deg, rgba(245,139,45,1) 0%, rgba(255,85,104,1) 100%);}
+.glossary_sigle .class_icon.yellow{
     background: rgb(255,216,92);
-background: linear-gradient(0deg, rgba(255,216,92,1) 0%, rgba(255,168,44,1) 100%);}
+    background: linear-gradient(0deg, rgba(255,216,92,1) 0%, rgba(255,168,44,1) 100%);}
+
+
+.glossary_sigle .class_icon.light_yellow{
+    background: rgb(252,196,41);
+    background: linear-gradient(0deg, rgba(252,206,31,1) 0%, rgba(252,196,41,1) 100%);}
+
+.glossary_sigle .class_icon.green{
+    background: rgb(89,187,69);
+    background: linear-gradient(0deg, rgba(115,193,67,1) 0%, rgba(89,187,69,1) 100%);}
 
 .glossary_sigle .class_name{color:#b1b1b1;font-size:13px;margin-top:3px;}
 .glossary_sigle .class_name b{color:#4689aa;font-size:19px;}
@@ -1294,7 +1303,7 @@ img.trub_arrow{    position: absolute;    width: 90%;    left: 125px;    margin-
 .rate_pl h6{color:#b1b1b1;font-weight:normal;font-size:12px;margin:0;}
 .rate_pl h6{margin-top:15px;}
 .rate_index{margin-top:15px;}
-.rate_index.full_height_index{height:}
+/*.rate_index.full_height_index{height:}*/
 
 .rate_index.full_height_index .block_rate {height: 19vh;max-height: 19vh;line-height: 16vh;}
 .rate_index.double_height_index .block_rate {height: 11vh;max-height: 11vh;line-height: 9vh;}

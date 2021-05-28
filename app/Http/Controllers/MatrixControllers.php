@@ -32,5 +32,12 @@ class MatrixControllers extends Controller
         return view('web.docs.rtn.index', compact('jas'));
 
     }
+    //******************** Обзор сценариев ****************************
+    public function Showmatrix()
+    {
+        $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
+        return view('web.docs.matrix.scenar.index', compact('jas'));
+
+    }
 
 }
