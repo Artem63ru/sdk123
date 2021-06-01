@@ -146,14 +146,102 @@ class OpoController extends Controller
 //       ********************** Вывести данные на страницу Конкретного ОПО по ИД *****************************
     {
 
-       $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
+       //$jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
        $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
        $ver_opo =  Ref_opo::find($id);
        $jas_opo =  $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
-       $mins_opos = $ver_opo->opo_to_calc_day_min->first();
-       $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
-       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
-       return view('web.index', compact('jas', 'opo','ver_opo', 'id', 'jas_opo','mins_opos','mins_opo_months','mins_opo_year'));
+//       $mins_opos = $ver_opo->opo_to_calc_day_min->first();
+//       $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
+//       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
+       //$data=array('opo'=>$opo, 'id'=>$id, 'jas_opo'=>$jas_opo, 'mins_opos'=>$mins_opos, 'mins_opo_months'=>$mins_opo_months, 'mins_opo_year'=>$mins_opo_year);
+       //return json_encode($data, JSON_UNESCAPED_UNICODE);
+       return view('web.index', compact('opo', 'id', 'jas_opo'));
+    }
+
+    public function get_opo_data($id, $db_count){
+
+        $new_count=Jas::count();
+        if ($new_count==$db_count){
+            $data=array('new_data'=>false);
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
+        }else {
+            $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
+            $ver_opo = Ref_opo::find($id);
+            $jas_opo = $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
+            $mins_opos = $ver_opo->opo_to_calc_day_min->first();
+            $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
+            $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
+            $ip_opo = $ver_opo->opo_to_calc1->first()->ip_opo;
+            $all_opo_ip = array();
+
+            $i = 0;
+            foreach ($opo as $value) {
+                $all_opo_ip[$i] = $value->opo_to_calc1->first()->ip_opo;
+                $i += 1;
+            }
+            $jas_opo_data[] = array();
+
+            $i = 0;
+            foreach ($jas_opo as $value) {
+                $jas_opo_data[$i]['date'] = date('d-m-Y h:m', strtotime($value->data));
+                $jas_opo_data[$i]['level'] = $value->level;
+                $jas_opo_data[$i]['descOPO'] = $value->jas_to_opo->descOPO;
+                $jas_opo_data[$i]['nameObj'] = $value->jas_to_elem->nameObj;
+                $jas_opo_data[$i]['status'] = $value->status;
+                $jas_opo_data[$i]['name'] = $value->name;
+                $jas_opo_data[$i]['check'] = $value->check;
+                $jas_opo_data[$i]['id'] = $value->id;
+                $i += 1;
+            }
+
+            //СТандартные исходные данные по статусам для столбовых графиков
+            $day_int_status=-1;
+            $day_status='Нет данных';
+            $day_opos_ip_opo=0.0;
+            if ($mins_opos!==null){
+                $day_int_status=$mins_opos->status;
+                $day_status=$mins_opos->calc_to_status->status;
+                $day_opos_ip_opo=$mins_opos->ip_opo;
+            }
+            $months_int_status=-1;
+            $months_status='Нет данных';
+            $months_opos_ip_opo=0.0;
+            if ($mins_opo_months!==null){
+                $months_int_status=$mins_opo_months->status;
+                $months_status=$mins_opo_months->calc_to_status->status;
+                $months_opos_ip_opo=$mins_opo_months->ip_opo;
+            }
+            $year_int_status=-1;
+            $year_status='Нет данных';
+            $year_opos_ip_opo=0.0;
+            if ($mins_opo_months!==null){
+                $year_int_status=$mins_opo_year->status;
+                $year_status=$mins_opo_year->calc_to_status->status;
+                $year_opos_ip_opo=$mins_opo_year->ip_opo;
+            }
+
+
+            $data = array('new_data'=>true,
+                'opo' => $opo,
+                'id' => $id,
+                'jas_opo' => $jas_opo_data,
+                'mins_opos_int_status' => $day_int_status,
+                'mins_opos_status' => $day_status,
+                'mins_opos_ip_opo' => $day_opos_ip_opo,
+                'mins_opo_months_int_status' => $months_int_status,
+                'mins_opo_months_status' => $months_status,
+                'mins_opo_months_ip_opo' => $months_opos_ip_opo,
+                'mins_opo_year_int_status' => $year_int_status,
+                'mins_opo_year_status' => $year_status,
+                'mins_opo_year_ip_opo' => $year_opos_ip_opo,
+                'ip_opo' => $ip_opo,
+                'all_opo_ip' => $all_opo_ip,
+                'db_count'=>$new_count
+            );
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+
+
     }
     public function view_opo_main_shema ($id)
 //       ********************** Вывести схему на страницу Конкретного ОПО по ИД *****************************
@@ -192,6 +280,48 @@ class OpoController extends Controller
 
     {
 
+
+    }
+
+
+    public function get_db_info(){
+        $jas = OpoController::view_jas_15();
+        $data[]=array();
+
+        $i=0;
+        foreach ($jas as $value){
+            $data[$i]['date']=date('d-m-Y h:m', strtotime($value->data));
+            $data[$i]['level']=$value->level;
+            $data[$i]['descOPO']=$value->jas_to_opo->descOPO;
+            $data[$i]['nameObj']=$value->jas_to_elem->nameObj;
+            $data[$i]['status']=$value->status;
+            $data[$i]['name']=$value->name;
+            $data[$i]['check']=$value->check;
+            $data[$i]['id']=$value->id;
+            $i+=1;
+        }
+
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function get_sum()
+    {
+        return json_encode(Jas::count());
+    }
+
+    public function set_check(Request $request){
+
+        $post = $request->all();
+        $res=Jas::updated_check($post['id']);
+        if ($res) {
+            return json_encode(array('result'=>'true'));
+        }
+        else{
+            $res=array('result'=>'false', 'error'=>$res);
+            return json_encode($res);
+        }
+
+        //return json_encode(array('result'=>'true'));
 
     }
 

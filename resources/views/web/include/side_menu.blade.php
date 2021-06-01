@@ -16,17 +16,20 @@
         <li class=""><a href="{{ url('/docs/glossary') }}"><img alt="Справка" src="{{asset('assets/images/icons/info.svg')}}" class="side_menu_faq"></a></li>
     </ul>
 </div>
-<script language="JavaScript">
+
+<script>
     $(document).ready(function() {
 
         $('.links_block ul a').each(function () {
 
-            if (this.href == location.href) $(this).parent().addClass('active');
+            //console.log(this.href.split('/'), location.href.split('/'))
+
+            if (this.href.split('/')[3] == location.href.split('/')[3]) $(this).parent().addClass('active');
         });
 
-$( '.links_block ul a' ).on( 'click', function () {
-$( '.links_block ul' ).find( 'li.active' ).removeClass( 'active' );
-$( this ).parent( 'li' ).addClass( 'active' );
-});
+        $( '.links_block ul a' ).on( 'click', function () {
+            $( '.links_block ul' ).find( 'li.active' ).removeClass( 'active' );
+            $( this ).parent( 'li' ).addClass( 'active' );
+        });
     });
 </script>

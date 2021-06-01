@@ -1,6 +1,6 @@
-@extends('web.layouts.app_admin')
+@extends('web.layouts.app')
 @section('title')
-    Админ панель
+    Админ панель Привелегии
 @endsection
 @section('content')
     <div class="container">

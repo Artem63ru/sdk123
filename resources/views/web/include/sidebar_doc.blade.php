@@ -14,7 +14,7 @@
 
                 <div>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' id="Sprav">
+                        <input type='checkbox' name='checkbox-accordion' id="faq" onclick="SaveChecked(this)">
                         <div class="accordion__header">Справочники</div>
                         <div class="accordion__content">
                             <a href="/docs/events">Возможные опасные события</a>
@@ -23,7 +23,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' id="Docs">
+                        <input type='checkbox' name='checkbox-accordion'  id="docs" onclick="SaveChecked(this)">
                         <div class="accordion__header">Документация</div>
                         <div class="accordion__content">
                             <a href={{route('reglament')}}>Справочник технологических регламентов</a>
@@ -31,7 +31,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' id="Plan">
+                        <input type='checkbox' name='checkbox-accordion' id="plan" onclick="SaveChecked(this)">
                         <div class="accordion__header">
                             <a href={{ url('/docs/rtn') }}> План мероприятий по обеспечению ПБ</a>
                         </div>
@@ -49,7 +49,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' id="Glos">
+                        <input type='checkbox' name='checkbox-accordion' id="gloss" onclick="SaveChecked(this)" >
                         <div class="accordion__header">
                             <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
                         </div>
@@ -70,7 +70,36 @@
         </div>
     </div>
 </div>
-<script>
-    console.log(location.pathname)
 
+<script>
+    let checkboxes = document.getElementsByName('checkbox-accordion');
+    //console.log(checkboxes)
+    function pageStart() {
+        for (let ch of checkboxes) {
+            if (window.localStorage[ch.id]){
+                ch.checked=true;
+            }
+        }
+    }
+
+    function SaveChecked(element){
+        //console.log(window.localStorage[element.id])
+        if (window.localStorage[element.id]!=null){
+            element.checked=false;
+            window.localStorage.removeItem(element.id);
+
+        }
+        else {
+            for (let ch of checkboxes){
+                if (window.localStorage[ch.id]){
+                    ch.checked=false;
+                    window.localStorage.removeItem(ch.id);
+                }
+            }
+            window.localStorage[element.id]=true;
+        }
+
+    }
+
+    pageStart();
 </script>

@@ -13,11 +13,16 @@ Route::group(['middleware' => ['auth']], function() {
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
 
 //********************* Технологический блок ****************************************
-    Route::get('/opo/{id}', "OpoController@view_opo_id");  //страница опо с графиками
+    Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
+    Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
+
+    Route::get('/opo/get_db_info/15', 'OpoController@get_db_info'); //Достаем данные из базы данных для таблицы
+    Route::get('/opo/get_sum/all', 'OpoController@get_sum');
+    Route::post('/opo/set_check_for_opo', 'OpoController@set_check');
 
 //****************** Документарный блок *************************************
     Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки

@@ -49,7 +49,7 @@
     <div class="inside_sidebar">
 
         @include('web.include.sidebar_top')
-        <div class="sidebar_bottom rounded">
+        <div class="sidebar_bottom rounded" id="sidebar_bottom_rounded">
 
 
             @foreach ($opo as $opo_val)

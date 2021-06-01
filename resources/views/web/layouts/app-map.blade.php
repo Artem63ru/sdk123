@@ -33,6 +33,9 @@
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 </head>
 <body>
+
+@include('web.include.modal.modal')
+
 <div class="side_menu">
     @include('web.include.side_menu')
 </div>
@@ -49,4 +52,8 @@
 @stack('scripts')
 
 </body>
+
+
+{{--<script type="text/javascript" src="{{asset('/js/jquery.min.js')}}"></script>--}}
+<script type="text/javascript" src="{{asset('/js/top_table.js')}}"></script>
 </html>

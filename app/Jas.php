@@ -35,12 +35,25 @@ class Jas extends Model
 
     public static function updated_check($id)
     {
-        Jas::find($id)->update([
-            'check' => 'True',
-        ]);
+        try {
+            Jas::find($id)->update([
+                'check' => 'True',
+            ]);
+            return True;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
     }
+
+
 
 
     //
  //
 }
+
+
+
+
+

@@ -1,4 +1,4 @@
-@extends('web.layouts.app_admin')
+@extends('web.layouts.app')
 @section('title')
     Административная панель
 @endsection
@@ -11,22 +11,28 @@
                         @include('web.admin.inc.menu')
                     <div class="card-header"><h2>Журнал событий</h2></div>
 
-                    <div class="card-body">
-                        <table class="table table-hover">
+                    <div class="table_head_block">
+                        <table class="plan_table norm_tabl">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Описание события</th>
-                                <th scope="col">Пользователь</th>
-                                <th scope="col">IP адрес</th>
-                                <th scope="col">Дата</th>
+                                <th>#</th>
+                                <th >Описание события</th>
+                                <th>Пользователь</th>
+                                <th >IP адрес</th>
+                                <th >Дата</th>
                             </tr>
                             </thead>
+                        </table>
+                    </div>
+                    <div class="top_table_inside full_table">
+                        <div class="tabs razd_col_tab no_border">
+                            <div class="no_tab_table opend">
+                                <table class="plan_table norm_tabl">
                             <tbody>
 
                             @foreach ($logs as $log)
                                 <tr>
-                                    <th scope="row-4">{{ $log->id }}</th>
+                                    <td>{{ $log->id }}</td>
                                     <td>{{ $log->description }}</td>
                                     <td>{{ $log->username }}</td>
                                     <td>{{ $log->ip }}</td>
@@ -38,8 +44,20 @@
                             </tbody>
 
                         </table>
-                        {{ $logs->links() }}
-                        <a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Export PDF</a>
+                                <div class="table_use">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td><p>Всего записей:{{$logs->count()}}</p></td>
+
+                                        </tr>
+                                        </tbody>
+                                        {!! $logs->links() !!}
+                                        <a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Export PDF</a>
+                                    </table>
+                    </div>
+
+
                     </div>
                 </div>
             </div>
