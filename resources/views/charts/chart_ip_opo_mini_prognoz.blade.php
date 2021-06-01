@@ -1,13 +1,13 @@
 
 
 
-<div id="chart_mini_prognoz" style="height: 100px; margin-top: 20px"></div>
+<div id="chart_mini_prognoz" style="height: 100px; margin-top: 10px"></div>
 
 <script language="JavaScript">
     $(document).ready(function() {
 
-        var old_date;
-        var options = {
+        var old_date1;
+        var options1 = {
             title: {
                 text: 'Интегральный показатель ОПО' ,
                 style: {
@@ -23,20 +23,35 @@
 
                 events: {
                     load: function () {
-                        var series = this.series[0];
+                        var series1 = this.series[0];
                         setInterval(() => {
                             $.getJSON({
-                                url: '/charts/fetch-data',
+                                url: '/charts/fetch-data-prognoz/{{$id}}',
                                 method: 'GET',
                                 success: function (data) {
-                                    if (data[data.length-1][0] > old_date) {
+                                    if (data[data.length-1][0] > old_date1) {
                                         var x = data[data.length - 1][0],
                                             y = data[data.length - 1][1];
-                                        series.addPoint([x, y], true, true);
-                                        old_date = data[data.length-1][0];
+                                        series1.addPoint([x, y], true, true);
+                                        old_date1 = data[data.length-1][0];
                                         console.log('Внутри');
                                     }
-
+                                    if (data[data.length-1][1]<=1.00) {
+                                        chart1.series[0].color = "rgba(70,183,78,0.5)";
+                                        chart1.series[0].redraw();
+                                    }
+                                    if (data[data.length-1][1]<=0.80) {
+                                        chart1.series[0].color = "#fae6ae";
+                                        chart1.series[0].redraw();
+                                    }
+                                    if (data[data.length-1][1]<=0.50) {
+                                        chart1.series[0].color = "#f2b140";
+                                        chart1.series[0].redraw();
+                                    }
+                                    if (data[data.length-1][1]<=0.20) {
+                                        chart1.series[0].color = "rgba(234,87,87,0.5)";
+                                        chart1.series[0].redraw();
+                                    }
                                 }
 
                             });
@@ -68,68 +83,50 @@
                 minorGridLineWidth: 0,
                 gridLineWidth: 0,
                 alternateGridColor: null,
-                // plotBands: [{ // Light air
-                //     from: 0,
-                //     to: 0.2,
-                //     color: 'rgba(250, 128, 114, 0.4)',
-                //     label: {
-                //         text: 'Авария',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Light breeze
-                //     from: 0.2,
-                //     to: 0.5,
-                //     color: 'rgba(255, 165, 0, 0.4)',
-                //     label: {
-                //         text: 'Инцедент',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Gentle breeze
-                //     from: 0.5,
-                //     to: 0.8,
-                //     color: 'rgba(240, 230, 140, 0.6)',
-                //     label: {
-                //         text: 'Низкий риск',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Moderate breeze
-                //     from: 0.8,
-                //     to: 1.0,
-                //     color: 'rgba(152, 251, 152, 0.3)',
-                //     label: {
-                //         text: 'Работа штатно',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }]
+
             },
             credits: {
                 enabled: false
             },
 
             series: [{
-                 name: 'IP ОПО',
-                marker: {
+               name: 'Прогнозный показатель',
+               marker: {
                     enabled: false
                 },
-               color :"#e9c199",
+
+               // color :"#e9c199",
             }]
         };
         $.getJSON({
-            url: '/charts/fetch-data',
+            url: '/charts/fetch-data-prognoz/{{$id}}',
             method: 'GET',
             success: function (data) {
-                options.series[0].data = data;
-                var chart = new Highcharts.Chart(options);
-                old_date = data[data.length-1][0];
+                options1.series[0].data = data;
+
+                var chart1 = new Highcharts.Chart(options1);
+                old_date1 = data[data.length-1][0];
+
+                //     var series = chart1.series[0];
+                // series.setData(data);
+                if (data[data.length-1][1]<=1.00) {
+                    chart1.series[0].color = "rgba(70,183,78,0.5)";
+                   chart1.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.80) {
+                    chart1.series[0].color = "#fae6ae";
+                   chart1.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.50) {
+                    chart1.series[0].color = "#f2b140";
+                   chart1.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.20) {
+                    chart1.series[0].color = "rgba(234,87,87,0.5)";
+                   chart1.series[0].redraw();
+                }
             }
+
         });
     });
 

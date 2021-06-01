@@ -23,6 +23,9 @@
         @include('web.include.numbs_line')
         @include('web.include.tb.tabs_tb')
 
+        @include('web.include.script-lib.am4')
+        @include('web.include.script-lib.highcharts')
+
 
 
 

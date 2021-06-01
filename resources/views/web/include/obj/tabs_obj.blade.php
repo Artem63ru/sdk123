@@ -154,4 +154,9 @@
     </div>
 
 
+    @include('web.include.script-lib.am4')
+    @include('web.include.script-lib.highcharts')
+
+
+
 </div>

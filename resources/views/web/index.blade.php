@@ -39,7 +39,7 @@
                 <div class="padding_ins">
                     <div class="inside_main_info left"><p>Прогнозный показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
                     <div class="inside_main_info right">
-                        <p class="bold dark_grey_text clear">0.98</p>
+                        <p class="bold dark_grey_text clear">{{isset($ver_opo->opo_to_calc_opo_pro->first()->pro_ip_opo) ? $ver_opo->opo_to_calc_opo_pro->first()->pro_ip_opo : '1.00'}}</p>
                         <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
                     </div>
                     <div class="clearfix"></div>
@@ -292,5 +292,6 @@
 
 {{--<script src="{{asset('/js/jquery.min.js')}}"></script>--}}
 
-
+@include('web.include.script-lib.am4')
+@include('web.include.script-lib.highcharts')
 @endsection

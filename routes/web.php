@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
 
     //*****************   Данные  **************************
-    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
+    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
+    Route::get('charts/fetch-data-prognoz/{id}', 'OpoController@view_ip_pro_last'); //вывод прогнозного показателя ИП ОПО 30 последних
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
     Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');          // вывод интегрального показателя элемента ОПО
     Route::get('charts/fetch-data_elem_op_m/{id_obj}', 'ObjController@calc_elem_op_m');    //вывод Обобщенного показателя по матричным сценариям

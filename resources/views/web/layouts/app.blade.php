@@ -14,11 +14,13 @@
     <meta property="og:description" content=""/>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('/js/charts/highcharts.js')}}"></script>
-    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+{{--    <script src="{{asset('/js/charts/highcharts.js')}}"></script>--}}
+{{--    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>--}}
 
     <script src="{{asset('/js/jquery.min.js')}}"></script>
+    @stack('am4-script-lib')
+    @stack('highcharts-script-lib')
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
 {{--    <script src="/js/hchart/solid-gauge.js"></script>--}}

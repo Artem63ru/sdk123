@@ -155,7 +155,7 @@ class OpoController extends Controller
 //       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
        //$data=array('opo'=>$opo, 'id'=>$id, 'jas_opo'=>$jas_opo, 'mins_opos'=>$mins_opos, 'mins_opo_months'=>$mins_opo_months, 'mins_opo_year'=>$mins_opo_year);
        //return json_encode($data, JSON_UNESCAPED_UNICODE);
-       return view('web.index', compact('opo', 'id', 'jas_opo'));
+       return view('web.index', compact('opo', 'id', 'jas_opo', 'ver_opo'));
     }
 
     public function get_opo_data($id, $db_count){
@@ -263,6 +263,18 @@ class OpoController extends Controller
         foreach ($opos->opo_to_calc30 as $ip)
         {
             $data1[] = array (strtotime($ip->date)*1000, $ip['ip_opo']);
+        }
+        // return $opos->opo_to_calc_day('2021-02-20') ;//->first()->date;
+        return str_replace('"','',json_encode(array_reverse($data1, false)));//$opos->opo_to_calc30;//->first()->date;
+    }
+    ///************************* Формирование данных для мини графика прогнозного показателя **********************************
+    public static function view_ip_pro_last ($id)
+    {
+
+        $opos = Ref_opo::find($id);
+        foreach ($opos->opo_to_calc_opo_pro as $ip)
+        {
+            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
         }
         // return $opos->opo_to_calc_day('2021-02-20') ;//->first()->date;
         return str_replace('"','',json_encode(array_reverse($data1, false)));//$opos->opo_to_calc30;//->first()->date;

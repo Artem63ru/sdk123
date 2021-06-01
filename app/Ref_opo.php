@@ -32,6 +32,11 @@ class Ref_opo extends Model
     {
         return $this->hasMany('App\Models\Calc_ip_opo_i', 'from_opo', 'idOPO')->orderByDesc('id')->take(30);
     }
+    //************************** Проактивный показатель ИП ОПО 30 значений *********************************************
+    public function opo_to_calc_opo_pro()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')->orderByDesc('id')->take(30);
+    }
     //************************** Последние 60 значений ИП ОПО *********************************************
     public function opo_to_calc60()
     {
