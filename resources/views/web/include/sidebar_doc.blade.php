@@ -14,7 +14,7 @@
 
                 <div>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
+                        <input type='checkbox' name='checkbox-accordion' id="Sprav">
                         <div class="accordion__header">Справочники</div>
                         <div class="accordion__content">
                             <a href="/docs/events">Возможные опасные события</a>
@@ -23,7 +23,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
+                        <input type='checkbox' name='checkbox-accordion' id="Docs">
                         <div class="accordion__header">Документация</div>
                         <div class="accordion__content">
                             <a href={{route('reglament')}}>Справочник технологических регламентов</a>
@@ -31,7 +31,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
+                        <input type='checkbox' name='checkbox-accordion' id="Plan">
                         <div class="accordion__header">
                             <a href={{ url('/docs/rtn') }}> План мероприятий по обеспечению ПБ</a>
                         </div>
@@ -49,7 +49,7 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' >
+                        <input type='checkbox' name='checkbox-accordion' id="Glos">
                         <div class="accordion__header">
                             <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
                         </div>
@@ -70,3 +70,7 @@
         </div>
     </div>
 </div>
+<script>
+    console.log(location.pathname)
+
+</script>

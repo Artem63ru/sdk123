@@ -17,6 +17,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{asset('/js/charts/highcharts.js')}}"></script>
     <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>
+
     <script src="{{asset('/js/jquery.min.js')}}"></script>
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
@@ -33,6 +34,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+
 </head>
 <body>
 <div class="side_menu">

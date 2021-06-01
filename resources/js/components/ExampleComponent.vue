@@ -1,23 +1,22 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+  <div class="demo">
+    <form method="POST">
+      <datepicker ref="datepicker" @click.native="method"></datepicker>
+    </form>
+    <input v-model="message" placeholder="отредактируй меня">
+    <p>Введённое сообщение: {{ date }}</p>
+<!--    <datepicker value="2018-9-5" format="YYYY-M-D" name="date2"></datepicker>-->
+<!--    <datepicker :readonly="true" format="MMM/D/YYYY" name="date3"></datepicker>-->
+  </div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+import datepicker from 'vue-date-picker'
+
+export default {
+  components: {
+    datepicker
+  }
+}
 </script>

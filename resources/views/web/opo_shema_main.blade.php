@@ -11,11 +11,11 @@
 {{--@include('web.include.tb.sidebar_tb')--}}
 
 
-    <div class="top_table">
-    </div>
-  @include('upload-form')
 
-{{--        @livewire('calc-koef')--}}
+{{--  @include('upload-form')--}}
+
+        @livewire('post.show')
+
 
 
 

@@ -83,16 +83,20 @@
     <table>
         <tbody>
         <tr>
-            <td> <form><select wire:model="search" >
-                        <option value="" >Выбрать все...</option>
-                        @foreach (App\Models\Type_obj::all() as $value)
-                            <option value="{{$value->type_id}}">{{ $value->type_name }}</option>
-                        @endforeach
-                    </select> </form></td>
 
+            <td>    <div id="app" class="top_table">
+                    <form wire:model="search" >
+
+                        <example-component wire:model="search" />
+
+                         </form>
+                </div>
+            </td>
+            <td> <input text wire:model="search" id="title" style="min-width: 350px" /></td>
         </tr>
         </tbody>
     </table>
+
 {{--        <form wire:submit.prevent="save">--}}
 {{--            <div modal.dialog wire:model.defer="showEditModal">--}}
 

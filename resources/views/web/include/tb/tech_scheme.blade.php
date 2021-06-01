@@ -5,9 +5,9 @@
         <div class="inside_tab_padding">
             <div class="row_block">
                 <div class="tech_scheme_left">
-                    <p class="title">Трубопроводы кислого газа<br/>(Высокая стоимость)</p>
+                    <p class="title">Трубопроводы кислого газа</p>
                     <div class="tech_scheme_line"></div>
-                    <p class="descript">"Наименование документа схемы. Наименование документа схемы."</p>
+                    <p class="descript">"Наименование документа схемы."</p>
                     <a href="#" class="download_scheme">Скачать <img alt="" src="{{asset('assets/images/icons/download.svg')}}"></a>
                 </div>
                 <div class="tech_scheme_right">
