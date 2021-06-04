@@ -49,6 +49,8 @@
                         <tbody>
                         <tr>
                             <td class="inntegral">
+
+
                                 <div class="replace div2" id="chartdiv" >
                                     @include('charts.chart_1')
                                 </div>

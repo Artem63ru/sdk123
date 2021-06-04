@@ -8,21 +8,11 @@
 
 @include('web.include.sidebar_opo')
 
-
-
-
-
-
     <div class="top_table">
         @include('web.include.toptable')
     </div>
-
-
-
-
     <div class="inside_content">
-
-        <div class="row_block centered">
+       <div class="row_block centered">
             <div class="third_size col_block main_info_col">
                 <div class="padding_ins">
                     <div class="inside_main_info left"><p>Текущий показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
@@ -58,11 +48,25 @@
                         </script>
                           <div id="div_mins_opos_status"></div>
                            <div class="lined"></div>
-                           <div class="value_numb">
-                         <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
-{{--            <i class="rate_icon clear zmdi zmdi-trending-up"></i>--}}
-                            <p class="bold dark_grey_text clear" id="mins_opos_ip_opo"></p>
-                     </div>
+{{--                           <div class="value_numb">--}}
+                               <style>
+                                   #chartdiv,
+                                   #chartdiv1,
+                                   #chartdiv2 {
+                                       /*width: 100%;*/
+                                       /*height: 100%;*/
+                                       margin-top: -48px;
+                                       margin-left: -15px;
+                                       /*display: inline-block;*/
+                                   }
+
+                               </style>
+                               <div id="chartdiv" >
+                                   @include('charts.opo.chart_opo_day_min')
+                               </div>
+{{--                               <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">--}}
+{{--                               <p class="bold dark_grey_text clear" id="mins_opos_ip_opo"></p>--}}
+{{--                     </div>--}}
                     </div>
 
                     <div class="tripple_cols bordered">
@@ -74,8 +78,11 @@
                         <div id="div_mins_opo_months_status"></div>
                         <div class="lined"></div>
                         <div class="value_numb">
-                            <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
-                            <p class="bold dark_grey_text clear" id="mins_opo_months_ip_opo"></p>
+{{--                            <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">--}}
+{{--                            <p class="bold dark_grey_text clear" id="mins_opo_months_ip_opo"></p>--}}
+                            <div id="chartdiv1" >
+                                @include('charts.opo.chart_opo_day_min1')
+                            </div>
                         </div>
                     </div>
 
@@ -88,8 +95,11 @@
                         <div id="div_mins_opo_year_status"></div>
                         <div class="lined"></div>
                         <div class="value_numb">
-                            <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
-                            <p class="bold dark_grey_text clear" id="mins_opo_year_ip_opo"></p>
+{{--                            <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">--}}
+{{--                            <p class="bold dark_grey_text clear" id="mins_opo_year_ip_opo"></p>--}}
+                            <div id="chartdiv2" >
+                                @include('charts.opo.chart_opo_day_min2')
+                            </div>
                         </div>
                     </div>
 
@@ -98,36 +108,9 @@
             </div>
 
         </div>
-
-
-
-
-
-{{--        <div class="period_block">--}}
-{{--            <div class="period_header clear">--}}
-{{--                <div class="ins_left clear"><a href="index.html#" class="active">Текущий показатель</a>--}}
-{{--                    <a href="index.html#" class="">Прогнозный показатель</a></div>--}}
-{{--                <div class="ins_right clear">--}}
-{{--                    <a href="index.html#" class="">Выбрать период <span><img alt="" src="{{asset('assets/images/icons/arrow_bottom.svg')}}"></span></a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="period_info">--}}
-
-{{--                  @include('charts.chart_ip_opo')--}}
-{{--                <img alt="" src="replace/1.png">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-        @include('charts.opo.charts_opo')
-
-                 @include('web.include.futer_table')
-
-
-
-
-
-
-    </div>
-
+      @include('charts.opo.charts_opo')
+      @include('web.include.futer_table')
+  </div>
 
 <script>
     function sleep(sec) {
@@ -161,15 +144,13 @@
                              p_value += 'normal'
                          } else if (arr['mins_opos_int_status'] == 3) {
                              p_value += 'bad'
-                         } else {
-                             p_value += 'critical'
-                         }
+                         } else p_value += 'critical'
 
 
                          mins_opos_status.className = p_value;
                          mins_opos_status.textContent = arr['mins_opos_status'];
                          document.getElementById('div_mins_opos_status').appendChild(mins_opos_status);
-                         document.getElementById('mins_opos_ip_opo').innerHTML = arr['mins_opos_ip_opo'];
+                         // document.getElementById('mins_opos_ip_opo').innerHTML = arr['mins_opos_ip_opo'];
 
                          p_value = 'value '
                          if (arr['mins_opo_months_int_status'] == 1) {
@@ -183,7 +164,7 @@
                          mins_opo_mounths_status.className = p_value
                          mins_opo_mounths_status.textContent = arr['mins_opo_months_status']
                          document.getElementById('div_mins_opo_months_status').appendChild(mins_opo_mounths_status);
-                         document.getElementById('mins_opo_months_ip_opo').innerHTML = arr['mins_opo_months_ip_opo']
+                         // document.getElementById('mins_opo_months_ip_opo').innerHTML = arr['mins_opo_months_ip_opo']
 
                          p_value = 'value '
                          if (arr['mins_opo_year_int_status'] == 1) {
@@ -197,7 +178,7 @@
                          mins_opo_year_status.className = p_value
                          mins_opo_year_status.textContent = arr['mins_opo_year_status']
                          document.getElementById('div_mins_opo_year_status').appendChild(mins_opo_year_status);
-                         document.getElementById('mins_opo_year_ip_opo').innerHTML = arr['mins_opo_year_ip_opo']
+                         // document.getElementById('mins_opo_year_ip_opo').innerHTML = arr['mins_opo_year_ip_opo']
 
                          let progress_bars = document.getElementsByClassName('progress-bar');
                          let sidebars = document.getElementById('sidebar_bottom_rounded').getElementsByClassName('bold dark_grey_text clear');

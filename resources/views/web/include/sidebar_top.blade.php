@@ -14,7 +14,7 @@
     <div class="sidebar_top_single main rounded white_bg">
         <a href="{{url('/opo/1')}}">
             <div class="sidebar_top_single info">
-                <div class="class_rate good">1</div>
+                <div class="class_rate good">0.98</div>
                 <div class="class_name">
                     <p class="bold blue_text">ГД Астрахань</p>
                     <p class="grey_text">ООО "Газпром добыча Астрахань"</p>

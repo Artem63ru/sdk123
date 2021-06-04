@@ -151,12 +151,12 @@ class OpoController extends Controller
        $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
        $ver_opo =  Ref_opo::find($id);
        $jas_opo =  $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
-//       $mins_opos = $ver_opo->opo_to_calc_day_min->first();
-//       $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
-//       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
+       $mins_opos = $ver_opo->opo_to_calc_day_min->first();
+       $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
+       $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
        //$data=array('opo'=>$opo, 'id'=>$id, 'jas_opo'=>$jas_opo, 'mins_opos'=>$mins_opos, 'mins_opo_months'=>$mins_opo_months, 'mins_opo_year'=>$mins_opo_year);
        //return json_encode($data, JSON_UNESCAPED_UNICODE);
-       return view('web.index', compact('opo', 'id', 'jas_opo', 'ver_opo'));
+       return view('web.index', compact('opo', 'id', 'jas_opo', 'ver_opo', 'mins_opos', 'mins_opo_months', 'mins_opo_year'));
     }
 
     public function get_opo_data($id, $db_count){

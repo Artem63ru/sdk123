@@ -23,11 +23,11 @@
     }
 
     .bg-warning {
-        background-color: #f45e1c !important
+        background-color: #f58b2c !important
     }
 
     .bg-danger {
-        background-color: #ea5757 !important
+        background-color: #f45e1c !important
     }
 
     .bg-success {
@@ -35,7 +35,7 @@
     }
 
     .bg-risk {
-        background-color: #ffb948 !important
+        background-color: #ffca45 !important
     }
 
     @media (prefers-reduced-motion: reduce) {
