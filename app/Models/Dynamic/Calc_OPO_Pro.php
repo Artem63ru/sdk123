@@ -10,8 +10,9 @@ class Calc_OPO_Pro extends Model
     public $timestamps = true;
     public $primaryKey = 'id';
     //************** Отношение к ОПО вычислений
-    public function calc_opo_pro_to_elem()
+    public function calc_opo_pro_to_opo()
     {
         return $this->belongsTo('App\Ref_opo', 'from_opo', 'idOPO');
+
     }
 }

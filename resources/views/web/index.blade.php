@@ -103,26 +103,21 @@
 
 
 
-        <div class="period_block">
-            <div class="period_header clear">
-                <div class="ins_left clear"><a href="index.html#" class="active">Текущий показатель</a>
-                    <a href="index.html#" class="">Прогнозный показатель</a></div>
-                <div class="ins_right clear">
-                    <a href="index.html#" class="">Выбрать период <span><img alt="" src="{{asset('assets/images/icons/arrow_bottom.svg')}}"></span></a>
-                </div>
-            </div>
-            <div class="period_info">
-<?php
-//                $url = $get['page'];
-////                $url = explode('/', $url);
-////                $url = $url[1];
-//
-//                echo $url;
-            ?>
-                  @include('charts.chart_ip_opo')
+{{--        <div class="period_block">--}}
+{{--            <div class="period_header clear">--}}
+{{--                <div class="ins_left clear"><a href="index.html#" class="active">Текущий показатель</a>--}}
+{{--                    <a href="index.html#" class="">Прогнозный показатель</a></div>--}}
+{{--                <div class="ins_right clear">--}}
+{{--                    <a href="index.html#" class="">Выбрать период <span><img alt="" src="{{asset('assets/images/icons/arrow_bottom.svg')}}"></span></a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="period_info">--}}
+
+{{--                  @include('charts.chart_ip_opo')--}}
 {{--                <img alt="" src="replace/1.png">--}}
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
+        @include('charts.opo.charts_opo')
 
                  @include('web.include.futer_table')
 

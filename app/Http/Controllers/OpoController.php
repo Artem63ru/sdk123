@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Ref_opo;
 use App\Models\Calc_opo;
+use App\Models\Calc_ip_opo_i;
 use App\Models\Calc_elem;
 use App\Models\ref_oto;
 use App\Models\Ref_obj;
@@ -264,20 +265,71 @@ class OpoController extends Controller
         {
             $data1[] = array (strtotime($ip->date)*1000, $ip['ip_opo']);
         }
-        // return $opos->opo_to_calc_day('2021-02-20') ;//->first()->date;
-        return str_replace('"','',json_encode(array_reverse($data1, false)));//$opos->opo_to_calc30;//->first()->date;
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+    }
+    public static function view_ip_last_test ($id, $data)
+    {
+
+        $opos = Ref_opo::find($id);
+
+            $calcs = Calc_ip_opo_i::where('from_opo', '=', $id)->
+//            whereDate('date', '=', '2021-5-27')->
+            whereDate('date', '=', $data)->
+            get();
+            foreach ($calcs as $ip) {
+                $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo']);
+            }
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+
+
     }
     ///************************* Формирование данных для мини графика прогнозного показателя **********************************
     public static function view_ip_pro_last ($id)
     {
-
+//        $data1;
         $opos = Ref_opo::find($id);
         foreach ($opos->opo_to_calc_opo_pro as $ip)
         {
             $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
         }
-        // return $opos->opo_to_calc_day('2021-02-20') ;//->first()->date;
-        return str_replace('"','',json_encode(array_reverse($data1, false)));//$opos->opo_to_calc30;//->first()->date;
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+
+    }
+    ///************************* Формирование данных для графика прогнозного показателя **********************************
+    public static function view_ip_pro_date ($id, $data)
+    {
+//        $data1;
+        $opos = Ref_opo::find($id);
+        foreach ($opos->opo_to_calc_opo_pro_in_date($data) as $ip)
+        {
+            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+        }
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+
     }
     ///************************* Формирование IP_OPO текущего для конкрентного ОПО **********************************
     public static function view_ip_opo ($id)

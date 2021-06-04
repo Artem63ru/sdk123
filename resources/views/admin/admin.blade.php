@@ -40,7 +40,9 @@
                         {{ $logs->links() }}
                         <a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Export PDF</a>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

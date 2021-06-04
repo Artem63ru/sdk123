@@ -1,23 +1,24 @@
-@extends('web.layouts.app_admin')
+@extends('web.layouts.app')
 
 
 @section('content')
+    @push('app-css')
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endpush
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     @include('admin.inc.menu')
-                    <div class="row">
-                        <div class="col-lg-12 margin-tb">
-                            <div class="pull-left">
-                                <h2>Список ролей</h2>
-                            </div>
-            <div class="pull-right">
+
+
+                            <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список ролей пользователя</h2>
                 @can('role-create')
                     <a class="btn btn-success" href="{{ route('roles.create') }}"> + Создать</a>
                 @endcan
-            </div>
-        </div>
+                            </div>
+
+
     </div>
 
 
@@ -30,22 +31,22 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th width="280px">Action</th>
+            <th>№</th>
+            <th>Наименование</th>
+            <th width="380px">Операции с ролями</th>
         </tr>
         @foreach ($roles as $key => $role)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $role->name }}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                    @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Просмотр</a>
+                    @can('Просмотр журнала событий')
+                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Редактирование</a>
                     @endcan
                     @can('role-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::submit('Удалить', ['class' => 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     @endcan
                 </td>

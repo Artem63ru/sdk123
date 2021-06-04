@@ -38,11 +38,11 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/**,*/
+/**::before,*/
+/**::after {*/
+/*  box-sizing: border-box;*/
+/*}*/
 
 html {
   font-family: sans-serif;
@@ -91,12 +91,12 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0;
+  margin-top: 0px;
   margin-bottom: 0.5rem;
 }
 
 p {
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 1rem;
 }
 
@@ -2116,7 +2116,7 @@ pre code {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 90%;
   height: calc(1.6em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 0.9rem;
@@ -2254,7 +2254,7 @@ select.form-control:focus::-ms-value {
 
 select.form-control[size],
 select.form-control[multiple] {
-  height: auto;
+  height: 100px;
 }
 
 textarea.form-control {
@@ -5339,7 +5339,7 @@ input[type=button].btn-block {
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
-  font-size: 75%;
+  /*font-size: 75%;*/
   font-weight: 700;
   line-height: 1;
   text-align: center;

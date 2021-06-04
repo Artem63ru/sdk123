@@ -46,10 +46,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
+    Route::view('/tests', 'ref_opo');
 
     //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
+    Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату
     Route::get('charts/fetch-data-prognoz/{id}', 'OpoController@view_ip_pro_last'); //вывод прогнозного показателя ИП ОПО 30 последних
+    Route::get('charts/fetch-data-prognoz/{id}/data/{data}', 'OpoController@view_ip_pro_date'); //вывод прогнозного показателя ИП ОПО за данную дату
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
     Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');          // вывод интегрального показателя элемента ОПО
     Route::get('charts/fetch-data_elem_op_m/{id_obj}', 'ObjController@calc_elem_op_m');    //вывод Обобщенного показателя по матричным сценариям
@@ -159,7 +162,13 @@ Route::get('/logout', function () {    Auth::logout();    return Redirect::to('l
 
 Route::get('/xml', 'AdminController@xml_view'); // Главная xml
 Route::get('/search/{id_s}', function ($id_s){
-       return view('web.opo_shema_main', ['name' => $id_s]);
+    $data = [
+        ['id' => 1, 'name' => 'Admin'],
+        ['id' => 2, 'name' => 'Truehero'],
+        ['id' => 3, 'name' => 'Truecoder'],
+    ];
+
+       return view('web.opo_shema_main', ['name' => $id_s, 'data'=>$data]);
 }); // Главная xml
 
 

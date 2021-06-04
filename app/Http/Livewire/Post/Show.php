@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Post;
 
-use App\Models\Matrix\Event_types;
+use App\Models\Calc_ip_opo_i;
 use Livewire\WithPagination;
 use App\User;
 use Livewire\Component;
@@ -52,7 +52,7 @@ class Show extends Component
             $search = '%' . $this->search . '%';
          //   $this->events = Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->get();
             return view('livewire.post.show', [
-                'events'=> Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->simplePaginate(20),
+                'events'=> Calc_ip_opo_i::orwhere('date', '>', $this->search)->orderBy('id')->simplePaginate(20),
             ]);
         }
         else
@@ -60,7 +60,7 @@ class Show extends Component
             //  $search = '%' . $this->search . '%';
           //  $this->users = Event_types::orderby('id')->paginate(15);
             return view('livewire.post.show', [
-                'events'=>Event_types::orderby('id')->simplePaginate(20),
+                'events'=>Calc_ip_opo_i::orderby('id')->simplePaginate(20),
             ]);
         }
 

@@ -27,6 +27,7 @@
         "element-ui": "^2.15.2",
         "vue-date-picker": "^2.5.0",
         "vue-englishdatepicker": "^0.1.1",
+        "vuejs-datepicker": "^1.6.2",
         "vuejs-datetimepicker": "^1.1.13"
     }
 }

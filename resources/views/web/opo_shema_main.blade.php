@@ -14,11 +14,15 @@
 
 {{--  @include('upload-form')--}}
 
-        @livewire('post.show')
+{{--        @livewire('post.show')--}}
 
-
-
-
-
+<div id="app" class="block_rate">
+<data-picker :id_s='@json($name)'></data-picker>
+{{--    <app-component :data='@json($data)'></app-component>--}}
+{{--    @json($data)--}}
+    {{$name}}
+</div>
+@include('web.include.script-lib.am4')
+@include('web.include.script-lib.highcharts')
 
 @endsection

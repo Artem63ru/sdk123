@@ -166,6 +166,20 @@ img.table_left_corner {height: 30px;margin-top: -6px;margin-left: -30px;position
 
 .period_header{padding:5px;height:50px;border-bottom:1px solid #ebf1f2;    padding: 12px ; height: 24px;}
 .period_header a{text-decoration:none;border-radius:6px;padding:5px 18px 7px 18px; margin:0 1px;background:#f7f7f7;color:#a8b6ba;font-size:13px;}
+.button {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #3394ce;
+    background-color: #ecf4f9;
+    border: none;
+    border-radius: 6px;
+    /*box-shadow: 0 9px #999;*/
+}
 .period_header a.active{background:#ecf4f9;color:#3394ce;}
 .period_header a:hover{background:#ecf4f9;}
 .period_header .ins_left{float:left;}
@@ -706,6 +720,11 @@ img.open_i{opacity:0;filter:grayscale(1);}
 .no_tab_table.opend table.plan_table tr th:last-of-type{width:200px;}
 .no_tab_table.opend table.plan_table tr th:last-of-type{text-align:right;padding-right:30px;}
 .no_tab_table.opend table.plan_table tr th:last-of-type::after{background-image: url('../images/icons/arrow_bottom.svg');background-size: 8px 6px;display: inline-block;margin-left:10px;width: 8px;height: 6px;content:"";}
+
+.no_tab_table.opend table.plan_admin tr td:last-of-type,
+.no_tab_table.opend table.plan_admin tr th:last-of-type{width:200px;}
+.no_tab_table.opend table.plan_admin tr th:last-of-type{text-align:right;padding-right:30px;}
+.no_tab_table.opend table.plan_admin tr th:last-of-type::after{background-image: url('../images/icons/arrow_bottom.svg');background-size: 8px 6px;display: inline-block;margin-left:10px;width: 8px;height: 6px;content:"";}
 
 .no_tab_table table.plan_table{padding-bottom:60px;}
 
@@ -1377,6 +1396,7 @@ img.trub_arrow{    position: absolute;    width: 90%;    left: 125px;    margin-
   .main_info_col .tripple_cols p.value{font-size:10px;}
   .full_table .no_tab_table tr img {margin-right: 5px;  }
   .full_table .no_tab_table table.plan_table tr td { font-size: 11px;}
+  .full_table .no_tab_table table.plan_admin tr td { font-size: 18px;}
 }
 
 @media screen and (max-width:1414px){
@@ -1975,3 +1995,5 @@ div#overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0;
     background-color: #3f9ae5;
     color:#FFFFFF;
 }
+
+/*/!*************************************************/
