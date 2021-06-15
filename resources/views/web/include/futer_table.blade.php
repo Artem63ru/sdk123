@@ -18,7 +18,14 @@
         </table>
     </div>
 
-    <div class="top_table_inside">
+{{--    <div class="top_table_inside" id="top_table_inside">--}}
+{{--        <table>--}}
+{{--            <tbody>--}}
+{{--            </tbody>--}}
+{{--        </table>--}}
+{{--    </div>--}}
+
+    <div class="top_table_inside" id="footer_table">
 
     <table>
 
@@ -39,4 +46,6 @@
         </tbody>
     </table>
 
+    </div>
 </div>
+

@@ -37,21 +37,30 @@
                     </table>
 
                 </div>
+                <style>
+                    #chartdiv {
+                        width: 90%;
+                        height: 120%;
+                    }
+                </style>
 
                 <div class="func_passport_bottom tabled_rate">
                     <table>
                         <tbody>
                         <tr>
                             <td class="inntegral">
-                                <div   id="chartdiv" >
+
+
+                                <div class="replace div2" id="chartdiv" >
                                     @include('charts.chart_1')
                                 </div>
                             </td>
-                            <td class="rating"><div><h3 class="red">4</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
+                            <td class="rating"><div class="div1"><h3 class="red">4</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
                                     <img alt="" src="{{asset('replace/rate1.png')}}" class="replace"></div></td>
-                            <td class="rating"><div><h3 class="blue">95%</h3> <p>Оценка эффективности<br/>проведения ПБ</p>
-                                    <img alt="" src="{{asset('replace/rate2.png')}}" class="replace"></div></td>
-                            <td class="rating"><div><h3 class="green">2</h3> <p>Общее количество<br/>событий ПБ</p>
+                            <td class="rating"><div class="div1"><h3 class="blue">75%</h3> <p>Оценка эффективности<br/>проведения ПБ</p>
+                                    @include('charts.opo.chart_epk_opo_mini')
+                                </div></td>
+                            <td class="rating"><div class="div1"><h3 class="green">2</h3> <p>Общее количество<br/>событий ПБ</p>
                                     <img alt="" src="{{asset('replace/rate3.png')}}" class="replace"></div></td>
                         </tr>
 
@@ -181,7 +190,8 @@
 
 </div>
 
-
+@include('web.include.script-lib.am4')
+@include('web.include.script-lib.highcharts')
 
 
 

@@ -17,6 +17,6 @@
         </div>
     </div>
     <div class="time_block">
-        <p><span>21 апреля 2021</span> | <span>Вторник</span> | <span>20:00</span></p>
+        <p>{{Carbon\Carbon::now()}}</p>
     </div>
 </div>

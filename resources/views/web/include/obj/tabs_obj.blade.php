@@ -127,30 +127,36 @@
                         #chartdiv, #chartdiv1, #chartdiv2, #chartdiv3 {
                             width: 100%;
                             height: 150px;
+                            margin-top: -10px;
                         }
                     </style>
                     <div id="chartdiv"></div>
                     @include('charts.elem_main_charts.chart_1')
-                    Интегральный показатель <br/>состояния ПБ
+                <p style="margin-top: -23px">Интегральный показатель <br/>состояния ПБ</p>
             </div>
             <div class="opo_page_square" id = "2"><a href="#">
                     <div id="chartdiv1"></div>
                     @include('charts.elem_main_charts.chart_2')
-                    <p>Обобщенный показатель <br/>по комплексным сценариям</p></a></div>
+                    <p style="margin-top: -23px"> Обобщенный показатель <br/>по комплексным сценариям</p></a></div>
             <div class="opo_page_square" id = "3"><a href="#">
                 <div id="chartdiv2"></div>
                 @include('charts.elem_main_charts.chart_3')
-                    <p>Обобщенный показатель <br/>регламентных значений</p></a></div>
+                    <p style="margin-top: -23px">Обобщенный показатель <br/>регламентных значений</p></a></div>
             <div class="opo_page_square" id = "4"><a href="#">
                     <div id="chartdiv3"></div>
                     @include('charts.elem_main_charts.chart_4')
-                    <p>Обобщенный показатель <br/>регламентных значений</p></a></div>
+                    <p style="margin-top: -23px"> Обобщенный показатель <br/>регламентных значений</p></a></div>
         </div>
 
         <div class="period_info inside_type">
             @include('charts.elem_main_charts.chart_elem_all')
         </div>
     </div>
+
+
+    @include('web.include.script-lib.am4')
+    @include('web.include.script-lib.highcharts')
+
 
 
 </div>

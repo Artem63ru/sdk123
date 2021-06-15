@@ -14,10 +14,15 @@
     <meta property="og:description" content=""/>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{asset('/js/charts/highcharts.js')}}"></script>
-    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+{{--    <script src="{{asset('/js/charts/highcharts.js')}}"></script>--}}
+{{--    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>--}}
+
     <script src="{{asset('/js/jquery.min.js')}}"></script>
+    @stack('am4-script-lib')
+    @stack('highcharts-script-lib')
+    @stack('datapicker')
+
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
 {{--    <script src="/js/hchart/solid-gauge.js"></script>--}}
@@ -32,9 +37,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+    @stack('app-css')
+
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+
 </head>
 <body>
+
+@include('web.include.modal.modal')
+
 <div class="side_menu">
     @include('web.include.side_menu')
 </div>
@@ -57,4 +68,9 @@
 @stack('scripts')
 
 </body>
+
+
+
+{{--<script type="text/javascript" src="{{asset('/js/jquery.min.js')}}"></script>--}}
+<script type="text/javascript" src="{{asset('/js/top_table.js')}}"></script>
 </html>

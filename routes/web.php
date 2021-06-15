@@ -7,38 +7,70 @@ use Illuminate\Support\Facades\Auth;
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+    Route::get('/', ['as' => 'gazprom', 'uses' => 'MenuController@view_menu']);   //Главная
 //    Route::get('/opo/{opo}', function ($opo) {
 //        return view('opo', ['opo' => $opo]);
 ////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
 
 //********************* Технологический блок ****************************************
     Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
+    Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
-//****************** Документарный блок *************************************
-    Route::get('/docs/glossary', "GlossaryControllers@showHelp"); // страница Справки
-    Route::get('/docs/events', "GlossaryControllers@showHelp"); // страница Возможных событий матрицы
+    Route::get('/opo/get_db_info/15', 'OpoController@get_db_info'); //Достаем данные из базы данных для таблицы
+    Route::get('/opo/get_sum/all', 'OpoController@get_sum');
+    Route::post('/opo/set_check_for_opo', 'OpoController@set_check');
 
+//****************** Документарный блок *************************************
+    Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки
+    Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
+    Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
+    Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов
+    Route::get('/docs/reglament',['as' => 'reglament', 'uses' =>'MatrixControllers@Showregl']); // страница справочника регламентных значений
+    Route::get('/docs/matrix',['as' => 'matrix', 'uses' =>'MatrixControllers@Showmatrix']); // страница справочника регламентных значений
+
+    Route::get('docs/upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']); //Отображение списка файлов
+    Route::post('docs/upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']); // Загрузка файла на сервер
+    Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']); // Просмотр файла
+    Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']); //Удаление файла
+
+ //**************** Ситуационный план ***************************************************
+    Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
+
+
+ //**************** Все остальное *******************************************************
     Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
     Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
     Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
+    Route::view('/tests', 'ref_opo');
 
     //*****************   Данные  **************************
-    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last');
+    Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
+    Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату
+    Route::get('charts/fetch-data-prognoz/{id}', 'OpoController@view_ip_pro_last'); //вывод прогнозного показателя ИП ОПО 30 последних
+    Route::get('charts/fetch-data-prognoz/{id}/data/{data}', 'OpoController@view_ip_pro_date'); //вывод прогнозного показателя ИП ОПО за данную дату
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
     Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');          // вывод интегрального показателя элемента ОПО
     Route::get('charts/fetch-data_elem_op_m/{id_obj}', 'ObjController@calc_elem_op_m');    //вывод Обобщенного показателя по матричным сценариям
     Route::get('charts/fetch-data_elem_op_r/{id_obj}', 'ObjController@calc_elem_op_r');    //вывод Обобщенного показателя по регламентным значениям
     Route::get('charts/fetch-data_elem_op_el/{id_obj}', 'ObjController@calc_elem_op_el');    //вывод Обобщенного показателя по елементу
 
+    //********************  Отчеты  ***********************************
+
+    Route::get('docs/report','ReportController@report')->name('obj_status');
+    Route::get('docs/report1','ReportController@report1')->name('scena_report');
+    Route::get('docs/report2','ReportController@report2')->name('result_pk');
+    Route::get('docs/report3','ReportController@report3')->name('violations_report');
+    Route::get('docs/report4','ReportController@report4')->name('status_opo');
+    Route::get('docs/report5','ReportController@report5')->name('repiat_report');
+    Route::get('docs/report6','ReportController@report6')->name('event_pk');
     //*******************************************************
 
-    Route::get('/trend', function () {        return view('trend');    })->name('trend');
+    Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
     Route::get('/php', function () {        phpinfo();    });
 
     Route::get('/opo_day', function () {        return view('opo_day');    })->name('opo_day');
@@ -70,7 +102,7 @@ Route::group(['middleware' => ['auth']], function() {
         $user = App\User::find(1);
         $user->avatar = $contents;
         $user->save();
-    })->name('uploaded');;
+    })->name('uploaded');
 
 //*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
     Route::get('invoices/download', 'InvoiceController@download');
@@ -79,8 +111,10 @@ Route::group(['middleware' => ['auth']], function() {
 
 //*********** Проба загрузки выгрузки
     Route::resource('/images', 'ImageController');
-    Route::get('upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']);
-    Route::post('upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']);
+
+
+
+
 
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
     //  Route::group(['middleware' => 'role:admin',], function () {
@@ -125,6 +159,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
+    Route::resource('form51',Form51Controller::class);
+
 
     Route::get('/new/{id}', 'Opo_dayController@view_last');
 
@@ -137,10 +173,18 @@ Route::get('/logout', function () {    Auth::logout();    return Redirect::to('l
 
 Route::get('/xml', 'AdminController@xml_view'); // Главная xml
 Route::get('/search/{id_s}', function ($id_s){
-       return view('web.opo_shema_main', ['name' => $id_s]);
+    $data = [
+        ['id' => 1, 'name' => 'Admin'],
+        ['id' => 2, 'name' => 'Truehero'],
+        ['id' => 3, 'name' => 'Truecoder'],
+    ];
+
+       return view('web.opo_shema_main', ['name' => $id_s, 'data'=>$data]);
+}); // С датапикером
+
+Route::get('/reports', function (){
+    return view('web.docs.reports.opo_5_1');
 }); // Главная xml
-
-
 
 
 

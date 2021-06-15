@@ -23,11 +23,11 @@
     }
 
     .bg-warning {
-        background-color: #f45e1c !important
+        background-color: #f58b2c !important
     }
 
     .bg-danger {
-        background-color: #ea5757 !important
+        background-color: #f45e1c !important
     }
 
     .bg-success {
@@ -35,7 +35,7 @@
     }
 
     .bg-risk {
-        background-color: #ffb948 !important
+        background-color: #ffca45 !important
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -48,35 +48,8 @@
 <div class="sidebar">
     <div class="inside_sidebar">
 
-        <div class="sidebar_top">
-            <div class="sidebar_top_single main rounded white_bg">
-                <a href="index.html#">
-                    <div class="sidebar_top_single info">
-                        <div class="class_rate good">1</div>
-                        <div class="class_name">
-                            <p class="bold blue_text">ПАО Газпром</p>
-                            <p class="grey_text">ПАО "Газпром автоматизация"</p>
-                        </div>
-                    </div>
-                    <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}"
-                                                 class="more_arrow_icon"></div>
-                </a>
-            </div>
-            <div class="sidebar_top_single main rounded white_bg">
-                <a href="index.html#">
-                    <div class="sidebar_top_single info">
-                        <div class="class_rate good">1</div>
-                        <div class="class_name">
-                            <p class="bold blue_text">ГД Астрахань</p>
-                            <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
-                        </div>
-                    </div>
-                    <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}"
-                                                 class="more_arrow_icon"></div>
-                </a>
-            </div>
-        </div>
-        <div class="sidebar_bottom rounded">
+        @include('web.include.sidebar_top')
+        <div class="sidebar_bottom rounded" id="sidebar_bottom_rounded">
 
 
             @foreach ($opo as $opo_val)
@@ -91,7 +64,7 @@
                                 <a class="light_blue_text" href="/opo/{{$opo_val->idOPO}}">
                                {{$opo_val->descOPO}}
                                 </a>
-                                <a href="/opo/{{$opo_val->idOPO}}/main"><img alt="" src="{{asset('assets/images/icons/settings.svg')}}"></a>
+                                <a href="/opo/{{$opo_val->idOPO}}/plan"><img alt="" src="{{asset('assets/images/icons/settings.svg')}}"></a>
                                 <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
 
 

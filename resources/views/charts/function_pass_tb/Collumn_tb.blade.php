@@ -1,13 +1,13 @@
 
 
-<div id="chart_col_tb" style="height: 280px; padding-top: 10px"></div>
+<div id="chart_col_tb" style="height: 270px; padding-top: 10px"></div>
 <script language="JavaScript">
 
   // $(document).ready(function() {
         Highcharts.chart('chart_col_tb', {
      //   var options = {
             title: {
-                text: 'Интегральный показатель ОПО' ,
+                text: 'Обощенные показатели ТУ' ,
                 style: {
                     display: 'none'
                 }
@@ -41,20 +41,21 @@
             },
             xAxis: {
                 categories: [
-                    ' n_to ',
-                    ' n_h_tu ',
-                    ' n_fp_tu ',
-                    ' n_fapk ',
+                    'Обобщённый показатель технического обслуживания ТУ',
+                    'Показатель изменения надежности от срока эксплуатации ТУ ',
+                    'Показатель безопасности эксплуатационных параметров ТУ',
+                    ' Показатель отклонений АПК ТБ',
 
                 ],
-                crosshair: true
+                title: {
+                    enabled: false
+                },
             },
             yAxis: {
                 min: 0,
+                max: 1,
                 title: {
-                    text: 'Rainfall (mm)',
-                    enabled: false
-
+                      enabled: false
                 }
 
             },
@@ -79,7 +80,7 @@
                 enabled: false
             },
             series: [{
-                name: 'Tokyo',
+                name: 'OP-TB',
 
                 data: [{{$this_calc_tb->n_to}},{{$this_calc_tb->n_h_tu}},{{$this_calc_tb->n_fp_tu}},{{$this_calc_tb->n_fapk}}],
                 color: {

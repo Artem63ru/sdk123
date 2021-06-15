@@ -1,8 +1,5 @@
 
 
-<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
 
 
@@ -13,17 +10,18 @@
     am4core.useTheme(am4themes_animated);
     // Themes end
 
-
+   var Ip_elem = {{$this_elem->elem_to_calc->first()->ip_elem}};
 
     // Create chart instance
     var chart = am4core.create("chartdiv",
         am4charts.RadarChart,
-        am4core.addLicense("ch-custom-attribution"));
+        am4core.addLicense("ch-custom-attribution"),
+       );
 
     // Add data
     chart.data = [{
         "category": "ИП Рэл",
-        "value": {{$this_elem->elem_to_calc->first()->ip_elem}},
+        "value": Ip_elem,
         "full": 1
     }];
 
@@ -46,12 +44,6 @@
     categoryAxis.renderer.grid.template.strokeOpacity = 0;
     categoryAxis.renderer.labels.template.disabled = true
     categoryAxis.renderer.grid.template.disabled = true;
-
-    //categoryAxis.renderer.labels.template.horizontalCenter = "right";
-    //categoryAxis.renderer.labels.template.fontWeight = 100;
-    /* categoryAxis.renderer.labels.template.adapter.add("fill", function(fill, target) {
-      return (target.dataItem.index >= 0) ? chart.colors.getIndex(target.dataItem.index) : fill;
-    }); */
     categoryAxis.renderer.minGridDistance = 40;
 
     var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
@@ -82,21 +74,23 @@
     series1.columns.template.strokeWidth = 0;
     series1.columns.template.radarColumn.cornerRadius = 60;
 
-    /* var gradient = new am4core.LinearGradient();
-    gradient.addColor(am4core.color("red"));
-    gradient.addColor(am4core.color("green")); */
-
-    // let rgm = new am4core.RadialGradientModifier();
-    // rgm.brightnesses.push(-0.8, -0.8, -0.8, 0, - 0.3);
-
 
     var series2 = chart.series.push(new am4charts.RadarColumnSeries());
     series2.dataFields.valueX = "value";
     series2.dataFields.categoryY = "category";
     series2.clustered = false;
-    series2.columns.template.fill = am4core.color("#4990ff");
-    // series2.columns.template.fillModifier = rgm;
-    // series2.columns.template.strokeModifier = rgm;
+    if (Ip_elem >= 0.8) {
+          series2.columns.template.fill = am4core.color("rgba(105,175,112,0.5)");
+    }
+    if ((Ip_elem >= 0.5) && (Ip_elem < 0.8)) {
+          series2.columns.template.fill = am4core.color("rgba(255,225,73,0.47)");
+    }
+    if ((Ip_elem >= 0.2) && (Ip_elem < 0.5)) {
+          series2.columns.template.fill = am4core.color("rgb(242,177,64)");
+    }
+    if ((Ip_elem >= 0.0) && (Ip_elem < 0.2))
+        series2.columns.template.fill = am4core.color("rgba(234,87,87,0.5)");
+
     series2.columns.template.strokeOpacity = 0.4;
     series2.columns.template.strokeWidth = 0;
     series2.columns.template.tooltipText = "{category}: [bold]{value.formatNumber('#.00')}[/]";

@@ -35,6 +35,22 @@
                                             y = data[data.length - 1][1];
                                         series.addPoint([x, y], true, true);
                                         old_date = data[data.length-1][0];
+                                        if (data[data.length-1][1]<=1.00) {
+                                            series.color = "rgba(219,238,219,0.5)";
+                                            series.redraw();
+                                        }
+                                        if (data[data.length-1][1]<=0.80) {
+                                            series.color = "#fcfad2";
+                                            series.redraw();
+                                        }
+                                        if (data[data.length-1][1]<=0.50) {
+                                            series.color = "#fdead6";
+                                            series.redraw();
+                                        }
+                                        if (data[data.length-1][1]<=0.20) {
+                                            series.color = "rgba(234,87,87,0.5)";
+                                            series.redraw();
+                                        }
                                         console.log('Внутри');
                                     }
 
@@ -138,9 +154,9 @@
             if (clickId == 2) {
                 data_path = '/charts/fetch-data_elem_op_m/{{$id_obj}}';
             }  if (clickId == 3) {
-                data_path = '/charts/fetch-data_elem_op_r/{{$id_obj+1}}';
+                data_path = '/charts/fetch-data_elem_op_r/{{$id_obj}}';
             }  if (clickId == 4) {
-                data_path = '/charts/fetch-data_elem_op_el/{{$id_obj+1}}';
+                data_path = '/charts/fetch-data_elem_op_el/{{$id_obj}}';
             }
             $.getJSON({
                 url: data_path,
@@ -149,6 +165,23 @@
                     options.series[0].data = data;
                     var chart = new Highcharts.Chart(options);
                     old_date = data[data.length-1][0];
+                    old_date = data[data.length-1][0];
+                    if (data[data.length-1][1]<=1.00) {
+                        chart.series[0].color = "rgba(219,238,219,0.5)";
+                        chart.series[0].redraw();
+                    }
+                    if (data[data.length-1][1]<=0.80) {
+                        chart.series[0].color = "#fae6ae";
+                        chart.series[0].redraw();
+                    }
+                    if (data[data.length-1][1]<=0.50) {
+                        chart.series[0].color = "#f2b140";
+                        chart.series[0].redraw();
+                    }
+                    if (data[data.length-1][1]<=0.20) {
+                        chart.series[0].color = "rgba(234,87,87,0.5)";
+                        chart.series[0].redraw();
+                    }
                 }
             });
         });
@@ -161,6 +194,22 @@
                 options.series[0].data = data;
                 var chart = new Highcharts.Chart(options);
                 old_date = data[data.length-1][0];
+                if (data[data.length-1][1]<=1.00) {
+                    chart.series[0].color = "rgba(219,238,219,0.5)";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.80) {
+                    chart.series[0].color = "#fae6ae";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.50) {
+                    chart.series[0].color = "#f2b140";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.20) {
+                    chart.series[0].color = "rgba(234,87,87,0.5)";
+                    chart.series[0].redraw();
+                }
             }
         });
     });

@@ -1,3 +1,7 @@
+<script>
+    var tablePage=true;
+</script>
+
 <div class="table_head_block">
     <img alt="" src="{{asset('assets/images/t_left.svg')}}" class="table_left_corner">
     <table>
@@ -15,26 +19,10 @@
     </table>
 </div>
 
-<div class="top_table_inside">
 
-
+<div class="top_table_inside" id="top_table_inside">
     <table>
-
         <tbody>
-
-            @foreach ($jas as $value)
-            <tr>
-              <td class="td_date">{{date('d-m-Y h:m', strtotime($value->data))}}</td>
-              <td class="td_status">{{$value->level}}</td>
-              <td class="td_opo">{{$value->jas_to_opo->descOPO}}</td>
-              <td class="td_element">{{$value->jas_to_elem->nameObj}} (Элемен объекта ОПО {{$value->jas_to_opo->descOPO}})</td>
-              <td class="td_number">{{$value->status}}</td>
-              <td class="td_event">{{$value->name}}</td>
-            </tr>
-            @endforeach
-
-
         </tbody>
     </table>
-
 </div>

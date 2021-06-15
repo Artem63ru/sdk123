@@ -20,7 +20,7 @@
                         </style>
 
                         <div id="chartdiv"></div>
-                        @include('charts.function_pass_tb.chart_1')
+                        @include('charts.function_pass_tb.chart_2')
                         <p>Обобщенный показатель<br/>состояния эксплуатации<p>
                     </div>
 
@@ -34,7 +34,7 @@
                         </style>
 
                         <div id="chartdiv1"></div>
-                        @include('charts.function_pass_tb.chart_2')
+                        @include('charts.function_pass_tb.chart_1')
                         <p>Обобщенный показатель<br/>отклонений<p>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 
 
 
-<div id="chart_mini" style="height: 100px; padding-top: 20px"></div>
+<div id="chart_mini" style="height: 100px; padding-top: 10px"></div>
 
 <script language="JavaScript">
     $(document).ready(function() {
@@ -62,57 +62,20 @@
                         display: 'none'
                     }
                 },
+            labels: {
+                enabled:false
+            },
                 minorGridLineWidth: 0,
                 gridLineWidth: 0,
                 alternateGridColor: null,
-                // plotBands: [{ // Light air
-                //     from: 0,
-                //     to: 0.2,
-                //     color: 'rgba(250, 128, 114, 0.4)',
-                //     label: {
-                //         text: 'Авария',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Light breeze
-                //     from: 0.2,
-                //     to: 0.5,
-                //     color: 'rgba(255, 165, 0, 0.4)',
-                //     label: {
-                //         text: 'Инцедент',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Gentle breeze
-                //     from: 0.5,
-                //     to: 0.8,
-                //     color: 'rgba(240, 230, 140, 0.6)',
-                //     label: {
-                //         text: 'Низкий риск',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }, { // Moderate breeze
-                //     from: 0.8,
-                //     to: 1.0,
-                //     color: 'rgba(152, 251, 152, 0.3)',
-                //     label: {
-                //         text: 'Работа штатно',
-                //         style: {
-                //             color: '#606060'
-                //         }
-                //     }
-                // }]
+
             },
             credits: {
                 enabled: false
             },
 
             series: [{
-                 name: 'IP ОПО',
+                 name: 'Текущий показатель',
                 marker: {
                     enabled: false
                 },
@@ -126,6 +89,22 @@
                 options.series[0].data = data;
                 var chart = new Highcharts.Chart(options);
                 old_date = data[data.length-1][0];
+                if (data[data.length-1][1]<=1.00) {
+                    chart.series[0].color = "rgba(70,183,78,0.5)";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.80) {
+                    chart.series[0].color = "#fae6ae";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.50) {
+                    chart.series[0].color = "#f2b140";
+                    chart.series[0].redraw();
+                }
+                if (data[data.length-1][1]<=0.20) {
+                    chart.series[0].color = "rgba(234,87,87,0.5)";
+                    chart.series[0].redraw();
+                }
             }
         });
     });

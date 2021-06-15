@@ -16,4 +16,8 @@ class Status_work extends Model
     {
         return $this->hasMany('App\Models\Calc_ip_opo_i', 'status', 'id');
     }
+    public function status_to_calc_ip_elem()
+    {
+        return $this->hasMany('App\Models\Calc_elem', 'status_ip_el', 'id');
+    }
 }

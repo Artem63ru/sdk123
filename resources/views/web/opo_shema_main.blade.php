@@ -11,13 +11,18 @@
 {{--@include('web.include.tb.sidebar_tb')--}}
 
 
-    <div class="top_table">
-{{--  @include('web.include.toptable')--}}
 
-        @livewire('post.show')
+{{--  @include('upload-form')--}}
 
-    </div>
+{{--        @livewire('post.show')--}}
 
-
+<div id="app" class="block_rate">
+<data-picker :id_s='@json($name)'></data-picker>
+{{--    <app-component :data='@json($data)'></app-component>--}}
+{{--    @json($data)--}}
+    {{$name}}
+</div>
+@include('web.include.script-lib.am4')
+@include('web.include.script-lib.highcharts')
 
 @endsection

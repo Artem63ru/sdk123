@@ -1,31 +1,6 @@
 <div class="sidebar">
     <div class="inside_sidebar">
-        <div class="sidebar_top">
-            <div class="sidebar_top_single main rounded white_bg">
-                <a href="#">
-                    <div class="sidebar_top_single info">
-                        <div class="class_rate good">1</div>
-                        <div class="class_name">
-                            <p class="bold blue_text">ПАО Газпром</p>
-                            <p class="grey_text">ПАО "Газпром автоматизация"</p>
-                        </div>
-                    </div>
-                    <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}" class="more_arrow_icon"></div>
-                </a>
-            </div>
-            <div class="sidebar_top_single main rounded white_bg">
-                <a href="#">
-                    <div class="sidebar_top_single info">
-                        <div class="class_rate good">1</div>
-                        <div class="class_name">
-                            <p class="bold blue_text">ГД Астрахань</p>
-                            <p class="grey_text">ООО "Газпром добыча Астрахань"</p>
-                        </div>
-                    </div>
-                    <div class="more_arrow"><img alt="Далее" src="{{asset('assets/images/icons/arrow_right.svg')}}" class="more_arrow_icon"></div>
-                </a>
-            </div>
-        </div>
+       @include('web.include.sidebar_top')
         <div class="tech_block_search_doc">
             <form><input type="text" name="search" required placeholder="Поиск по разделу"></form>
         </div>
@@ -39,24 +14,27 @@
 
                 <div>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
+                        <input type='checkbox' name='checkbox-accordion' id="faq" onclick="SaveChecked(this)">
                         <div class="accordion__header">Справочники</div>
                         <div class="accordion__content">
-                            <a href="#">Возможные опасные события</a>
-                            <a href="#">Сценарии</a>
+                            <a href="/docs/events">Возможные опасные события</a>
+                            <a href="{{route('matrix')}}">Сценарии</a>
+                            <a href="/docs/koef">Коэффициенты</a>
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
+                        <input type='checkbox' name='checkbox-accordion'  id="docs" onclick="SaveChecked(this)">
                         <div class="accordion__header">Документация</div>
                         <div class="accordion__content">
-                            <a href="#">Справочник технологических регламентов</a>
-                            <a href="#">Перечень нормативной документации</a>
+                            <a href={{route('reglament')}}>Справочник технологических регламентов</a>
+                            <a href={{route('upload_form')}}>Перечень нормативной документации</a>
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion'>
-                        <div class="accordion__header">План мероприятий по обеспечению ПБ</div>
+                        <input type='checkbox' name='checkbox-accordion' id="plan" onclick="SaveChecked(this)">
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/rtn') }}> План мероприятий по обеспечению ПБ</a>
+                        </div>
                         <div class="accordion__content">
                             <a href="#">Общие сведения</a>
                             <a href="#">Раздел 1.1</a>
@@ -71,13 +49,33 @@
                         </div>
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' checked>
-                        <div class="accordion__header">Глоссарий применяемых сокращений</div>
+                        <input type='checkbox' name='checkbox-accordion' id="gloss" onclick="SaveChecked(this)" >
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
+                        </div>
                         <div class="accordion__content">
                             <a href="#">Сокращения</a>
                             <a href="#">Термины и определения</a>
                             <a href="#">Показатели промышленной безопасности</a>
                             <a href="#">Классификация событий</a>
+                        </div>
+                    </label>
+                    <label class="accordion">
+                        <input type='checkbox' name='checkbox-accordion' id=""  >
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/glossary') }}>  Отчеты</a>
+                        </div>
+                        <div class="accordion__content">
+                            <a href="{{ route('form51.create') }}">ОС о инциденте п 5.1</a>
+                            <a href="#">Термины и определения</a>
+                            <a href="#">Показатели промышленной безопасности</a>
+                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
+                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
+                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>
+                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
+                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
+                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
+                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
                         </div>
                     </label>
                 </div>
@@ -90,3 +88,36 @@
         </div>
     </div>
 </div>
+
+<script>
+    let checkboxes = document.getElementsByName('checkbox-accordion');
+    //console.log(checkboxes)
+    function pageStart() {
+        for (let ch of checkboxes) {
+            if (window.localStorage[ch.id]){
+                ch.checked=true;
+            }
+        }
+    }
+
+    function SaveChecked(element){
+        //console.log(window.localStorage[element.id])
+        if (window.localStorage[element.id]!=null){
+            element.checked=false;
+            window.localStorage.removeItem(element.id);
+
+        }
+        else {
+            for (let ch of checkboxes){
+                if (window.localStorage[ch.id]){
+                    ch.checked=false;
+                    window.localStorage.removeItem(ch.id);
+                }
+            }
+            window.localStorage[element.id]=true;
+        }
+
+    }
+
+    pageStart();
+</script>

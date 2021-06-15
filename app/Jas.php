@@ -14,6 +14,10 @@ class Jas extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'check',
+    ];
+
     public function jas_to_opo()
     {
         return $this->belongsTo('App\Ref_opo', 'from_opo', 'idOPO');
@@ -29,7 +33,27 @@ class Jas extends Model
                     ->get();
     }
 
+    public static function updated_check($id)
+    {
+        try {
+            Jas::find($id)->update([
+                'check' => 'True',
+            ]);
+            return True;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
+
+
 
     //
  //
 }
+
+
+
+
+

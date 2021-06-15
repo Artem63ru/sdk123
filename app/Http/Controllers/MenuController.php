@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ref_opo;
 use Illuminate\Http\Request;
 use DB;
 
@@ -9,13 +10,7 @@ class MenuController extends Controller
 {
    public function view_menu ()
    {
-       $v_menu = DB::select('select * from ref_opo');
-//       $user = DB::table('ref_opo')->where('idOPO', 1)->first();
-//       echo $user->descOPO;
-//       dd($v_menu);
-//       foreach ($v_menu) {
-//           echo $descOPO->text;
-//       }
-      return view('web.gda', ['name' => $v_menu]);
+       $v_menu = Ref_opo::orderBy('idOPO')->get();
+       return view('web.gda', ['name' => $v_menu]);
    }
 }
