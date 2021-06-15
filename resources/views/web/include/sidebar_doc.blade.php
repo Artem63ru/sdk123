@@ -60,6 +60,18 @@
                             <a href="#">Классификация событий</a>
                         </div>
                     </label>
+                    <label class="accordion">
+                        <input type='checkbox' name='checkbox-accordion' id=""  >
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/glossary') }}>  Отчеты</a>
+                        </div>
+                        <div class="accordion__content">
+                            <a href="{{ route('form51.create') }}">ОС о инциденте п 5.1</a>
+                            <a href="#">Термины и определения</a>
+                            <a href="#">Показатели промышленной безопасности</a>
+                            <a href="#">Классификация событий</a>
+                        </div>
+                    </label>
                 </div>
 
 

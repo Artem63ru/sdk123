@@ -32,7 +32,7 @@
 
 
     {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
-    <div class="row px-xl-5">
+    <div class="row px-xl-5" >
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div  class="form-group ">
                 <div style="padding: 15px" class="">
@@ -52,7 +52,7 @@
                 @foreach($permission as $value)
                         <tr>
                     <label class="h4 text-muted">{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name ')) }}
-                        {{ $value->name }}</label>
+                        {{ $value->runame }}</label>
                         </tr>
                     <br/>
                 @endforeach
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-        </div>
-    </div>
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection
 

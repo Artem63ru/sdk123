@@ -72,7 +72,8 @@
 
                             </tr>
 
-                            <td colspan="2" class="link_td centered"><button type="submit" class="create" wire:click.prevent="update()">
+                            <td colspan="2" class="link_td centered">
+                                <button type="submit" class="create" wire:click.prevent="update()">
                                     Сохранить
                                 </button></td>
                             </tbody>

@@ -263,8 +263,8 @@
                 <button class="button" id="ip-opo" > Интегральный показатель </button>
                 <button class="button" id="ip-opo-pro" > Прогнозный показатель </button>
                </div>
-            <div class="ins_right clear">
-                Выбор Даты : <span>  <input text id="from" name="from" autocomplete="off" ></span>
+            <div style="margin-top: -10px" class="ins_right clear">
+                <p class="light_blue_text"> Выбор Даты :   <input text id="from" name="from" autocomplete="off" ></p>
             </div>
         </div>
         <div class="period_info">

@@ -32,12 +32,10 @@ class CalcKoef extends Component
     public function update()
     {
         $validatedDate = $this->validate([
-            'name' => 'required',
-            'from_oto' => 'required',
             'koef' => 'required|numeric|min:0|max:1',
         ]);
 
-        if ($this->koef_id) {
+//       if ($this->koef_id) {
             $event = Calc_koef::find($this->koef_id);
             $event->update([
                 'koef' => $this->koef,
@@ -46,7 +44,7 @@ class CalcKoef extends Component
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
             return redirect()->to('/docs/koef');
-        }
+//        }
     }
     private function resetInputFields(){
         $this->name = '';

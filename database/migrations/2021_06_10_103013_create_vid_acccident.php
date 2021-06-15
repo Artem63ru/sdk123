@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVotesToUsersTable extends Migration
+class CreateVidAcccident extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class AddVotesToUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('reports.vid_acccident', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
 
+        });
     }
 
     /**
@@ -23,8 +27,6 @@ class AddVotesToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('reports.vid_acccident');
     }
 }

@@ -59,7 +59,7 @@
                         <tbody>
                         <tr>
                             <td><p>Всего записей: {{$reglaments->count()}}</p></td>
-                            <td><button id="" class="create">Добавить <img alt="" src="assets/images/icons/dot.svg"></button></td>
+{{--                            <td><button id="" class="create">Добавить <img alt="" src="assets/images/icons/dot.svg"></button></td>--}}
                         </tr>
                         </tbody>
                     </table>

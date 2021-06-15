@@ -38,7 +38,7 @@
             </div>
 
             <div class="third_size col_block main_info_col">
-                <div class="padding_ins special">
+                <div class="padding_ins special" style="margin-top: -15px">
 
                     <div class="tripple_cols">
                         <p class="title">Сутки:</p>
@@ -55,7 +55,7 @@
                                    #chartdiv2 {
                                        /*width: 100%;*/
                                        /*height: 100%;*/
-                                       margin-top: -48px;
+                                       margin-top: -50px;
                                        margin-left: -15px;
                                        /*display: inline-block;*/
                                    }

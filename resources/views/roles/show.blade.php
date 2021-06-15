@@ -32,7 +32,7 @@
                                   @foreach ($rolePermissions as $v)
                                     <tr>
                                         <th scope="row-4">{{ $v->id }}</th>
-                                        <td>{{ $v->name }}</td>
+                                        <td>{{ $v->runame }}</td>
 
 
                                     </tr>

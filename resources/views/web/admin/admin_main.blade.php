@@ -51,8 +51,9 @@
                                 <tr>
                                     <td> <p style="font-size: 18px">Всего записей:{{$logs->count()}}</p>    </td>
                                     <td>  {{ $logs->links() }}</td>
+                                    @can('role-delete')
                                     <td>   <a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Export PDF</a></td>
-
+                                    @endcan
                                 </tr>
                                 </tbody>
 

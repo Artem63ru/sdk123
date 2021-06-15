@@ -49,7 +49,7 @@
                 <br/>
                 @foreach($permission as $value)
                     <label class="h4 text-muted">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                        {{ $value->name }}</label>
+                        {{ $value->runame }}</label>
                     <br/>
                 @endforeach
             </div>

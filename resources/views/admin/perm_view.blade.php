@@ -28,7 +28,7 @@
                             @foreach ($perms as $perm)
                                 <tr>
                                     <th scope="row-4">{{ $perm->id }}</th>
-                                    <td>{{ $perm->name }}</td>
+                                    <td>{{ $perm->runame }}</td>
 
 
                                 </tr>

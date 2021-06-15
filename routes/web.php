@@ -150,6 +150,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
+    Route::resource('form51',Form51Controller::class);
+
 
     Route::get('/new/{id}', 'Opo_dayController@view_last');
 
@@ -169,9 +171,11 @@ Route::get('/search/{id_s}', function ($id_s){
     ];
 
        return view('web.opo_shema_main', ['name' => $id_s, 'data'=>$data]);
+}); // С датапикером
+
+Route::get('/reports', function (){
+    return view('web.docs.reports.opo_5_1');
 }); // Главная xml
-
-
 
 
 

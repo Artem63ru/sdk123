@@ -41,7 +41,7 @@
                 <td>{{ $role->name }}</td>
                 <td>
                     <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Просмотр</a>
-                    @can('Просмотр журнала событий')
+                    @can('role-edit')
                         <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Редактирование</a>
                     @endcan
                     @can('role-delete')

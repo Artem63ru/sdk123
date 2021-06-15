@@ -36,7 +36,7 @@
     // Make chart not full circle
     chart.startAngle = -250;
     chart.endAngle = 70;
-    chart.radius = am4core.percent(110);
+    chart.radius = am4core.percent(100);
     chart.innerRadius = am4core.percent(65);
     chart.colors.saturation = 0.5;
 
