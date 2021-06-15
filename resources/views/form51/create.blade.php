@@ -35,12 +35,12 @@
 
                             </td>
                             <td>
-                                <label class="h5 text-muted">{{ Form::checkbox('permission[]', 1) }}
+                                <label class="h5 text-muted">{{ Form::checkbox('vid_2', 1) }}
                                     - повреждение технических устройств</label>
 
                             </td>
                             <td>
-                                <label class="h5 text-muted">{{ Form::checkbox('permission[]', 1) }}
+                                <label class="h5 text-muted">{{ Form::checkbox('vid_3', 1) }}
                                     - отклонение от установленного режима технологического процесса</label>
 
                             </td>
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding-bottom: 40px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <div style="padding-top: 20px; padding-bottom: 40px" class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                     </div>
                 </div>

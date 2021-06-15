@@ -55,13 +55,13 @@
                 <td>{{ $form->num_obj }}</td>
 
                 <td  class="centered">
-                    <a href="{{ route('form51.show',$form->id) }}"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
+
                     <a href="{{ route('form51.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
                     <a href="{{ route('form51.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i"></a>
 
-{{--                    {!! Form::open(['method' => 'DELETE','route' => ['form51.destroy', $form->id],'style'=>'display:inline']) !!}--}}
-{{--                    {!! Form::submit('Удалить', ['class' => 'trash_i']) !!}--}}
-{{--                    {!! Form::close() !!}--}}
+                    {!! Form::open(['method' => 'DELETE','route' => ['form51.destroy', $form->id],'style'=>'display:inline']) !!}
+                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px" />
+                    {!! Form::close() !!}
                 </td>
             </tr>
         @endforeach

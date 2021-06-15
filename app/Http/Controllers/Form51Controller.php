@@ -61,7 +61,8 @@ class Form51Controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Form51::find($id);
+        return view('form51.edit',compact('data'));
     }
 
     /**
@@ -73,7 +74,11 @@ class Form51Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $data = Form51::find($id);
+        $data->update($input);
+        return redirect()->route('form51.index')
+            ->with('success','User updated successfully');
     }
 
     /**
@@ -84,6 +89,8 @@ class Form51Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        Form51::find($id)->delete();
+        return redirect()->route('form51.index')
+            ->with('success','User deleted successfully');
     }
 }

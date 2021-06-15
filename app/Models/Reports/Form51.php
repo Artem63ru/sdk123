@@ -12,6 +12,8 @@ class Form51 extends Model
 
     protected $fillable = [
         'vid_1',
+        'vid_2',
+        'vid_3',
     'victim' ,
     'date' ,
     'supervision',
