@@ -22,6 +22,7 @@
     @stack('am4-script-lib')
     @stack('highcharts-script-lib')
     @stack('datapicker')
+    @stack('calendar_scripts')
 
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
