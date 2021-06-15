@@ -165,13 +165,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/new/{id}', 'Opo_dayController@view_last');
 
 
-
-    //----------КАЛЕНДАРЬ СОБЫТИЙ--------------//
-    Route::get('/eventsCal/{opo_id}', 'EventsCalendarController@index');
-    Route::post('/full-calendar/action', 'EventsCalendarController@action');
-    Route::get('/full-calendar/test', 'EventsCalendarController@test');
-
-
 });
 //*******************************************
 Auth::routes();
