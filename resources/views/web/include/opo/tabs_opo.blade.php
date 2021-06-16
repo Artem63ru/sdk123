@@ -1,4 +1,4 @@
-<a href="/eventsCal/1">Календарь событий</a>
+
 <div class="tabs">
    <div class="tab two_col_tab">
         <input type="radio" id="opo_info" name="tab_group" checked>

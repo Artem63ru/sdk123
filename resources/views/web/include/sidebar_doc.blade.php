@@ -1,9 +1,9 @@
 <div class="sidebar">
     <div class="inside_sidebar">
        @include('web.include.sidebar_top')
-        <div class="tech_block_search_doc">
-            <form><input type="text" name="search" required placeholder="Поиск по разделу"></form>
-        </div>
+{{--        <div class="tech_block_search_doc">--}}
+{{--            <form><input type="text" name="search" required placeholder="Поиск по разделу"></form>--}}
+{{--        </div>--}}
         <div class="clearfix"></div>
 
 
@@ -53,17 +53,17 @@
                         <div class="accordion__header">
                             <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
                         </div>
-                        <div class="accordion__content">
-                            <a href="#">Сокращения</a>
-                            <a href="#">Термины и определения</a>
-                            <a href="#">Показатели промышленной безопасности</a>
-                            <a href="#">Классификация событий</a>
-                        </div>
+{{--                        <div class="accordion__content">--}}
+{{--                            <a href="#">Сокращения</a>--}}
+{{--                            <a href="#">Термины и определения</a>--}}
+{{--                            <a href="#">Показатели промышленной безопасности</a>--}}
+{{--                            <a href="#">Классификация событий</a>--}}
+{{--                        </div>--}}
                     </label>
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id=""  >
                         <div class="accordion__header">
-                            <a href={{ url('/docs/glossary') }}>  Отчеты</a>
+                            <a href=''>  Отчеты</a>
                         </div>
                         <div class="accordion__content">
                             <a href="{{ route('form51.create') }}">ОС о инциденте п 5.1</a>

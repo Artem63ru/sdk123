@@ -1,9 +1,10 @@
 <div>
+
     <div class="tech_block_search">
         <p class="bold blue_text">Элементы ОПО</p>
-        <form> <input wire:model="searchTerm" type="text" placeholder="Элемент ОПО"/></form>
+         <form> <input wire:model="searchTerm" type="text" placeholder="Элемент ОПО"/></form>
     </div>
-    <div class="clearfix"></div>
+    <div class="clearfix">       </div>
 
 
 
