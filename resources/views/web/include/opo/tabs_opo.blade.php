@@ -1,3 +1,4 @@
+<a href="/eventsCal/1">Календарь событий</a>
 <div class="tabs">
    <div class="tab two_col_tab">
         <input type="radio" id="opo_info" name="tab_group" checked>
@@ -32,6 +33,11 @@
                         <tr>
                             <td>Статус:</td>
                             <td>{{$ver_opo->flDel}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+{{--                            <td class="fond_info"><a href="route('form51')">Календарь событий</a></td>--}}
                         </tr>
                         </tbody>
                     </table>
