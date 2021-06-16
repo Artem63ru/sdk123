@@ -60,6 +60,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('charts/fetch-data_elem_op_el/{id_obj}', 'ObjController@calc_elem_op_el');    //вывод Обобщенного показателя по елементу
 
     //********************  Отчеты  ***********************************
+
+    Route::get('docs/report','ReportController@report')->name('obj_status');
+    Route::get('docs/report1','ReportController@report1')->name('scena_report');
+    Route::get('docs/report2','ReportController@report2')->name('result_pk');
+    Route::get('docs/report3','ReportController@report3')->name('violations_report');
+    Route::get('docs/report4','ReportController@report4')->name('status_opo');
+    Route::get('pdf_opo', 'PdfReportController@opo_pdf')->name('pdf_opo');     // скачать отчет по ОПО
+    Route::get('docs/report5','ReportController@report5')->name('repiat_report');
+    Route::get('docs/report6','ReportController@report6')->name('event_pk');
 //    Route::get('docs/test','ReportController@test');
     Route::post('docs/report','ReportController@report')->name('obj_status');
     Route::post('docs/report1','ReportController@report1')->name('scena_report');
