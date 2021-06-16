@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report2','ReportController@report2')->name('result_pk');
     Route::get('docs/report3','ReportController@report3')->name('violations_report');
     Route::get('docs/report4','ReportController@report4')->name('status_opo');
+    Route::get('pdf_opo', 'PdfReportController@opo_pdf')->name('pdf_opo');     // скачать отчет по ОПО
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
     //*******************************************************
