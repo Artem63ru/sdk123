@@ -59,9 +59,13 @@
                                 <td>{{$row->elem_to_calc->first()->op_r}}</td>
                             </tr>
                     @endforeach
+                    <td class="bat_info"><a href="{{ url('pdf_opo') }}">Export PDF</a></td>
                     </tbody>
+
                 </table>
+
             </div>
+
         </div>
 
 

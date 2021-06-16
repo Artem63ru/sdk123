@@ -7,13 +7,21 @@
 
 @section('content')
     @include('web.include.sidebar_doc')
+    <div class="container">
 
-    <div class="table_header centered">Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по</h2>
 
-        <div style="height: 700px" class="inside_tab_padding">
-            <div class="row_block plan_new">
+                    </div>
+
+
+                    <div style="background: #FFFFFF; border-radius: 6px" class="inside_tab_padding form51">
+                        <div  class="row_block form51">
                 <table>
                     <thead>
+
                     <tr>
                         <th rowspan="2" class="centered">№ п/п</th>
                         <th rowspan="2" class="centered">Наименование ОПО</th>
@@ -37,6 +45,7 @@
                         <th class="centered">Выявлено нарушений</th>
                         <th class="centered">Устранено</th>
                     </tr>
+
                     </thead>
                     <tbody>
                     @foreach ($rows6 as $row)
@@ -60,6 +69,8 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+            </div>
             </div>
         </div>
 

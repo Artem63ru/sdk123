@@ -91,10 +91,10 @@
                                         <a href="/opo/1/elem/{{$this->elem_id}}">Перейти к элементу</a>
                                     </td>
                                 @else
-                                    <td colspan="2" class="link_td centered">
-                                        <a onclick="return false" href="/opo/1/elem/{{$this->elem_id}}">Перейти к
-                                            элементу</a>
-                                    </td>
+{{--                                    <td colspan="2" class="link_td centered">--}}
+{{--                                        <a onclick="return false" href="/opo/1/elem/{{$this->elem_id}}">Перейти к--}}
+{{--                                            элементу</a>--}}
+{{--                                    </td>--}}
                                 @endif
                             </tr>
                             </tbody>

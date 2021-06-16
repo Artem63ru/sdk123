@@ -20,7 +20,7 @@ class Search extends Component
     {
         $searchTerm = '%' . $this->searchTerm . '%';
         //    $this->users = $ver_opo->opo_to_obj->where('nameObj', 'ilike', $searchTerm); // Перечень всех лементов ОПО
-        $this->users = Ref_obj::where([['nameObj', 'ilike', $searchTerm], ['idOPO', '=', $this->id_opo],['InUse', '!=', '0']])->orderBy('idObj')->get();
+        $this->users = Ref_obj::where([['nameObj', 'ilike', $searchTerm], ['idOPO', '=', $this->id_opo],['status', '=', '50'],['InUse', '=', '1']])->orderBy('idObj')->get();
         return view('livewire.search');
     }
 

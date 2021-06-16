@@ -1027,6 +1027,16 @@ thead tr:first-child th { position: sticky; top: 0; }
 .fond_info table tr td:last-of-type{text-align:center;padding-left:15px;}
 .fond_info table tr td:last-of-type p{margin-top:5px;}
 
+.bat_info {  margin-left:25px; z-index: 99;top: 112px;    right: 74px;background:#fff;}
+.bat_info p{font-size:12px;color:#b1b1b1;}
+.bat_info h3{font-size:16px;font-weight:bold;color:#4689aa;margin-top:0;margin-bottom:20px;}
+.bat_info a{margin-left:25px; background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
+.bat_info a:hover{background:#4689aa;color:#fff;}
+
+.bat_info table tr td:first-of-type{text-align:right;border-right:1px solid #ccc;padding-right:15px;padding-bottom:15px;}
+.bat_info table tr td:last-of-type{text-align:center;padding-left:15px;}
+.bat_info table tr td:last-of-type p{margin-top:5px;}
+
 .map_block.fond_map_block{width:1250px;height:690px;margin:auto;text-align:center;margin-top:0;background:url(../images/fond.svg);}
 
 
@@ -1594,7 +1604,7 @@ img.trub_arrow {width:1242px;}
 }
 
 @media screen and (min-height:890px){
-  .inside_tab_padding{height:50vh;}
+  .inside_tab_padding{height:63vh;}
   .func_passport_top h4{margin-bottom:25px;}
   .func_passport_bottom{height:17vh;}
   .tabs-container {margin: 5px 0 0 0;}

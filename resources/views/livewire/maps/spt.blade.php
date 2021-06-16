@@ -123,34 +123,34 @@
             </div>
         </div>
 
-        <div id="openModal" class="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a href="#close" title="Close" class="close">×</a>
-                    </div>
-                    <div class="modal-body">
-                        <table class="modal_table map_hover">
-                            <tbody>
-                            <tr>
-                                <td>ОПО</td>
-                                <td>Фонд Скважин</td>
-                            </tr>
-                            <tr>
-                                <td>Элемент ОПО</td>
-                                <td>CRD099</td>
-                            </tr>
-                            <tr>
-                                <td>Статус</td>
-                                <td class="good">Подземный ремонт скважин</td>
-                            </tr>
+{{--        <div id="openModal" class="modal">--}}
+{{--            <div class="modal-dialog">--}}
+{{--                <div class="modal-content">--}}
+{{--                    <div class="modal-header">--}}
+{{--                        <a href="#close" title="Close" class="close">×</a>--}}
+{{--                    </div>--}}
+{{--                    <div class="modal-body">--}}
+{{--                        <table class="modal_table map_hover">--}}
+{{--                            <tbody>--}}
+{{--                            <tr>--}}
+{{--                                <td>ОПО</td>--}}
+{{--                                <td>Фонд Скважин</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Элемент ОПО</td>--}}
+{{--                                <td>CRD099</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Статус</td>--}}
+{{--                                <td class="good">Подземный ремонт скважин</td>--}}
+{{--                            </tr>--}}
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
     </div>
 </div>
