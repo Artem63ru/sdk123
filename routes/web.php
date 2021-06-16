@@ -178,7 +178,7 @@ Route::group(['middleware' => ['auth']], function() {
     //----------КАЛЕНДАРЬ СОБЫТИЙ--------------//
     Route::get('/eventsCal/{opo_id}', 'EventsCalendarController@index');
     Route::post('/full-calendar/action', 'EventsCalendarController@action');
-    Route::get('/full-calendar/test', 'EventsCalendarController@test');
+//    Route::get('/full-calendar/test', 'EventsCalendarController@test');  // Тест
 
 
 });
