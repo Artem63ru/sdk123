@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/iconfont/material-icons.css" />
     <script src="/js/jquery.min.js"></script>
     <script src="/js/new.js"></script>
+
     <title>СДК ПБ - @yield('title')</title>
 </head>
 <body>
@@ -63,5 +64,7 @@
         });
     });
 </script>
+
+
 </body>
 </html>
