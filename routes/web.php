@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('form51',Form51Controller::class);
     Route::resource('form52',Form52Controller::class);
+    Route::get('form52-add-table','Form52Controller@create_table');
+    Route::post('form52-add-table', 'Form52Controller@store_table')->name('form52-add-table');
     Route::resource('form61',Form61Controller::class);
     Route::resource('form62',Form62Controller::class);
     //*******************************************************

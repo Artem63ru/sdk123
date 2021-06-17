@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
 
-              {!! Form::open(array('route_table' => 'form52.store_table','method'=>'POST')) !!}
+              {!! Form::open(array( route('add_user') ,'method'=>'POST')) !!}
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Организационно-технические мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем:</h4>
                         <td class="table table-bordered">
                         <td>

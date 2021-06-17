@@ -1,4 +1,4 @@
-@extends('web.layouts.app_admin')
+@extends('web.layouts.app')
 
 
 @section('content')
@@ -186,99 +186,32 @@
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Организационно-технические мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем:</h4>
-{{--                            <td class="table table-bordered">--}}
-{{--                            <td>--}}
-{{--                                <div class="card-header">--}}
-{{--                                    <div class="row justify-content-start">--}}
-{{--                                        <div class="col">--}}
-{{--                                            <h5 class="text-muted" style="text-align: left">№ п/п--}}
-{{--                                            </h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col">--}}
-{{--                                            <div class="form-group">--}}
-{{--                                                {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%')) !!}--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            <td>--}}
-{{--                                <div class="card-header"><h5 class="text-muted" style="text-align: left">Содержание мероприятия</h5>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        {!! Form::textarea('context', null, array('placeholder' => 'Введите описание мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем','style' => 'height: 8vh; width: 70%')) !!}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            <td>--}}
-{{--                                <div class="card-header">--}}
-{{--                                    <div class="row justify-content-start">--}}
-{{--                                        <div class="col">--}}
-{{--                                            <h5 class="text-muted" style="text-align: left">Ответственный исполнитель--}}
-{{--                                            </h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col">--}}
-{{--                                            <div class="form-group">--}}
-{{--                                                {!! Form::text('responsible', null, array('placeholder' => 'Введите ФИО ответственного исполнителя','style' => 'height: 3vh; width: 70%')) !!}--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            <td>--}}
-{{--                                <div class="card-header">--}}
-{{--                                    <div class="row justify-content-start">--}}
-{{--                                        <div class="col"><h5 class="text-muted" style="text-align: left">Срок исполнения</h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col">--}}
-{{--                                            {!! Form::text('time_event', null, array('placeholder' => 'Укажите дату исполнения','style' => 'height: 3vh; width: 70%')) !!}--}}
-{{--                                            </select></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            <td>--}}
-{{--                                <div class="card-header"><h5 class="text-muted" style="text-align: left">Примечание</h5>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        {!! Form::textarea('note', null, array('placeholder' => 'Укажите примечание','style' => 'height: 8vh; width: 70%')) !!}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </td>--}}
-{{--                            </table>--}}
+                          <div style="height: 20vh" class="inside_tab_padding plan_new">
+                            <div class="row_block plan_new plan42">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th class="centered">№ п/п</th>
+                                        <th class="centered">Содержание мероприятий</th>
+                                        <th class="centered">Ответственный исполнитель</th>
+                                        <th class="centered">Срок выполнения</th>
+                                        <th class="centered">Примечание</th>
 
-{{--                            @section('content')--}}
-                            {{--                    <section class="tab_content">--}}
-                            <div class="inside_tab_padding plan_new">
-                                <div class="row_block plan_new plan42">
-                                    <table>
-                                        <thead>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ($rows as $row)
                                         <tr>
-                                            <th class="centered">№ п/п</th>
-                                            <th class="centered">Содержание мероприятий</th>
-                                            <th class="centered">Ответственный исполнитель</th>
-                                            <th class="centered">Срок выполнения</th>
-                                            <th class="centered">Примечание</th>
-
+                                            <td>{{$row->num}}</td>
+                                            <td>{{$row->context}}</td>
+                                            <td>{{$row->responsible}}</td>
+                                            <td>{{$row->time_event}}</td>
+                                            <td>{{$row->note}}</td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($rows as $row)
-                                            <tr>
-                                                <td>{{$row->num}}</td>
-                                                <td>{{$row->context}}</td>
-                                                <td>{{$row->responsible}}</td>
-                                                <td>{{$row->time_event}}</td>
-                                                <td>{{$row->note}}</td>
-                                                {{--                                            <td class="hover_links">--}}
-                                                {{--                                                <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>--}}
-                                                {{--                                                <a href="#openModal42"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>--}}
-                                                {{--                                            </td>--}}
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-
-
                         </div>
 
                         <div style="padding-bottom: 40px; margin-top: 30px" class="col-xs-12 col-sm-12 col-md-12 text-center">
