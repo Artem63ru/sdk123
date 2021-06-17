@@ -1,5 +1,5 @@
 <div id="modal" class="dlg-modal dlg-modal-fade">
-    <span class="closer" data-close=""></span>
+    <span class="closer_btn" data-close=""></span>
     <h3>Внимание, новое событие!</h3>
     <div id="event" class="event">
         <table class="eventTable">

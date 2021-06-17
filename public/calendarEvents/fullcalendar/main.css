@@ -1,6 +1,8 @@
 
 /* classes attached to <body> */
 
+
+
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
   cursor: not-allowed;
@@ -344,6 +346,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
       border-top-style: hidden;
       border-left-style: hidden;
       border-right-style: hidden;
+
     }
 .fc .fc-scrollgrid {
 
@@ -411,6 +414,10 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 .fc .fc-view-harness {
     flex-grow: 1; /* because this harness is WITHIN the .fc's flexbox */
     position: relative;
+    width:100%; /* ширина нашего блока */
+    height:80%; /* высота нашего блока */
+    overflow-y:scroll;
+    scrollbar-width: thin;
   }
 .fc {
 

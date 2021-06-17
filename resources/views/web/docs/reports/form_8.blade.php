@@ -42,14 +42,22 @@
                     </thead>
                     <tbody>
                     @foreach ($rows as $row)
-                        <tr>
-                            <td>{{$row->obj_to_opo->descOPO}}</td>
-                            <td>{{$row->nameObj}}</td>
-                            <td>{{$row->elem_to_calc->first()->ip_elem}}</td>
-                            <td>{{$row->elem_to_calc->first()->op_m}}</td>
-                            <td>{{$row->elem_to_calc->first()->op_el}}</td>
-                            <td>{{$row->elem_to_calc->first()->op_r}}</td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <td>{{$row->obj_to_opo->descOPO}}</td>--}}
+{{--                            <td>{{$row->nameObj}}</td>--}}
+{{--                            <td>{{$row->elem_to_calc->first()->ip_elem}}</td>--}}
+{{--                            <td>{{$row->elem_to_calc->first()->op_m}}</td>--}}
+{{--                            <td>{{$row->elem_to_calc->first()->op_el}}</td>--}}
+{{--                            <td>{{$row->elem_to_calc->first()->op_r}}</td>--}}
+{{--                        </tr>--}}
+                            <tr>
+                                <td>{{$row->obj_to_opo->descOPO}}</td>
+                                <td>{{$row->nameObj}}</td>
+                                <td>{{$row->elem_to_calc->first()->ip_elem}}</td>
+                                <td>{{$row->elem_to_calc->first()->op_m}}</td>
+                                <td>{{$row->elem_to_calc->first()->op_el}}</td>
+                                <td>{{$row->elem_to_calc->first()->op_r}}</td>
+                            </tr>
                     @endforeach
                     </tbody>
                 </table>
