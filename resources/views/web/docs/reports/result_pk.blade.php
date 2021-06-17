@@ -7,11 +7,19 @@
 
 @section('content')
     @include('web.include.sidebar_doc')
+    <div class="container">
 
-    <div class="table_header centered">Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений по состоянию на
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений по состоянию на</h2>
 
-        <div style="height: 700px" class="inside_tab_padding">
-            <div class="row_block plan_new">
+                    </div>
+
+
+                    <div style="background: #FFFFFF; border-radius: 6px" class="inside_tab_padding form51">
+                        <div  style="" class="row_block form51">
+
                 <table>
                     <thead>
                     <tr>

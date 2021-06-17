@@ -50,21 +50,22 @@
                     <tbody>
                     @foreach ($rows6 as $row)
                         <tr>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id}}</td>
+
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
                         </tr>
                     @endforeach
                     </tbody>

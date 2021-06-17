@@ -7,11 +7,19 @@
 
 @section('content')
     @include('web.include.sidebar_doc')
+    <div class="container">
 
-    <div class="table_header centered">Отчет "Анализ повторяемости несоответствий" по состоянию на по
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет "Анализ повторяемости несоответствий" по состоянию на по</h2>
 
-        <div style="height: 700px" class="inside_tab_padding">
-            <div class="row_block plan_new">
+                    </div>
+
+
+                    <div style="background: #FFFFFF; border-radius: 6px" class="inside_tab_padding form51">
+                        <div  style="" class="row_block form51">
+
                 <table>
                     <thead>
                     <tr>
@@ -33,16 +41,26 @@
                     <tbody>
                     @foreach ($rows5 as $row)
                         <tr>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id}}</td>
-                            <td>{{$row->id}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
+{{--                            <td>{{$row->id}}</td>--}}
                         </tr>
                     @endforeach
                     </tbody>
