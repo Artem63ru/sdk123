@@ -37,7 +37,7 @@
                         <tr>
                             <td></td>
 
-{{--                            <td class="fond_info"><a href="route('form51')">Календарь событий</a></td>--}}
+                            <td class="fond_info"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -92,10 +92,10 @@
 
                     <div class="tabs-container">
                         <ul class="tabs">
-                            <li class="active"><a href="">Оценка эффективности</a></li>
-                            <li><a href="">Показатель безопасности ОПО</a></li>
-                            <li><a href="">Показатель безаварийности ОПО</a></li>
-                            <li><a href="">Показатель готовности организации ОПО</a></li>
+                            <li class="active"><a class="ret" href="">Оценка эффективности</a></li>
+                            <li><a class="ret" href="">Показатель безопасности ОПО</a></li>
+                            <li><a class="ret" href="">Показатель безаварийности ОПО</a></li>
+                            <li><a class="ret" href="">Показатель готовности организации ОПО</a></li>
                         </ul>
                         <div class="tabs-content">
                             <div class="tabs-panel active" data-index="0">

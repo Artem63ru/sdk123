@@ -1027,11 +1027,17 @@ thead tr:first-child th { position: sticky; top: 0; }
 .fond_info table tr td:last-of-type{text-align:center;padding-left:15px;}
 .fond_info table tr td:last-of-type p{margin-top:5px;}
 
-.bat_info {  margin-left:25px; z-index: 99;top: 112px;    right: 74px;background:#fff;}
+.bat_info {  margin-left:25px; z-index: 99;top: 112px;    right: 74px;}
 .bat_info p{font-size:12px;color:#b1b1b1;}
 .bat_info h3{font-size:16px;font-weight:bold;color:#4689aa;margin-top:0;margin-bottom:20px;}
 .bat_info a{margin-left:25px; background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
 .bat_info a:hover{background:#4689aa;color:#fff;}
+
+.bat_add {  margin-left:25px; z-index: 99;top: 112px;    right: 74px;}
+.bat_add p{font-size:12px;color:#b1b1b1;}
+.bat_add h3{font-size:16px;font-weight:bold;color: #ececec;margin-top:0;margin-bottom:20px;}
+.bat_add a{margin-left:25px; background: #49ce56;color: #ffffff;padding:8px 15px;border-radius:7px;font-size:14px;text-decoration:none;}
+.bat_add a:hover{background: rgba(64, 182, 73, 0.48);color:#fff;}
 
 .bat_info table tr td:first-of-type{text-align:right;border-right:1px solid #ccc;padding-right:15px;padding-bottom:15px;}
 .bat_info table tr td:last-of-type{text-align:center;padding-left:15px;}

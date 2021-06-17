@@ -71,15 +71,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
 
     Route::resource('form51',Form51Controller::class);
+    Route::resource('form52',Form52Controller::class);
     Route::resource('form61',Form61Controller::class);
-//    Route::get('docs/test','ReportController@test');
-    Route::post('docs/report','ReportController@report')->name('obj_status');
-    Route::post('docs/report1','ReportController@report1')->name('scena_report');
-    Route::post('docs/report2','ReportController@report2')->name('result_pk');
-    Route::post('docs/report3','ReportController@report3')->name('violations_report');
-    Route::post('docs/report4','ReportController@report4')->name('status_opo');
-    Route::post('docs/report5','ReportController@report5')->name('repiat_report');
-    Route::post('docs/report6','ReportController@report6')->name('event_pk');
+    Route::resource('form62',Form62Controller::class);
     //*******************************************************
 
     Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
@@ -171,7 +165,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
-    Route::resource('form51',Form51Controller::class);
 
 
     Route::get('/new/{id}', 'Opo_dayController@view_last');

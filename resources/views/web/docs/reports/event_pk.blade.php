@@ -13,7 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по</h2>
-
+                        @can('role-create')
+                            <div class="bat_info"><a href="{{ route('form51.create') }}">Создать PDF</a></div>
+                        @endcan
                     </div>
 
 
@@ -68,6 +70,7 @@
 {{--                            <td>{{$row->id}}</td>--}}
                         </tr>
                     @endforeach
+
                     </tbody>
                 </table>
             </div>
