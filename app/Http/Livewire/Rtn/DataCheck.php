@@ -85,7 +85,7 @@ class DataCheck extends Component
     public function edit($id)
     {
 //        $this->updateMode = true;
-        $check= \App\Models\Rtn\Data_check::where('id',$id)->first();
+        $check= Data_check::where('id',$id)->first();
         $this->check_id = $id;
         $this->number_work = $check->number_work;
         $this->tick_stand = $check->tick_stand;
@@ -105,27 +105,27 @@ class DataCheck extends Component
     }
     public function update()
     {
-        $validatedDate = $this->validate([
-            'number_work'=> 'required',
-            'tick_stand'=> 'required',
-            'rating_work'=> 'required',
-            'rating_reasons'=> 'required',
-            'reg_num_reasons'=> 'required',
-            'quant_lesson_work'=> 'required',
-            'quant_lesson_alarms'=> 'required',
-            'plan_lesson_work'=> 'required',
-            'plan_lesson_crash'=> 'required',
-            'plan_lesson_alarms'=> 'required',
-            'plan_next_alarms'=> 'required',
-            'size_works'=> 'required',
-            'year_report'=> 'required',
-            'reg_num_opo'=> 'required',
+//        $validatedDate = $this->validate([
+//            'number_work'=> 'required',
+//            'tick_stand'=> 'required',
+//            'rating_work'=> 'required',
+//            'rating_reasons'=> 'required',
+//            'reg_num_reasons'=> 'required',
+//            'quant_lesson_work'=> 'required',
+//            'quant_lesson_alarms'=> 'required',
+//            'plan_lesson_work'=> 'required',
+//            'plan_lesson_crash'=> 'required',
+//            'plan_lesson_alarms'=> 'required',
+//            'plan_next_alarms'=> 'required',
+//            'size_works'=> 'required',
+//            'year_report'=> 'required',
+//            'reg_num_opo'=> 'required',
+//
+//        ]);
 
-        ]);
-
-        if ($this->check_id) {
-            $check = Data_check::find($this-> check_id);
-            $check ->update([
+//        if ($this->check_id) {
+            $check = Data_check::find($this->check_id);
+            $check->update([
                 'number_work' => $this->number_work,
                 'tick_stand' => $this->tick_stand,
                 'rating_work' => $this->rating_work,
@@ -144,7 +144,7 @@ class DataCheck extends Component
             $this->updateMode = false;
             session()->flash('message', 'Data Updated Successfully.');
             $this->resetInputFields();
-            return redirect()->to('/docs/events');
-        }
+            return redirect()->to('/docs/rtn');
+//        }
     }
 }

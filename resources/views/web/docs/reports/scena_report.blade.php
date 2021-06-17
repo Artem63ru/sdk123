@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах</h2>
                         @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_scena') }}">Создать PDF</a></div>
                         @endcan
                     </div>
 

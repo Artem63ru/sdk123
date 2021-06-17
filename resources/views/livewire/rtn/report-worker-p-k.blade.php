@@ -1,5 +1,7 @@
-{{--<div>--}}
-
+<div style="display: inline-block; width: 10%;">
+    <div style="width: 90%" class="tab">
+    <input type="radio" id="r43" name="tab_group">
+    <label for="r43" class="tab_title razd_col_tab">Раздел 4.3</label>
         <section class="tab_content">
             <div class="inside_tab_padding plan_new">
                 <div class="row_block plan_new plan43">
@@ -44,7 +46,7 @@
                 </div>
             </div>
         </section>
-
+    </div>
     <div id="openModal43" class="modal">
         <div class="modal-dialog table_use" style="margin-top: 150px">
             <div class="modal-content" style="width: 650px; height: 650px">
@@ -106,4 +108,4 @@
         </div>
     </div>
 
-{{--</div>--}}
+</div>

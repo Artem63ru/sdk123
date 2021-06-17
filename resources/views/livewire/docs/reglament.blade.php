@@ -11,8 +11,8 @@
                                     <option value="{{$value->type_id}}">{{ $value->type_name }}</option>
                                 @endforeach
                             </select> </form></td>
-                    <td><select id=""><option select>Элемент ОПО</option><option>2</option><option>3</option></select></td>
-                    <td><select id=""><option select>Манессман</option><option>2</option><option>3</option></select></td>
+{{--                    <td><select id=""><option select>Элемент ОПО</option><option>2</option><option>3</option></select></td>--}}
+{{--                    <td><select id=""><option select>Манессман</option><option>2</option><option>3</option></select></td>--}}
                 </tr>
                 </tbody>
             </table>

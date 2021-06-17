@@ -1,5 +1,5 @@
-{{--<div>--}}
-    <div class="tab">
+<div style="display: inline-block; width: 10%;">
+    <div style="width: 90%" class="tab">
         <input type="radio" id="r21" name="tab_group">
         <label for="r21" class="tab_title razd_col_tab">Раздел 2.1</label>
         <section class="tab_content">
@@ -41,7 +41,7 @@
                                 <td>{{$row->plan_next_alarms}}</td>
                                 <td>{{$row->size_works}}</td>
                                 <td class="hover_links">
-                                    <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
+                                    <a href="#"><img wire:click="delete({{ $row->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
                                     <a href="#openModal21"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
                                 </td>
                             </tr>
@@ -119,7 +119,8 @@
 
 
 
-                            <td colspan="2" class="link_td centered"><button type="submit" class="create" wire:click.prevent="update()">
+                            <td colspan="2" class="link_td centered">
+                                <button type="submit" class="create" wire:click.prevent="update()">
                                     Сохранить
                                 </button></td>
                             </tbody>
@@ -136,6 +137,6 @@
         </div>
     </div>
 
-{{--</div>--}}
+</div>
 
 

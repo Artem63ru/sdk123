@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по</h2>
                         @can('role-create')
-                            <div class="bat_info"><a href="{{ route('form51.create') }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_event') }}">Создать PDF</a></div>
                         @endcan
                     </div>
 

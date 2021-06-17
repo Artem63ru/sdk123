@@ -982,7 +982,7 @@ td.sost p.bordered{border-left:1px solid #ccc;padding-left:15px;}
 }
 thead tr:first-child th { position: sticky; top: 0; }
 .inside_tab_padding.plan_new {padding-top:0;margin-top:20px;}
-.inside_tab_padding.form51 {padding-top:0;margin-top:20px; margin-right: 375px}
+.inside_tab_padding.form51 {padding-top:0;margin-top:20px; margin-right: 25%}
 
 .plan_new.plan41 table,
 .plan_new.plan42 table {width: 1200px;}
