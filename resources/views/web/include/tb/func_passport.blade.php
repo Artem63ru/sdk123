@@ -8,6 +8,7 @@
                 <h4>Расчетные показатели промышленной безопасности технического блока</h4>
                         <div class="row_block">
                     <div class="third_col centered">
+
                         @include('charts.function_pass_tb.Collumn_tb')
                     </div>
                     <div class="third_col centered">

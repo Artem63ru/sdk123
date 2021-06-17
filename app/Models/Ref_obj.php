@@ -30,7 +30,7 @@ class Ref_obj extends Model
     //*************** Находим посление вычисления по ТБ (10 шт по количеству технологических блоков) для элемента ОПО *********************************************
     public function elem_to_calc_tb()
     {
-        return $this->hasMany('App\Models\Dynamic\Calc_tb', 'from_obj', 'idObj')->orderByDesc('id')->take(10);
+        return $this->hasMany('App\Models\Dynamic\Calc_tb', 'from_obj', 'idObj')->orderByDesc('id')->take(100);
 
     }
     public function elem_to_oto()
