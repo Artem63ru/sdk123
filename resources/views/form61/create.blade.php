@@ -214,7 +214,7 @@
                         </div>
                     </div>
                 </td>
-                </table>
+{{--                </table>--}}
             </div>
 
             <div class="card-header"><h4 class="text-muted" style="text-align: left">Причина задержки передачи информации в установленный срок</h4>
