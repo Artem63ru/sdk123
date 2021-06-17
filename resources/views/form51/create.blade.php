@@ -8,6 +8,8 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endpush
 
+
+
     @include('web.include.sidebar_doc')
     <style>
         label {
@@ -58,7 +60,7 @@
                                     инцидента</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%')) !!}
+                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off")) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -124,7 +126,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                 </div>
                             </div>
                         </div>
@@ -153,5 +155,6 @@
     </div>
     </div>
 
+@include('web.include.modal.datapicker')
 
 @endsection

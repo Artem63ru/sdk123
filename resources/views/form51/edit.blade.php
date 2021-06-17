@@ -1,4 +1,4 @@
-@extends('web.layouts.app_admin')
+@extends('web.layouts.app')
 
 
 @section('content')
@@ -70,7 +70,7 @@
                         инцидента</h4>
                 </div>
                 <div class="col">
-                    {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%')) !!}
+                    {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from')) !!}
                     </select></div>
             </div>
         </div>
@@ -163,4 +163,6 @@
     </div>
     </div>
     </div>
+    @include('web.include.modal.datapicker')
+
 @endsection
