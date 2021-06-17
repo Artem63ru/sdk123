@@ -75,8 +75,8 @@
                                     промышленного назначения</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%')) !!}
-                                </select></div>
+                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'id'=>'from')) !!}
+                                </div>
                         </div>
                     </div>
 
@@ -139,7 +139,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%')) !!}
+                            {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                         </div>
                     </div>
                 </div>
@@ -176,10 +176,10 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::text('passed', null, array('placeholder' => 'ФИО передавшего','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('passed', null, array('placeholder' => 'ФИО передавшего','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text('passed_data', null, array('placeholder' => 'Должность, телефон передавшего','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('passed_data', null, array('placeholder' => 'Должность, телефон передавшего','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                 </div>
                             </div>
                         </div>
@@ -194,10 +194,10 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::text('accepted', null, array('placeholder' => 'ФИО принявшего','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('accepted', null, array('placeholder' => 'ФИО принявшего','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::text('accepted_data', null, array('placeholder' => 'Занимаемая принявшим должность','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('accepted_data', null, array('placeholder' => 'Занимаемая принявшим должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                             <div class="col"><h5 class="text-muted" style="text-align: left">Дата и время (московское) приема</h5>
                             </div>
                             <div class="col">
-                                {!! Form::text('date_accept', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%')) !!}
+                                {!! Form::text('date_accept', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'id'=>'to')) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -237,5 +237,5 @@
     </div>
     </div>
 
-
+    @include('web.include.modal.datapicker')
 @endsection

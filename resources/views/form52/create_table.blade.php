@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%')) !!}
+                                            {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            {!! Form::text('responsible', null, array('placeholder' => 'Введите ФИО ответственного исполнителя','style' => 'height: 3vh; width: 70%')) !!}
+                                            {!! Form::text('responsible', null, array('placeholder' => 'Введите ФИО ответственного исполнителя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                     <div class="col"><h5 class="text-muted" style="text-align: left">Срок исполнения</h5>
                                     </div>
                                     <div class="col">
-                                        {!! Form::text('time_event', null, array('placeholder' => 'Укажите дату исполнения','style' => 'height: 3vh; width: 70%')) !!}
+                                        {!! Form::text('time_event', null, array('placeholder' => 'Укажите дату исполнения','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off")) !!}
                                         </select></div>
                                 </div>
                             </div>
@@ -102,6 +102,6 @@
         </div>
     </div>
     </div>
-
+    @include('web.include.modal.datapicker')
 
 @endsection

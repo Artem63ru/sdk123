@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('act_num', null, array('placeholder' => 'Укажите номер Акта','style' => 'height: 3vh; width: 70%')) !!}
+                                        {!! Form::text('act_num', null, array('placeholder' => 'Укажите номер Акта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('tag_unitGDA', null, array('placeholder' => 'Введите наименования структурного подразделения','style' => 'height: 3vh; width: 70%')) !!}
+                                        {!! Form::text('tag_unitGDA', null, array('placeholder' => 'Введите наименования структурного подразделения', 'autocomplete'=>"off",'style' => 'height: 3vh; width: 70%')) !!}
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                         инцидента</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off")) !!}
                                     </select></div>
                             </div>
                         </div>
@@ -97,10 +97,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%')) !!}
+                                                {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%')) !!}
+                                                {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -115,10 +115,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {!! Form::text('zam_predsed', null, array('placeholder' => 'ФИО зам. председателя','style' => 'height: 3vh; width: 70%')) !!}
+                                                {!! Form::text('zam_predsed', null, array('placeholder' => 'ФИО зам. председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::text('data_zam', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%')) !!}
+                                                {!! Form::text('data_zam', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                                 </div>
 
                             </td>
-                            </table>
+{{--                            </table>--}}
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Краткая характеристика установки (отделения, участка), где произошел инцидент</h4>
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('stop_time', null, array('placeholder' => 'Укажите длительность простоя оборудования в часах','style' => 'height: 3vh; width: 70%')) !!}
+                                        {!! Form::text('stop_time', null, array('placeholder' => 'Укажите длительность простоя оборудования в часах','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                 <div class="col"><h4 class="text-muted" style="text-align: left">Дата составления акта</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%')) !!}
+                                    {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off")) !!}
                                     </select></div>
                             </div>
                         </div>
@@ -250,4 +250,5 @@
         </div>
     </div>
     </div>
+    @include('web.include.modal.datapicker')
 @endsection

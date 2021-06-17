@@ -33,7 +33,7 @@
                                     аварии</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время аварии','style' => 'height: 3vh; width: 70%')) !!}
+                                {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время аварии','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'id'=>'from')) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -55,10 +55,10 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%')) !!}
+                                            {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                         </div>
                                         <div class="form-group">
-                                            {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%')) !!}
+                                            {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                             <div class="col"><h4 class="text-muted" style="text-align: left">Дата проведения расследования:</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('act_date', null, array('placeholder' => 'Введите дату проведения расследования','style' => 'height: 3vh; width: 70%')) !!}
+                                {!! Form::text('act_date', null, array('placeholder' => 'Введите дату проведения расследования','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'id'=>'to')) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -164,5 +164,5 @@
     </div>
     </div>
 
-
+    @include('web.include.modal.datapicker')
 @endsection
