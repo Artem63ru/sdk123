@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений по состоянию на</h2>
                         @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_result_pk') }}">Создать PDF</a></div>
                         @endcan
                     </div>
 

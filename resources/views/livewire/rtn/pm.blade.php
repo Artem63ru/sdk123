@@ -1,5 +1,7 @@
-{{--<div>--}}
-
+<div style="display: inline-block; width: 10%;">
+    <div style="width: 100%" class="tab">
+    <input type="radio" id="r22" name="tab_group">
+    <label for="r22" class="tab_title razd_col_tab">Раздел 2.2</label>
         <section class="tab_content">
             <div class="inside_tab_padding plan_new">
                 <div class="row_block plan_new plan22">
@@ -42,7 +44,7 @@
                                 <td>{{$row->education_worker}}</td>
                                 <td>{{$row->exper_worker}}</td>
                                 <td>{{$row->date_certif}}</td>
-                                {{--                                <td>{{$row->order_action}}</td>--}}
+{{--                                                                <td>{{$row->order_action}}</td>--}}
                                 <td>{{$row->comments}}</td>
                                 <td class="hover_links">
                                     <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
@@ -56,7 +58,7 @@
                 </div>
             </div>
         </section>
-
+</div>
     <div id="openModal22" class="modal">
         <div class="modal-dialog table_use" style="margin-top: 150px">
             <div class="modal-content" style="width: 650px; height: 650px">
@@ -112,14 +114,14 @@
                                 <td>Стаж работы</td>
                                 <td><input text wire:model="exper_worker" id="title" style="min-width: 350px" /></td>
                             </tr>
-                            <tr>
-                                <td>Дата последней аттестации</td>
-                                <td><input text wire:model="order_action" id="title" style="min-width: 350px" /></td>
-                            </tr>
-                            <tr>
-                                <td>Порядок действий</td>
-                                <td><input text wire:model="order_action" id="title" style="min-width: 350px" /></td>
-                            </tr>
+{{--                            <tr>--}}
+{{--                                <td>Дата последней аттестации</td>--}}
+{{--                                <td><input text wire:model="order_action" id="title" style="min-width: 350px" /></td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Порядок действий</td>--}}
+{{--                                <td><input text wire:model="order_action" id="title" style="min-width: 350px" /></td>--}}
+{{--                            </tr>--}}
                             <tr>
                                 <td>Комментарий к оценке готовности</td>
                                 <td><input text wire:model="comments" id="title" style="min-width: 350px" /></td>
@@ -144,5 +146,5 @@
         </div>
     </div>
 
-{{--</div>--}}
+</div>
 

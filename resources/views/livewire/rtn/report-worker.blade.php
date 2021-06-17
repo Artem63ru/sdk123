@@ -1,5 +1,7 @@
-{{--<div>--}}
-
+<div style="display: inline-block; width: 10%;">
+    <div style="width: 100%" class="tab">
+    <input type="radio" id="r41" name="tab_group">
+    <label for="r41" class="tab_title razd_col_tab">Раздел 4.1</label>
         <section class="tab_content">
             <div class="inside_tab_padding plan_new">
                 <div class="row_block plan_new plan41">
@@ -107,5 +109,6 @@
         </div>
     </div>
 
-{{--</div>--}}
+</div>
+</div>
 

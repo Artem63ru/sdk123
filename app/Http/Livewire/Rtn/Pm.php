@@ -101,7 +101,7 @@ class Pm extends Component
         $this->education_worker = $plan->education_worker;
         $this->exper_worker = $plan->exper_worker;
         $this->date_certif = $plan->date_certif;
-        $this->order_action = $plan->order_action;
+//        $this->order_action = $plan->order_action;
         $this->comments = $plan->comments;
         $this->year_report = $plan->year_report;
 
@@ -143,7 +143,7 @@ class Pm extends Component
                 'education_worker' => $this->education_worker,
                 'exper_worker' => $this->exper_worker,
                 'date_certif' => $this->date_certif,
-                'order_action' => $this->order_action,
+//                'order_action' => $this->order_action,
                 'comments' => $this->comments,
                 'year_report' => $this->year_report,
             ]);

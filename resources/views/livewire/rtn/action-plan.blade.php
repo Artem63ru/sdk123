@@ -1,5 +1,5 @@
-{{--<div>--}}
-    <div class="tab">
+<div style="display: inline-block; width: 10%;">
+    <div style="width: 90%" class="tab">
         <input type="radio" id="r11" name="tab_group" checked>
         <label for="r11" class="tab_title razd_col_tab">Раздел 1.1</label>
         <section class="tab_content">
@@ -133,4 +133,4 @@
         </div>
     </div>
 
-{{--</div>--}}
+</div>
