@@ -72,7 +72,7 @@
                             </div>
 
                         </td>
-                        </table>
+{{--                        </table>--}}
                     </div>
 
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Характеристика организации (объекта, участка) и места аварии:</h4>
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </td>
-                        </table>
+{{--                        </table>--}}
                     </div>
 
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Мероприятия по локализации и устранению причин аварии:</h4>
