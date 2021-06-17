@@ -1,4 +1,4 @@
-const tabLinks = document.querySelectorAll(".tabs a");
+const tabLinks = document.querySelectorAll(".tabs .ret");
 const tabPanels = document.querySelectorAll(".tabs-panel");
 
 for (let el of tabLinks) {

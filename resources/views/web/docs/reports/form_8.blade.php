@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии элементов опасных производственных объектов по состоянию на</h2>
                         @can('role-create')
-                            <a class="" href="{{ route('form51.create') }}"> <img  alt="" src="{{asset('assets/images/icons/btn.svg')}}" ></a>
+                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -51,7 +51,7 @@
                             <td>{{$row->elem_to_calc->first()->op_r}}</td>
                         </tr>
                     @endforeach
-                    <td class="bat_info"><a href="{{ url('pdf_opo') }}">Export PDF</a></td>
+
                     </tbody>
 
                 </table>

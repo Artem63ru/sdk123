@@ -13,7 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет "Анализ повторяемости несоответствий" по состоянию на по</h2>
-
+                        @can('role-create')
+                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
+                        @endcan
                     </div>
 
 

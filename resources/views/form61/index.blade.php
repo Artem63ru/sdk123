@@ -24,7 +24,7 @@
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список ОС об аварииях,
                             случаях утраты взрывчатых материалов промышленного назначения</h2>
                         @can('role-create')
-                            <a class="" href="{{ route('form61.create') }}"> <img  alt="" src="{{asset('assets/images/icons/btn.svg')}}" ></a>
+                            <div class="bat_add"><a href="{{ route('form61.create') }}">Создать Акт</a></div>
                         @endcan
                     </div>
 
@@ -61,7 +61,7 @@
                     <a href="{{ route('form61.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i"></a>
 
                     {!! Form::open(['method' => 'DELETE','route' => ['form61.destroy', $form->id],'style'=>'display:inline']) !!}
-                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px" />
+                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 240px" />
                     {!! Form::close() !!}
                 </td>
             </tr>

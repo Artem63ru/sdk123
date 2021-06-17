@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список оперативных сообщений о инцидентах</h2>
                         @can('role-create')
-                            <a class="" href="{{ route('form51.create') }}"> <img  alt="" src="{{asset('assets/images/icons/btn.svg')}}" ></a>
+                            <div class="bat_add"><a href="{{ route('form51.create') }}">Создать Акт</a></div>
                         @endcan
                     </div>
 
@@ -56,11 +56,11 @@
 
                 <td  class="centered">
 
-                    <a href="{{ route('form51.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                    <a href="{{ route('form51.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i" style="text-align:center"></a>
                     <a href="{{ route('form51.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i"></a>
 
                     {!! Form::open(['method' => 'DELETE','route' => ['form51.destroy', $form->id],'style'=>'display:inline']) !!}
-                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px" />
+                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 240px" />
                     {!! Form::close() !!}
                 </td>
             </tr>

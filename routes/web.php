@@ -71,7 +71,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
 
     Route::resource('form51',Form51Controller::class);
+    Route::resource('form52',Form52Controller::class);
     Route::resource('form61',Form61Controller::class);
+    Route::resource('form62',Form62Controller::class);
     //*******************************************************
 
     Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
