@@ -27,15 +27,15 @@ class Form52Controller extends Controller
      */
     public function create()
     {
-        $act_id = 0;
-        return view('form52.create', ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', "$act_id")->get()]);
+       // $act_id = 0;
+        return view('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
     }
 
     // открытие формы заполнения мероприятия
     public function create_table()
     {
 
-        return view('form52.create_table', ['rows'=>Form52_table::orderby('id_act')]);
+        return view('form52.create_table');
     }
 
 
@@ -49,15 +49,20 @@ class Form52Controller extends Controller
     {
         $input = $request->all();
         $report52 = Form52::create($input);
+        foreach (Form52_table::where('id_act', '=', "0")->get() as $item)
+        {
+           $item->id_act = $report52->id;
+            $item->save();
+        }
         return redirect()->route('form52.index')
             ->with('success','User created successfully');
     }
 
-    public function store_table(Request $request_table)
+    public function store_table(Request $request)
     {
-        $input_data = $request_table->all();
-        $report52_table = Form52_table::create($input_data);
-        return redirect()->route('form52.create');
+        $input_data = $request->all();
+        $report52_table = Form52_table::create($request->all());
+        return redirect()->route('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
     }
 
     /**
@@ -80,7 +85,7 @@ class Form52Controller extends Controller
     public function edit($id)
     {
         $data = Form52::find($id);
-        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->get()]);
+        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', "$id")->get()]);
     }
 
     /**
