@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_opo', 'PdfReportController@opo_pdf')->name('pdf_opo');     // скачать отчет по ОПО
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
+
+    Route::resource('form51',Form51Controller::class);
+    Route::resource('form61',Form61Controller::class);
     //*******************************************************
 
     Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
@@ -160,7 +163,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
-    Route::resource('form51',Form51Controller::class);
 
 
     Route::get('/new/{id}', 'Opo_dayController@view_last');

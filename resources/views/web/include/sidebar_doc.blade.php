@@ -61,7 +61,7 @@
 {{--                        </div>--}}
                     </label>
                     <label class="accordion">
-                        <input type='checkbox' name='checkbox-accordion' id=""  >
+                        <input type='checkbox' name='checkbox-accordion' id="report"  onclick="SaveChecked(this)" >
                         <div class="accordion__header">
                             <a href=''>  Отчеты</a>
                         </div>
