@@ -18,41 +18,23 @@
 
 <style>
     /*--- CONTENT ---*/
-
-    .overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 99998; background: rgba(0,0,0,0.87); }
-    .dlg-modal { width: 100%; max-width: 570px; height: 380px; opacity: 0; visibility: hidden; text-align: center; position: fixed; left: 50%; z-index: 99999; padding: 35px 36px; background: #fff; border-radius: 10px; -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.85); box-shadow: 0 0 20px rgba(0,0,0,0.85); }
-    .dlg-modal-fade { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
-    .dlg-modal-slide { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); visibility: visible; opacity: 1; }
-
-    .closer { width: 30px; height: 30px; display: block; position: absolute; right: 10px; top: 10px; background: url({{asset('assets/images/icons/close.svg')}}) no-repeat; cursor: pointer; }
-    .closer:hover { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
-
-    /* animation */
-    .fadeIn, .fadeOut, .slideInDown, .slideOutUp { -webkit-animation-duration: 0.4s; animation-duration: 0.4s; -webkit-animation-timing-function: linear; animation-timing-function: linear; }
-
-    @keyframes fadeIn {
-        from { opacity: 0; visibility: hidden; }
-        to { opacity:1; visibility: visible; }
+    #calendar{
+        height: 80vh;
     }
-    .fadeIn { -webkit-animation-name: fadeIn; animation-name: fadeIn; opacity: 1; visibility: visible; }
-
-    @keyframes fadeOut {
-        from { opacity: 1; visibility: visible; }
-        to { opacity:0; visibility: hidden; }
+    .fc-list-column-names{
+        font-weight: 800;
+        font-style: oblique;
+        font-size:130%;
     }
-    .fadeOut { -webkit-animation-name: fadeOut; animation-name: fadeOut; opacity: 0; visibility: hidden; }
+    /*#calendar{*/
+    /*    width:100%; !* ширина нашего блока *!*/
+    /*    height:800px; !* высота нашего блока *!*/
+    /*    overflow-y:scroll;*/
+    /*    scrollbar-width: thin;*/
+    /*    white-space: nowrap;*/
+    /*}*/
 
-    @keyframes slideInDown {
-        from { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); }
-        to { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
-    }
-    .slideInDown { -webkit-animation-name: slideInDown; animation-name: slideInDown; top: 50%; transform: translate(-50%, -50%); }
 
-    @keyframes slideOutUp {
-        from { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
-        to { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); }
-    }
-    .slideOutUp { -webkit-animation-name: slideOutUp; animation-name: slideOutUp; }
 
     #calendar_event_content {
         width:100%; /* ширина нашего блока */
@@ -65,7 +47,23 @@
     }
 
     #new_calendar_event_modal{
-        width: 100%; max-width: 570px; height: 600px;
+        width: 100%; max-width: 570px; height: 550px;
+    }
+    #calendar_event_info_modal{
+        width: 100%; max-width: 570px; height: 350px;
+    }
+
+    .calendar_page_modal_btn{
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 8px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 11px;
+        margin: 4px 2px;
+        cursor: pointer;
     }
 </style>
 
@@ -105,8 +103,10 @@
     <div id="calendar"></div>
     <div class="overlay" data-close=""></div>
     <div id="calendar_event_info_modal" class="dlg-modal dlg-modal-slide">
-        <span class="closer" data-close=""></span>
-        <h3 id="event_title"></h3>
+        <div class="modal_header">
+            <span class="closer_btn" data-close=""></span>
+            <h3 id="event_title"></h3>
+        </div>
         <div id="calendar_event_content">
             <input type="hidden" id="current_event_id" value="">
             <p id="event_description"></p>
@@ -117,9 +117,9 @@
             <p id="event_create_user"></p>
             <p id="event_status"></p>
             <p>
-                <input type="button" id="event_confirm_btn" value="">
-                <input type="button" id="delete_this_event_btn" value="Удалить">
-                <input type="button" id="change_this_event_btn" value="Изменить">
+                <input type="button" id="event_confirm_btn" class="calendar_page_modal_btn" value="">
+                <input type="button" id="delete_this_event_btn" class="calendar_page_modal_btn" value="Удалить">
+                <input type="button" id="change_this_event_btn" class="calendar_page_modal_btn" value="Изменить">
             </p>
         </div>
 
@@ -127,12 +127,14 @@
 
 
     <div id="new_calendar_event_modal" class="dlg-modal dlg-modal-slide">
-        <span class="closer" data-close=""></span>
-        <h3 id="new_event_modal_title">Новое событие</h3>
+        <div class="modal_header">
+            <span class="closer_btn" data-close=""></span>
+            <h3 id="new_event_modal_title">Новое событие</h3>
+        </div>
         <div id="new_calendar_event_content">
             <p>
                 <label for="new_event_title">Событие: </label>
-                <input type="text" id="new_event_title"  value="">
+                <input type="text" id="new_event_title"  value="" autocomplete="off">
             </p>
             <p>
                 <label for="new_event_description">Описание события:</label>
@@ -140,11 +142,11 @@
             </p>
             <p>
                 <label for="new_event_start">Начало:</label>
-                <input type="text" name="new_event_start" id="new_event_start"/>
+                <input type="text" name="new_event_start" id="new_event_start" autocomplete="off"/>
             </p>
             <p>
                 <label for="new_event_end">Конец:</label>
-                <input type="text" name="new_event_end"  id="new_event_end"/>
+                <input type="text" name="new_event_end"  id="new_event_end" autocomplete="off"/>
             </p>
             <p>
                 <label for="new_event_type">Тип события:</label>
@@ -163,8 +165,8 @@
                 </select><br>
             </p>
             <p>
-                <input type="button" id="new_event_add_button" value="Добавить событие">
-                <input type="button" id="change_event_button" value="Применить">
+                <input type="button" id="new_event_add_button" class="calendar_page_modal_btn" value="Добавить событие">
+                <input type="button" id="change_event_button" class="calendar_page_modal_btn" value="Применить">
             </p>
 
         </div>
@@ -173,7 +175,7 @@
 
 {{--</html>--}}
     @push('calendar_scripts')
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+{{--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />--}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
         <script src="{{asset('/calendarEvents/fullcalendar/main.js')}}"></script>
@@ -183,8 +185,8 @@
         <script src="{{asset('/calendarEvents/datetimepicker/moment-with-locales.min.js')}}"></script>
         <script src="{{asset('/calendarEvents/datetimepicker/bootstrap.min.js')}}"></script>
         <script src="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
-        <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.css')}}">
+        <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">
 
 
         <script src="{{asset('/calendarEvents/calendarEvents.js')}}"></script>

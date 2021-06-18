@@ -15,27 +15,33 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReportController extends Controller
 {
-    public function report()
+
+    //===============================================
+    //$request->date  ========дата из браузера=======
+    //===============================================
+
+    public function report(Request $request)
     {
+
         return view('web.docs.reports.form_8', ['rows'=>Ref_obj::where('InUse','=','1')->orderby('idObj')->get()]);
     }
 
-    public function report1()
+    public function report1(Request $request)
     {
         return view('web.docs.reports.scena_report', ['rows1'=>Jas::orderby('id')->get()]);
     }
 
-    public function report2()
+    public function report2(Request $request)
     {
         return view('web.docs.reports.result_pk', ['rows2'=>Data_check_out::orderby('id')->get()]);
     }
 
-    public function report3()
+    public function report3(Request $request)
     {
         return view('web.docs.reports.violations_report', ['rows3'=>Data_check_out::orderby('id')->get()]);
     }
 
-    public function report4()
+    public function report4(Request $request)
     {
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
@@ -76,12 +82,12 @@ echo $name.'<br>';
     }
 
 
-    public function report5()
+    public function report5(Request $request)
     {
         return view('web.docs.reports.repiat_report', ['rows5'=>Data_check_out::orderby('id')->get()]);
     }
 
-    public function report6()
+    public function report6(Request $request)
     {
         return view('web.docs.reports.event_pk', ['rows6'=>Data_check_out::orderby('id')->get()]);
     }

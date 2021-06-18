@@ -1969,13 +1969,21 @@ select,
 
 /**/
 /*--- Высплывающее окно ---*/
-
-div#overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 5; background: rgba(0,0,0,0.87); }
-.dlg-modal { width: 100%; max-width: 700px; height: 400px; opacity: 0; visibility: hidden; text-align: center; position: fixed; left: 50%; z-index: 10; padding: 35px 36px; background: #fff; border-radius: 10px; -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.85); box-shadow: 0 0 20px rgba(0,0,0,0.85); z-index: 99999;}
+.overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 99998; background: rgba(0,0,0,0.87); backdrop-filter: blur(10px);}
+.not_click_overlay{backdrop-filter: blur(10px); opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 99998; background: rgba(0,0,0,0.87); -webkit-transition: all 0.2s; transition: all 0.2s;}
+#new_jas_1_modal{
+    width: 1000px;
+}
+.dlg-modal { width: 100%; max-width: 1000px; height: 400px; opacity: 0; visibility: hidden; text-align: center; position: fixed; left: 50%; padding: 35px 36px; background: #fff; border-radius: 10px; -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.85); box-shadow: 0 0 20px rgba(0,0,0,0.85); z-index: 99999;}
 .dlg-modal-fade { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+.dlg-modal-slide { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); visibility: visible; opacity: 1; }
 
-.closer { width: 40px; height: 40px; display: block; position: absolute; right: 10px; top: 10px; background: url('../images/icons/close.svg') no-repeat; cursor: pointer; }
-.closer:hover { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
+.closer_btn{ -webkit-transition: all 0.2s; transition: all 0.2s; }
+.closer_btn { width: 40px; height: 40px; display: block; position: absolute; right: 10px; top: 10px; background: url('../images/icons/modal_closer.png') no-repeat; cursor: pointer; }
+.closer_btn:hover { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
+
+/* animation */
+.fadeIn, .fadeOut, .slideInDown, .slideOutUp { -webkit-animation-duration: 0.4s; animation-duration: 0.4s; -webkit-animation-timing-function: linear; animation-timing-function: linear; }
 
 @keyframes fadeIn {
     from { opacity: 0; visibility: hidden; }
@@ -1988,6 +1996,18 @@ div#overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0;
     to { opacity:0; visibility: hidden; }
 }
 .fadeOut { -webkit-animation-name: fadeOut; animation-name: fadeOut; opacity: 0; visibility: hidden; }
+
+@keyframes slideInDown {
+    from { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); }
+    to { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+}
+.slideInDown { -webkit-animation-name: slideInDown; animation-name: slideInDown; top: 50%; transform: translate(-50%, -50%); }
+
+@keyframes slideOutUp {
+    from { top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
+    to { top: -20px; -webkit-transform: translate(-50%, -100%); transform: translate(-50%, -100%); }
+}
+.slideOutUp { -webkit-animation-name: slideOutUp; animation-name: slideOutUp; }
 
 
 .event{width:100%; /* ширина нашего блока */
@@ -2015,8 +2035,16 @@ div#overlay { opacity: 0; visibility: hidden; position:fixed; left: 0; right: 0;
 .eventTable { height: 57px;}
 
 .td_confirm_btn{
-    background-color: #3f9ae5;
-    color:#FFFFFF;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 8px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 /*/!*************************************************/
