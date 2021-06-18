@@ -1,5 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+    // document.getElementById('calendar').style.height=window.innerHeight-500;
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
@@ -12,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //-------------ДИАЛОГ----------------//
     const overlay = document.querySelector('.overlay'),
-        modals = document.querySelectorAll('.dlg-modal'),
-        mClose = document.querySelectorAll('[data-close]');
+        modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
+        mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
     let	mStatus = false;
 
     for (let el of mClose) {
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function modalClose(event) {
         function close(){
             for (let modal of modals) {
+                console.log(modal)
                 modal.classList.remove('slideInDown');
                 modal.classList.add('slideOutUp');
             }
@@ -227,14 +229,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     // console.log(event_end)
                     event_start.datetimepicker({
                         minDate:new Date(),
-                        locale: 'ru',
-                        sideBySide:true
+                        locale: 'ru'
                     });
 
                     event_end.datetimepicker({
                         minDate:new Date(),
-                        locale: 'ru',
-                        sideBySide:true
+                        locale: 'ru'
                     });
 
 
@@ -275,14 +275,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 minDate.setMinutes(minDate.getMinutes()-1)
                 event_start.datetimepicker({
                     minDate:minDate,
-                    locale: 'ru',
-                    sideBySide:true
+                    locale: 'ru'
+                    // sideBySide:true
                 });
 
                 event_end.datetimepicker({
                     minDate:new Date(),
-                    locale: 'ru',
-                    sideBySide:true
+                    locale: 'ru'
+                    // sideBySide:true
                 });
 
 
@@ -438,6 +438,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 
+    $('#new_event_end').on('dp.change', function(e){
+        try{
+            $('#new_event_end').data("DateTimePicker").minDate($('#new_event_start').data("DateTimePicker").date());
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+    $('#new_event_start').on('dp.change', function(e){
+        try{
+            $('#new_event_end').data("DateTimePicker").minDate(e.date);
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
 
     document.getElementById('new_event_add_button').addEventListener('click', ()=>
     {

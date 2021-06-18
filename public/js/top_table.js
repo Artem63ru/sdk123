@@ -76,7 +76,7 @@ async function getDbInfo(){
 
         GetDataReq.onreadystatechange =function() {
             if (GetDataReq.readyState == 4 && GetDataReq.status == 200) {
-                dialTabBody = document.getElementById("modal").getElementsByTagName("tbody").item(0);
+                dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
                 clearTable(dialTabBody);
                 if (typeof tablePage !== 'undefined') {
                     tabBody = document.getElementById("top_table_inside").getElementsByTagName("tbody").item(0);
@@ -153,8 +153,8 @@ function ShowAlert(){
     //console.log('SHOWALERT')
     const mClose = document.querySelectorAll('[data-close]');
     let	mStatus = false;
-
-    modal = document.getElementById("modal");
+    var overlay = document.querySelector('.not_click_overlay');
+    var modal = document.getElementById("new_jas_1_modal");
     modalShow(modal);
 
     for (let el of mClose) {
@@ -162,10 +162,14 @@ function ShowAlert(){
     }
 
     function modalShow(modal) {
+
+        // показываем подложку всплывающего окна
+        overlay.classList.remove('fadeOut');
+        overlay.classList.add('fadeIn');
+
         modal.classList.remove('fadeOut');
         modal.classList.add('fadeIn');
 
-        // выставляем флаг, обозначающий, что всплывающее окно открыто
         mStatus = true;
     }
 
@@ -173,7 +177,8 @@ function ShowAlert(){
         if (mStatus) {
             modal.classList.remove('fadeIn');
             modal.classList.add('fadeOut');
-
+            overlay.classList.remove('fadeIn');
+            overlay.classList.add('fadeOut');
             // сбрасываем флаг, устанавливая его значение в 'false'
             // это значение указывает нам, что на странице нет открытых
             // всплывающих окон
