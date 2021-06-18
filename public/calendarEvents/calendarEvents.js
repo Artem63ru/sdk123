@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //-------------ДИАЛОГ----------------//
     const overlay = document.querySelector('.overlay'),
-        modals = document.querySelectorAll('.dlg-modal'),
-        mClose = document.querySelectorAll('[data-close]');
+        modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
+        mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
     let	mStatus = false;
 
     for (let el of mClose) {
@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function modalClose(event) {
         function close(){
             for (let modal of modals) {
+                console.log(modal)
                 modal.classList.remove('slideInDown');
                 modal.classList.add('slideOutUp');
             }
