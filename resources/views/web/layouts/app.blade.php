@@ -44,7 +44,6 @@
 
 </head>
 <body>
-
 @include('web.include.modal.modal')
 
 <div class="side_menu">

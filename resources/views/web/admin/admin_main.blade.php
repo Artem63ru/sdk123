@@ -7,6 +7,7 @@
     @push('app-css')
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endpush
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -73,6 +74,8 @@
 
 
     </div>
+
+
 
 
 

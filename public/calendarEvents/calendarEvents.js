@@ -1,5 +1,7 @@
+// import "/public/js/modals_function";
 
 document.addEventListener('DOMContentLoaded', function() {
+
     // document.getElementById('calendar').style.height=window.innerHeight-500;
     $.ajaxSetup({
         headers:{
@@ -11,57 +13,57 @@ document.addEventListener('DOMContentLoaded', function() {
     var timeOptions={hour:"numeric", minute: "numeric"}
 
 
-    //-------------ДИАЛОГ----------------//
-    const overlay = document.querySelector('.overlay'),
-        modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
-        mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
-    let	mStatus = false;
-
-    for (let el of mClose) {
-        el.addEventListener('click', modalClose);
-    }
-
-    document.addEventListener('keydown', modalClose);
-
-    function modalShow(modal) {
-        // показываем подложку всплывающего окна
-        overlay.classList.remove('fadeOut');
-        overlay.classList.add('fadeIn');
-
-        modal.classList.remove('slideOutUp');
-        modal.classList.add('slideInDown');
-
-        mStatus = true;
-    }
-
-    function modalClose(event) {
-        function close(){
-            for (let modal of modals) {
-                console.log(modal)
-                modal.classList.remove('slideInDown');
-                modal.classList.add('slideOutUp');
-            }
-
-            // закрываем overlay
-            overlay.classList.remove('fadeIn');
-            overlay.classList.add('fadeOut');
-            // сбрасываем флаг, устанавливая его значение в 'false'
-            // это значение указывает нам, что на странице нет открытых
-            // всплывающих окон
-            mStatus = false;
-        }
-        if (typeof event ==='undefined'){
-            if (mStatus){
-               close()
-            }
-        }
-        else{
-            if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {
-                close()
-            }
-        }
-
-    }
+    // //-------------ДИАЛОГ----------------//
+    // const overlay = document.querySelector('.overlay'),
+    //     modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
+    //     mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
+    // let	mStatus = false;
+    //
+    // for (let el of mClose) {
+    //     el.addEventListener('click', modalClose);
+    // }
+    //
+    // document.addEventListener('keydown', modalClose);
+    //
+    // function modalShow(modal) {
+    //     // показываем подложку всплывающего окна
+    //     overlay.classList.remove('fadeOut');
+    //     overlay.classList.add('fadeIn');
+    //
+    //     modal.classList.remove('slideOutUp');
+    //     modal.classList.add('slideInDown');
+    //
+    //     mStatus = true;
+    // }
+    //
+    // function modalClose(event) {
+    //     function close(){
+    //         for (let modal of modals) {
+    //             console.log(modal)
+    //             modal.classList.remove('slideInDown');
+    //             modal.classList.add('slideOutUp');
+    //         }
+    //
+    //         // закрываем overlay
+    //         overlay.classList.remove('fadeIn');
+    //         overlay.classList.add('fadeOut');
+    //         // сбрасываем флаг, устанавливая его значение в 'false'
+    //         // это значение указывает нам, что на странице нет открытых
+    //         // всплывающих окон
+    //         mStatus = false;
+    //     }
+    //     if (typeof event ==='undefined'){
+    //         if (mStatus){
+    //            close()
+    //         }
+    //     }
+    //     else{
+    //         if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {
+    //             close()
+    //         }
+    //     }
+    //
+    // }
 
     function clearModals(){
         $('#new_event_title').val('');

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{asset('/js/jquery.min.js')}}"></script>
 </head>
 <body>
 <div class="side_menu">
