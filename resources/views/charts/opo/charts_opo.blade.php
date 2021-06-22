@@ -66,7 +66,7 @@
                             path = '/charts/fetch-data-prognoz/{{$id}}/data/'+_time;
                         }
 
-                        console.log(path);
+                        // console.log(path);
                         $.getJSON({
                             url: path,
                             method: 'GET',
@@ -125,9 +125,9 @@
         $("#ip-opo").click(function() {
             // действия, которые будут выполнены при наступлении события...
             flag_ip = true;
-            console.log($(this).text())
+            // console.log($(this).text())
            path = '/charts/fetch-data/{{$id}}/data/'+_time;
-            console.log(path);
+            // console.log(path);
             $.getJSON({
                 url: path,
                 method: 'GET',
@@ -145,9 +145,9 @@
         $("#ip-opo-pro").click(function() {
             // действия, которые будут выполнены при наступлении события...
             flag_ip = false;
-            console.log($(this).text())
+            // console.log($(this).text())
             path = '/charts/fetch-data-prognoz/{{$id}}/data/'+_time;
-            console.log(path);
+            // console.log(path);
             $.getJSON({
                 url: path,
                 method: 'GET',

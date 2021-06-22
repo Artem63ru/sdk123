@@ -197,6 +197,13 @@ Route::group(['middleware' => ['auth']], function() {
 //    Route::get('/full-calendar/test', 'EventsCalendarController@test');  // Тест
 
 
+    //----------------SUMCONTROLLER--------------//
+    Route::get('/sumcontroller/test', 'SumCheckerController@test');
+    Route::get('/sumcontroller/test2', 'SumCheckerController@test_view');
+    Route::get('/sumcontroller/get_choiced', 'SumCheckerController@get_choiced');
+    Route::post('/sumcontroller/set_paths','SumCheckerController@set_paths');
+
+
 });
 //*******************************************
 Auth::routes();
