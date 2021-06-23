@@ -173,10 +173,13 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     //----------------SUMCONTROLLER--------------//
-    Route::get('/sumcontroller/test', 'SumCheckerController@test');
+    Route::get('/sumcontroller/get_tree', 'SumCheckerController@get_tree');
+    Route::get('/sumcontroller/test', 'SumCheckerController@sumchecker_cmd');
     Route::get('/sumcontroller/test2', 'SumCheckerController@test_view');
     Route::get('/sumcontroller/get_choiced', 'SumCheckerController@get_choiced');
     Route::post('/sumcontroller/set_paths','SumCheckerController@set_paths');
+    Route::get('/sumcontroller/cmd', 'SumCheckerController@sumchecker_cmd');
+    Route::get('/sumcontroller/get_all_logs', 'SumCheckerController@get_all_logs');
 
 
 });

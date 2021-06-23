@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SumChecker\SumcheckerConfig;
+use App\Models\SumChecker\SumcheckerLog;
 
 function viewTree($folder, $space) {
     // Получаем полный список файлов и каталогов внутри $folder
@@ -57,7 +58,7 @@ function viewTree($folder, $space) {
 
 class SumCheckerController extends Controller
 {
-    public function test(Request $request){
+    public function get_tree(Request $request){
 
         if ($request->key=='.'){
             $request->key=pathinfo($_SERVER["DOCUMENT_ROOT"],PATHINFO_DIRNAME);
@@ -115,6 +116,30 @@ class SumCheckerController extends Controller
             return false;
         }
 
+    }
+    public function sumchecker_cmd(Request $request){
+        if ($request->type=='update'){
+//            return nl2br("asdasdasdasdasd \n sadasdasdasd", true);
+            return nl2br(shell_exec($_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec/sumchecker update'), true);
+        }
+        else if ($request->type=='check'){
+            return nl2br(shell_exec($_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec/sumchecker check'), true);
+        }
+        else{
+            return null;
+        }
+    }
+
+    public function get_all_logs(){
+        $logs=SumcheckerLog::orderBy('id','DESC')->get();
+        $data=null;
+        foreach ($logs as $log) {
+            $data[] = array(
+                'time'=>$log->time,
+                'event'=>$log->event
+            );
+        }
+        return $data;
     }
 }
 ?>
