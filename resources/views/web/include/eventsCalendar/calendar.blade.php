@@ -11,6 +11,14 @@
     var opo_id={{$opo_id}};
     var user_id={{ Auth::user()->id }};
     var opo_name=`{{$opo_name}}`;
+
+    $(document).ready(function (){
+        $.getScript("{{asset('/js/modals_function.js')}}", function() {
+            console.log("Script loaded but not necessarily executed.");
+        });
+    })
+
+
     // console.log(opo_name)
 </script>
 
@@ -177,6 +185,7 @@
     @push('calendar_scripts')
 {{--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />--}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{{--        <script src="{{asset('/js/modals_function.js')}}"></script>--}}
 
         <script src="{{asset('/calendarEvents/fullcalendar/main.js')}}"></script>
         <script src="{{asset('/calendarEvents/fullcalendar/main.min.js')}}"></script>

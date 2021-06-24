@@ -89,7 +89,7 @@ async function getDbInfo(){
                 console.log('new_opo');
                 let arr=[]
                 arr=JSON.parse(GetDataReq.responseText);//Принимаем данные в json
-                //console.log(arr);
+                //console.log(tablePage);
                 var new_data_flag=false;
                 //Перегружаем функцию и раскидываем инфу по таблице
                 arr.forEach(function(item, i, arr){
@@ -150,7 +150,7 @@ function setToLocalStorage(key, value){
 }
 
 function ShowAlert(){
-    //console.log('SHOWALERT')
+    console.log('SHOWALERT')
     const mClose = document.querySelectorAll('[data-close]');
     let	mStatus = false;
     var overlay = document.querySelector('.not_click_overlay');
