@@ -78,4 +78,24 @@ class ReportController extends Controller
         return view('web.docs.reports.event_pk', ['rows6'=>Data_check_out::orderby('id')->get()]);
     }
 
+    public function report_effect()
+    {
+        return view('web.docs.reports.effect_pk', ['rows'=>Data_check_out::orderby('id')->get()]);
+    }
+
+    public function report_info_act()
+    {
+        return view('web.docs.reports.info_act', ['rows'=>Data_check_out::orderby('id')->get()]);
+    }
+
+    public function report_act_pb()
+    {
+        return view('web.docs.reports.act_pb', ['rows'=>Data_check_out::orderby('id')->get()]);
+    }
+
+    public function report_quality_criteria()
+    {
+        return view('web.docs.reports.quality_criteria', ['rows'=>Data_check_out::orderby('id')->get()]);
+    }
+
 }
