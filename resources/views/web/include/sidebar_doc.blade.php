@@ -1,11 +1,10 @@
-@push('calendar_scripts')
-    <script src="{{asset('/calendarEvents/datetimepicker/moment-with-locales.min.js')}}"></script>
-    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap.min.js')}}"></script>
-    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">
-
-@endpush
+{{--@push('calendar_scripts')--}}
+{{--    <script src="{{asset('/calendarEvents/datetimepicker/moment-with-locales.min.js')}}"></script>--}}
+{{--    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap.min.js')}}"></script>--}}
+{{--    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>--}}
+{{--    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">--}}
+{{--@endpush--}}
 
 
 <div class="sidebar">
@@ -82,20 +81,20 @@
                             <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>
 {{--                            <a href="#">Термины и определения</a>--}}
 {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
-{{--                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>--}}
-{{--                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>--}}
-{{--                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>--}}
-{{--                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>--}}
-{{--                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>--}}
-{{--                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>--}}
-{{--                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>--}}
-                            <a id="report" class="reports_tag_a" >Отчет о состоянии элементов</a>
-                            <a id="report1" class="reports_tag_a" >Отчет о зафиксированных событиях</a>
-                            <a id="report2" class="reports_tag_a" >Сведения о результатах проверок</a>
-                            <a id="report3" class="reports_tag_a" >Отчет о выяленных нарушениях</a>
-                            <a id="report4" class="reports_tag_a" >Отчет о состоянии ОПО</a>
-                            <a id="report5" class="reports_tag_a" >Отчет "Анализ повторяемости несоответствий"</a>
-                            <a id="report6" class="reports_tag_a" >Отчет о проведенных контрольных мероприятиях</a>
+                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
+                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
+                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>
+                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
+                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
+                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
+                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
+{{--                            <a id="report" class="reports_tag_a" >Отчет о состоянии элементов</a>--}}
+{{--                            <a id="report1" class="reports_tag_a" >Отчет о зафиксированных событиях</a>--}}
+{{--                            <a id="report2" class="reports_tag_a" >Сведения о результатах проверок</a>--}}
+{{--                            <a id="report3" class="reports_tag_a" >Отчет о выяленных нарушениях</a>--}}
+{{--                            <a id="report4" class="reports_tag_a" >Отчет о состоянии ОПО</a>--}}
+{{--                            <a id="report5" class="reports_tag_a" >Отчет "Анализ повторяемости несоответствий"</a>--}}
+{{--                            <a id="report6" class="reports_tag_a" >Отчет о проведенных контрольных мероприятиях</a>--}}
 
                         </div>
                     </label>

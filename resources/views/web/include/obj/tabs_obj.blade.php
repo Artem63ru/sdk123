@@ -145,7 +145,7 @@
             <div class="opo_page_square" id = "4"><a href="#">
                     <div id="chartdiv3"></div>
                     @include('charts.elem_main_charts.chart_4')
-                    <p style="margin-top: -23px"> Обобщенный показатель <br/>регламентных значений</p></a></div>
+                    <p style="margin-top: -23px"> Обобщенный показатель <br/>технического обслуживания</p></a></div>
         </div>
 
         <div class="period_info inside_type">
