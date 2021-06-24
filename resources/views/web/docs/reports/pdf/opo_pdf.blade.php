@@ -13,7 +13,7 @@
     }
 </style>
 <h2 class="text-muted" style="text-align: center" >Отчет о состоянии опасных производственных объектов по состоянию на</h2>
-        <table style="border-collapse: collapse;" class="table table-hover">
+<table style="border-collapse: collapse;" class="table table-hover">
     <thead>
     <tr>
         <th rowspan="2" class="centered">ОПО</th>
@@ -33,15 +33,15 @@
             <td scope="row-4">{{ $opo->opo_to_calc_day_min->first()->ip_opo }}</td>
             <?php
             $ip = 1;
-             foreach ($opo->opo_to_obj as $item) {
-               if ($item->elem_to_calc->first()->ip_elem <= $ip) {
-            $ip = $item->elem_to_calc->first()->ip_elem;
-            $name = $item->nameObj;
-               }
-               }
+            foreach ($opo->opo_to_obj as $item) {
+                if ($item->elem_to_calc->first()->ip_elem <= $ip) {
+                    $ip = $item->elem_to_calc->first()->ip_elem;
+                    $name = $item->nameObj;
+                }
+            }
             ?>
-                    <td scope="row-4">{{ $ip }}</td>
-                    <td scope="row-4">{{ $name }}</td>
+            <td scope="row-4">{{ $ip }}</td>
+            <td scope="row-4">{{ $name }}</td>
 
 
 

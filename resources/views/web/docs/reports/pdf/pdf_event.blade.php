@@ -12,7 +12,11 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
+<<<<<<< HEAD
+<h2 class="text-muted" style="text-align: center" >Отчет о состоянии елементов опасных производственных объектов по состоянию на</h2>
+=======
 <h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по</h2>
+>>>>>>> origin/Show_Modal
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
 

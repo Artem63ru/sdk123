@@ -5,15 +5,16 @@
         <div class="inside_tab_padding">
             <div class="row_block">
                 <div class="tech_scheme_left">
-                    <p class="title">Трубопроводы кислого газа</p>
+                    <p class="title">{{$name_tb}}</p>
                     <div class="tech_scheme_line"></div>
-                    <p class="descript">"Наименование документа схемы."</p>
+                    <p class="descript">{{trim(trim($shema, "storage/"), "pdf/")}}</p>
                     <a href="#" class="download_scheme">Скачать <img alt="" src="{{asset('assets/images/icons/download.svg')}}"></a>
                 </div>
                 <div class="tech_scheme_right">
 {{--                    <img alt="" src="{{asset('replace/scheme.png')}}" class="replace">--}}
-                    <object width="1000" height="450" type="application/pdf" data="{{asset('replace/Mannesmann.pdf?#zoom=50&scrollbar=0&toolbar=0&navpanes=0')}}">
-                        <p>Insert your error message here, if the PDF cannot be displayed.</p>
+                    <object width="1000" height="450" type="application/pdf" data="{{asset("$shema".'?#zoom=50&scrollbar=0&toolbar=0&navpanes=0')}}">
+{{--                        {{$id_tb}}--}}
+                        <p>Для данного ТБ схема отсутствует</p>
                     </object>
                 </div>
             </div>

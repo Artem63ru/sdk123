@@ -17,9 +17,6 @@
                             <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
                         @endcan
                     </div>
-{{--                    @can('role-delete')--}}
-{{--                       <a href="{{ url('pdf_opo') }}" class="btn btn-success mb-2">Export PDF</a>--}}
-{{--                    @endcan--}}
 
                     <div class="inside_tab_padding form51">
                         <div style="background: #FFFFFF; border-radius: 6px" class="row_block form51">

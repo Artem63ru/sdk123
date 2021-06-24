@@ -12,6 +12,17 @@ use PDF;
 
 class PdfReportController extends Controller
 {
+
+    public function pdf_elem()
+    {
+        $data['title'] = 'Отчет о состоянии элементов опасных производственных объектов по состоянию на';
+        $data['rows'] = Ref_obj::where('InUse','=','1')->orderby('idObj')->get();
+        $patch = 'status_elem' . Carbon::now() . '.pdf';
+        $pdf = PDF::loadView('web.docs.reports.pdf.pdf_elem', $data)->setPaper('a4', 'landscape');
+        return $pdf->download($patch);
+
+    }
+
     public function opo_pdf()
     {
         $data['title'] = 'Отчет о состоянии опасных производственных объектов по состоянию на';
@@ -71,12 +82,43 @@ class PdfReportController extends Controller
         return $pdf->download($patch);
 
     }
-    public function pdf_elem()
+
+    public function pdf_effect()
+    {
+        $data['title'] = 'Отчет об эффективности производственного контроля';
+        $data['rows'] = Data_check_out::orderby('id')->get();
+        $patch = 'effect_pk ' . Carbon::now() . '.pdf';
+        $pdf = PDF::loadView('web.docs.reports.pdf.pdf_effect', $data)->setPaper('a4', 'landscape');
+        return $pdf->download($patch);
+
+    }
+
+    public function pdf_info_act()
+    {
+        $data['title'] = 'Справка о выполнении актов';
+        $data['rows'] = Data_check_out::orderby('id')->get();
+        $patch = 'info_act ' . Carbon::now() . '.pdf';
+        $pdf = PDF::loadView('web.docs.reports.pdf.pdf_info_act', $data)->setPaper('a4', 'landscape');
+        return $pdf->download($patch);
+
+    }
+
+    public function pdf_act_pb()
     {
         $data['title'] = 'Отчет о состоянии элементов опасных производственных объектов по состоянию на';
         $data['rows'] = Ref_obj::where('InUse','=','1')->orderby('idObj')->get();
         $patch = 'status_elem' . Carbon::now() . '.pdf';
         $pdf = PDF::loadView('web.docs.reports.pdf.pdf_elem', $data)->setPaper('a4', 'landscape');
+        return $pdf->download($patch);
+
+    }
+
+    public function pdf_quality_criteria()
+    {
+        $data['title'] = 'Справка о выполнении актов ПБ';
+        $data['rows'] = Data_check_out::orderby('id')->get();
+        $patch = 'quality_criteria ' . Carbon::now() . '.pdf';
+        $pdf = PDF::loadView('web.docs.reports.pdf.pdf_quality_criteria', $data)->setPaper('a4', 'landscape');
         return $pdf->download($patch);
 
     }

@@ -77,6 +77,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_opo', 'PdfReportController@opo_pdf')->name('pdf_opo');     // скачать отчет по ОПО
     Route::get('pdf_repair', 'PdfReportController@pdf_repair')->name('pdf_repair');     // скачать отчет о повторах несоответствия
     Route::get('pdf_event', 'PdfReportController@pdf_event')->name('pdf_event');     // скачать отчет о мероприятиях
+    Route::get('pdf_effect', 'PdfReportController@pdf_effect')->name('pdf_effect');     // скачать отчет об эффективности
+    Route::get('pdf_info_act', 'PdfReportController@pdf_info_act')->name('pdf_info_act');     // скачать справку о выполнении актов внутреннее
+    Route::get('pdf_act_pb', 'PdfReportController@pdf_act_pb')->name('pdf_act_pb');     // скачать справку о выполнении актов надзорные организации
+    Route::get('pdf_quality_criteria', 'PdfReportController@pdf_quality_criteria')->name('pdf_quality_criteria');     // скачать отчет по критериям качественной оценки
+    Route::get('docs/report5','ReportController@report5')->name('repiat_report');
+    Route::get('docs/report6','ReportController@report6')->name('event_pk');
+    Route::get('docs/effect_pk','ReportController@report_effect')->name('effect_pk');
+    Route::get('docs/info_act','ReportController@report_info_act')->name('info_act');
+    Route::get('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
+    Route::get('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
 
     Route::resource('form51',Form51Controller::class);
     Route::resource('form52',Form52Controller::class);
