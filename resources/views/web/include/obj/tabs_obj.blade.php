@@ -69,8 +69,9 @@
                                     @endforeach
 
                                     </tbody>
-                                </table>
 
+                                </table>
+                                <div class="bat_info"> <a href="{{ route('pdf_tech_reg', $id_obj) }}" >Скачать</a></div>
                             </div>
 
                         </div>
@@ -112,6 +113,7 @@
                     @endforeach
                     </tbody>
                 </table>
+
             </div>
 
 

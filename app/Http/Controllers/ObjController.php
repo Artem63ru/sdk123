@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Ref_obj;
 use App\Ref_opo;
 use App\Models\Tech_reg\Tech_reglament;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class ObjController extends Controller
 {
@@ -18,7 +20,7 @@ class ObjController extends Controller
         $all_opo = Ref_opo::all(); //Сыслка на все ОПО
         $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
         $this_elem = Ref_obj::find($id_obj); // Ссылка на элемен
-        $this_elem_apk = Ref_obj::find($id_obj)->elem_to_APK;  // перечень всех несоответствий АПК по элементу
+        $this_elem_apk = $this_elem->elem_to_APK;  // перечень всех несоответствий АПК по элементу
         $reglaments = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
 //
         return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments'));
@@ -66,5 +68,14 @@ class ObjController extends Controller
 
         }
         return str_replace('"','',json_encode(array_reverse($my, false)));
+     }
+     public function pdf_download ($id_obj)
+     {
+         $this_elem = Ref_obj::find($id_obj); // Ссылка на элемент
+         $data['title'] = $this_elem->descObj.' '.$this_elem->nameObj.' ОПО №'.$this_elem->idOPO;
+         $data['this_elem'] = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
+         $patch = 'Технологический регламент'.$this_elem->descObj.'_'.$this_elem->nameObj.'.pdf';
+         $pdf = PDF::loadView('web.include.obj.pdf.pdf_tech_reg', $data);//->setPaper('a4', 'landscape');
+         return $pdf->download($patch);
      }
 }
