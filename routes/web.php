@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', ['as' => 'gazprom', 'uses' => 'MenuController@view_menu']);   //Главная
-//    Route::get('/opo/{opo}', function ($opo) {
-//        return view('opo', ['opo' => $opo]);
-////    })->name('opo')->middleware('auth');  // Уровень ОПО главная
+
 
 //********************* Технологический блок ****************************************
     Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
@@ -18,6 +16,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
+    Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
     Route::get('/opo/get_db_info/15', 'OpoController@get_db_info'); //Достаем данные из базы данных для таблицы
@@ -111,13 +110,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //  Route::get('/home', 'HomeController@index')->name('home');
 
-//*********** Проба загрузки выгрузки не работает
-    Route::get('user/{id}/avatar', function ($id) {
-        // Find the user
-        $user = User::find(1);
-        // Return the image in the response with the correct MIME type
-        return response()->make($user->avatar, 200, array('Content-Type' => (new finfo(FILEINFO_MIME))->buffer($user->avatar)));
-    });
+
 //*********** Проба выгрузки картинки выгрузки не работает
     Route::post('user/1', function (Request $request, $id) {
         // Get the file from the request

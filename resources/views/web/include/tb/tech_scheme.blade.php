@@ -8,7 +8,7 @@
                     <p class="title">{{$name_tb}}</p>
                     <div class="tech_scheme_line"></div>
                     <p class="descript">{{trim(trim($shema, "storage/"), "pdf/")}}</p>
-                    <a href="#" class="download_scheme">Скачать <img alt="" src="{{asset('assets/images/icons/download.svg')}}"></a>
+                    <a href="{{$shema}}" download="" class="download_scheme">Скачать <img alt="" src="{{asset('assets/images/icons/download.svg')}}"></a>
                 </div>
                 <div class="tech_scheme_right">
 {{--                    <img alt="" src="{{asset('replace/scheme.png')}}" class="replace">--}}
