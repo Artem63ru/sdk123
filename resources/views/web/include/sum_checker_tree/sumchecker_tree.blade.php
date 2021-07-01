@@ -492,12 +492,19 @@
                 },
                 success:function (data){
                     console.log(data)
-                    var html=$('#sumchecker_last_logs').html()
-                    if (data=='' || data==null){
+
+                    if (data['code']!=0 || data==null){
+                        var html=$('#sumchecker_last_logs').html()
                         $('#sumchecker_last_logs').html(html+'An error occurred on the server!<br>');
                     }
                     else{
-                        $('#sumchecker_last_logs').html(html+data+'<br>');
+                        console.log(data['data']);
+                        data['data'].forEach(function (item){
+                            if (item!=''){
+                                var html=$('#sumchecker_last_logs').html()
+                                $('#sumchecker_last_logs').html(html+item+'<br>');
+                            }
+                        })
                     }
                 }
             })

@@ -4,7 +4,7 @@ namespace App\Models\SumChecker;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SumcheckerLog extends Model
+class SumCheckerLog extends Model
 {
     protected $table = 'sumchecker.check_log';
 

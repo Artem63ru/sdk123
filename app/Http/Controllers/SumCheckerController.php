@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SumChecker\SumcheckerConfig;
-use App\Models\SumChecker\SumcheckerLog;
+use App\Models\SumChecker\SumCheckerLog;
 
 function viewTree($folder, $space) {
     // Получаем полный список файлов и каталогов внутри $folder
@@ -14,7 +14,7 @@ function viewTree($folder, $space) {
         // Отбрасываем текущий и родительский каталог
         if ( ( $file == '.' ) || ( $file == '..' ) ) continue;
         // Получаем полный путь к файлу
-        $path = $folder.'\\'.$file;
+        $path = $folder.'/'.$file;
         // Если это директория
         if ( is_dir( $path ) )
         {
@@ -24,7 +24,7 @@ function viewTree($folder, $space) {
             else{
                 $data[] = array(
                     'title'   => $file,
-                    'key'   => $folder.'\\'.$file,
+                    'key'   => $folder.'/'.$file,
                     'lazy'   => true,
                     'folder'   => true,
                     'selected'=>false
@@ -35,7 +35,7 @@ function viewTree($folder, $space) {
         }
         // Если это файл, то просто выводим название файла
         else {
-            $db_file=SumcheckerConfig::where('path', $folder.'\\'.$file)->first();
+            $db_file=SumcheckerConfig::where('path', $folder.'/'.$file)->first();
             if ($db_file ==null){
                 $choiced=false;
             }
@@ -44,7 +44,7 @@ function viewTree($folder, $space) {
             }
             $data[] = array(
                 'title'   => $file,
-                'key'   => $folder.'\\'.$file,
+                'key'   => $folder.'/'.$file,
                 'lazy'   => false,
                 'folder'   => false,
                 'selected'=>$choiced
@@ -118,12 +118,19 @@ class SumCheckerController extends Controller
 
     }
     public function sumchecker_cmd(Request $request){
+        $output='';
+        $code='';
         if ($request->type=='update'){
-//            return nl2br("asdasdasdasdasd \n sadasdasdasd", true);
-            return nl2br(shell_exec($_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec/sumchecker update'), true);
+            exec('cd '.$_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec; ./sumchecker update 2>&1', $output, $code);
+            $data=array('data'=>$output,
+               'code'=>$code);
+            return $data;
         }
         else if ($request->type=='check'){
-            return nl2br(shell_exec($_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec/sumchecker check'), true);
+            exec('cd '.$_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec; ./sumchecker check 2>&1', $output, $code);
+            $data=array('data'=>$output,
+                'code'=>$code);
+            return $data;
         }
         else{
             return null;
@@ -131,7 +138,7 @@ class SumCheckerController extends Controller
     }
 
     public function get_all_logs(){
-        $logs=SumcheckerLog::orderBy('id','DESC')->get();
+        $logs=SumCheckerLog::orderBy('id','DESC')->get();
         $data=null;
         foreach ($logs as $log) {
             $data[] = array(
@@ -139,6 +146,15 @@ class SumCheckerController extends Controller
                 'event'=>$log->event
             );
         }
+        return $data;
+    }
+
+    public function test(){
+        $output='';
+        $code='';
+        exec('cd '.$_SERVER["DOCUMENT_ROOT"].'/sumchecker/sumchecker_exec; ./sumchecker update 2>&1', $output, $code);
+        $data=array('data'=>$output,
+            'code'=>$code);
         return $data;
     }
 }
