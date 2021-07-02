@@ -1,5 +1,7 @@
 @extends('web.layouts.app')
-
+@push('app-css')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
     <div class="container">
