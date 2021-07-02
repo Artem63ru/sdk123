@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./sumchecker_exec/sumchecker update
+/home/ilvir/PhpstormProjects/sdk123/public/sumchecker/sumchecker_exec/sumchecker update
