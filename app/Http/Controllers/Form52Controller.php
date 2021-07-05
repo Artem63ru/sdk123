@@ -16,7 +16,7 @@ class Form52Controller extends Controller
      */
     public function index()
     {
-        $data = Form52::orderBy('id','DESC')->paginate(10);
+        $data = Form52::orderBy('id','DESC')->paginate(15);
         return view('form52.index',compact('data'));
     }
 
@@ -27,8 +27,10 @@ class Form52Controller extends Controller
      */
     public function create()
     {
+        $data = Form52::create();
+        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', $data->id_event)->get()]);
        // $act_id = 0;
-        return view('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
+    //    return view('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
     }
 
     // открытие формы заполнения мероприятия
@@ -62,7 +64,11 @@ class Form52Controller extends Controller
     {
         $input_data = $request->all();
         $report52_table = Form52_table::create($request->all());
-        return redirect()->route('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
+        $data = Form52::find(23);
+//        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', $data->id_event)->get()]);
+  //  return redirect()->route('form52.edit',['form52'=>$data->id_event]);
+       //return back()->withInput();
+        return redirect()->action([Form52Controller::class, 'edit'], ['form52' => $data->id_event]);
     }
 
     /**
@@ -85,7 +91,7 @@ class Form52Controller extends Controller
     public function edit($id)
     {
         $data = Form52::find($id);
-        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', "$id")->get()]);
+        return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', $id)->get()]);
     }
 
     /**
@@ -97,11 +103,21 @@ class Form52Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $data = Form52::find($id);
-        $data->update($input);
-        return redirect()->route('form52.index')
-            ->with('success','User updated successfully');
+
+       if($_POST['save']== 'Update') {
+           $input = $request->all();
+           $data = Form52::find($id);
+           $data->update($input);
+           return redirect()->route('form52.index')
+               ->with('success', 'User updated successfully');
+       }
+       elseif($_POST['save']== 'Update_childtablle')
+       {
+           $input = $request->all();
+           $data = Form52::find($id);
+           $data->update($input);
+           return redirect()->route('add-child-form52',['id'=>$id]);
+       }
     }
 
     /**

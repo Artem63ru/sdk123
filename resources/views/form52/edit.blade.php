@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('act_num', null, array('placeholder' => 'Укажите номер Акта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                        {!! Form::text('act_num', null, array('placeholder' => 'Укажите номер Акта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('tag_unitGDA', null, array('placeholder' => 'Введите наименования структурного подразделения', 'autocomplete'=>"off",'style' => 'height: 3vh; width: 70%')) !!}
+                                        {!! Form::text('tag_unitGDA', null, array('placeholder' => 'Введите наименования структурного подразделения', 'autocomplete'=>"off",'style' => 'height: 3vh; width: 70%', 'class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </div>
@@ -73,14 +73,14 @@
                                         инцидента</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off")) !!}
+                                    {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </select></div>
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Полное наименование участка,установки, цеха, инвентарный номер, регистрационный номер ОПО, на котором произошёл инцидент</h4>
                             <div class="form-group">
-                                {!! Form::textarea('name_object', null, array('placeholder' => 'Введите информацию об объекте','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('name_object', null, array('placeholder' => 'Введите информацию об объекте','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
@@ -97,10 +97,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                                {!! Form::text('predsed', null, array('placeholder' => 'ФИО председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                                {!! Form::text('data_predsed', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -115,10 +115,10 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {!! Form::text('zam_predsed', null, array('placeholder' => 'ФИО зам. председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                                {!! Form::text('zam_predsed', null, array('placeholder' => 'ФИО зам. председателя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::text('data_zam', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                                {!! Form::text('data_zam', null, array('placeholder' => 'Занимаемая должность','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@
                             <td>
                                 <div class="card-header"><h5 class="text-muted" style="text-align: left">Члены комиссии:</h5>
                                     <div class="form-group">
-                                        {!! Form::textarea('data_comission', null, array('placeholder' => 'Укажите ФИО и занимаемую должность членов комиссии','style' => 'height: 8vh; width: 70%')) !!}
+                                        {!! Form::textarea('data_comission', null, array('placeholder' => 'Укажите ФИО и занимаемую должность членов комиссии','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                                     </div>
                                 </div>
 
@@ -137,25 +137,25 @@
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Краткая характеристика установки (отделения, участка), где произошел инцидент</h4>
                             <div class="form-group">
-                                {!! Form::textarea('characteristic', null, array('placeholder' => 'Укажите данные о объекте','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('characteristic', null, array('placeholder' => 'Укажите данные о объекте','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Обстоятельства инцидента</h4>
                             <div class="form-group">
-                                {!! Form::textarea('info_accident', null, array('placeholder' => 'Укажите обстоятельства инцидента и сценарий его развития','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('info_accident', null, array('placeholder' => 'Укажите обстоятельства инцидента и сценарий его развития','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Причины инцидента</h4>
                             <div class="form-group">
-                                {!! Form::textarea('reason_accident', null, array('placeholder' => 'Укажите конкретные причины возникновения инцидента и ихх описание','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('reason_accident', null, array('placeholder' => 'Укажите конкретные причины возникновения инцидента и ихх описание','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Заключение о лицах, ответственных за нарушения, которые привели к инциденту</h4>
                             <div class="form-group">
-                                {!! Form::textarea('result', null, array('placeholder' => 'Укажите лица (ФИО, занимаемая должность), допустившие нарушения требований безопасности, которые привели к инциденту. Следует указать какие именно требования были нарушены','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('result', null, array('placeholder' => 'Укажите лица (ФИО, занимаемая должность), допустившие нарушения требований безопасности, которые привели к инциденту. Следует указать какие именно требования были нарушены','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        {!! Form::text('stop_time', null, array('placeholder' => 'Укажите длительность простоя оборудования в часах','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                        {!! Form::text('stop_time', null, array('placeholder' => 'Укажите длительность простоя оборудования в часах','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </div>
@@ -175,13 +175,13 @@
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Последствия от инцидента</h4>
                             <div class="form-group">
-                                {!! Form::textarea('result_acccident', null, array('placeholder' => 'Укажите повреждения технических устройств, затраты на проведение работ, расходы на ликвидацию последствий, снижение добычи газа, ориентировочный ущерб, наличие пострадавших','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('result_acccident', null, array('placeholder' => 'Укажите повреждения технических устройств, затраты на проведение работ, расходы на ликвидацию последствий, снижение добычи газа, ориентировочный ущерб, наличие пострадавших','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Наличие аналогичных случаев</h4>
                             <div class="form-group">
-                                {!! Form::textarea('same_accident', null, array('placeholder' => 'Укажите были ли ранее аналогичные случаи, разрабатывались ли мероприятия по их предупреждению','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('same_accident', null, array('placeholder' => 'Укажите были ли ранее аналогичные случаи, разрабатывались ли мероприятия по их предупреждению','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
@@ -215,7 +215,9 @@
                         </div>
 
                         <div style="padding-bottom: 40px; margin-top: 30px" class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">+ добавить мероприятие</button>
+                            <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <button type="submit" name="save" value="Update_childtablle" class="btn btn-primary">Добавить мероприятия</button>
+                            </div>
                         </div>
 
                         <div class="card-header">
@@ -223,14 +225,14 @@
                                 <div class="col"><h4 class="text-muted" style="text-align: left">Дата составления акта</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off")) !!}
+                                    {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </select></div>
                             </div>
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Приложение</h4>
                             <div class="form-group">
-                                {!! Form::textarea('app', null, array('placeholder' => 'Укажите информацию о приложениях к акту (наименование документа и количество листов в нем)','style' => 'height: 8vh; width: 70%')) !!}
+                                {!! Form::textarea('app', null, array('placeholder' => 'Укажите информацию о приложениях к акту (наименование документа и количество листов в нем)','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                             </div>
                         </div>
 
@@ -241,7 +243,7 @@
 
 
                         <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                            <button type="submit" name="save" value="Update" class="btn btn-primary">Сохранить</button>
                         </div>
                 </div>
                 {!! Form::close() !!}

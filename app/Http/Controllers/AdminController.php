@@ -242,15 +242,17 @@ class AdminController extends Controller
     public function xml_view ()
     {
 
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
 
 
 
-        $contents = $contents."<tag1></tag1>\n";
+        $contents = $contents."<tag1>";
+        $contents = $contents."18554";
+        $contents = $contents."</tag1>";
 
 
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
-       Storage::disk('local')->put('15_min.xml', $contents, 'public');
+       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
 
     }
 

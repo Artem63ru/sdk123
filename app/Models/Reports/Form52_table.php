@@ -18,6 +18,7 @@ class Form52_table extends Model
         'responsible',
         'time_event',
         'note',
+        'id_act'
         ];
     public function event_to_form()
     {

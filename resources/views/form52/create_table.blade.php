@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
 
-              {!! Form::open(array( route('add_user') ,'method'=>'POST')) !!}
+              {!! Form::open(array( route('form52-add-table',['id'=>$id]) ,'method'=>'POST')) !!}
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Организационно-технические мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем:</h4>
                         <td class="table table-bordered">
                         <td>
@@ -35,6 +35,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                            <input type="hidden" value="{{$id}}" name="id_act">
                                         </div>
                                     </div>
                                 </div>

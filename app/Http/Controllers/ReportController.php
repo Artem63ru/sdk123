@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reports\Form52;
+use App\Models\Reports\Form52_table;
+use App\Http\Controllers\Form52Controller;
 use Illuminate\Http\Request;
 use App\Models\Calc_elem;
 use App\Models\Calc_ip_opo_i;
@@ -67,6 +70,18 @@ class ReportController extends Controller
         return view('web.docs.reports.status_opo', ['data' => $data]);
     }
 
+    public function child_form52_table (Request $request, $id_event)
+    {
+        return view('form52.create_table',['id'=>$id_event]);
+
+    }
+    public function store_child_form52 (Request $request)
+    {
+
+        Form52_table::create($request->all());
+        $data = Form52::find($request->input('id_act'));
+        return redirect()->action([Form52Controller::class, 'edit'], ['form52' => $data->id]);
+    }
 
     public function report5(Request $request)
     {
