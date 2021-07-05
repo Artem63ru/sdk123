@@ -59,6 +59,12 @@
                         </div>
                     </label>
                     <label class="accordion">
+                        <input type='checkbox' name='checkbox-accordion' id="plan" onclick="SaveChecked(this)">
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/rtn2') }}>План мероприятий по обеспечению ПБ (2021г.)</a>
+                        </div>
+                    </label>
+                    <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id="gloss" onclick="SaveChecked(this)" >
                         <div class="accordion__header">
                             <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
