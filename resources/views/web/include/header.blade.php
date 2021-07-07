@@ -9,7 +9,9 @@
                 </p>
 
             @else
+               <a class="logout" href="{{ route('changepwd') }}">
                 <p class="white_text user_name">{{ Auth::user()->name }}</p>
+               </a>
                 <a class="logout" href="{{ route('logout') }}">
                     {{ __('Logout') }}
                 </a>

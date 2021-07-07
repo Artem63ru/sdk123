@@ -199,6 +199,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
 
+
+    Route::resource('form51',Form51Controller::class);
+    Route::resource('form52',Form52Controller::class);
+    Route::get('form52-add-table/{id}','ReportController@child_form52_table')->name('add-child-form52');
+    Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
+    Route::resource('form61',Form61Controller::class);
+    Route::resource('form62',Form62Controller::class);
+
+    ///////////************** Отчеты PDF **************************************/////////////////////////
     Route::get('pdf_elem', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам
     Route::get('pdf_scena', 'PdfReportController@pdf_scena')->name('pdf_scena');     // скачать отчет по сценариям
     Route::get('pdf_result_pk', 'PdfReportController@pdf_result_pk')->name('pdf_result_pk');     // скачать отчет по проверкам
@@ -217,12 +226,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
     Route::get('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
 
-    Route::resource('form51',Form51Controller::class);
-    Route::resource('form52',Form52Controller::class);
-    Route::get('form52-add-table/{id}','ReportController@child_form52_table')->name('add-child-form52');
-    Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
-    Route::resource('form61',Form61Controller::class);
-    Route::resource('form62',Form62Controller::class);
+    ////////////******************** Отчеты XML**************************************
+    Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут
+    Route::get('/xml1', 'XMLController@events'); // создание xml events
+    Route::get('/xml2', 'XMLController@year'); // создание xml year
+    Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
+    Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
+    Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
+    Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
+
+
+
+
     //*******************************************************
 
     Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
@@ -234,32 +249,6 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
     Route::get('/charts/chart_ip_opo', function () {        return view('charts/chart_ip_opo');    })->name('chart_ip_opo');
-
-//***************Login and prochee
-
-
-    //  Route::get('/home', 'HomeController@index')->name('home');
-
-
-//*********** Проба выгрузки картинки выгрузки не работает
-    Route::post('user/1', function (Request $request, $id) {
-        // Get the file from the request
-        $file = $request->file('image');
-        // Get the contents of the file
-        $contents = $file->openFile()->fread($file->getSize());
-        // Store the contents to the database
-        $user = App\User::find(1);
-        $user->avatar = $contents;
-        $user->save();
-    })->name('uploaded');
-
-//*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
-    Route::get('invoices/download', 'InvoiceController@download');
-    Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
-    Route::get('pdf', 'NotesController@pdf');
-
-//*********** Проба загрузки выгрузки
-    Route::resource('/images', 'ImageController');
 
 
 
@@ -290,27 +279,23 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
     Route::get('/admin/roles', 'AdminController@role_view');
     Route::get('/admin/perm', 'AdminController@perm_view');
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Auth\RegisterController@register');
+//    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//    Route::post('register', 'Auth\RegisterController@register');
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
     //  }); //'role:admin'
 //}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
-//Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+
 
 
 //Смена пароля
-    Route::get('/change-password', 'ChangePasswordController@index');
+    Route::get('/change-password', 'ChangePasswordController@index')->name('changepwd');
     Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
 //Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-
-
-
-    Route::get('/new/{id}', 'Opo_dayController@view_last');
 
 
 
@@ -336,14 +321,6 @@ Auth::routes();
 Route::get('/logout', function () {    Auth::logout();    return Redirect::to('login');});
 
 
-Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут
-Route::get('/xml1', 'XMLController@events'); // создание xml events
-Route::get('/xml2', 'XMLController@year'); // создание xml year
-Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
-Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
-Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
-Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
-
 
 
 Route::get('/search/{id_s}', function ($id_s){
@@ -355,6 +332,28 @@ Route::get('/search/{id_s}', function ($id_s){
 
        return view('web.opo_shema_main', ['name' => $id_s, 'data'=>$data]);
 }); // С датапикером
+
+
+//*********** Проба выгрузки картинки выгрузки не работает
+Route::post('user/1', function (Request $request, $id) {
+    // Get the file from the request
+    $file = $request->file('image');
+    // Get the contents of the file
+    $contents = $file->openFile()->fread($file->getSize());
+    // Store the contents to the database
+    $user = App\User::find(1);
+    $user->avatar = $contents;
+    $user->save();
+})->name('uploaded');
+
+//*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
+Route::get('invoices/download', 'InvoiceController@download');
+Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
+Route::get('pdf', 'NotesController@pdf');
+
+//*********** Проба загрузки выгрузки
+Route::resource('/images', 'ImageController');
+
 
 Route::get('/reports', function (){
     return view('web.docs.reports.opo_5_1');
