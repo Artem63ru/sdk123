@@ -27,8 +27,8 @@
                             <td>{{$row->sign}}</td>
 
                             <td class="hover_links">
-                                <a href="tab10/delete/{{ $row->id }}"><img click="delete({{ $row->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
-                                <a href="tab10/edit/{{ $row->id }}"><img click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                                <a href="tab10/delete/{{ $row->id }}"><img wire:click="delete({{ $row->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
+                                <a href="tab10/edit/{{ $row->id }}"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
                             </td>
                         </tr>
                         @endforeach

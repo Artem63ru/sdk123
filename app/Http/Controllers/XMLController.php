@@ -191,7 +191,6 @@ class XMLController extends Controller
     public function form52()
     {
         $data_form52 = Form52::orderByDesc('id')->first();
-
         $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
         $contents = $contents."<form id=\"5.2\">\n";
 
@@ -209,9 +208,6 @@ class XMLController extends Controller
         $result = $data_form52->result;
         $stop_time = $data_form52->stop_time;
         $result_acccident = $data_form52->result_acccident;
-        $same_accident = $data_form52->same_accident;
-        $act_date = $data_form52->act_date;
-        $app = $data_form52->app;
         $data_comission = $data_form52->data_comission;
 
         $contents = $contents . "<act_num>$act_num</act_num>\n";
@@ -364,13 +360,7 @@ class XMLController extends Controller
         $contents = $contents."</form>\n";
 
         Storage::disk('local')->put('form61.xml', $contents, 'public');
-//        $patch = 'form61' . Carbon::now() . '.xml';
-//        $pdf = '/storage/form61.xml';
-//        $xml = PDF::loadView('web.docs.reports.pdf.pdf_elem', $data)->setPaper('a4', 'landscape');
-//        $xml = Storage::get('form61');
-//        $xml = Storage::;
 
-//        return $xml->download($patch);
     }
 
     public function form62()

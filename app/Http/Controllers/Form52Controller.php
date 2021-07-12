@@ -94,6 +94,8 @@ class Form52Controller extends Controller
         return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', $id)->get()]);
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -111,6 +113,7 @@ class Form52Controller extends Controller
            return redirect()->route('form52.index')
                ->with('success', 'User updated successfully');
        }
+
        elseif($_POST['save']== 'Update_childtablle')
        {
            $input = $request->all();
@@ -119,6 +122,7 @@ class Form52Controller extends Controller
            return redirect()->route('add-child-form52',['id'=>$id]);
        }
     }
+
 
     /**
      * Remove the specified resource from storage.

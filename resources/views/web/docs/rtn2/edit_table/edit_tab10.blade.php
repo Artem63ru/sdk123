@@ -3,6 +3,9 @@
     Для годового отчета
 @endsection
 @section('content')
+    @push('app-css')
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -36,40 +39,66 @@
 
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование записи</h2></div>
 
-                            <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Фамилия</label>
-                            <div class="form-group">
+                                <div class="card-header">
+                                    <div class="form-inline">
+                                        <div class="col-4">
+                            <label for="time" style="padding-left: 35px">Фамилия</label>
+                                        </div>
+                            <div class="col-4">
                                 <input id="fam" style="width: 450px" type="text" class="form-control @error('fam') is-invalid @enderror" name="fam" value="{{ $data_table->fam }}" required autocomplete="name" autofocus>
                                 <input type="hidden" name="id" value="{{ $data_table->id }}" >
                             </div>
+                                    </div>
 
-                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Имя</label>
-                                <div class="form-group">
+                                            <div class="form-inline">
+                                                <div class="col-4">
+                                <label for="time" style="padding-left: 35px">Имя</label>
+                                                </div>
+                                <div class="col-4">
                                     <input id="name" style="width: 450px" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $data_table->name }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
+                                            </div>
 
-                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Отчество</label>
-                                <div class="form-group">
+                                                    <div class="form-inline">
+                                                        <div class="col-4">
+                                <label for="time" style="padding-left: 35px">Отчество</label>
+                                                        </div>
+                                <div class="col-4">
                                     <input id="otch" style="width: 450px" type="text" class="form-control" name="otch" value="{{ $data_table->otch }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
+                                                    </div>
 
-                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Должность</label>
-                                <div class="form-group">
+                                                            <div class="form-inline">
+                                                                <div class="col-4">
+                                <label for="time" style="padding-left: 35px">Должность</label>
+                                                                </div>
+                                <div class="col-4">
                                     <input id="position" style="width: 450px" type="text" class="form-control @error('position') is-invalid @enderror" name="position" value="{{ $data_table->position }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
+                                                            </div>
 
-                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Подпись/усиленная квалифицированная подпись</label>
-                                <div class="form-group">
+                                                                    <div class="form-inline">
+                                                                        <div class="col-4">
+                                <label for="time" style="padding-left: 35px">Подпись/усиленная квалифицированная подпись</label>
+                                                                        </div>
+                                <div class="col-4">
                                     <input id="sign" style="width: 450px" type="text" class="form-control" name="sign" value="{{ $data_table->sign }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
+                                                                    </div>
 
-
-                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" style="margin-left: 46%; margin-top: 30px" class="bat_add">Сохранить</button>
-                        </div>
+                                    <div style="padding-bottom: 40px; margin-top: 20px"
+                                         class="text-center">
+                                        <button type="submit" class="btn btn-outline-success">Сохранить
+                                        </button>
+                                        <a href="/docs/rtn2">
+                                            <button type="button" class="btn btn-outline-dark">Отменить
+                                            </button>
+                                        </a>
+                                    </div>
 
                     </form>
                             </div>

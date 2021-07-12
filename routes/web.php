@@ -199,17 +199,21 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
 
-
     Route::resource('form51',Form51Controller::class);
     Route::resource('form52',Form52Controller::class);
     Route::get('form52-add-table/{id}','ReportController@child_form52_table')->name('add-child-form52');
     Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
-    Route::resource('form61',Form61Controller::class);
-    Route::resource('form62',Form62Controller::class);
+    Route::get('form52-change-table/{id_event}', 'ReportController@edit_table')->name('form52-change-table');
+    Route::post('form52-change-table/{id_event}', 'ReportController@update_table')->name('form52-update-table');
+    Route::post('form52-change-table/{id_event}', 'ReportController@destroy_row_tab_52')->name('form52-delete-table');
     Route::resource('form5363',Form5363Controller::class);
     Route::get('form5363-add-table/{id}','ReportController@child_form5363_table')->name('add-child-form5363');
     Route::post('form5363-add-table/{id}', 'ReportController@store_child_form5363')->name('form5363-add-table');
-
+    Route::get('form5363-change-table/{id_event}', 'ReportController@edit_table5363')->name('form5363-change-table');
+    Route::post('form5363-change-table/{id_event}', 'ReportController@update_table5363')->name('form5363-update-table');
+    Route::post('form5363-change-table/{id_event}', 'ReportController@destroy_row_tab_5363')->name('form5363-delete-table');
+    Route::resource('form61',Form61Controller::class);
+    Route::resource('form62',Form62Controller::class);
 
     ///////////************** Отчеты PDF **************************************/////////////////////////
     Route::get('pdf_elem', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам

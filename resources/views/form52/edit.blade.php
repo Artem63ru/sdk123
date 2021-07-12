@@ -73,7 +73,7 @@
                                         инцидента</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                    {!! Form::date('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </select></div>
                             </div>
                         </div>
@@ -196,6 +196,7 @@
                                         <th class="centered">Ответственный исполнитель</th>
                                         <th class="centered">Срок выполнения</th>
                                         <th class="centered">Примечание</th>
+                                        <th></th>
 
                                     </tr>
                                     </thead>
@@ -207,6 +208,12 @@
                                             <td>{{$row->responsible}}</td>
                                             <td>{{$row->time_event}}</td>
                                             <td>{{$row->note}}</td>
+                                            <td  class="centered">
+                                                <a href="{{ route('form52-change-table',$row->id_event) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                                                {!! Form::open(['method' => 'POST','route' => ['form52-delete-table', $row->id_event],'style'=>'display:inline']) !!}
+                                                <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 50px" />
+                                                {!! Form::close() !!}
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -225,7 +232,7 @@
                                 <div class="col"><h4 class="text-muted" style="text-align: left">Дата составления акта</h4>
                                 </div>
                                 <div class="col">
-                                    {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                    {!! Form::date('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                     </select></div>
                             </div>
                         </div>

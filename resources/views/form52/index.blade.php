@@ -21,9 +21,6 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список актов технического расследования инцидентов</h2>
                         <div class="bat_add"><a href="{{ route('form52.create') }}">Создать Акт</a></div>
-{{--                        @can('role-create')--}}
-{{--                            <a class="" href="{{ route('form52.create') }}"> <img  alt="" src="{{asset('assets/images/btn.svg')}}" ></a>--}}
-{{--                        @endcan--}}
                     </div>
 
 
