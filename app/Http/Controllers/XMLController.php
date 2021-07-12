@@ -6,6 +6,9 @@ use App\Jas;
 use App\Models\Ref_obj;
 use App\Models\Reports\Form51;
 use App\Models\Reports\Form52;
+use App\Models\Reports\Form52_table;
+use App\Models\Reports\Form5363;
+use App\Models\Reports\Form5363_table;
 use App\Models\Reports\Form61;
 use App\Models\Reports\Form62;
 use App\Models\Rtn\Action_plan_pb;
@@ -138,60 +141,6 @@ class XMLController extends Controller
         Storage::disk('local')->put('events.xml', $contents, 'public');
     }
 
-    public function form52()
-    {
-        $data_form52 = Form52::orderByDesc('id')->first();
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-        $contents = $contents."<form id=\"5.2\">\n";
-
-        $act_num = $data_form52->act_num;
-        $tag_unitGDA = $data_form52->tag_unitGDA;
-        $date_accident = $data_form52->date_accident;
-        $name_object = $data_form52->name_object;
-        $predsed = $data_form52->predsed;
-        $data_predsed = $data_form52->data_predsed;
-        $zam_predsed = $data_form52->zam_predsed;
-        $data_zam = $data_form52->data_zam;
-        $characteristic = $data_form52->characteristic;
-        $info_accident = $data_form52->info_accident;
-        $reason_accident = $data_form52->reason_accident;
-        $result = $data_form52->result;
-        $stop_time = $data_form52->stop_time;
-        $result_acccident = $data_form52->result_acccident;
-        $same_accident = $data_form52->same_accident;
-        $act_date = $data_form52->act_date;
-        $app = $data_form52->app;
-        $data_comission = $data_form52->data_comission;
-
-            $contents = $contents . "<name_form52>\n";
-            $contents = $contents . "<act_num>$act_num</act_num>\n";
-            $contents = $contents . "<tag_unitGDA>$tag_unitGDA</unitGDA>\n";
-            $contents = $contents . "<date_accident>$date_accident</date_accident>\n";
-            $contents = $contents . "</name_form52>\n";
-            $contents = $contents . "<name_object>$name_object</name_object>\n";
-            $contents = $contents . "<comission>\n";
-            $contents = $contents . "<predsed>$predsed</predsed>\n";
-            $contents = $contents . "<data_predsed>$data_predsed</data_predsed>\n";
-            $contents = $contents . "<zam_predsed>$zam_predsed</zam_predsed>\n";
-            $contents = $contents . "<data_zam>$data_zam</zam_predsed>\n";
-            $contents = $contents . "<data_comission>$data_comission</data_comission>\n";
-            $contents = $contents . "</comission>\n";
-            $contents = $contents . "<characteristic>$characteristic</characteristic>\n";
-            $contents = $contents . "<info_accident>$info_accident</info_accident>\n";
-            $contents = $contents . "<reason_accident>$reason_accident</reason_accident>\n";
-            $contents = $contents . "<result>$result</result>\n";
-            $contents = $contents . "<stop_time>$stop_time</stop_time>\n";
-            $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
-            $contents = $contents . "<same_accident>$same_accident</same_accident>\n";
-            $contents = $contents . "<act_date>$act_date</act_date>\n";
-            $contents = $contents . "<app>$app</app>\n";
-            $contents = $contents."</form>\n";
-
-
-        Storage::disk('local')->put('form52.xml', $contents, 'public');
-    }
-
     public function form51()
     {
         $data_form51 = Form51::orderByDesc('id')->first();
@@ -237,6 +186,130 @@ class XMLController extends Controller
 
 
         Storage::disk('local')->put('form51.xml', $contents, 'public');
+    }
+
+    public function form52()
+    {
+        $data_form52 = Form52::orderByDesc('id')->first();
+
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+        $contents = $contents."<form id=\"5.2\">\n";
+
+        $act_num = $data_form52->act_num;
+        $tag_unitGDA = $data_form52->tag_unitGDA;
+        $date_accident = $data_form52->date_accident;
+        $name_object = $data_form52->name_object;
+        $predsed = $data_form52->predsed;
+        $data_predsed = $data_form52->data_predsed;
+        $zam_predsed = $data_form52->zam_predsed;
+        $data_zam = $data_form52->data_zam;
+        $characteristic = $data_form52->characteristic;
+        $info_accident = $data_form52->info_accident;
+        $reason_accident = $data_form52->reason_accident;
+        $result = $data_form52->result;
+        $stop_time = $data_form52->stop_time;
+        $result_acccident = $data_form52->result_acccident;
+        $same_accident = $data_form52->same_accident;
+        $act_date = $data_form52->act_date;
+        $app = $data_form52->app;
+        $data_comission = $data_form52->data_comission;
+
+        $contents = $contents . "<act_num>$act_num</act_num>\n";
+        $contents = $contents . "<tag_unitGDA>$tag_unitGDA</unitGDA>\n";
+        $contents = $contents . "<date_accident>$date_accident</date_accident>\n";
+        $contents = $contents . "<name_object>$name_object</name_object>\n";
+        $contents = $contents . "<comission>\n";
+        $contents = $contents . "<predsed>$predsed</predsed>\n";
+        $contents = $contents . "<data_predsed>$data_predsed</data_predsed>\n";
+        $contents = $contents . "<zam_predsed>$zam_predsed</zam_predsed>\n";
+        $contents = $contents . "<data_zam>$data_zam</zam_predsed>\n";
+        $contents = $contents . "<data_comission>$data_comission</data_comission>\n";
+        $contents = $contents . "</comission>\n";
+        $contents = $contents . "<characteristic>$characteristic</characteristic>\n";
+        $contents = $contents . "<info_accident>$info_accident</info_accident>\n";
+        $contents = $contents . "<reason_accident>$reason_accident</reason_accident>\n";
+        $contents = $contents . "<result>$result</result>\n";
+        $contents = $contents . "<stop_time>$stop_time</stop_time>\n";
+        $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
+
+        $info_table = Form52_table::orderBy('num')->where('id_act', '=', $data_form52->id)->get();
+
+        foreach ($info_table as $item) {
+            $num = $item->num;
+            $context = $item->context;
+            $responsible = $item->responsible;
+            $time_event = $item->time_event;
+            $note = $item->note;
+
+            $contents = $contents."<event id=\"$num\">\n";
+            $contents = $contents . "<context>$context</context>\n";
+            $contents = $contents . "<responsible>$responsible</responsible>\n";
+            $contents = $contents . "<time_event>$time_event</time_event>\n";
+            $contents = $contents . "<note>$note</note>\n";
+            $contents = $contents."</event>\n";
+        }
+
+        $same_accident = $data_form52->same_accident;
+        $act_date = $data_form52->act_date;
+        $app = $data_form52->app;
+
+        $contents = $contents . "<same_accident>$same_accident</same_accident>\n";
+        $contents = $contents . "<act_date>$act_date</act_date>\n";
+        $contents = $contents . "<app>$app</app>\n";
+        $contents = $contents."</form>\n";
+
+
+        Storage::disk('local')->put('form52.xml', $contents, 'public');
+    }
+
+
+    public function form5363(){
+
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+        $contents = $contents."<form id=\"5.3, 6.3\">\n";
+
+        $act_info = Form5363::orderByDesc('id')->first();
+        $act_num = $act_info->id;
+        $event_info = Form5363_table::orderBy('num_event')->where('id_act', '=', $act_num)->get();
+        $date1 = $act_info->date1;
+        $date2 = $act_info->date2;
+
+        $contents = $contents . "<id_act>$act_num</id_act>\n";
+        $contents = $contents . "<date1>$date1</date1>\n";
+        $contents = $contents . "<date2>$date2</date2>\n";
+
+        foreach ($event_info as $item) {
+            $num_event = $item->num_event;
+            $date = $item->date;
+            $place = $item->place;
+            $data_act = $item->date_act;
+            $event = $item->event;
+            $time_event = $item->time_event;
+            $check_event = $item->check_event;
+            $info = $item->info;
+
+            $contents = $contents."<event id=\"$num_event\">\n";
+            $contents = $contents . "<date>$date</date>\n";
+            $contents = $contents . "<place>$place</place>\n";
+            $contents = $contents . "<data_act>$data_act</data_act>\n";
+            $contents = $contents . "<event>$event</event>\n";
+            $contents = $contents . "<time_event>$time_event</time_event>\n";
+            $contents = $contents . "<check_event>$check_event</check_event>\n";
+            $contents = $contents . "<info>$info</info>\n";
+            $contents = $contents."</event>\n";
+        }
+
+        $partGDA = $act_info->partGDA;
+        $app = $act_info->app;
+        $namePB = $act_info->namePB;
+
+        $contents = $contents . "<partGDA>$partGDA</partGDA>\n";
+        $contents = $contents . "<app>$app</app>\n";
+        $contents = $contents . "<namePB>$namePB</namePB>\n";
+
+
+        $contents = $contents."</form>\n";
+        Storage::disk('local')->put('form5363.xml', $contents, 'public');
     }
 
     public function form61()
