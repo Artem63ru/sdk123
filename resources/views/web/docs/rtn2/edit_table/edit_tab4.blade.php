@@ -3,9 +3,6 @@
     Для годового отчета
 @endsection
 @section('content')
-    @push('app-css')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -39,131 +36,85 @@
 
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование записи</h2></div>
 
-                                <div class="card-header">
-                                    <div class="form-inline">
-                                        <div class="col-4">
-                            <label for="time" style="padding-left: 35px">Регистрационный номер ОПО</label>
-                                        </div>
+                            <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Регистрационный номер ОПО</label>
                             <div class="form-group">
-                                <input id="num_opo" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
+                                <input id="num_opo" style="width: 450px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
                                 <input type="hidden" name="id" value="{{ $data_table->id }}" >
                             </div>
-                                        </div>
 
-                                            <div class="form-inline">
-                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Наименование мероприятия</label>
-                                                </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Наименование мероприятия</label>
                                 <div class="form-group">
-                                    <input id="name_event" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('name_event') is-invalid @enderror" name="name_event" value="{{ $data_table->name_event }}" required autocomplete="name" autofocus>
+                                    <input id="name_event" style="width: 450px" type="text" class="form-control @error('name_event') is-invalid @enderror" name="name_event" value="{{ $data_table->name_event }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                            </div>
 
-                                                    <div class="form-inline">
-                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Дата выполнения</label>
-                                                        </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Дата выполнения</label>
                                 <div class="form-group">
-                                    <input id="date_accept" style="width: 450px; margin-top: 7px" type="date" class="form-control" name="date_accept" value="{{ $data_table->date_accept }}" autocomplete="name" autofocus>
+                                    <input id="date_accept" style="width: 450px" type="date" class="form-control" name="date_accept" value="{{ $data_table->date_accept }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                    </div>
 
-                                                            <div class="form-inline">
-                                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Отметка о выполнении</label>
-                                                                </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Отметка о выполнении</label>
                                 <div class="form-group">
-                                    <input id="check_event" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="check_event" value="{{ $data_table->check_event }}" autocomplete="name" autofocus>
+                                    <input id="check_event" style="width: 450px" type="text" class="form-control" name="check_event" value="{{ $data_table->check_event }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                            </div>
 
-                                                                    <div class="form-inline">
-                                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Файл с указанием ссылок на оформленные документы</label>
-                                                                        </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Файл с указанием ссылок на оформленные документы</label>
                                 <div class="form-group">
-                                    <input id="file" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="file" value="{{ $data_table->file }}" autocomplete="name" autofocus>
+                                    <input id="file" style="width: 800px" type="text" class="form-control" name="file" value="{{ $data_table->file }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                                        </div>
 
-                                                                            <div class="form-inline">
-                                                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Причины невыполнения</label>
-                                                                                </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Причины невыполнения</label>
                                 <div class="form-group">
-                                    <input id="reason_nonpref" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="reason_nonpref" value="{{ $data_table->reason_nonpref }}" autocomplete="name" autofocus>
+                                    <input id="reason_nonpref" style="width: 800px" type="text" class="form-control" name="reason_nonpref" value="{{ $data_table->reason_nonpref }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                                                </div>
 
-                                                                                    <div class="form-inline">
-                                                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Реквизиты (дата) заключения экспертизы промышленной безопасности обоснования безопасности опасного производственного объекта</label>
-                                                                                        </div>
-                                                                                            <div class="form-group">
-                                    <input id="recvisits_1" style="width: 450px; margin-top: 7px" type="data" class="form-control" name="recvisits_1" value="{{ $data_table->recvisits_1 }}" autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                                                                        </div>
-
-                                                                                            <div class="form-inline">
-                                                                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Реквизиты (рег номер) заключения экспертизы промышленной безопасности обоснования безопасности опасного производственного объекта</label>
-                                                                                                </div>
-                                                                                                    <div class="form-group">
-                                    <input id="recvisits_2" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="recvisits_2" value="{{ $data_table->recvisits_2 }}" autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                                                                                </div>
-
-                                                                                                    <div class="form-inline">
-                                                                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Информация о выполнении/невыполнении требований обоснования безопасности</label>
-                                                                                                        </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Реквизиты (дата) заключения экспертизы промышленной безопасности обоснования безопасности опасного производственного объекта</label>
                                 <div class="form-group">
-                                    <input id="check_require" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('check_require') is-invalid @enderror" name="check_require" value="{{ $data_table->check_require }}" required autocomplete="name" autofocus>
+                                    <input id="recvisits_1" style="width: 450px" type="data" class="form-control" name="recvisits_1" value="{{ $data_table->recvisits_1 }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                                                                        </div>
 
-                                                                                                            <div class="form-inline">
-                                                                                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Ссылки на офиициальные документы</label>
-                                                                                                                </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Реквизиты (рег номер) заключения экспертизы промышленной безопасности обоснования безопасности опасного производственного объекта</label>
                                 <div class="form-group">
-                                    <input id="doc" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="doc" value="{{ $data_table->doc }}" autocomplete="name" autofocus>
+                                    <input id="recvisits_2" style="width: 450px" type="text" class="form-control" name="recvisits_2" value="{{ $data_table->recvisits_2 }}" autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                                                                                </div>
 
-                                                                                                                    <div class="form-inline">
-                                                                                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Причины невыполнения требований обоснования безопасности</label>
-                                                                                                                        </div>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Информация о выполнении/невыполнении требований обоснования безопасности</label>
                                 <div class="form-group">
-                                    <input id="reason_nonpref_require" style="width: 450px; margin-top: 7px" type="text" class="form-control" name="reason_nonpref_require" value="{{ $data_table->reason_nonpref_require }}" autocomplete="name" autofocus>
+                                    <input id="check_require" style="width: 450px" type="text" class="form-control @error('check_require') is-invalid @enderror" name="check_require" value="{{ $data_table->check_require }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                                                                                        </div>
 
-                                <div style="padding-bottom: 40px; margin-top: 20px"
-                                     class="text-center">
-                                    <button type="submit" class="btn btn-outline-success">Сохранить
-                                    </button>
-                                    <a href="/docs/rtn2">
-                                        <button type="button" class="btn btn-outline-dark">Отменить
-                                        </button>
-                                    </a>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Ссылки на офиициальные документы</label>
+                                <div class="form-group">
+                                    <input id="doc" style="width: 450px" type="text" class="form-control" name="doc" value="{{ $data_table->doc }}" autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                            </form>
+
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Причины невыполнения требований обоснования безопасности</label>
+                                <div class="form-group">
+                                    <input id="reason_nonpref_require" style="width: 450px" type="text" class="form-control" name="reason_nonpref_require" value="{{ $data_table->reason_nonpref_require }}" autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
+                                </div>
+
+
+                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" style="margin-left: 46%; margin-top: 30px" class="bat_add">Сохранить</button>
+                        </div>
+
+                    </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+
+    @include('web.include.modal.datapicker')
 
 
 @endsection

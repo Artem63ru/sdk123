@@ -3,9 +3,6 @@
     Для годового отчета
 @endsection
 @section('content')
-    @push('app-css')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -23,13 +20,11 @@
                         @csrf
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Создание новой записи</h2></div>
 
-                        <div class="card-header">
-                            <div class="form-inline">
-                                <div class="col-4">
-                            <label for="num_opo" style="padding-left: 35px">Регистрационный номер ОПО</label>
-                                </div>
-                                <div class="col-4">
-                                <input id="num_opo" type="text" style="width: 450px; margin-top: 7px" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ old('num_opo') }}" required autocomplete="num_opo" autofocus>
+                        <div class="form-group row">
+                            <label for="num_opo" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Регистрационный номер ОПО</label>
+
+                            <div class="col-md-6">
+                                <input id="num_opo" type="text" style="width: 450px" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ old('num_opo') }}" required autocomplete="num_opo" autofocus>
 
                                 @error('num_opo')
                                 <span class="invalid-feedback" role="alert">
@@ -39,12 +34,11 @@
                             </div>
                         </div>
 
-                        <div class="form-inline">
-                                <div class="col-4">
-                            <label for="offer_list" style="padding-left: 35px">Перечень предложений</label>
-                                </div>
-                                    <div class="col-4">
-                                <input id="offer_list" type="text" style="width: 450px; margin-top: 7px" class="form-control @error('offer_list') is-invalid @enderror" name="offer_list" value="{{ old('offer_list') }}" required autocomplete="offer_list" autofocus>
+                        <div class="form-group row">
+                            <label for="offer_list" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Перечень предложений</label>
+
+                            <div class="col-md-6">
+                                <input id="offer_list" type="text" style="width: 450px" class="form-control @error('offer_list') is-invalid @enderror" name="offer_list" value="{{ old('offer_list') }}" required autocomplete="offer_list" autofocus>
 
                                 @error('offer_list')
                                 <span class="invalid-feedback" role="alert">
@@ -54,12 +48,11 @@
                             </div>
                         </div>
 
-                        <div class="form-inline">
-                                <div class="col-4">
-                            <label for="event" style="padding-left: 35px">Мероприятия по реализации предложений	Файл формата PDF/A	Файл, содержащий мероприятия</label>
-                                </div>
-                            <div class="col-4">
-                                <input id="event" type="text" style="width: 450px; margin-top: 7px" class="form-control @error('event') is-invalid @enderror" name="event" value="{{ old('event') }}" required autocomplete="event" autofocus>
+                        <div class="form-group row">
+                            <label for="event" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Мероприятия по реализации предложений	Файл формата PDF/A	Файл, содержащий мероприятия</label>
+
+                            <div class="col-md-6">
+                                <input id="event" type="text" style="width: 450px" class="form-control @error('event') is-invalid @enderror" name="event" value="{{ old('event') }}" required autocomplete="event" autofocus>
 
                                 @error('event')
                                 <span class="invalid-feedback" role="alert">
@@ -71,15 +64,8 @@
 
 
 
-                            <div style="padding-bottom: 40px; margin-top: 20px"
-                                 class="text-center">
-                                <button type="submit" class="btn btn-outline-success">Сохранить
-                                </button>
-                                <a href="/docs/rtn2">
-                                    <button type="button" class="btn btn-outline-dark">Отменить
-                                    </button>
-                                </a>
-                            </div>
+                        <div class="col-md-6 offset-md-4">
+                            <button style="margin-left: 45%; margin-top: 30px" type="submit"  class="bat_add">Сохранить запись</button>
                         </div>
                     </form>
                     </div>

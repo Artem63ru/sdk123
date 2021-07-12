@@ -72,12 +72,12 @@ return [
         ],
         'remote-sftp' => [
             'driver' => 'sftp',
-            'host' => '10.25.164.133',
+            'host' => '10.25.254.140',
             'username' => 'sdk',
             'password' => 'Potok-DU',
             'visibility' => 'public',
             'permPublic' => 0766, /// <- this one did the trick
-            'root' => '/var/www/html/',
+            'root' => '/var/www/html/sdkpb/',
 
         ],
 

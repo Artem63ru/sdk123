@@ -3,9 +3,6 @@
     Для годового отчета
 @endsection
 @section('content')
-    @push('app-css')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -39,52 +36,37 @@
 
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование записи</h2></div>
 
-                                <div class="card-header">
-                                    <div class="form-inline">
-                                        <div class="col-4">
-                            <label for="time" style="padding-left: 35px">Регистрационный номер ОПО</label>
-                                        </div>
-                            <div class="col-4">
-                                <input id="num_opo" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
+                            <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Регистрационный номер ОПО</label>
+                            <div class="form-group">
+                                <input id="num_opo" style="width: 450px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
                                 <input type="hidden" name="id" value="{{ $data_table->id }}" >
                             </div>
+
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Наименование мероприятия</label>
+                                <div class="form-group">
+                                    <input id="name_event" style="width: 450px" type="text" class="form-control @error('name_event') is-invalid @enderror" name="name_event" value="{{ $data_table->name_event }}" required autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
+                                </div>
+
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Срок выполнения</label>
+                                <div class="form-group">
+                                    <input id="time" style="width: 450px" type="date" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ $data_table->time }}" required autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
+                                </div>
+
+
+                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" style="margin-left: 46%; margin-top: 30px" class="bat_add">Сохранить</button>
+                        </div>
+
+                    </form>
                             </div>
-
-                                            <div class="form-inline">
-                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Наименование мероприятия</label>
-                                                </div>
-                                <div class="col-4">
-                                    <input id="name_event" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('name_event') is-invalid @enderror" name="name_event" value="{{ $data_table->name_event }}" required autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                </div>
-
-                                                    <div class="form-inline">
-                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Срок выполнения</label>
-                                                        </div>
-                                <div class="col-4">
-                                    <input id="time" style="width: 450px; margin-top: 7px" type="date" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ $data_table->time }}" required autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                </div>
-
-
-                                <div style="padding-bottom: 40px; margin-top: 20px"
-                                     class="text-center">
-                                    <button type="submit" class="btn btn-outline-success">Сохранить
-                                    </button>
-                                    <a href="/docs/rtn2">
-                                        <button type="button" class="btn btn-outline-dark">Отменить
-                                        </button>
-                                    </a>
-                                </div>
-                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+
+    @include('web.include.modal.datapicker')
 
 
 @endsection

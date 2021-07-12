@@ -60,11 +60,7 @@
                                 <td>Наименование коеффициента</td>
                                 <td><input type="text" readonly wire:model="name" id="title" style="min-width: 350px" /></td>
                             </tr>
-                            <tr>
-                                <td>Номер ОТО</td>
-                                <td><input type="text" readonly wire:model="from_oto" id="title" style="min-width: 350px" /></td>
-                            </tr>
-                            <tr>
+                             <tr>
                                 <td>Коэффициент для расчетов</td>
                                 <td><input type="text" wire:model="koef" id="title" style="min-width: 350px" />
                                    <p> @error('koef') <span style="color: #e3342f !important">{{ $message }}</span> @enderror </p>

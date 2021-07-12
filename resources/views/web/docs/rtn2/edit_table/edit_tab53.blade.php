@@ -3,9 +3,6 @@
     Для годового отчета
 @endsection
 @section('content')
-    @push('app-css')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -39,49 +36,37 @@
 
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование записи</h2></div>
 
-                                <div class="card-header">
-                                    <div class="form-inline">
-                                        <div class="col-4">
-                            <label for="time" style="padding-left: 35px">Регистрационный номер ОПО</label>
-                                        </div>
-                            <div class="col-4">
-                                <input id="num_opo" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
+                            <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Регистрационный номер ОПО</label>
+                            <div class="form-group">
+                                <input id="num_opo" style="width: 450px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
                                 <input type="hidden" name="id" value="{{ $data_table->id }}" >
                             </div>
-                                    </div>
-                                            <div class="form-inline">
-                                                <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Перечень предложений</label>
-                                                </div>
-                                <div class="col-4">
-                                    <input id="offer_list" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('offer_list') is-invalid @enderror" name="offer_list" value="{{ $data_table->offer_list }}" required autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                            </div>
-                                                    <div class="form-inline">
-                                                        <div class="col-4">
-                                <label for="time" style="padding-left: 35px">Мероприятия по реализации предложений	Файл формата PDF/A	Файл, содержащий мероприятия</label>
-                                                        </div>
-                                <div class="col-4">
-                                    <input id="event" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('event') is-invalid @enderror" name="event" value="{{ $data_table->event }}" required autocomplete="name" autofocus>
-                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
-                                </div>
-                                                    </div>
 
-                                <div style="padding-bottom: 40px; margin-top: 20px"
-                                     class="text-center">
-                                    <button type="submit" class="btn btn-outline-success">Сохранить
-                                    </button>
-                                    <a href="/docs/rtn2">
-                                        <button type="button" class="btn btn-outline-dark">Отменить
-                                        </button>
-                                    </a>
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Перечень предложений</label>
+                                <div class="form-group">
+                                    <input id="offer_list" style="width: 450px" type="text" class="form-control @error('offer_list') is-invalid @enderror" name="offer_list" value="{{ $data_table->offer_list }}" required autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                            </form>
+
+                                <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Мероприятия по реализации предложений	Файл формата PDF/A	Файл, содержащий мероприятия</label>
+                                <div class="form-group">
+                                    <input id="event" style="width: 450px" type="text" class="form-control @error('event') is-invalid @enderror" name="event" value="{{ $data_table->event }}" required autocomplete="name" autofocus>
+                                    <input type="hidden" name="id" value="{{ $data_table->id }}" >
+                                </div>
+
+
+                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" style="margin-left: 46%; margin-top: 30px" class="bat_add">Сохранить</button>
+                        </div>
+
+                    </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+
+    @include('web.include.modal.datapicker')
 
 
 @endsection

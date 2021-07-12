@@ -3,9 +3,6 @@
     Для годового отчета
 @endsection
 @section('content')
-    @push('app-css')
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @endpush
     @include('web.include.sidebar_doc')
 
 
@@ -39,49 +36,39 @@
 
                         <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование записи</h2></div>
 
-                                <div class="card-header">
-                                    <div class="form-inline">
-                                        <div class="col-4">
-                            <label for="time" style="padding-left: 35px">Регистрационный номер ОПО</label>
-                                        </div>
-                                <div class="col-4">
-                                    <input id="num_opo" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
+                            <label for="time" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Регистрационный номер ОПО</label>
+                                <div class="form-group">
+                                    <input id="num_opo" style="width: 450px" type="text" class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ $data_table->num_opo }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                        </div>
 
-                                            <div class="form-inline">
-                                                <div class="col-4">
-                                <label for="date" style="padding-left: 35px">Дата утверждения положения о производственном контроле за соблюдением требований промышленной безопасности на опасных производственных объектах</label>
-                                                </div>
-                                                    <div class="col-4">
-                                    <input id="date" style="width: 450px; margin-top: 7px" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ $data_table->date }}" required autocomplete="name" autofocus>
+                                <label for="date" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Дата утверждения положения о производственном контроле за соблюдением требований промышленной безопасности на опасных производственных объектах</label>
+                                <div class="form-group">
+                                    <input id="date" style="width: 450px" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ $data_table->date }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                            </div>
 
-                                                    <div class="form-inline">
-                                                        <div class="col-4">
-                                <label for="doc" style="padding-left: 35px">Ссылка на документ</label>
-                                                        </div>
-                                <div class="col-4">
-                                    <input id="doc" style="width: 450px; margin-top: 7px" type="text" class="form-control @error('doc') is-invalid @enderror" name="doc" value="{{ $data_table->doc }}" required autocomplete="name" autofocus>
+                                <label for="doc" style="padding-left: 35px" class="col-md-4 col-form-label text-md-right">Ссылка на документ</label>
+                                <div class="form-group">
+                                    <input id="doc" style="width: 450px" type="text" class="form-control @error('doc') is-invalid @enderror" name="doc" value="{{ $data_table->doc }}" required autocomplete="name" autofocus>
                                     <input type="hidden" name="id" value="{{ $data_table->id }}" >
                                 </div>
-                                                    </div>
-                                    <div style="padding-bottom: 40px; margin-top: 20px"
-                                         class="text-center">
-                                        <button type="submit" class="btn btn-outline-success">Сохранить
-                                        </button>
-                                        <a href="/docs/rtn2">
-                                            <button type="button" class="btn btn-outline-dark">Отменить
-                                            </button>
-                                        </a>
-                                    </div>
-                            </form>
+
+
+
+
+                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <button type="submit" style="margin-left: 46%; margin-top: 30px" class="bat_add">Сохранить</button>
+                        </div>
+
+                    </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
+
+    @include('web.include.modal.datapicker')
+
 
 @endsection

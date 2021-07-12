@@ -21,7 +21,8 @@
                      class="container">
                     <form method="POST" action="{{ '/docs/tab11/save' }}">
                         @csrf
-                        <div class="card-header"><h2 class="text-muted" style="text-align: center">Создание новой записи</h2></div>
+                        <div class="card-header"><h2 class="text-muted" style="text-align: center">Создание новой
+                                записи</h2></div>
 
                         <div class="card-header">
                             <div class="form-inline">
@@ -30,7 +31,8 @@
                                 </div>
                                 <div class="col-4">
                                     <input id="num_opo" type="text" style="width: 450px; margin-top: 7px"
-                                           class="form-control @error('num_opo') is-invalid @enderror" name="num_opo" value="{{ old('num_opo') }}" required autocomplete="num_opo" autofocus>
+                                           class="form-control @error('num_opo') is-invalid @enderror" name="num_opo"
+                                           value="{{ old('num_opo') }}" required autocomplete="num_opo" autofocus>
 
                                     @error('num_opo')
                                     <span class="invalid-feedback" role="alert">
