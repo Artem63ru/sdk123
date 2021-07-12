@@ -37,8 +37,8 @@
                             <td>{{$row->file}}</td>
 
                             <td class="hover_links">
-                                <a href="tab62/delete/{{ $row->id }}"><img wire:click="delete({{ $row->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
-                                <a href="tab62/edit/{{ $row->id }}"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                                <a href="tab62/delete/{{ $row->id }}"><img  alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
+                                <a href="tab62/edit/{{ $row->id }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
                             </td>
                         </tr>
                         @endforeach
@@ -49,76 +49,5 @@
             </div>
         </section>
     </div>
-{{--    <div id="openModal62" class="modal">--}}
-{{--        <div class="modal-dialog table_use" style="margin-top: 150px; margin-left: 30%; height: 750px">--}}
-{{--            <div class="modal-content" style="width: 750px; height: 750px">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <a href="#close" title="Close" class="close">×</a>--}}
-{{--                </div>--}}
-{{--                <div class="modal-body ">--}}
-{{--                    <h2 style="text-align: center">Редактировать</h2>--}}
-{{--                    <form>--}}
-{{--                        <table class="modal_table map_hover">--}}
-{{--                            <tbody>--}}
-{{--                            <tr>--}}
-{{--                                <td>Регистрационный номер ОПО</td>--}}
-{{--                                <td><input type="text" wire:model="num_opo" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Наименование здания/сооружения, входящего в состав ОПО</td>--}}
-{{--                                <td><input type="text" wire:model="name" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Год ввода в эксплуатацию здания, эксплуатируемого на ОПО</td>--}}
-{{--                                <td><input type="text" wire:model="year_exp" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Дата окончания реконструкции здания (при наличии)</td>--}}
-{{--                                <td><input type="text" wire:model="date_reconstruction" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Дата окончания капитального ремонта (при наличии)</td>--}}
-{{--                                <td><input type="text" wire:model="date_repair" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Дата следующей экспертизы промышленной безопасности (при наличии)</td>--}}
-{{--                                <td><input type="text" wire:model="date_next_check" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Дата проведения экспертизы промышленной безопасности (при наличии)</td>--}}
-{{--                                <td><input type="text" wire:model="date_check" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Вывод о соответствии объекта требованиям промышленной безопасности </td>--}}
-{{--                                <td><input type="text" wire:model="result_check" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Если выбрано "Не в полной мере соответствует", то указать процент выполненных мероприятий из назначенных</td>--}}
-{{--                                <td><input type="text" wire:model="percent_event" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <td>Файл, содержащий информацию о выполненных мероприятиях или информацию по выводу здания из эксплуатации </td>--}}
-{{--                                <td><input type="text" wire:model="file" id="title" style="min-width: 350px" /></td>--}}
-{{--                            </tr>--}}
-
-
-
-{{--                            <td colspan="2" class="link_td centered">--}}
-{{--                                <button type="submit" class="create" wire:click.prevent="update()">--}}
-{{--                                    Сохранить--}}
-{{--                                </button></td>--}}
-{{--                            </tbody>--}}
-
-
-{{--                        </table>--}}
-{{--                    </form>--}}
-{{--                    <div>--}}
-
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
 </div>

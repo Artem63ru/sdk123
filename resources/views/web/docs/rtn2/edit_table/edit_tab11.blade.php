@@ -84,6 +84,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div style="padding-bottom: 40px; margin-top: 20px"
                              class="text-center">
                             <button type="submit" class="btn btn-outline-success">Сохранить
@@ -93,12 +94,6 @@
                                 </button>
                             </a>
                         </div>
-
-
-
-
-
-
             </form>
                 </div>
             </div>

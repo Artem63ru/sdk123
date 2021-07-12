@@ -100,6 +100,12 @@
                                                 <td>{{$row->time_event}}</td>
                                                 <td>{{$row->check_event}}</td>
                                                 <td>{{$row->info}}</td>
+                                                <td  class="centered">
+                                                    <a href="{{ route('form5363-change-table',$row->id_event) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                                                  {!! Form::open(['method' => 'POST','route' => ['form5363-delete-table', $row->id_event],'style'=>'display:inline']) !!}
+                                                  <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 50px" />
+                                                  {!! Form::close() !!}
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

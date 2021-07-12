@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
+use App\Models\Reports\Form52;
+use App\Models\Reports\Form52_table;
+use App\Http\Controllers\Form52Controller;
+use App\Models\Reports\Form5363;
+use App\Models\Reports\Form5363_table;
 use App\Models\Rtn2\Act_reason_accident;
 use App\Models\Rtn2\General_info;
 use App\Models\Rtn2\Info_accident_investigation;
@@ -24,7 +28,6 @@ use App\Models\Rtn2\Pmla;
 use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
-use App\User;
 use Illuminate\Http\Request;
 use App\Models\Calc_elem;
 use App\Models\Calc_ip_opo_i;
@@ -35,11 +38,7 @@ use Carbon\Carbon;
 use App\Models\Ref_obj;
 use App\Jas;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
 
 class ReportController extends Controller
 {
@@ -106,6 +105,79 @@ class ReportController extends Controller
         Form52_table::create($request->all());
         $data = Form52::find($request->input('id_act'));
         return redirect()->action([Form52Controller::class, 'edit'], ['form52' => $data->id]);
+    }
+
+    public function edit_table($id_event)
+    {
+        $data = Form52_table::find($id_event);
+        return view('form52.edit_table',compact('data'), ['rows'=>Form52_table::orderby('num')->where('id_event', '=', $id_event)->get()]);
+    }
+
+    public function update_table(Request $request, $id_event)
+    {
+
+        if ($_POST['save'] == 'Update_table') {
+            $data = Form52_table::find($id_event);
+            $id_act = $data->id_act;
+
+            $input = $request->all();
+            $data = Form52_table::find($id_event);
+            $data->update($input);
+            return redirect()->route('form52.edit', $id_act)
+                ->with('success', 'User updated successfully');
+        }
+    }
+
+    public function destroy_row_tab_52($id_event)
+    {
+        $data = Form52_table::find($id_event);
+        $id_act = $data->id_act;
+        Form52_table::find($id_event)->delete();
+        return redirect()->route('form52.edit', $id_act)
+            ->with('success','User deleted successfully');
+    }
+
+    public function edit_table5363($id_event)
+    {
+        $data = Form5363_table::find($id_event);
+        return view('form5363.edit_table',compact('data'), ['rows'=>Form5363_table::orderby('num_event')->where('id_event', '=', $id_event)->get()]);
+    }
+
+    public function update_table5363(Request $request, $id_event)
+    {
+
+        if ($_POST['save'] == 'Update_table') {
+            $data = Form5363_table::find($id_event);
+            $id_act = $data->id_act;
+
+            $input = $request->all();
+            $data = Form5363_table::find($id_event);
+            $data->update($input);
+            return redirect()->route('form5363.edit', $id_act)
+                ->with('success', 'User updated successfully');
+        }
+    }
+
+    public function destroy_row_tab_5363($id_event)
+    {
+        $data = Form5363_table::find($id_event);
+        $id_act = $data->id_act;
+        Form5363_table::find($id_event)->delete();
+        return redirect()->route('form5363.edit', $id_act)
+            ->with('success','User deleted successfully');
+    }
+
+    public function child_form5363_table (Request $request, $id_event)
+    {
+        return view('form5363.create_table',['id'=>$id_event]);
+
+    }
+    public function store_child_form5363 (Request $request)
+    {
+
+        Form5363_table::create($request->all());
+        $data = Form5363::find($request->input('id_act'));
+        return redirect()->action([Form5363Controller::class, 'edit'], ['form5363' => $data->id]);
     }
 
     public function report5(Request $request)

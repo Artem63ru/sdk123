@@ -60,7 +60,7 @@
                                                             инцидента</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::date('date_accident', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -211,7 +211,7 @@
                             <div class="col"><h4 class="text-muted" style="text-align: left">Дата составления акта</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::date('act_date', null, array('act_date' => 'Укажите дату составления акта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                 </select></div>
                         </div>
                     </div>
