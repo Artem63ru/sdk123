@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Form52Controller;
 use App\Models\Reports\Form52;
 use App\Models\Reports\Form52_table;
-use App\Http\Controllers\Form52Controller;
 use App\Models\Reports\Form5363;
 use App\Models\Reports\Form5363_table;
 use App\Models\Rtn2\Act_reason_accident;
@@ -133,8 +133,7 @@ class ReportController extends Controller
         $data = Form52_table::find($id_event);
         $id_act = $data->id_act;
         Form52_table::find($id_event)->delete();
-        return redirect()->route('form52.edit', $id_act)
-            ->with('success','User deleted successfully');
+        return redirect()->action([Form52Controller::class, 'edit'], ['form52' => $id_act]);
     }
 
     public function edit_table5363($id_event)

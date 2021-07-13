@@ -205,13 +205,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
     Route::get('form52-change-table/{id_event}', 'ReportController@edit_table')->name('form52-change-table');
     Route::post('form52-change-table/{id_event}', 'ReportController@update_table')->name('form52-update-table');
-    Route::post('form52-change-table/{id_event}', 'ReportController@destroy_row_tab_52')->name('form52-delete-table');
+    Route::get('form52-delete-table/{id_event}', 'ReportController@destroy_row_tab_52')->name('form52-delete-table');
     Route::resource('form5363',Form5363Controller::class);
     Route::get('form5363-add-table/{id}','ReportController@child_form5363_table')->name('add-child-form5363');
     Route::post('form5363-add-table/{id}', 'ReportController@store_child_form5363')->name('form5363-add-table');
     Route::get('form5363-change-table/{id_event}', 'ReportController@edit_table5363')->name('form5363-change-table');
     Route::post('form5363-change-table/{id_event}', 'ReportController@update_table5363')->name('form5363-update-table');
-    Route::post('form5363-change-table/{id_event}', 'ReportController@destroy_row_tab_5363')->name('form5363-delete-table');
+    Route::get('form5363-delete-table/{id_event}', 'ReportController@destroy_row_tab_5363')->name('form5363-delete-table');
     Route::resource('form61',Form61Controller::class);
     Route::resource('form62',Form62Controller::class);
 

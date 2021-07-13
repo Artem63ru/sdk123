@@ -60,7 +60,6 @@
                                     </select></div>
                             </div>
                         </div>
-
                         <div class="card-header">
                             <div class="row justify-content-start">
                                 <div class="col"><h4 class="text-muted" style="text-align: left">Дата окончания отчетного периода</h4>
@@ -70,7 +69,6 @@
                                     </select></div>
                             </div>
                         </div>
-
                         <div class="card-header"><h4 class="text-muted" style="text-align: left; margin-bottom: 0px">Данные о мероприятиях:</h4>
 
                             <div class="inside_tab_padding plan_new" style="height: 400px">
@@ -102,9 +100,9 @@
                                                 <td>{{$row->info}}</td>
                                                 <td  class="centered">
                                                     <a href="{{ route('form5363-change-table',$row->id_event) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
-                                                  {!! Form::open(['method' => 'POST','route' => ['form5363-delete-table', $row->id_event],'style'=>'display:inline']) !!}
-                                                  <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 50px" />
-                                                  {!! Form::close() !!}
+                                                    <a href="{{ route('form5363-delete-table',$row->id_event) }}">
+                                                        <img  alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 50px" />
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
