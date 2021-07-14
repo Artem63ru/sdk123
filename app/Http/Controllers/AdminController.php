@@ -96,18 +96,7 @@ class AdminController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-//        $user = new User(
-//            ['name' => $request->input('name'),
-//                'surname' => $request->input('surname'),
-//                'middle_name' => $request->input('middle_name'),
-//                'email' => $request->input('email'),
-//                'password' => Hash::make($request->input('password')),
-//
-//            ]);
-
-         //   $role = Role::find($request->input('role'));
-       //     $role->users()->save($user);
-            $user->assignRole($request->input('role'));
+        $user->assignRole($request->input('role'));
 
 
         $this->log_record('Добавил пользователя '.$user->name. 'с ролью '.$request->input('role'));//пишем в журнал
