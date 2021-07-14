@@ -30,6 +30,7 @@
                             <a href="/docs/events">Возможные опасные события</a>
                             <a href="{{route('matrix')}}">Сценарии</a>
                             <a href="/docs/koef">Коэффициенты</a>
+                            <a href="/docs/predRTN">Предписания РТН</a>
                         </div>
                     </label>
                     <label class="accordion">
@@ -84,6 +85,7 @@
                         <div class="accordion__content">
                             <a href="{{ route('form51.index') }}">ОС о инциденте п 5.1</a>
                             <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>
+                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
                             <a href="{{ route('form61.index') }}">ОС о аварии п 6.1</a>
                             <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>
 {{--                            <a href="#">Термины и определения</a>--}}

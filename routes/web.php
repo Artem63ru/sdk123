@@ -14,6 +14,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
     Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
     Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
+    //********************* Данные ручного ввода ****************************************
+    Route::resource('operational',OperationalSafetyController::class);   //ручной ввод показателя безопасности
+    Route::get('/opo/{id}/main/new_safety','OpoController@new');   // cоздание новой записи
+    Route::resource('ready',ReadyController::class);   //ручной ввод показателя готовности
+    Route::get('/opo/{id}/main/new_ready','OpoController@new_ready');   // cоздание новой записи
+    Route::resource('failure_free',FailureFreeController::class);   //ручной ввод показателя безаварийности
+    Route::get('/opo/{id}/main/new_failure_free','OpoController@new_failure_free');   // cоздание новой записи
+
+
+
+
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
@@ -27,6 +38,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
+    Route::get('/docs/predRTN', "MatrixControllers@show_RTN_all"); // страница справочника предписаний РТН
+    Route::get('/docs/predRTN/{id}/edit', "MatrixControllers@edit_RTN")->name('edit_RTN'); // редактирование предписания РТН
+    Route::post('/docs/predRTN/{id}/update', "MatrixControllers@update_RTN")->name('update_RTN'); // редактирование предписания РТН
+    Route::get('/docs/predRTN/{id}/show', "MatrixControllers@show_RTN")->name('show_RTN'); // просмотр предписания РТН
+    Route::get('/docs/predRTN/{id}/delete', "MatrixControllers@delete_RTN")->name('delete_RTN'); // удаление предписания РТН
+    Route::get('/docs/predRTN/create', "MatrixControllers@create_RTN")->name('create_RTN'); // создание предписания РТН
+    Route::post('/docs/predRTN/store', "MatrixControllers@store_RTN")->name('store_RTN'); // редактирование предписания РТН
+
+
+
     Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов
     Route::get('/docs/reglament',['as' => 'reglament', 'uses' =>'MatrixControllers@Showregl']); // страница справочника регламентных значений
     Route::get('/docs/matrix',['as' => 'matrix', 'uses' =>'MatrixControllers@Showmatrix']); // страница справочника регламентных значений

@@ -186,7 +186,7 @@
                         </div>
 
                         <div class="card-header"><h4 class="text-muted" style="text-align: left">Организационно-технические мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем:</h4>
-                          <div style="height: 20vh" class="inside_tab_padding plan_new">
+                          <div style="height: 20vh" class="inside_tab_padding plan_new" style="height: 400px">
                             <div class="row_block plan_new plan42">
                                 <table>
                                     <thead>
