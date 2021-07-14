@@ -67,10 +67,18 @@ class AdminController extends Controller
         $patch = 'logs' . Carbon::now() . '.pdf';
         $ip = request()->ip();
         event(new AddLogs(Auth::user()->name, $patch, $ip));  //пишем в журнал
-        // Event::fire(new AddLogs(Auth::user()->name));
         $pdf = PDF::loadView('admin.logs_pdf', $data);
 
         return $pdf->download($patch);
+    }
+    // Удаление логов
+    public function clear_logs()
+    {
+
+        Logs::truncate();
+        $this->log_record('Очистил журнал событий ИБ');//пишем в журнал
+
+        return redirect('/admin');
     }
 
     // Добавить нового пользователя

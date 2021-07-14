@@ -267,9 +267,8 @@ Route::group(['middleware' => ['auth']], function() {
     //  Route::group(['middleware' => 'role:admin',], function () {
     // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
     Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
-
     Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
-
+    Route::get('clear_logs', 'AdminController@clear_logs')->name('clear_logs')->middleware('password.confirm'); // очистить журнал логов
     Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
     Route::post('add_user', 'AdminController@add_user')->name('add_user');
     Route::post('update_user', 'AdminController@update_user')->name('update_user');
