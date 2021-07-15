@@ -9,6 +9,7 @@ use App\Events\WasUnbanned;
 use App\Models\Logs;
 use App\Models\Permission;
 //use App\Models\Role;
+use App\Ref_opo;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -66,10 +67,18 @@ class AdminController extends Controller
         $patch = 'logs' . Carbon::now() . '.pdf';
         $ip = request()->ip();
         event(new AddLogs(Auth::user()->name, $patch, $ip));  //пишем в журнал
-        // Event::fire(new AddLogs(Auth::user()->name));
         $pdf = PDF::loadView('admin.logs_pdf', $data);
 
         return $pdf->download($patch);
+    }
+    // Удаление логов
+    public function clear_logs()
+    {
+
+        Logs::truncate();
+        $this->log_record('Очистил журнал событий ИБ');//пишем в журнал
+
+        return redirect('/admin');
     }
 
     // Добавить нового пользователя
@@ -95,18 +104,7 @@ class AdminController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-//        $user = new User(
-//            ['name' => $request->input('name'),
-//                'surname' => $request->input('surname'),
-//                'middle_name' => $request->input('middle_name'),
-//                'email' => $request->input('email'),
-//                'password' => Hash::make($request->input('password')),
-//
-//            ]);
-
-         //   $role = Role::find($request->input('role'));
-       //     $role->users()->save($user);
-            $user->assignRole($request->input('role'));
+        $user->assignRole($request->input('role'));
 
 
         $this->log_record('Добавил пользователя '.$user->name. 'с ролью '.$request->input('role'));//пишем в журнал
@@ -241,16 +239,23 @@ class AdminController extends Controller
 
     public function xml_view ()
     {
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-
-
-
-        $contents = $contents."<tag1></tag1>\n";
+        $ver_opo =  Ref_opo::find(1);
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
+        $contents = $contents."<do id = \"gda\">\n";
+        $contents = $contents."<opo>\n";
+        $contents = $contents."<name>".$ver_opo->fullDescOPO."</name>\n";
+        $contents = $contents."<regnumder>".$ver_opo->regNumOPO."</regnumder>\n";
+        $contents = $contents."<ip_reackt>".$ver_opo->opo_to_calc1->first()->ip_opo."</ip_reackt>\n";
+        $contents = $contents."<status>".$ver_opo->opo_to_calc1->first()->calc_to_status->status."</status>\n";
+        $contents = $contents."</opo>\n";
+        $contents = $contents."<date>".date("m-d-y")."</date>\n";
+        $contents = $contents."<time>".date("H:i:s")."</time>\n";
+        $contents = $contents."</do>";
 
 
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
-       Storage::disk('local')->put('15_min.xml', $contents, 'public');
+       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+     //  Storage::disk('local')->put('15_min.xml', $contents, 'public');
 
     }
 

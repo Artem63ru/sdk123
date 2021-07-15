@@ -13,19 +13,14 @@
             display: block;
             margin-bottom: 0.5rem;
         }
-
     </style>
-@include('web.include.sidebar_doc')
+    @include('web.include.sidebar_doc')
     <div class="container">
-
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список актов технического расследования инцидентов</h2>
                         <div class="bat_add"><a href="{{ route('form52.create') }}">Создать Акт</a></div>
-{{--                        @can('role-create')--}}
-{{--                            <a class="" href="{{ route('form52.create') }}"> <img  alt="" src="{{asset('assets/images/btn.svg')}}" ></a>--}}
-{{--                        @endcan--}}
                     </div>
 
 
@@ -60,7 +55,7 @@
 
                 <td  class="centered">
                     <a href="{{ route('form52.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
-                    <a href="{{ route('form52.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i"></a>
+{{--                    <a href="{{ route('form52.edit',$form->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i"></a>--}}
 
                     {!! Form::open(['method' => 'DELETE','route' => ['form52.destroy', $form->id],'style'=>'display:inline']) !!}
                     <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i" style="width: 15px; height: 15px; margin-top:3px; margin-right: 240px" />
@@ -79,10 +74,15 @@
 
                 </div>
 </div>
+
+
+
         </div>
-{{--            </div>--}}
+
+
+            </div>
 
 {{--        </div>--}}
 
-    </div>
+{{--    </div>--}}
 @endsection

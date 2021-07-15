@@ -23,6 +23,7 @@
 
 
                 <div>
+                    @can('product-list')
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id="faq" onclick="SaveChecked(this)">
                         <div class="accordion__header">Справочники</div>
@@ -32,6 +33,7 @@
                             <a href="/docs/koef">Коэффициенты</a>
                         </div>
                     </label>
+
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion'  id="docs" onclick="SaveChecked(this)">
                         <div class="accordion__header">Документация</div>
@@ -40,6 +42,7 @@
                             <a href={{route('upload_form')}}>Перечень нормативной документации</a>
                         </div>
                     </label>
+                    @endcan
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id="plan" onclick="SaveChecked(this)">
                         <div class="accordion__header">
@@ -59,6 +62,12 @@
                         </div>
                     </label>
                     <label class="accordion">
+                        <input type='checkbox' name='checkbox-accordion' id="plan2021" onclick="SaveChecked(this)">
+                        <div class="accordion__header">
+                            <a href={{ url('/docs/rtn2') }}>План мероприятий по обеспечению ПБ (2021г.)</a>
+                        </div>
+                    </label>
+                    <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id="gloss" onclick="SaveChecked(this)" >
                         <div class="accordion__header">
                             <a href={{ url('/docs/glossary') }}>  Глоссарий применяемых сокращений</a>
@@ -70,6 +79,7 @@
 {{--                            <a href="#">Классификация событий</a>--}}
 {{--                        </div>--}}
                     </label>
+                    @can('product-create')
                     <label class="accordion">
                         <input type='checkbox' name='checkbox-accordion' id="report"  onclick="SaveChecked(this)" >
                         <div class="accordion__header">
@@ -80,6 +90,7 @@
                             <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>
                             <a href="{{ route('form61.index') }}">ОС о аварии п 6.1</a>
                             <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>
+                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
 {{--                            <a href="#">Термины и определения</a>--}}
 {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
                             <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
@@ -95,6 +106,7 @@
                             <a href="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
                         </div>
                     </label>
+                    @endcan
                 </div>
 
 

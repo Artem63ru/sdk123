@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
 
-              {!! Form::open(array( route('add_user') ,'method'=>'POST')) !!}
+              {!! Form::open(array( route('form52-add-table',['id'=>$id]) ,'method'=>'POST')) !!}
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Организационно-технические мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем:</h4>
                         <td class="table table-bordered">
                         <td>
@@ -34,7 +34,8 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                            {!! Form::text('num', null, array('placeholder' => 'Укажите №п/п','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                            <input type="hidden" value="{{$id}}" name="id_act">
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +44,7 @@
                         <td>
                             <div class="card-header"><h5 class="text-muted" style="text-align: left">Содержание мероприятия</h5>
                                 <div class="form-group">
-                                    {!! Form::textarea('context', null, array('placeholder' => 'Введите описание мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем','style' => 'height: 8vh; width: 70%')) !!}
+                                    {!! Form::textarea('context', null, array('placeholder' => 'Введите описание мероприятия по ликвидации последствий инцидента и предупреждению подобных случаев в дальнейшем','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                                 </div>
                             </div>
                         </td>
@@ -56,7 +57,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
-                                            {!! Form::text('responsible', null, array('placeholder' => 'Введите ФИО ответственного исполнителя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                            {!! Form::text('responsible', null, array('placeholder' => 'Введите ФИО ответственного исполнителя','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +69,7 @@
                                     <div class="col"><h5 class="text-muted" style="text-align: left">Срок исполнения</h5>
                                     </div>
                                     <div class="col">
-                                        {!! Form::text('time_event', null, array('placeholder' => 'Укажите дату исполнения','style' => 'height: 3vh; width: 70%', 'id'=>'to', 'autocomplete'=>"off")) !!}
+                                        {!! Form::date('time_event', null, array('placeholder' => 'Укажите дату исполнения','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                                         </select></div>
                                 </div>
                             </div>
@@ -76,19 +77,11 @@
                         <td>
                             <div class="card-header"><h5 class="text-muted" style="text-align: left">Примечание</h5>
                                 <div class="form-group">
-                                    {!! Form::textarea('note', null, array('placeholder' => 'Укажите примечание','style' => 'height: 8vh; width: 70%')) !!}
+                                    {!! Form::textarea('note', null, array('placeholder' => 'Укажите примечание','style' => 'height: 8vh; width: 70%', 'class'=>'form-control')) !!}
                                 </div>
                             </div>
                         </td>
                         </table>
-                    </div>
-
-
-
-                    <div class="card-header"><h4 class="text-muted" style="text-align: left">Приложение</h4>
-                        <div class="form-group">
-                            {!! Form::textarea('app', null, array('placeholder' => 'Укажите информацию о приложениях к акту (наименование документа и количество листов в нем)','style' => 'height: 8vh; width: 70%')) !!}
-                        </div>
                     </div>
 
 

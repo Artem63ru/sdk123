@@ -36,6 +36,136 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']); // Просмотр файла
     Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']); //Удаление файла
 
+    //****************** Для годового отчета  *************************************
+    Route::get('/docs/rtn2', ['as' => 'rtn', 'uses' =>'ReportController@Showrtn2']); // страница нового годового отчета
+    //****************** tab 1.1  *************************************
+    Route::get('/docs/tab11/delete/{id}', 'ReportController@delete_row_tab11');  //Удаление строки год отчета
+    Route::get('/docs/tab11/edit/{id}', 'ReportController@edit_tab11');  //Изменение строки год отчета
+    Route::post('update_tab11', 'ReportController@update_tab11')->name('update_tab11'); //Обновление строки год отчета
+    Route::get('/docs/tab11/new', 'ReportController@new_tab11'); //новая строка
+    Route::post('/docs/tab11/save', 'ReportController@save_tab11'); //сохранить строку
+    //****************** tab 2.1  *************************************
+    Route::get('/docs/tab21/delete/{id}', 'ReportController@delete_row_tab21');  //Удаление строки год отчета
+    Route::get('/docs/tab21/edit/{id}', 'ReportController@edit_tab21');  //Изменение строки год отчета
+    Route::post('update_tab21', 'ReportController@update_tab21')->name('update_tab21'); //Обновление строки год отчета
+    Route::get('/docs/tab21/new', 'ReportController@new_tab21'); //новая строка
+    Route::post('/docs/tab21/save', 'ReportController@save_tab21'); //сохранить строку
+    //****************** tab 2.2  *************************************
+    Route::get('/docs/tab22/delete/{id}', 'ReportController@delete_row_tab22');  //Удаление строки год отчета
+    Route::get('/docs/tab22/edit/{id}', 'ReportController@edit_tab22');  //Изменение строки год отчета
+    Route::post('update_tab22', 'ReportController@update_tab22')->name('update_tab22'); //Обновление строки год отчета
+    Route::get('/docs/tab22/new', 'ReportController@new_tab22'); //новая строка
+    Route::post('/docs/tab22/save', 'ReportController@save_tab22'); //сохранить строку
+    //****************** tab 2.3  *************************************
+    Route::get('/docs/tab23/delete/{id}', 'ReportController@delete_row_tab23');  //Удаление строки год отчета
+    Route::get('/docs/tab23/edit/{id}', 'ReportController@edit_tab23');  //Изменение строки год отчета
+    Route::post('update_tab23', 'ReportController@update_tab23')->name('update_tab23'); //Обновление строки год отчета
+    Route::get('/docs/tab23/new', 'ReportController@new_tab23'); //новая строка
+    Route::post('/docs/tab23/save', 'ReportController@save_tab23'); //сохранить строку
+    //****************** tab 3  *************************************
+    Route::get('/docs/tab3/delete/{id}', 'ReportController@delete_row_tab3');  //Удаление строки год отчета
+    Route::get('/docs/tab3/edit/{id}', 'ReportController@edit_tab3');  //Изменение строки год отчета
+    Route::post('update_tab3', 'ReportController@update_tab3')->name('update_tab3'); //Обновление строки год отчета
+    Route::get('/docs/tab3/new', 'ReportController@new_tab3'); //новая строка
+    Route::post('/docs/tab3/save', 'ReportController@save_tab3'); //сохранить строку
+    //****************** tab 4  *************************************
+    Route::get('/docs/tab4/delete/{id}', 'ReportController@delete_row_tab4');  //Удаление строки год отчета
+    Route::get('/docs/tab4/edit/{id}', 'ReportController@edit_tab4');  //Изменение строки год отчета
+    Route::post('update_tab4', 'ReportController@update_tab4')->name('update_tab4'); //Обновление строки год отчета
+    Route::get('/docs/tab4/new', 'ReportController@new_tab4'); //новая строка
+    Route::post('/docs/tab4/save', 'ReportController@save_tab4'); //сохранить строку
+    //****************** tab 5.1  *************************************
+    Route::get('/docs/tab51/delete/{id}', 'ReportController@delete_row_tab51');  //Удаление строки год отчета
+    Route::get('/docs/tab51/edit/{id}', 'ReportController@edit_tab51');  //Изменение строки год отчета
+    Route::post('update_tab51', 'ReportController@update_tab51')->name('update_tab51'); //Обновление строки год отчета
+    Route::get('/docs/tab51/new', 'ReportController@new_tab51'); //новая строка
+    Route::post('/docs/tab51/save', 'ReportController@save_tab51'); //сохранить строку
+    //****************** tab 5.2.1  *************************************
+    Route::get('/docs/tab521/delete/{id}', 'ReportController@delete_row_tab521');  //Удаление строки год отчета
+    Route::get('/docs/tab521/edit/{id}', 'ReportController@edit_tab521');  //Изменение строки год отчета
+    Route::post('update_tab521', 'ReportController@update_tab521')->name('update_tab521'); //Обновление строки год отчета
+    Route::get('/docs/tab521/new', 'ReportController@new_tab521'); //новая строка
+    Route::post('/docs/tab521/save', 'ReportController@save_tab521'); //сохранить строку
+    //****************** tab 5.3  *************************************
+    Route::get('/docs/tab53/delete/{id}', 'ReportController@delete_row_tab53');  //Удаление строки год отчета
+    Route::get('/docs/tab53/edit/{id}', 'ReportController@edit_tab53');  //Изменение строки год отчета
+    Route::post('update_tab53', 'ReportController@update_tab53')->name('update_tab53'); //Обновление строки год отчета
+    Route::get('/docs/tab53/new', 'ReportController@new_tab53'); //новая строка
+    Route::post('/docs/tab53/save', 'ReportController@save_tab53'); //сохранить строку
+    //****************** tab 6.1  *************************************
+    Route::get('/docs/tab61/delete/{id}', 'ReportController@delete_row_tab61');  //Удаление строки год отчета
+    Route::get('/docs/tab61/edit/{id}', 'ReportController@edit_tab61');  //Изменение строки год отчета
+    Route::post('update_tab61', 'ReportController@update_tab61')->name('update_tab61'); //Обновление строки год отчета
+    Route::get('/docs/tab61/new', 'ReportController@new_tab61'); //новая строка
+    Route::post('/docs/tab61/save', 'ReportController@save_tab61'); //сохранить строку
+    //****************** tab 6.2  *************************************
+    Route::get('/docs/tab62/delete/{id}', 'ReportController@delete_row_tab62');  //Удаление строки год отчета
+    Route::get('/docs/tab62/edit/{id}', 'ReportController@edit_tab62');  //Изменение строки год отчета
+    Route::post('update_tab62', 'ReportController@update_tab62')->name('update_tab62'); //Обновление строки год отчета
+    Route::get('/docs/tab62/new', 'ReportController@new_tab62'); //новая строка
+    Route::post('/docs/tab62/save', 'ReportController@save_tab62'); //сохранить строку
+    //****************** tab 6.3  *************************************
+    Route::get('/docs/tab63/delete/{id}', 'ReportController@delete_row_tab63');  //Удаление строки год отчета
+    Route::get('/docs/tab63/edit/{id}', 'ReportController@edit_tab63');  //Изменение строки год отчета
+    Route::post('update_tab63', 'ReportController@update_tab63')->name('update_tab63'); //Обновление строки год отчета
+    Route::get('/docs/tab63/new', 'ReportController@new_tab63'); //новая строка
+    Route::post('/docs/tab63/save', 'ReportController@save_tab63'); //сохранить строку
+    //****************** tab 6.4  *************************************
+    Route::get('/docs/tab64/delete/{id}', 'ReportController@delete_row_tab64');  //Удаление строки год отчета
+    Route::get('/docs/tab64/edit/{id}', 'ReportController@edit_tab64');  //Изменение строки год отчета
+    Route::post('update_tab64', 'ReportController@update_tab64')->name('update_tab64'); //Обновление строки год отчета
+    Route::get('/docs/tab64/new', 'ReportController@new_tab64'); //новая строка
+    Route::post('/docs/tab64/save', 'ReportController@save_tab64'); //сохранить строку
+    //****************** tab 7.1  *************************************
+    Route::get('/docs/tab71/delete/{id}', 'ReportController@delete_row_tab71');  //Удаление строки год отчета
+    Route::get('/docs/tab71/edit/{id}', 'ReportController@edit_tab71');  //Изменение строки год отчета
+    Route::post('update_tab71', 'ReportController@update_tab71')->name('update_tab71'); //Обновление строки год отчета
+    Route::get('/docs/tab71/new', 'ReportController@new_tab71'); //новая строка
+    Route::post('/docs/tab71/save', 'ReportController@save_tab71'); //сохранить строку
+    //****************** tab 7.2  *************************************
+    Route::get('/docs/tab72/delete/{id}', 'ReportController@delete_row_tab72');  //Удаление строки год отчета
+    Route::get('/docs/tab72/edit/{id}', 'ReportController@edit_tab72');  //Изменение строки год отчета
+    Route::post('update_tab72', 'ReportController@update_tab72')->name('update_tab72'); //Обновление строки год отчета
+    Route::get('/docs/tab72/new', 'ReportController@new_tab72'); //новая строка
+    Route::post('/docs/tab72/save', 'ReportController@save_tab72'); //сохранить строку
+    //****************** tab 8.1  *************************************
+    Route::get('/docs/tab81/delete/{id}', 'ReportController@delete_row_tab81');  //Удаление строки год отчета
+    Route::get('/docs/tab81/edit/{id}', 'ReportController@edit_tab81');  //Изменение строки год отчета
+    Route::post('update_tab81', 'ReportController@update_tab81')->name('update_tab81'); //Обновление строки год отчета
+    Route::get('/docs/tab81/new', 'ReportController@new_tab81'); //новая строка
+    Route::post('/docs/tab81/save', 'ReportController@save_tab81'); //сохранить строку
+    //****************** tab 8.2  *************************************
+    Route::get('/docs/tab82/delete/{id}', 'ReportController@delete_row_tab82');  //Удаление строки год отчета
+    Route::get('/docs/tab82/edit/{id}', 'ReportController@edit_tab82');  //Изменение строки год отчета
+    Route::post('update_tab82', 'ReportController@update_tab82')->name('update_tab82'); //Обновление строки год отчета
+    Route::get('/docs/tab82/new', 'ReportController@new_tab82'); //новая строка
+    Route::post('/docs/tab82/save', 'ReportController@save_tab82'); //сохранить строку
+    //****************** tab 8.3  *************************************
+    Route::get('/docs/tab83/delete/{id}', 'ReportController@delete_row_tab83');  //Удаление строки год отчета
+    Route::get('/docs/tab83/edit/{id}', 'ReportController@edit_tab83');  //Изменение строки год отчета
+    Route::post('update_tab83', 'ReportController@update_tab83')->name('update_tab83'); //Обновление строки год отчета
+    Route::get('/docs/tab83/new', 'ReportController@new_tab83'); //новая строка
+    Route::post('/docs/tab83/save', 'ReportController@save_tab83'); //сохранить строку
+    //****************** tab 8.4  *************************************
+    Route::get('/docs/tab84/delete/{id}', 'ReportController@delete_row_tab84');  //Удаление строки год отчета
+    Route::get('/docs/tab84/edit/{id}', 'ReportController@edit_tab84');  //Изменение строки год отчета
+    Route::post('update_tab84', 'ReportController@update_tab84')->name('update_tab84'); //Обновление строки год отчета
+    Route::get('/docs/tab84/new', 'ReportController@new_tab84'); //новая строка
+    Route::post('/docs/tab84/save', 'ReportController@save_tab84'); //сохранить строку
+    //****************** tab 9.1  *************************************
+    Route::get('/docs/tab91/delete/{id}', 'ReportController@delete_row_tab91');  //Удаление строки год отчета
+    Route::get('/docs/tab91/edit/{id}', 'ReportController@edit_tab91');  //Изменение строки год отчета
+    Route::post('update_tab91', 'ReportController@update_tab91')->name('update_tab91'); //Обновление строки год отчета
+    Route::get('/docs/tab91/new', 'ReportController@new_tab91'); //новая строка
+    Route::post('/docs/tab91/save', 'ReportController@save_tab91'); //сохранить строку
+    //****************** tab 10  *************************************
+    Route::get('/docs/tab10/delete/{id}', 'ReportController@delete_row_tab10');  //Удаление строки год отчета
+    Route::get('/docs/tab10/edit/{id}', 'ReportController@edit_tab10');  //Изменение строки год отчета
+    Route::post('update_tab10', 'ReportController@update_tab10')->name('update_tab10'); //Обновление строки год отчета
+    Route::get('/docs/tab10/new', 'ReportController@new_tab10'); //новая строка
+    Route::post('/docs/tab10/save', 'ReportController@save_tab10'); //сохранить строку
+
+
  //**************** Ситуационный план ***************************************************
     Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
 
@@ -69,6 +199,23 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
 
+    Route::resource('form51',Form51Controller::class);
+    Route::resource('form52',Form52Controller::class);
+    Route::get('form52-add-table/{id}','ReportController@child_form52_table')->name('add-child-form52');
+    Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
+    Route::get('form52-change-table/{id_event}', 'ReportController@edit_table')->name('form52-change-table');
+    Route::post('form52-change-table/{id_event}', 'ReportController@update_table')->name('form52-update-table');
+    Route::get('form52-delete-table/{id_event}', 'ReportController@destroy_row_tab_52')->name('form52-delete-table');
+    Route::resource('form5363',Form5363Controller::class);
+    Route::get('form5363-add-table/{id}','ReportController@child_form5363_table')->name('add-child-form5363');
+    Route::post('form5363-add-table/{id}', 'ReportController@store_child_form5363')->name('form5363-add-table');
+    Route::get('form5363-change-table/{id_event}', 'ReportController@edit_table5363')->name('form5363-change-table');
+    Route::post('form5363-change-table/{id_event}', 'ReportController@update_table5363')->name('form5363-update-table');
+    Route::get('form5363-delete-table/{id_event}', 'ReportController@destroy_row_tab_5363')->name('form5363-delete-table');
+    Route::resource('form61',Form61Controller::class);
+    Route::resource('form62',Form62Controller::class);
+
+    ///////////************** Отчеты PDF **************************************/////////////////////////
     Route::get('pdf_elem', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам
     Route::get('pdf_scena', 'PdfReportController@pdf_scena')->name('pdf_scena');     // скачать отчет по сценариям
     Route::get('pdf_result_pk', 'PdfReportController@pdf_result_pk')->name('pdf_result_pk');     // скачать отчет по проверкам
@@ -87,12 +234,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
     Route::get('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
 
-    Route::resource('form51',Form51Controller::class);
-    Route::resource('form52',Form52Controller::class);
-    Route::get('form52-add-table','Form52Controller@create_table');
-    Route::post('form52-add-table', 'Form52Controller@store_table')->name('form52-add-table');
-    Route::resource('form61',Form61Controller::class);
-    Route::resource('form62',Form62Controller::class);
+    ////////////******************** Отчеты XML**************************************
+    Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут
+    Route::get('/xml1', 'XMLController@events'); // создание xml events
+    Route::get('/xml2', 'XMLController@year'); // создание xml year
+    Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
+    Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
+    Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
+    Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
+    Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
+
+
+
     //*******************************************************
 
     Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
@@ -105,32 +258,6 @@ Route::group(['middleware' => ['auth']], function() {
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
     Route::get('/charts/chart_ip_opo', function () {        return view('charts/chart_ip_opo');    })->name('chart_ip_opo');
 
-//***************Login and prochee
-
-
-    //  Route::get('/home', 'HomeController@index')->name('home');
-
-
-//*********** Проба выгрузки картинки выгрузки не работает
-    Route::post('user/1', function (Request $request, $id) {
-        // Get the file from the request
-        $file = $request->file('image');
-        // Get the contents of the file
-        $contents = $file->openFile()->fread($file->getSize());
-        // Store the contents to the database
-        $user = App\User::find(1);
-        $user->avatar = $contents;
-        $user->save();
-    })->name('uploaded');
-
-//*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
-    Route::get('invoices/download', 'InvoiceController@download');
-    Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
-    Route::get('pdf', 'NotesController@pdf');
-
-//*********** Проба загрузки выгрузки
-    Route::resource('/images', 'ImageController');
-
 
 
 
@@ -140,9 +267,8 @@ Route::group(['middleware' => ['auth']], function() {
     //  Route::group(['middleware' => 'role:admin',], function () {
     // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
     Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
-
     Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
-
+    Route::get('clear_logs', 'AdminController@clear_logs')->name('clear_logs')->middleware('password.confirm'); // очистить журнал логов
     Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
     Route::post('add_user', 'AdminController@add_user')->name('add_user');
     Route::post('update_user', 'AdminController@update_user')->name('update_user');
@@ -160,27 +286,23 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/users', 'AdminController@user_view')->name('view_user');;
     Route::get('/admin/roles', 'AdminController@role_view');
     Route::get('/admin/perm', 'AdminController@perm_view');
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Auth\RegisterController@register');
+//    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//    Route::post('register', 'Auth\RegisterController@register');
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
     //  }); //'role:admin'
 //}); //'forbid-banned-user'
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
-//Route::get('/', 'MenuController@view_menu')->name('gda');   //Главная
+
 
 
 //Смена пароля
-    Route::get('/change-password', 'ChangePasswordController@index');
+    Route::get('/change-password', 'ChangePasswordController@index')->name('changepwd');
     Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
 //Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-
-
-
-    Route::get('/new/{id}', 'Opo_dayController@view_last');
 
 
 
@@ -206,7 +328,8 @@ Auth::routes();
 Route::get('/logout', function () {    Auth::logout();    return Redirect::to('login');});
 
 
-Route::get('/xml', 'AdminController@xml_view'); // Главная xml
+
+
 Route::get('/search/{id_s}', function ($id_s){
     $data = [
         ['id' => 1, 'name' => 'Admin'],
@@ -216,6 +339,28 @@ Route::get('/search/{id_s}', function ($id_s){
 
        return view('web.opo_shema_main', ['name' => $id_s, 'data'=>$data]);
 }); // С датапикером
+
+
+//*********** Проба выгрузки картинки выгрузки не работает
+Route::post('user/1', function (Request $request, $id) {
+    // Get the file from the request
+    $file = $request->file('image');
+    // Get the contents of the file
+    $contents = $file->openFile()->fread($file->getSize());
+    // Store the contents to the database
+    $user = App\User::find(1);
+    $user->avatar = $contents;
+    $user->save();
+})->name('uploaded');
+
+//*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
+Route::get('invoices/download', 'InvoiceController@download');
+Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
+Route::get('pdf', 'NotesController@pdf');
+
+//*********** Проба загрузки выгрузки
+Route::resource('/images', 'ImageController');
+
 
 Route::get('/reports', function (){
     return view('web.docs.reports.opo_5_1');
