@@ -164,6 +164,7 @@ return [
         App\Providers\RolesServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
         XmlResponse\XmlResponseServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

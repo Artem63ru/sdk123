@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fc67b5d643adef3ba51a67bb9205fd9e60a3b0d9',
+    'reference' => '1c61179187e263244ecf5f57e7e4825c613342fa',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -466,6 +466,15 @@ private static $installed = array (
         0 => '*',
       ),
     ),
+    'kyslik/column-sortable' => 
+    array (
+      'pretty_version' => '6.4.1',
+      'version' => '6.4.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '44f9da98acd31b2e871d0074bd638998990888b1',
+    ),
     'laravel-lang/lang' => 
     array (
       'pretty_version' => '7.0.9',
@@ -491,7 +500,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fc67b5d643adef3ba51a67bb9205fd9e60a3b0d9',
+      'reference' => '1c61179187e263244ecf5f57e7e4825c613342fa',
     ),
     'laravel/tinker' => 
     array (
@@ -837,8 +846,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

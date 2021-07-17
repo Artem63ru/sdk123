@@ -24,7 +24,8 @@
         "league/flysystem-sftp": "~1.0",
         "livewire/livewire": "^2.4",
         "spatie/laravel-permission": "^4.0",
-        "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev"
+        "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev",
+        "kyslik/column-sortable": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
