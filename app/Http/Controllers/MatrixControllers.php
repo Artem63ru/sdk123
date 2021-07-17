@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rtn;
 use Illuminate\Http\Request;
 
 class MatrixControllers extends Controller
@@ -40,4 +41,42 @@ class MatrixControllers extends Controller
 
     }
 
+    //******************** Обзор предписаний РТН ****************************
+    public function show_RTN_all()
+    {
+        $data = Rtn::orderByDesc('id')->get();
+        return view('web.docs.matrix.predRTN.index', compact('data'));
+    }
+    public function edit_RTN($id)
+    {
+        $data = Rtn::find($id);
+        return view('web.docs.matrix.predRTN.edit',compact('data'));
+    }
+    public function update_RTN(Request $request, $id)
+    {
+        $input = $request->all();
+        $data = Rtn::find($id);
+        $data->update($input);
+        return redirect("/docs/predRTN");
+    }
+    public function show_RTN($id)
+    {
+        $data = Rtn::find($id);
+        return view('web.docs.matrix.predRTN.show',compact('data'));
+    }
+    public function create_RTN()
+    {
+        return view('web.docs.matrix.predRTN.create');
+    }
+    public function store_RTN(Request $request)
+    {
+        $input = $request->all();
+        $predRTN = Rtn::create($input);
+        return redirect('/docs/predRTN');
+    }
+    public function delete_RTN($id)
+    {
+        Rtn::find($id)->delete();
+        return redirect('/docs/predRTN');
+    }
 }

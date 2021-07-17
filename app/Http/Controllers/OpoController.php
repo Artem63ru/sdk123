@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Failure_free;
+use App\Models\Operational_safety;
+use App\Models\Ready;
 use App\Ref_opo;
 use App\Models\Calc_opo;
 use App\Models\Calc_ip_opo_i;
@@ -252,10 +255,56 @@ class OpoController extends Controller
        $ver_opo =  Ref_opo::find($id);  // Ссылка на ОПО
        $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+       $oper_safety = Operational_safety::where('from_opo',$id)->orderByDesc('id')->get();
+       $ready = Ready::orderByDesc('id')->get();
+       $failure_free = Failure_free::where('from_opo', $id)->orderByDesc('id')->get();
 //
-       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo'));
+       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo', 'oper_safety', 'id', 'ready', 'failure_free'));
 
     }
+
+    public function new($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('operational.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+    public function new_ready($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('ready.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+    public function new_failure_free($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('failure_free.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+////       ********************** Операции с расчетом показателя безопасности ОПО*****************************
+//    public function operational_edit($id, $id_row){
+//        $data = Operational_safety::find($id_row);
+//        $ver_opo =  Ref_opo::find($id);
+//        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+//        return view('operational_safety.edit',compact('data', 'ver_opo', 'all_opo'));
+//    }
+//    public function operational_update(Request $request){
+//        $input = $request->all();
+//        $id_row = $request->id;
+//        $data = Operational_safety::find($id_row);
+//        $data->update($input);
+//        dd ($request);
+//        return redirect()->route('/opo/{id}/main')
+//            ->with('success','User updated successfully');
+//        $ver_opo =  Ref_opo::find($id);
+//        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+//        return view('operational_safety.edit',compact('data', 'ver_opo', 'all_opo'));
+//    }
+
+
     ///************************* Формирование данных для мини графика **********************************
     public static function view_ip_last ($id)
     {

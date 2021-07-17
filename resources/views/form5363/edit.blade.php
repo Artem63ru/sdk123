@@ -72,7 +72,7 @@
                         <div class="card-header"><h4 class="text-muted" style="text-align: left; margin-bottom: 0px">Данные о мероприятиях:</h4>
 
                             <div class="inside_tab_padding plan_new" style="height: 400px">
-                                <div class="row_block plan_new plan43">
+                                <div class="row_block plan_new plan42">
                                     <table style="width: 100%">
                                         <thead>
                                         <tr>
@@ -84,6 +84,7 @@
                                             <th class="centered">Срок выполнения</th>
                                             <th class="centered">Выполнение</th>
                                             <th class="centered">Информация о ходе выполнения</th>
+                                            <th></th>
 
                                         </tr>
                                         </thead>
