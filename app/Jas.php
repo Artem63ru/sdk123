@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Jas extends Model
 {
-
+    use  Sortable;
 
     protected $dateFormat = 'd.m.Y';
 
@@ -17,6 +18,12 @@ class Jas extends Model
     protected $fillable = [
         'check',
     ];
+
+    public $sortable = ['id',
+        'data',
+        'level',
+        'status',
+        'name'];
 
     public function jas_to_opo()
     {

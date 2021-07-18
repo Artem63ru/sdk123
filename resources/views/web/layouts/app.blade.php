@@ -35,9 +35,11 @@
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">--}}
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+
     @stack('app-css')
 
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}

@@ -14,24 +14,24 @@
             <table>
                 <tbody>
                 <tr>
-                    <td class="td_ch"></td>
-                    <td class="td_date ps_el">Дата</td>
-                    <td class="td_status ps_el">Статус</td>
+{{--                    <td class="td_ch">           </td>--}}
+                    <td class="td_date ps_el">@sortablelink('date', 'Дата', ['filter' => 'active, visible'], ['class' => 'activated', 'style' => 'text-decoration: none',  'rel' => 'nofollow'])</td>
+                    <td class="td_status ps_el">@sortablelink('level', 'Тяжесть', ['filter' => 'active, visible'], ['style' => 'text-decoration: none', 'rel' => 'nofollow'])</td>
                     <td class="td_opo ps_el">ОПО</td>
                     <td class="td_element ps_el">Элемент ОПО</td>
-                    <td class="td_number ps_el">Номер</td>
-                    <td class="td_event ps_el">Событие</td>
+                    <td class="td_number ps_el">Статус</td>
+                    <td class="td_event ps_el">Наименование события</td>
                     <td class=""></td>
                     <td class="td_btn activated"><a href="{{asset('/opo/1')}}">Закрыть журнал</a></td>
 
                 </tr>
                 </tbody>
             </table>
-            <div class="table_filter">
-                <div>Выбрать период</div>
-                <div>Класс события</div>
-                <div>Сортировать по</div>
-            </div>
+{{--            <div class="table_filter">--}}
+{{--                <div>Выбрать период</div>--}}
+{{--                <div>@sortablelink('name', 'Событие', ['filter' => 'active, visible'], ['class' => 'td_number ps_el', 'rel' => 'nofollow'])</div>--}}
+{{--                <div>Сортировать по</div>--}}
+{{--            </div>--}}
         </div>
         <div class="top_table_inside full_table">
             <div class="tabs razd_col_tab no_border">
@@ -40,12 +40,12 @@
                         <tbody>
                         @foreach ($jas as $value)
                             <tr>
-                                <td>{{$value->id}}</td>
+{{--                                <td class="td_ch">{{$value->id}}</td>--}}
                                 <td class="td_date">{{date('d-m-Y h:m', strtotime($value->data))}}</td>
-                                <td class="td_status">{{$value->level}}</td>
+                                <td class="td_status" >{{$value->level}}</td>
                                 <td class="td_opo">{{$value->jas_to_opo->descOPO}}</td>
                                 <td class="td_element">{{$value->jas_to_elem->nameObj}} (Элемен объекта ОПО {{$value->jas_to_opo->descOPO}})</td>
-                                <td class="td_number">{{$value->status}}</td>
+                                <td class="td_number" >{{$value->status}}</td>
                                 <td class="td_event">{{$value->name}}</td>
                             </tr>
                         @endforeach

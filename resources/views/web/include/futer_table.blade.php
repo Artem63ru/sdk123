@@ -12,7 +12,7 @@
                 <td class="td_number">Номер</td>
                 <td class="td_event">Событие</td>
 
-                <td class="td_button"><a href="index.html#">За сутки</a></td>
+{{--                <td class="td_button"><a href="index.html#">За сутки</a></td>--}}
             </tr>
             </tbody>
         </table>
