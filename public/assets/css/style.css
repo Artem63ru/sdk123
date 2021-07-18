@@ -665,7 +665,7 @@ tfoot td { position: sticky; bottom: 0; }
 .no_tab_table table.plan_table tr td:last-of-type,
 .no_tab_table table.plan_table tr th:last-of-type{    width: 65px; padding-right: 0;}
 .no_tab_table table{width:100%;}
-.no_tab_table table.plan_table tr td{text-align:center;}
+.no_tab_table table.plan_table tr td{text-align:left;}
 .no_tab_table table.plan_table tr td:nth-child(2),
 .no_tab_table table.plan_table tr td:nth-child(3),
 .no_tab_table table.plan_table tr th:nth-child(2),
