@@ -11,7 +11,7 @@
                         <div class="inside_tab_padding">
                             <div class="tech_passport_tab">
 
-                                <a href="#"><img alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="edit_icon"></a>
+{{--                                <a href="#"><img alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="edit_icon"></a>--}}
 
                                 <table class="noborders">
                                     <thead>
@@ -20,6 +20,7 @@
                                         <th>Статус</th>
                                         <th>Тип проекта</th>
                                         <th>Тип объекта</th>
+                                        <th>Коэф. загруженности</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -29,6 +30,7 @@
                                         <td class="good"><span>{{$this_elem->obj_to_status->desc_work}}</span></td>
                                         <td>Маннесманн</td>
                                         <td>{{$this_elem->obj_to_type->type_name}}</td>
+                                        <td>0,56</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -134,7 +136,9 @@
                     </style>
                     <div id="chartdiv"></div>
                     @include('charts.elem_main_charts.chart_1')
-                <p style="margin-top: -23px">Интегральный показатель <br/>состояния ПБ</p>
+                <p style="margin-top: -23px">Интегральный показатель
+                    <br/>состояния ПБ элемента ОПО
+                </p>
             </div>
             <div class="opo_page_square" id = "2"><a href="#">
                     <div id="chartdiv1"></div>
@@ -143,11 +147,17 @@
             <div class="opo_page_square" id = "3"><a href="#">
                 <div id="chartdiv2"></div>
                 @include('charts.elem_main_charts.chart_3')
-                    <p style="margin-top: -23px">Обобщенный показатель <br/>регламентных значений</p></a></div>
+                    <p style="margin-top: -23px">Обобщенный показатель
+                        <br/>превышения пределов безопасности
+                        <br/>технологического процесса
+                    </p></a></div>
             <div class="opo_page_square" id = "4"><a href="#">
                     <div id="chartdiv3"></div>
                     @include('charts.elem_main_charts.chart_4')
-                    <p style="margin-top: -23px"> Обобщенный показатель <br/>технического обслуживания</p></a></div>
+                    <p style="margin-top: -23px"> Обобщенный показатель
+                        <br/>технического риска ПБ (состояния
+                        <br/>и обслуживания) элемента ОПО
+                    </p></a></div>
         </div>
 
         <div class="period_info inside_type">
