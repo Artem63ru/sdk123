@@ -139,7 +139,7 @@ class MatrixControllers extends Controller
 
     public function show_Obj_all()
     {
-        $data = Ref_obj::orderBy('idObj')->get();
+        $data = Ref_obj::orderBy('idObj')->where('idOPO', '>', '0')->get();
         return view('web.docs.matrix.infoObj.index', compact('data'));
     }
     public function edit_Obj($idObj)

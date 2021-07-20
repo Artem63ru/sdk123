@@ -6,7 +6,7 @@ use App\Models\Calc_elem;
 use App\Models\Ref_Obj;
 use App\Models\ref_oto;
 
-class ElemController extends Controller
+class  ElemController extends Controller
 {
     public static function view_oto ($id_obj)
         //  Вывод ОТО относящихся к элементу //////////////////////****************************
