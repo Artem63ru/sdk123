@@ -61,4 +61,24 @@ class Ref_obj extends Model
     {
         return $this->belongsTo('App\Models\Status_obj', 'status', 'id_status');
     }
+
+    protected $fillable = [
+        'idObj', 'nameObj', 'uppg', 'InUse', 'QP1_TYPE', 'idOPO', 'descObj', 'typeObj', 'status', 'type_project',
+    ];
+
+
+    public function type_obj() // Отношение объекта к типу
+    {
+        return $this->belongsTo('App\Type_obj', 'typeObj', 'type_id');
+    }
+    public function ref_opo() // Отношение объекта к типу
+    {
+        return $this->belongsTo('App\Ref_opo', 'idOPO', 'idOPO');
+    }
+    public function wells_type() // Отношение объекта к типу
+    {
+        return $this->belongsTo('App\Wells_type', 'QP1_TYPE', 'name');
+    }
+
+
 }

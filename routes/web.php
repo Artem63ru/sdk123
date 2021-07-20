@@ -23,8 +23,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/opo/{id}/main/new_failure_free','OpoController@new_failure_free');   // cоздание новой записи
 
 
-
-
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
@@ -38,15 +36,38 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
+//****************** Предписания РТН *************************************
     Route::get('/docs/predRTN', "MatrixControllers@show_RTN_all"); // страница справочника предписаний РТН
     Route::get('/docs/predRTN/{id}/edit', "MatrixControllers@edit_RTN")->name('edit_RTN'); // редактирование предписания РТН
-    Route::post('/docs/predRTN/{id}/update', "MatrixControllers@update_RTN")->name('update_RTN'); // редактирование предписания РТН
+    Route::post('/docs/predRTN/{id}/update', "MatrixControllers@update_RTN")->name('update_RTN'); // обновление предписания РТН
     Route::get('/docs/predRTN/{id}/show', "MatrixControllers@show_RTN")->name('show_RTN'); // просмотр предписания РТН
     Route::get('/docs/predRTN/{id}/delete', "MatrixControllers@delete_RTN")->name('delete_RTN'); // удаление предписания РТН
     Route::get('/docs/predRTN/create', "MatrixControllers@create_RTN")->name('create_RTN'); // создание предписания РТН
-    Route::post('/docs/predRTN/store', "MatrixControllers@store_RTN")->name('store_RTN'); // редактирование предписания РТН
-
-
+    Route::post('/docs/predRTN/store', "MatrixControllers@store_RTN")->name('store_RTN'); // сохранение предписания РТН
+//****************** Справочник ОПО *************************************
+    Route::get('/docs/infoOPO', "MatrixControllers@show_OPO_all"); // страница справочника ОПО
+    Route::get('/docs/infoOPO/{idOPO}/edit', "MatrixControllers@edit_OPO")->name('edit_OPO'); // редактирование
+    Route::post('/docs/infoOPO/{idOPO}/update', "MatrixControllers@update_OPO")->name('update_OPO'); // обновление
+    Route::get('/docs/infoOPO/{idOPO}/show', "MatrixControllers@show_OPO")->name('show_OPO'); // просмотр
+    Route::get('/docs/infoOPO/{idOPO}/delete', "MatrixControllers@delete_OPO")->name('delete_OPO'); // удаление
+    Route::get('/docs/infoOPO/create', "MatrixControllers@create_OPO")->name('create_OPO'); // создание
+    Route::post('/docs/infoOPO/store', "MatrixControllers@store_OPO")->name('store_OPO'); // сохранение
+//****************** Справочник элементов ОПО *************************************
+    Route::get('/docs/infoObj', "MatrixControllers@show_Obj_all"); // страница справочника элементов ОПО
+    Route::get('/docs/infoObj/{idObj}/edit', "MatrixControllers@edit_Obj")->name('edit_Obj'); // редактирование
+    Route::post('/docs/infoObj/{idObj}/update', "MatrixControllers@update_Obj")->name('update_Obj'); // обновление
+    Route::get('/docs/infoObj/{idObj}/show', "MatrixControllers@show_Obj")->name('show_Obj'); // просмотр
+    Route::get('/docs/infoObj/{idObj}/delete', "MatrixControllers@delete_Obj")->name('delete_Obj'); // удаление
+    Route::get('/docs/infoObj/create', "MatrixControllers@create_Obj")->name('create_Obj'); // создание
+    Route::post('/docs/infoObj/store', "MatrixControllers@store_Obj")->name('store_Obj'); // сохранение
+//****************** Справочник ТБ *************************************
+    Route::get('/docs/infoTB', "MatrixControllers@show_TB_all"); // страница справочника ТБ
+    Route::get('/docs/infoTB/{idOTO}/edit', "MatrixControllers@edit_TB")->name('edit_TB'); // редактирование
+    Route::post('/docs/infoTB/{idOTO}/update', "MatrixControllers@update_TB")->name('update_TB'); // обновление
+    Route::get('/docs/infoTB/{idOTO}/show', "MatrixControllers@show_TB")->name('show_TB'); // просмотр
+    Route::get('/docs/infoTB/{idOTO}/delete', "MatrixControllers@delete_TB")->name('delete_TB'); // удаление
+    Route::get('/docs/infoTB/create', "MatrixControllers@create_TB")->name('create_TB'); // создание
+    Route::post('/docs/infoTB/store', "MatrixControllers@store_TB")->name('store_TB'); // сохранение
 
     Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов
     Route::get('/docs/reglament',['as' => 'reglament', 'uses' =>'MatrixControllers@Showregl']); // страница справочника регламентных значений
@@ -57,7 +78,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']); // Просмотр файла
     Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']); //Удаление файла
 
-    //****************** Для годового отчета  *************************************
+    //****************** Для НОВОГО годового отчета  *************************************
     Route::get('/docs/rtn2', ['as' => 'rtn', 'uses' =>'ReportController@Showrtn2']); // страница нового годового отчета
     //****************** tab 1.1  *************************************
     Route::get('/docs/tab11/delete/{id}', 'ReportController@delete_row_tab11');  //Удаление строки год отчета

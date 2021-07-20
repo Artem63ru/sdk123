@@ -81,5 +81,8 @@ class Ref_opo extends Model
             ->get() ; //Carbon::now()->subHours(24)
     }
 
+    protected $fillable = [
+        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login',
+    ];
 
 }

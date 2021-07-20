@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('title')
-    Справка
+    Предписания РТН
 @endsection
 
 @section('content')
@@ -16,11 +16,11 @@
 
     <div class="card-header", style="margin-top: 30px"><h2 class="text-muted" style="text-align: center" >Список предписаний РТН</h2>
         @can('role-create')
-            <div class="bat_add"><a href="{{ route('create_RTN') }}">Создать Акт</a></div>
+            <div class="bat_add"><a href="{{ route('create_RTN') }}">Добавить предписание</a></div>
         @endcan
     </div>
 
-    <div class="inside_tab_padding">
+    <div class="inside_tab_padding" style="height: 500px">
         <div style="background: #FFFFFF; border-radius: 6px; width: 1220px" class="row_block form51">
             <table>
                 <thead>

@@ -191,24 +191,6 @@
                                     </table>
                                 </div>
 
-{{--                                <div class="inform">--}}
-{{--                                    <div class="inform_left">--}}
-{{--                                        <table class="opo_info">--}}
-{{--                                            <tbody>--}}
-{{--                                            <tr><td>Процесс эффективен</td><td>Больше 0,9</td></tr>--}}
-{{--                                            <tr><td>Область перспективного развития ПК</td><td>От 0,7 до 0,9</td></tr>--}}
-{{--                                            </tbody>--}}
-{{--                                        </table>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="inform_right">--}}
-{{--                                        <table class="opo_info">--}}
-{{--                                            <tbody>--}}
-{{--                                            <tr><td>Область улучшения</td><td>От 0,5 до 0,7</td></tr>--}}
-{{--                                            <tr><td>Требуется разработка и реализация <br/>корректирующих действий</td><td></td></tr>--}}
-{{--                                            </tbody>--}}
-{{--                                        </table>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
                             <div class="tabs-panel" data-index="3">
                                 <h4>Расчет показателя готовности организации и персонала ОПО к локализации аварий и инцидентов</h4>
@@ -259,24 +241,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-{{--                                <div class="inform">--}}
-{{--                                    <div class="inform_left">--}}
-{{--                                        <table class="opo_info">--}}
-{{--                                            <tbody>--}}
-{{--                                            <tr><td>Процесс эффективен</td><td>Больше 0,9</td></tr>--}}
-{{--                                            <tr><td>Область перспективного развития ПК</td><td>От 0,7 до 0,9</td></tr>--}}
-{{--                                            </tbody>--}}
-{{--                                        </table>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="inform_right">--}}
-{{--                                        <table class="opo_info">--}}
-{{--                                            <tbody>--}}
-{{--                                            <tr><td>Область улучшения</td><td>От 0,5 до 0,7</td></tr>--}}
-{{--                                            <tr><td>Требуется разработка и реализация <br/>корректирующих действий</td><td></td></tr>--}}
-{{--                                            </tbody>--}}
-{{--                                        </table>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+
                             </div>
                         </div>
                     </div>
@@ -288,38 +253,7 @@
     </div>
 
 </div>
-{{--<script>--}}
-{{--    let checkboxes = document.getElementsByName('tab_group');--}}
-{{--    console.log(checkboxes)--}}
-{{--    function pageStart() {--}}
-{{--        for (let ch of checkboxes) {--}}
-{{--            if (window.localStorage[ch.id]){--}}
-{{--                ch.setAttribute("checked");--}}
-{{--            }--}}
-{{--        }--}}
-{{--    }--}}
 
-{{--    function SaveChecked(element){--}}
-{{--        console.log(window.localStorage[element.id])--}}
-{{--        if (window.localStorage[element.id]!=null){--}}
-{{--            element.removeAttribute("checked");--}}
-{{--            window.localStorage.removeItem(element.id);--}}
-
-{{--        }--}}
-{{--        else {--}}
-{{--            for (let ch of checkboxes){--}}
-{{--                if (window.localStorage[ch.id]){--}}
-{{--                    ch.removeAttribute("checked");--}}
-{{--                    window.localStorage.removeItem(ch.id);--}}
-{{--                }--}}
-{{--            }--}}
-{{--            window.localStorage[element.id]=true;--}}
-{{--        }--}}
-
-{{--    }--}}
-
-{{--    pageStart();--}}
-{{--</script>--}}
 @include('web.include.script-lib.am4')
 @include('web.include.script-lib.highcharts')
 
