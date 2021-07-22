@@ -1,7 +1,7 @@
 
 
 
-<div id="chart_mini1" style="height: 100px; padding-top: 20px"></div>
+<div id="chart_mini1" style="height: 100px; padding-top: 20px; width: 30%;"></div>
 
 <script language="JavaScript">
     Highcharts.chart('chart_mini1', {

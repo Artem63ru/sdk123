@@ -10,6 +10,9 @@ class Ref_opo extends Model
     protected $table = 'ref_opo';
     public $timestamps = true;
     public $primaryKey = 'idOPO';
+    protected $fillable = [
+        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login',
+    ];
     //************************** Последние 90 записей в ЖАС для конкретного ОПО *********************************************
         public function opo_to_jas()
     {
@@ -81,8 +84,46 @@ class Ref_opo extends Model
             ->get() ; //Carbon::now()->subHours(24)
     }
 
-    protected $fillable = [
-        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login',
-    ];
+
+    public function opo_sample_day()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 day'")->take(1);
+
+    }
+
+    public function opo_sample_mons()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 mons'")->take(1);
+
+    }
+
+    public function opo_sample_year()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 year'")->take(1);
+
+    }
+    public function opo_sample_days_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 day'")->take(60);
+
+    }
+
+    public function opo_sample_mons_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 mons'")->take(60);
+
+    }
+
+    public function opo_sample_year_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 year'")->take(60);
+
+    }
 
 }

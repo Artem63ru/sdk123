@@ -10,6 +10,10 @@
 
                     <table class="opo_info">
                         <tbody>
+                        <tr class="padding_tabl_button">
+                         <td class="fond_calendar_btn"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
+                         <td class="fond_calendar_btn"><a href="{{ url('/docs/predRTN')}}">Журнал предписаний</a></td>
+                        </tr>
                         <tr>
                             <td>Наименование ОПО:</td>
                             <td>{{$ver_opo->descOPO}}</td>
@@ -22,7 +26,7 @@
                             <td>Класс опасности:</td>
                             <td>{{$ver_opo->classHazard}}</td>
                         </tr>
-                        <tr class="padding_tabl">
+                        <tr>
                             <td>Регистрационный номер ОПО:</td>
                             <td>{{$ver_opo->regNumOPO}}</td>
                         </tr>
@@ -34,41 +38,52 @@
                             <td>Статус:</td>
                             <td>{{$ver_opo->flDel}}</td>
                         </tr>
-                        <tr>
-                            <td></td>
 
-                            <td class="fond_info"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
-                        </tr>
                         </tbody>
                     </table>
-
-                </div>
-                <style>
-                    #chartdiv {
-                        width: 90%;
-                        height: 120%;
-                    }
-                </style>
-
-                <div class="func_passport_bottom tabled_rate">
-                    <table>
+                    <table class="opo_info">
                         <tbody>
                         <tr>
+                            <td>Интегральные показатели</td>
+                            <td>Проактивные показатели</td>
+                        </tr>
+                        <tr>
                             <td class="inntegral">
-
-
                                 <div class="replace div2" id="chartdiv" >
                                     @include('charts.chart_1')
                                 </div>
                             </td>
-                            <td class="rating"><div class="div1"><h3 class="red">{{count($data_rtn_noncheck)+count($data_rtn_check)}}</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
-                                    @include('charts.opo.chart_rtn_pred_mini')
-                                </div></td>
+                            <td class="inntegral">
+                                <div class="replace div2" id="chartdiv_pro" >
+                                    @include('charts.chart_opo_pro')
+                                </div>
+                            </td>
+                        </tr>
 
-                            <td class="rating"><div class="div1"><h3 class="blue">75%</h3> <p>Оценка эффективности<br/>проведения ПБ</p>
+
+                     </tbody>
+                    </table>
+
+                </div>
+                <div class="func_passport_bottom tabled_rate">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="rating">
+                                <div class="div1">
+                                    <h3 class="red">{{count($data_rtn_noncheck)+count($data_rtn_check)}}</h3> <p>Количество предписаний<br/>Ростехнадзора</p>
+                                    @include('charts.opo.chart_rtn_pred_mini')
+                                </div>
+                            </td>
+
+                            <td class="rating">
+                                <div class="div1">
+                                    <h3 class="blue">75%</h3> <p>Оценка эффективности<br/>проведения ПБ</p>
                                     @include('charts.opo.chart_epk_opo_mini')
                                 </div></td>
-                            <td class="rating"><div class="div1"><h3 class="green">{{$count_jas}}</h3> <p>Общее количество<br/>событий ПБ</p>
+                            <td class="rating">
+                                <div class="div1">
+                                    <h3 class="green">{{$count_jas}}</h3> <p>Общее количество<br/>событий ПБ</p>
                                     @include('charts.opo.chart_pb_event_mini')
                                 </div></td>
                         </tr>
