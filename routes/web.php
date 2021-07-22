@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/glossary', ['as' => 'glossary', 'uses' => 'GlossaryControllers@showHelp']); // страница Справки
     Route::get('/docs/events', "MatrixControllers@showEvent"); // страница Возможных событий матрицы
     Route::get('/docs/koef', "MatrixControllers@showkoef"); // страница справочника коэфициетов
+    Route::get('/docs/calendar_event', "MatrixControllers@show_calendar_event"); // страница справочника типов событий календаря
 //****************** Предписания РТН *************************************
     Route::get('/docs/predRTN', "MatrixControllers@show_RTN_all"); // страница справочника предписаний РТН
     Route::get('/docs/predRTN/{id}/edit', "MatrixControllers@edit_RTN")->name('edit_RTN'); // редактирование предписания РТН

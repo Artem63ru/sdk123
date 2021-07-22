@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalendarEvents\CalendarEventType;
 use App\Models\Ref_obj;
 use App\Models\Ref_oto;
 use App\Models\Rtn;
@@ -25,6 +26,12 @@ class MatrixControllers extends Controller
     {
         $jas = OpoController::view_jas_15();     // Жас всех ОПО 15 записей
         return view('web.docs.koef.index', compact('jas'));
+    }
+    //******************* Обзор типов событий календаря ****************************
+    public function show_calendar_event()
+    {
+        $data_ok = CalendarEventType::orderBy('id')->get();
+        return view('web.docs.matrix.calendar_events.index', compact('data_ok'));
     }
     //******************** Обзор Регламентных значений ****************************
     public function Showregl()
@@ -58,7 +65,7 @@ class MatrixControllers extends Controller
     {
         $data = Rtn::find($id);
         $data_all = Ref_opo::all();
-
+        AdminController::log_record('Открыл для редактирования предписание РТН');//пишем в журнал
         return view('web.docs.matrix.predRTN.edit',compact('data', 'data_all'));
     }
     public function update_RTN(Request $request, $id)
@@ -67,6 +74,7 @@ class MatrixControllers extends Controller
         $input = $request->all();
         $data = Rtn::find($id);
         $data->update($input);
+        AdminController::log_record('Сохранил после редактирования предписание РТН');//пишем в журнал
         return redirect("/docs/predRTN");
     }
     public function show_RTN($id)
@@ -85,11 +93,13 @@ class MatrixControllers extends Controller
     {
         $input = $request->all();
         $predRTN = Rtn::create($input);
+        AdminController::log_record('Создал запись предписания РТН');//пишем в журнал
         return redirect('/docs/predRTN');
     }
     public function delete_RTN($id)
     {
         Rtn::find($id)->delete();
+        AdminController::log_record('Удалил запись предписания РТН');//пишем в журнал
         return redirect('/docs/predRTN');
     }
 
@@ -103,6 +113,7 @@ class MatrixControllers extends Controller
     public function edit_OPO($idOPO)
     {
         $data = Ref_opo::find($idOPO);
+        AdminController::log_record('Открыл для редактирования запись в справочнике ОПО');//пишем в журнал
         return view('web.docs.matrix.infoOPO.edit',compact('data'));
     }
     public function update_OPO(Request $request, $idOPO)
@@ -111,6 +122,7 @@ class MatrixControllers extends Controller
         $data = Ref_opo::find($idOPO);
         $data['login'] = Auth::user()->name;
         $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике ОПО');//пишем в журнал
         return redirect("/docs/infoOPO");
     }
     public function show_OPO($idOPO)
@@ -127,17 +139,20 @@ class MatrixControllers extends Controller
         $input = $request->all();
         $input['login'] = Auth::user()->name;
         $predRTN = Ref_opo::create($input);
+        AdminController::log_record('Создал запись в справочнике ОПО');//пишем в журнал
         return redirect('/docs/infoOPO');
     }
     public function delete_OPO($idOPO)
     {
         Ref_opo::find($idOPO)->delete();
+        AdminController::log_record('Удалил запись в справочнике ОПО');//пишем в журнал
         return redirect('/docs/infoOPO');
     }
 
     //******************** Справочник элементов ОПО ****************************
 
     public function show_Obj_all()
+
     {
         $data = Ref_obj::orderBy('idObj')->where('idOPO', '>', '0')->get();
         return view('web.docs.matrix.infoObj.index', compact('data'));
@@ -149,6 +164,7 @@ class MatrixControllers extends Controller
         $data_opo = Ref_opo::all();
         $data_obj_type = Type_obj::all();
         $data_status = Status_obj::all();
+        AdminController::log_record('Открыл для редактирования запись в справочнике элементов ОПО');//пишем в журнал
         return view('web.docs.matrix.infoObj.edit',compact('data', 'data_all', 'data_opo', 'data_obj_type', 'data_status'));
     }
     public function update_Obj(Request $request, $idObj)
@@ -156,6 +172,7 @@ class MatrixControllers extends Controller
         $input = $request->all();
         $data = Ref_obj::find($idObj);
         $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике элементов ОПО');//пишем в журнал
         return redirect("/docs/infoObj");
     }
     public function show_Obj($idObj)
@@ -179,11 +196,13 @@ class MatrixControllers extends Controller
     {
         $input = $request->all();
         $predRTN = Ref_obj::create($input);
+        AdminController::log_record('Создал запись в справочнике элементов ОПО');//пишем в журнал
         return redirect('/docs/infoObj');
     }
     public function delete_Obj($idObj)
     {
         Ref_obj::find($idObj)->delete();
+        AdminController::log_record('Удалил запись в справочнике элементов ОПО');//пишем в журнал
         return redirect('/docs/infoObj');
     }
 
@@ -198,6 +217,7 @@ class MatrixControllers extends Controller
     {
         $data = Ref_oto::find($idOTO);
         $data_all = Type_obj::all();
+        AdminController::log_record('Открыл для редактирования запись в справочнике ТБ элемента ОПО');//пишем в журнал
         return view('web.docs.matrix.infoTB.edit',compact('data', 'data_all'));
     }
     public function update_TB(Request $request, $idOTO)
@@ -214,6 +234,7 @@ class MatrixControllers extends Controller
         $input = $request->all();
         $input['image'] = $name_doc;
         $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике ТБ элемента ОПО');//пишем в журнал
         return redirect("/docs/infoTB");
     }
     public function show_TB($idOTO)
@@ -236,11 +257,13 @@ class MatrixControllers extends Controller
         $input = $request->all();
         $input['image'] = "oto/".$doc->getClientOriginalName();
         $predRTN = Ref_oto::create($input);
+        AdminController::log_record('Создал запись в справочнике ТБ элемента ОПО');//пишем в журнал
         return redirect('/docs/infoTB');
     }
     public function delete_TB($idOTO)
     {
         Ref_oto::find($idOTO)->delete();
+        AdminController::log_record('Удалил запись в справочнике ТБ элемента ОПО');//пишем в журнал
         return redirect('/docs/infoTB');
     }
 

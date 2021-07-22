@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\AdminController;
 use App\Models\Matrix\Event_types;
 use Livewire\WithPagination;
 use App\User;
@@ -29,6 +30,7 @@ class EventTypes extends Component
         ]);
         Event_types::create($validatedDate);
         $this->resetInputFields();
+        AdminController::log_record('Создал запись о возможном опасном событии');//пишем в журнал
         return redirect()->to('/docs/events');
 
     }
@@ -53,6 +55,7 @@ class EventTypes extends Component
         if($id){
             Event_types::where('id',$id)->delete();
             session()->flash('message', 'Events Deleted Successfully.');
+            AdminController::log_record('Удалил запись о возможном опасном событии');//пишем в журнал
         }
     }
 
@@ -63,6 +66,7 @@ class EventTypes extends Component
         $this->event_id = $id;
         $this->name = $event->name;
         $this->from_type_obj = $event->from_type_obj;
+        AdminController::log_record('Открыл для редактирования запись о возможном опасном событии');//пишем в журнал
 
     }
     public function update()
@@ -78,6 +82,7 @@ class EventTypes extends Component
                 'name' => $this->name,
                 'from_type_obj' => $this->from_type_obj,
             ]);
+            AdminController::log_record('Сохранил после редактирования запись о возможном опасном событии');//пишем в журнал
             $this->updateMode = false;
             session()->flash('message', 'Events Updated Successfully.');
             $this->resetInputFields();

@@ -16,25 +16,6 @@ class EventsCalendarController extends  Controller {
         return view('web.include.eventsCalendar.calendar', compact('opo_id', 'types', 'users', 'opo_name'));
     }
 
-//    public function get_data($opo_id, Request $request){
-//        if($request->ajax())
-//        {
-////            $data = CalendarEvent::where('opo_id', '=', $opo_id)->whereDate('start_datetime', '>=', $request->start)
-////                ->whereDate('end_datetime',   '<=', $request->end)
-////                ->get(['id', 'title', 'start', 'end']);
-//            $result=CalendarEvent::get_month_events($request->start, $request->end, $opo_id);
-//            foreach($result as $row)
-//            {
-//                $data[] = array(
-//                    'id'   => $row["id"],
-//                    'title'   => $row["name"],
-//                    'start'   => $row["start_datetime"],
-//                    'end'   => $row["end_datetime"]
-//                );
-//            }
-//            return response()->json($data);
-//        }
-//    }
 
     public function action(Request $request){
         if ($request->ajax()){
@@ -144,6 +125,8 @@ class EventsCalendarController extends  Controller {
         return json_encode($result);
         #return view('web.include.eventsCalendar.test', compact('users'));
     }
+
+
 }
 
 ?>

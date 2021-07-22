@@ -22,7 +22,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->koef }}</td>
                         <td>{{ $user->from_oto }}</td>
-                        {{--                <td> <a href="#"><img alt="" src="{{asset('assets/images/icons/open.svg')}}" class="open_i"></a>--}}
+{{--                                        <td> <a href="#"><img alt="" src="{{asset('assets/images/icons/open.svg')}}" class="open_i"></a>--}}
 {{--                         <a href="#"><img wire:click="delete({{ $user->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>--}}
                         <td>  <a href="#EditModal" ><img wire:click="edit({{ $user->id }})" alt="Редактировать" src="{{asset('assets/images/icons/edit.svg')}}" class="edit_i"></a></td>
 

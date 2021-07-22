@@ -38,6 +38,7 @@ class Form61Controller extends Controller
     {
         $input = $request->all();
         $report61 = Form61::create($input);
+        AdminController::log_record('Создал ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
         return redirect()->route('form61.index')
             ->with('success','User created successfully');
     }
@@ -62,6 +63,7 @@ class Form61Controller extends Controller
     public function edit($id)
     {
         $data = Form61::find($id);
+        AdminController::log_record('Открыл для редактирования ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
         return view('form61.edit',compact('data'));
     }
 
@@ -77,6 +79,7 @@ class Form61Controller extends Controller
         $input = $request->all();
         $data = Form61::find($id);
         $data->update($input);
+        AdminController::log_record('Сохранил после изменения ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
         return redirect()->route('form61.index')
             ->with('success','User updated successfully');
     }
@@ -90,6 +93,7 @@ class Form61Controller extends Controller
     public function destroy($id)
     {
         Form61::find($id)->delete();
+        AdminController::log_record('Удалил ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
         return redirect()->route('form61.index')
             ->with('success','User deleted successfully');
     }

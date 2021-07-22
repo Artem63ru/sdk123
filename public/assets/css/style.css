@@ -423,11 +423,10 @@ input[type="radio"]#opo_pass:checked + .per_sood{display:block;width:75%;}
   .func_passport_bottom{padding-top:0;}
   .func_passport_upd{margin-top:25px;}
 
-  table.opo_info{display: inline-block; vertical-align: top;width: 49%; color:#999999;font-size:13px;}
+  table.opo_info{color:#999999;font-size:13px;}
   table.opo_info tr td{padding:5px 20px 5px 5px;}
   table.opo_info tr td:last-of-type{color:#6f6f6e;font-weight:bold;padding:5px 5px 5px 20px;border-left:1px solid #f2f2f2;}
   table.opo_info tr.padding_tabl td{padding-top:20px;padding-bottom:20px;}
-  table.opo_info tr.padding_tabl_button td{padding-bottom:20px;}
 
   .func_passport_bottom.tabled_rate{background:transparent;overflow:hidden;padding:0;height:21vh;}
   .func_passport_bottom.tabled_rate table td.rating{width:28%;}
@@ -1023,10 +1022,6 @@ thead tr:first-child th { position: sticky; top: 0; }
 .fond_info h3{font-size:16px;font-weight:bold;color:#4689aa;margin-top:0;margin-bottom:20px;}
 .fond_info a{background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
 .fond_info a:hover{background:#4689aa;color:#fff;}
-
-.fond_calendar_btn {  position: inherit;z-index: 99;top: 50px;    right: 74px;background:#fff;}
-.fond_calendar_btn a{background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
-.fond_calendar_btn a:hover{background:#4689aa;color:#fff;}
 
 .fond_info table tr td:first-of-type{text-align:right;border-right:1px solid #ccc;padding-right:15px;padding-bottom:15px;}
 .fond_info table tr td:last-of-type{text-align:center;padding-left:15px;}
