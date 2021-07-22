@@ -13,6 +13,10 @@ class CalendarEventType extends Model{
     public static function get_id_by_name($name){
         return CalendarEventType::where('name', '=', $name)->get()->id;
     }
+
+    protected $fillable = [
+        'name',
+    ];
 }
 
 ?>

@@ -16,6 +16,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.5",
         "jailtonsc/laravel-response-xml": "^3.0",
+        "jenssegers/date": "^4.0",
+        "kyslik/column-sortable": "^6.0",
         "laravel-lang/lang": "~7.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
@@ -24,8 +26,7 @@
         "league/flysystem-sftp": "~1.0",
         "livewire/livewire": "^2.4",
         "spatie/laravel-permission": "^4.0",
-        "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev",
-        "kyslik/column-sortable": "^6.0"
+        "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

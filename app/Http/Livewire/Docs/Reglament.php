@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Docs;
 
+use App\Http\Controllers\AdminController;
 use App\Models\Tech_reg\Tech_reglament;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -37,7 +38,8 @@ class Reglament extends Component
             'koef' => 'required',
         ]);
         Tech_reglament::create($validatedDate);
-     //   $this->resetInputFields();
+        AdminController::log_record('Создал запись в справочнике технологических регламентов');//пишем в журнал
+        //   $this->resetInputFields();
         return redirect()->to('/docs/reglament');
 
     }
@@ -46,6 +48,7 @@ class Reglament extends Component
     {
         if($id){
             Tech_reglament::where('id',$id)->delete();
+            AdminController::log_record('Удалил запись из справочника технологических регламентов');//пишем в журнал
             session()->flash('message', 'Events Deleted Successfully.');
         }
     }
@@ -59,7 +62,8 @@ class Reglament extends Component
         $this->min = $tech_r->min;
         $this->max = $tech_r->max;
         $this->koef = $tech_r->koef;
-     }
+        AdminController::log_record('Открыл для редактирования запись из справочника технологических регламентов');//пишем в журнал
+    }
     public function update()
     {
         $validatedDate = $this->validate([
@@ -75,6 +79,7 @@ class Reglament extends Component
                 'max' => $this->max,
                 'koef' => $this->koef,
             ]);
+            AdminController::log_record('Сохранил после редактирования запись из справочника технологических регламентов');//пишем в журнал
             $this->updateMode = false;
             session()->flash('message', 'Events Updated Successfully.');
             //     $this->resetInputFields();

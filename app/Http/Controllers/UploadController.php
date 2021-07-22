@@ -27,6 +27,7 @@ class UploadController extends Controller
                         }
                      }
                  }
+               AdminController::log_record('Загрузил нормативную документацию');//пишем в журнал
                return redirect()->route('upload_form');
             }
 
@@ -37,6 +38,7 @@ class UploadController extends Controller
         if (Storage::exists('public/docs/'.Image::find($id)->title)) {
             $f = Storage::disk('public');
             $files = $f->allFiles();
+            AdminController::log_record('Открыл для просмотра нормативную документацию');//пишем в журнал
 
              return view('web.docs.upload.show-pdf', ['image'=> $image = \Storage::URL('docs/'.Image::find($id)->title), 'jas'=>OpoController::view_jas_15()]);
 
@@ -47,6 +49,7 @@ class UploadController extends Controller
         if (Storage::exists('public/docs/'.Image::find($id)->title))
         {
             $f = Storage::disk('public');
+            AdminController::log_record('Удалил нормативную документацию');//пишем в журнал
             $f->delete('docs/' . Image::find($id)->title);
             Image::destroy($id);
         }
@@ -56,6 +59,7 @@ class UploadController extends Controller
             {
                 $f = Storage::disk('public');
                 $f->delete('docs/' . Image::find($id)->title);
+                AdminController::log_record('Удалил нормативную документацию');//пишем в журнал
                 Image::destroy($id);
             }
             else

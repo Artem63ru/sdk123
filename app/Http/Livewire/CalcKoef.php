@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Controllers\AdminController;
 use App\Models\Dynamic\Calc_koef;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -27,6 +28,7 @@ class CalcKoef extends Component
         $this->name = $event->description;
         $this->from_oto = $event->from_oto;
         $this->koef = $event->koef;
+        AdminController::log_record('Открыл для редактирования коэффициент для расчета');//пишем в журнал
 
     }
     public function update()
@@ -43,7 +45,8 @@ class CalcKoef extends Component
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
-            return redirect()->to('/docs/koef');
+        AdminController::log_record('Сохранил после редактирования коэффициент для расчета');//пишем в журнал
+        return redirect()->to('/docs/koef');
 //        }
     }
     private function resetInputFields(){

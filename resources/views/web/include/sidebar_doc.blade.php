@@ -34,7 +34,8 @@
                             <a href="/docs/predRTN">Предписания РТН</a>
                             <a href="/docs/infoOPO">Справочник ОПО</a>
                             <a href="/docs/infoObj">Справочник элементов ОПО</a>
-                            <a href="/docs/infoTB">Справлочник ТБ элементов ОПО</a>
+                            <a href="/docs/infoTB">Справочник ТБ элементов ОПО</a>
+                            <a href="/docs/calendar_event">Справочник возможных событий</a>
                         </div>
                     </label>
 
