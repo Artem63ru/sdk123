@@ -39,6 +39,7 @@ class Form62Controller extends Controller
     {
         $input = $request->all();
         $report62 = Form62::create($input);
+        AdminController::log_record('Создал акт технического расследования причин аварии форма 6.2');
         return redirect()->route('form62.index')
             ->with('success','User created successfully');
     }
@@ -63,6 +64,7 @@ class Form62Controller extends Controller
     public function edit($id)
     {
         $data = Form62::find($id);
+        AdminController::log_record('Открыл для редактирования акт технического расследования причин аварии форма 6.2');
         return view('form62.edit',compact('data'));
     }
 
@@ -78,6 +80,7 @@ class Form62Controller extends Controller
         $input = $request->all();
         $data = Form62::find($id);
         $data->update($input);
+        AdminController::log_record('Сохранил после редактирования акт технического расследования причин аварии форма 6.2');
         return redirect()->route('form62.index')
             ->with('success','User updated successfully');
     }
@@ -91,6 +94,7 @@ class Form62Controller extends Controller
     public function destroy($id)
     {
         Form62::find($id)->delete();
+        AdminController::log_record('Удалил акт технического расследования причин аварии форма 6.2');
         return redirect()->route('form62.index')
             ->with('success','User deleted successfully');
     }

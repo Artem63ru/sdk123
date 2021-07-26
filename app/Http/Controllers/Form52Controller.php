@@ -29,6 +29,7 @@ class Form52Controller extends Controller
     {
         $data = Form52::create();
         return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', $data->id_event)->get()]);
+
        // $act_id = 0;
     //    return view('form52.create', ['rows'=>Form52_table::orderby('id_event')->where('id_act', '=', "0")->get()]);
     }
@@ -56,6 +57,7 @@ class Form52Controller extends Controller
            $item->id_act = $report52->id;
             $item->save();
         }
+        AdminController::log_record('Создал акт технического расследования инцидентов форма 5.2');
         return redirect()->route('form52.index')
             ->with('success','User created successfully');
     }
@@ -91,6 +93,7 @@ class Form52Controller extends Controller
     public function edit($id)
     {
         $data = Form52::find($id);
+        AdminController::log_record('Открыл для редактирования акт технического расследования инцидентов форма 5.2');
         return view('form52.edit',compact('data'), ['rows'=>Form52_table::orderby('id_act')->where('id_act', '=', $id)->get()]);
     }
 
@@ -110,6 +113,7 @@ class Form52Controller extends Controller
            $input = $request->all();
            $data = Form52::find($id);
            $data->update($input);
+           AdminController::log_record('Сохранил после редактирования акт технического расследования инцидентов форма 5.2');
            return redirect()->route('form52.index')
                ->with('success', 'User updated successfully');
        }
@@ -133,6 +137,7 @@ class Form52Controller extends Controller
     public function destroy($id)
     {
         Form52::find($id)->delete();
+        AdminController::log_record('Удалил акт технического расследования инцидентов форма 5.2');
         return redirect()->route('form52.index')
             ->with('success','User deleted successfully');
     }

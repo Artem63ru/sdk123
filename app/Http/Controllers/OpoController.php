@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Failure_free;
+use App\Models\Operational_safety;
+use App\Models\Ready;
+use App\Models\Rtn;
 use App\Ref_opo;
 use App\Models\Calc_opo;
 use App\Models\Calc_ip_opo_i;
@@ -11,7 +15,9 @@ use App\Models\ref_oto;
 use App\Models\Ref_obj;
 use App\User;
 use App\Jas;
+use Jenssegers\Date\Date;
 use Illuminate\Http\Request;
+
 
 
 class OpoController extends Controller
@@ -252,10 +258,81 @@ class OpoController extends Controller
        $ver_opo =  Ref_opo::find($id);  // Ссылка на ОПО
        $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
-//
-       return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo'));
+       $oper_safety = Operational_safety::where('from_opo',$id)->orderByDesc('id')->get();
+       $ready = Ready::orderByDesc('id')->get();
+       $failure_free = Failure_free::where('from_opo', $id)->orderByDesc('id')->get();
 
+       //       ********************** для количества предписаний РТН *****************************
+
+        $data_rtn_noncheck = Rtn::where('from_opo', $id)->where('status', '!=', 'true')->get();  //кол-во невыполненных предписаний
+        $data_rtn_check = Rtn::where('from_opo', $id)->where('status', 'true')->get();          //кол-во выполненных
+
+        //       ********************** для количества событий ПБ по месяцам *****************************
+
+        for ($i = 0; $i <= 12; $i++) {
+            $first_day[$i] =  date("Y-m-01", strtotime("-".$i." month"));     //первые дни месяцев
+        }
+        for ($i = 1; $i <=12; $i++) {
+            $jas_month[$i] = Jas::where('from_opo', $id)->where('data', '>=', $first_day[$i])->where('data', '<', $first_day[$i-1])->get();  //забираем из базы строки по месяцам
+            if ($jas_month[$i] == "") {
+                $jas_month[$i] = 0;
+            }
+            $count_month[$i] = count($jas_month[$i]);                              //количество записей за месяц
+//            $name_month[$i] = date('M', strtotime($first_day[$i]));          //название месяца англ
+            $name_month[$i] = Date::parse($first_day[$i])->format('M');          //название месяца рус
+
+            $data_month[$i][0] = $count_month[$i];
+            $data_month[$i][1] = $name_month[$i];
+        }
+        $jas_all = Jas::all();
+        $count_jas = count($jas_all);   //общее кол-во событий
+
+        return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo', 'oper_safety', 'id', 'ready', 'failure_free',
+           'data_rtn_noncheck', 'data_rtn_check', 'count_jas', 'data_month'));
     }
+
+    public function new($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('operational.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+    public function new_ready($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('ready.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+    public function new_failure_free($id_opo)
+    {
+        $ver_opo =  Ref_opo::find($id_opo);
+        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+        return view('failure_free.new', compact('all_opo', 'ver_opo', 'id_opo'));
+    }
+
+////       ********************** Операции с расчетом показателя безопасности ОПО*****************************
+//    public function operational_edit($id, $id_row){
+//        $data = Operational_safety::find($id_row);
+//        $ver_opo =  Ref_opo::find($id);
+//        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+//        return view('operational_safety.edit',compact('data', 'ver_opo', 'all_opo'));
+//    }
+//    public function operational_update(Request $request){
+//        $input = $request->all();
+//        $id_row = $request->id;
+//        $data = Operational_safety::find($id_row);
+//        $data->update($input);
+//        dd ($request);
+//        return redirect()->route('/opo/{id}/main')
+//            ->with('success','User updated successfully');
+//        $ver_opo =  Ref_opo::find($id);
+//        $all_opo = Ref_opo::all(); //Сыслка на все ОПО для панели
+//        return view('operational_safety.edit',compact('data', 'ver_opo', 'all_opo'));
+//    }
+
+
     ///************************* Формирование данных для мини графика **********************************
     public static function view_ip_last ($id)
     {

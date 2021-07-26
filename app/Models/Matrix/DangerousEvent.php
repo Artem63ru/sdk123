@@ -29,4 +29,10 @@ class DangerousEvent extends Model
     {
         return $this->hasMany('App\Models\Matrix\DiagnEvent', 'from_dangerous_event', 'id');
     }
+    //************************** Отношение события к параметрам *********************************************
+    public function scena_to_wells()
+    {
+        return $this->belongsTo('App\Models\Wells_project', 'from_wells_type', 'id');
+    }
+
 }

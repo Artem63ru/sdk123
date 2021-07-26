@@ -22,7 +22,8 @@
 
                         <div id="chartdiv"></div>
                         @include('charts.function_pass_tb.chart_2')
-                        <p>Обобщенный показатель<br/>состояния эксплуатации<p>
+
+                        <p>Обобщенный показатель<br/>отклонений АПК для ТБ<p>
                     </div>
 
                     <div  class="third_col centered">
@@ -36,7 +37,7 @@
 
                         <div id="chartdiv1"></div>
                         @include('charts.function_pass_tb.chart_1')
-                        <p>Обобщенный показатель<br/>отклонений<p>
+                        <p>Обобщенный показатель<br/>состояния эксплуатации и обслуживания ТБ<p>
                     </div>
                 </div>
             </div>

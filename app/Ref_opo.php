@@ -10,6 +10,9 @@ class Ref_opo extends Model
     protected $table = 'ref_opo';
     public $timestamps = true;
     public $primaryKey = 'idOPO';
+    protected $fillable = [
+        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login',
+    ];
     //************************** Последние 90 записей в ЖАС для конкретного ОПО *********************************************
         public function opo_to_jas()
     {
@@ -19,7 +22,8 @@ class Ref_opo extends Model
     //************************** Выбор элементов конкретного ОПО *********************************************
         public function opo_to_obj()
     {
-        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0');
+        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')
+            ->where('status','=','50');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
     }
     //************************** Текущее значение ИП ОПО для конкретного ОПО *********************************************
@@ -32,6 +36,7 @@ class Ref_opo extends Model
     {
         return $this->hasMany('App\Models\Calc_ip_opo_i', 'from_opo', 'idOPO')->orderByDesc('id')->take(30);
     }
+
     //************************** Проактивный показатель ИП ОПО 30 значений *********************************************
     public function opo_to_calc_opo_pro()
     {
@@ -80,5 +85,46 @@ class Ref_opo extends Model
             ->get() ; //Carbon::now()->subHours(24)
     }
 
+
+    public function opo_sample_day()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 day'")->take(1);
+
+    }
+
+    public function opo_sample_mons()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 mons'")->take(1);
+
+    }
+
+    public function opo_sample_year()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 year'")->take(1);
+
+    }
+    public function opo_sample_days_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 day'")->take(60);
+
+    }
+
+    public function opo_sample_mons_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 mons'")->take(60);
+
+    }
+
+    public function opo_sample_year_60()
+    {
+        return $this->hasMany('App\Models\Dynamic\Calc_OPO_Pro', 'from_opo', 'idOPO')
+            ->orderByDesc('date')->whereRaw("forecast_period ='1 year'")->take(60);
+
+    }
 
 }

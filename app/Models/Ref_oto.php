@@ -14,4 +14,8 @@ class Ref_oto extends Model
     {
         return $this->belongsTo('App\Models\Type_obj', 'typeObj', 'type_id');
     }
+
+    protected $fillable = [
+        'idOTO', 'typeObj', 'descOTO', 'typeQuest', 'image',
+    ];
 }

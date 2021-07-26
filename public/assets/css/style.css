@@ -115,8 +115,8 @@ body{
 
 
 /*Таблица*/
-.td_date{text-align:center;width:12%;opacity:0.7;}
-.td_status{text-align:center;font-weight:bold;width:5%;}
+.td_date{text-align:center;width:11%;opacity:0.7;}
+.td_status{text-align:center;font-weight:bold;width:8%;}
 .td_opo{text-align:center;font-weight:bold;width:12%;}
 .td_element{text-align:left;width:28%;}
 .td_number{text-align:center;font-weight:bold;width:7%;}
@@ -423,10 +423,11 @@ input[type="radio"]#opo_pass:checked + .per_sood{display:block;width:75%;}
   .func_passport_bottom{padding-top:0;}
   .func_passport_upd{margin-top:25px;}
 
-  table.opo_info{color:#999999;font-size:13px;}
+  table.opo_info{display: inline-block; vertical-align: top;width: 49%; color:#999999;font-size:13px;}
   table.opo_info tr td{padding:5px 20px 5px 5px;}
   table.opo_info tr td:last-of-type{color:#6f6f6e;font-weight:bold;padding:5px 5px 5px 20px;border-left:1px solid #f2f2f2;}
   table.opo_info tr.padding_tabl td{padding-top:20px;padding-bottom:20px;}
+  table.opo_info tr.padding_tabl_button td{padding-bottom:20px;}
 
   .func_passport_bottom.tabled_rate{background:transparent;overflow:hidden;padding:0;height:21vh;}
   .func_passport_bottom.tabled_rate table td.rating{width:28%;}
@@ -665,11 +666,11 @@ tfoot td { position: sticky; bottom: 0; }
 .no_tab_table table.plan_table tr td:last-of-type,
 .no_tab_table table.plan_table tr th:last-of-type{    width: 65px; padding-right: 0;}
 .no_tab_table table{width:100%;}
-.no_tab_table table.plan_table tr td{text-align:center;}
+.no_tab_table table.plan_table tr td{text-align:left;}
 .no_tab_table table.plan_table tr td:nth-child(2),
 .no_tab_table table.plan_table tr td:nth-child(3),
 .no_tab_table table.plan_table tr th:nth-child(2),
-.no_tab_table table.plan_table tr th:nth-child(3){text-align:left;}
+/*.no_tab_table table.plan_table tr th:nth-child(3){text-align:left;}*/
 .no_tab_table table.plan_table tr{border-left:2px solid #fff;}
 .no_tab_table table.plan_table tr:hover{background:#eaf4fa;}
 .no_tab_table table.plan_table tr.nohover:hover{background:#fff;}
@@ -749,7 +750,7 @@ img.open_i{opacity:0;filter:grayscale(1);}
 
 
 .full_table .no_tab_table table.plan_table tr td{padding:8px 12px;}
-.full_table .td_date{width:11%;}
+.full_table .td_date{width:8%;}
 .full_table .td_ch{width:2px;}
 .full_table .td_opo{width:9%;}
 .full_table .td_element{width:24%;text-align:left;}
@@ -758,9 +759,9 @@ img.open_i{opacity:0;filter:grayscale(1);}
 .full_table .no_tab_table tr img{margin-right:12px;}
 
 
-.full_table .table_head_block table tbody td.td_date{width:11%;}
+.full_table .table_head_block table tbody td.td_date{width:8%;}
 .full_table .table_head_block table tbody td.td_opo{width:11%;}
-.full_table .table_head_block table tbody td.td_status{width:5%;}
+.full_table .table_head_block table tbody td.td_status{width:8%;}
 .full_table .table_head_block table tbody td.td_element{width:24%;}
 .full_table .table_head_block table tbody td.td_number{width:6%;}
 .full_table .table_head_block table tbody td.td_event{width:25%;}
@@ -771,7 +772,7 @@ img.open_i{opacity:0;filter:grayscale(1);}
 
 .full_table .no_tab_table table.plan_table tr td:first-of-type,
 .full_table .no_tab_table table.plan_table tr th:first-of-type {
-    width: 5px;text-align: right;color:#ccc;font-size:12px;}
+    width: 11%;text-align: right;color:#ccc;font-size:12px;}
 
 .full_table .no_tab_table table.plan_table tr td.td_element,
 .full_table .no_tab_table table.plan_table tr td.td_event{text-align:left;}
@@ -1022,6 +1023,10 @@ thead tr:first-child th { position: sticky; top: 0; }
 .fond_info h3{font-size:16px;font-weight:bold;color:#4689aa;margin-top:0;margin-bottom:20px;}
 .fond_info a{background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
 .fond_info a:hover{background:#4689aa;color:#fff;}
+
+.fond_calendar_btn {  position: inherit;z-index: 99;top: 50px;    right: 74px;background:#fff;}
+.fond_calendar_btn a{background:#e5f2f9;color:#4689aa;padding:8px 15px;border-radius:7px;font-size:12px;text-decoration:none;}
+.fond_calendar_btn a:hover{background:#4689aa;color:#fff;}
 
 .fond_info table tr td:first-of-type{text-align:right;border-right:1px solid #ccc;padding-right:15px;padding-bottom:15px;}
 .fond_info table tr td:last-of-type{text-align:center;padding-left:15px;}

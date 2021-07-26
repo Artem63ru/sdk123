@@ -16,7 +16,7 @@ class DangerEvents extends Component
         if ($this->search <>'')
             return view('livewire.docs.danger-events', ['rows' => DangerousEvent::orwhere('from_type_obj', '=', $this->search)->orderby('id')->get()]);
         else
-        return view('livewire.docs.danger-events', ['rows' => DangerousEvent::orderby('id')->get()]);
+             return view('livewire.docs.danger-events', ['rows' => DangerousEvent::orderby('id')->get()]);
 
     }
 }

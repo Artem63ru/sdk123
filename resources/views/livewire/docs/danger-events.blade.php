@@ -3,16 +3,16 @@
         <table>
             <tbody>
             <tr>
-                <td><img alt="" src="assets/images/icons/search.svg"></td>
-                <td><input type="text" id="" placeholder=""></td>
+                <td><img alt="" src="{{asset('assets/images/icons/search.svg')}}"></td>
+{{--                <td><input type="text" id="" placeholder=""></td>--}}
                 <td><select wire:model="search" >
                         <option value="" >Выбрать все...</option>
                         @foreach (App\Models\Type_obj::all() as $value)
                             <option value="{{$value->type_id}}">{{ $value->type_name }}</option>
                         @endforeach
                     </select></td>
-                <td><select id=""><option select>Элемент ОПО</option><option>2</option><option>3</option></select></td>
-                <td><select id=""><option select>Манессман</option><option>2</option><option>3</option></select></td>
+{{--                <td><select id=""><option select>Элемент ОПО</option><option>2</option><option>3</option></select></td>--}}
+{{--                <td><select id=""><option select>Манессман</option><option>2</option><option>3</option></select></td>--}}
             </tr>
             </tbody>
         </table>
@@ -37,7 +37,9 @@
 {{--                        <td>{{$row->id}}</td>--}}
                         <td class="plus">{{$row->matrix_to_events->name}}</td>
                         <td>{{$row->matrix_to_type->type_name}}</td>
-                         <td>{{$row->from_wells_project}}</td>
+                        @if (isset($row->scena_to_wells->name))
+                         <td>{{$row->scena_to_wells->name}}</td>
+                        @endif
                           <td>
                             <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
                             <a href="#openModal"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
@@ -63,7 +65,7 @@
                                     <td>{{$param->events_param->full_name}}</td>
                                     <td>{{$param->koef}}</td>
                                     <td><label class="switch switch-sm"><input type="checkbox" {!! $param->triger ? 'checked' : '' !!}><span></span></label></td>
-                                    <td><a href="#"><img alt="" src="assets/images/icons/trash.svg" class="trash_i"></a></td>
+                                    <td><a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a></td>
                                 </tr>
                                 @endforeach
 

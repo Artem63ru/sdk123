@@ -50,7 +50,7 @@ class ReportController extends Controller
     public function report(Request $request)
     {
 
-        return view('web.docs.reports.form_8', ['rows'=>Ref_obj::where('InUse','=','1')->orderby('idObj')->get()]);
+        return view('web.docs.reports.form_8', ['rows'=>Ref_obj::where('InUse','=','1')->where('status','=','50')->orderby('idObj')->get()]);
     }
 
     public function report1(Request $request)

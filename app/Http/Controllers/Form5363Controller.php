@@ -54,6 +54,7 @@ class Form5363Controller extends Controller
            $item->id_act = $report5363->id;
             $item->save();
         }
+        AdminController::log_record('Создал справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
         return redirect()->route('form5363.index')
             ->with('success','User created successfully');
     }
@@ -88,6 +89,7 @@ class Form5363Controller extends Controller
     public function edit($id)
     {
         $data = Form5363::find($id);
+        AdminController::log_record('Открыл для редактирования справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
         return view('form5363.edit',compact('data'), ['rows'=>Form5363_table::orderby('id_act')->where('id_act', '=', $id)->get()]);
     }
 
@@ -105,6 +107,7 @@ class Form5363Controller extends Controller
            $input = $request->all();
            $data = Form5363::find($id);
            $data->update($input);
+           AdminController::log_record('Сохранил после редактирования справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
            return redirect()->route('form5363.index')
                ->with('success', 'User updated successfully');
        }
@@ -126,6 +129,7 @@ class Form5363Controller extends Controller
     public function destroy($id)
     {
         Form5363::find($id)->delete();
+        AdminController::log_record('Удалил справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
         return redirect()->route('form5363.index')
             ->with('success','User deleted successfully');
     }
