@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AdminController;
-
 use App\Models\Reports\Form51;
 use Illuminate\Http\Request;
 
@@ -16,6 +15,7 @@ class Form51Controller extends Controller
      */
     public function index()
     {
+        AdminController::log_record('Открыл список оперативных сообщений о инцидентах форма 5.1');//пишем в журнал
         $data = Form51::orderBy('id','DESC')->paginate(10);
         return view('form51.index',compact('data'));
     }
@@ -41,8 +41,7 @@ class Form51Controller extends Controller
         $input = $request->all();
         $report51 = Form51::create($input);
         AdminController::log_record('Создал оперативное сообщений о инциденте форма 5.1');//пишем в журнал
-        return redirect()->route('form51.index')
-            ->with('success','User created successfully');
+        return redirect()->route('form51.index');
     }
 
     /**
@@ -82,8 +81,7 @@ class Form51Controller extends Controller
         $data = Form51::find($id);
         $data->update($input);
         AdminController::log_record('Сохранил после редактирования оперативное сообщений о инциденте форма 5.1');//пишем в журнал
-        return redirect()->route('form51.index')
-            ->with('success','User updated successfully');
+        return redirect()->route('form51.index');
     }
 
     /**
@@ -96,7 +94,6 @@ class Form51Controller extends Controller
     {
         Form51::find($id)->delete();
         AdminController::log_record('Удалил оперативное сообщений о инциденте форма 5.1');//пишем в журнал
-        return redirect()->route('form51.index')
-            ->with('success','User deleted successfully');
+        return redirect()->route('form51.index');
     }
 }

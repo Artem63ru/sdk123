@@ -1,5 +1,7 @@
 @extends('web.layouts.app')
-
+@section('title')
+    Админ панель Ролей
+@endsection
 
 @section('content')
     @push('app-css')
@@ -9,8 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    @include('admin.inc.menu')
-
+                    @include('web.admin.inc.menu')
 
                             <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список ролей пользователя</h2>
                 @can('role-create')
@@ -19,7 +20,6 @@
                             </div>
 
 
-    </div>
 
 
     @if ($message = Session::get('success'))
@@ -28,12 +28,12 @@
         </div>
     @endif
 
-
+                <div class="table-responsive form51"  style="height: 70.5vh">
     <table class="table table-bordered">
         <tr>
-            <th>№</th>
+            <th style="width: 8%">№</th>
             <th>Наименование</th>
-            <th width="380px">Операции с ролями</th>
+            <th style="width: 40%">Операции с ролями</th>
         </tr>
         @foreach ($roles as $key => $role)
             <tr>
@@ -42,7 +42,7 @@
                 <td>
                     <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Просмотр</a>
                     @can('role-edit')
-                        <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Редактирование</a>
+                        <a style="margin-left: 12%" class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Редактирование</a>
                     @endcan
                     @can('role-delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
@@ -53,9 +53,12 @@
             </tr>
         @endforeach
     </table>
+                </div>
+                </div>
 
 
-    {!! $roles->render() !!}
+
+                {!! $roles->render() !!}
                 </div>
             </div>
         </div>

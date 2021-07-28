@@ -7,6 +7,7 @@ use App\Events\AddLogs;
 use App\Events\WasBanned;
 use App\Events\WasUnbanned;
 use App\Models\Logs;
+use App\Models\Logs_safety;
 use App\Models\Permission;
 //use App\Models\Role;
 use App\Ref_opo;
@@ -21,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use function Sodium\compare;
 
 class AdminController extends Controller
 {
@@ -36,7 +38,42 @@ class AdminController extends Controller
     {
        // AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
        // return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
-        return view('web.admin.admin_main', ['logs' => Logs::orderBy('id', 'desc')->paginate(20)]);
+
+        return view('web.admin.admin_main', ['logs' => Logs::orderBy('id', 'desc')->paginate(20), 'all_logs' => Logs::orderBy('id')->get()]);
+    }
+
+//    // Конфигурация безовасности
+//    public function config_view()
+//    {
+//        $config = Logs_safety::get();
+//        AdminController::log_record('Открыл для просмотра конфигурацию безопасности');
+//        return view('web.config_safety.show', compact('config'));
+//    }
+    //редактирование настроек безопасности
+    public function config_edit()
+    {
+        $text = "";
+        $config = Logs_safety::first();
+        AdminController::log_record('Открыл для просмотра конфигурацию безопасности');
+        return view('web.config_safety.edit', compact('config', 'text'));
+    }
+    //обновление настроек
+    public function config_update(Request $request)
+    {
+        $this->validate($request, [
+            'num_znak' => 'required|numeric|min:1',
+            'num_error' => 'required|numeric|min:1',
+            'time_ban' => 'required|numeric|min:1',
+            'num_password' => 'required|numeric|min:1',
+            'time_session' => 'required|numeric|min:1'
+        ]);
+        $input = $request->all();
+        $config = Logs_safety::first();
+        $config->update($input);
+        AdminController::log_record('Сохранил после изменения конфигурацию безопасности');
+        $text = "Конфигурация безопасности успешно обновлена!";
+        return view('web.config_safety.edit', compact('config', 'text'));
+//        return redirect('/admin/config_safety', compact('text'));
     }
 
     // Вывод Пользователей
@@ -49,13 +86,13 @@ class AdminController extends Controller
     public function role_view()
     {
 
-        return view('admin.role_view', ['roles' => Role::all()]);
+        return view('admin.role_view', ['roles' => Role::orderBy('id')->get()]);
     }
 
     // Вывод привелегий
     public function perm_view()
     {
-        return view('admin.perm_view', ['perms' => Permission::all()]);
+        return view('admin.perm_view', ['perms' => Permission::orderBy('id')->get()]);
     }
 
     // Выгрузка логов
@@ -133,15 +170,7 @@ class AdminController extends Controller
     public function update_user(Request $request)
     {
 
-        // $user = User::find($request->input('id'));
         $id = $request->input('id');
-//        $user=User::whereId($request->input('id'))->update([
-//            'name' => $request->input('name'),
-//            'surname' => $request->input('surname'),
-//            'middle_name' => $request->input('role'),
-//            'email' => $request->input('email'),
-//            'password' => Hash::make($request->input('password')),
-//        ]);
         $this->validate($request, [
             'name' => 'required',
             'surname' => 'required',

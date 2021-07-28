@@ -16,6 +16,7 @@ class Form52Controller extends Controller
      */
     public function index()
     {
+        AdminController::log_record('Открыл список актов технического расследования инцидентов форма 5.2');//пишем в журнал
         $data = Form52::orderBy('id','DESC')->paginate(15);
         return view('form52.index',compact('data'));
     }
@@ -58,8 +59,7 @@ class Form52Controller extends Controller
             $item->save();
         }
         AdminController::log_record('Создал акт технического расследования инцидентов форма 5.2');
-        return redirect()->route('form52.index')
-            ->with('success','User created successfully');
+        return redirect()->route('form52.index');
     }
 
     public function store_table(Request $request)
@@ -114,8 +114,7 @@ class Form52Controller extends Controller
            $data = Form52::find($id);
            $data->update($input);
            AdminController::log_record('Сохранил после редактирования акт технического расследования инцидентов форма 5.2');
-           return redirect()->route('form52.index')
-               ->with('success', 'User updated successfully');
+           return redirect()->route('form52.index');
        }
 
        elseif($_POST['save']== 'Update_childtablle')
@@ -138,7 +137,6 @@ class Form52Controller extends Controller
     {
         Form52::find($id)->delete();
         AdminController::log_record('Удалил акт технического расследования инцидентов форма 5.2');
-        return redirect()->route('form52.index')
-            ->with('success','User deleted successfully');
+        return redirect()->route('form52.index');
     }
 }

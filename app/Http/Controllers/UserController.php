@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AdminController;
+use App\Models\Logs_safety;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -22,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(10);
-        AdminController::log_record('Открыл справочник пользователей для просмотра и редактировния');
+        AdminController::log_record('Открыл справочник пользователей');
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -35,7 +36,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $password_config = Logs_safety::first();
+        return view('users.create',compact('roles', 'password_config'));
     }
 
     /**
@@ -46,14 +48,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $password_config = Logs_safety::first();
+        if($password_config->up_register == 1)
+            $format_up = '(?=.*[a-z])(?=.*[A-Z])';
+        else
+            $format_up = '(?=.*[a-z])';
+        if($password_config->num_check == 1)
+            $format_num = '(?=.*[0-9])';
+        else
+            $format_num = '(?=.*[0-9]*)';
+        if($password_config->spec_check == 1)
+            $format_spec = '(?=.*[!%?@,.<>#№^:])';
+        else
+            $format_spec = '(?=.*[!%?@,.<>#№^:]*)';
+
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'name' => 'required|unique:users,name|regex:/^(?-i)[a-zA-Z0-9]+$/i',
+            'email' => 'required|email|unique:users,email|regex:/^(?-i)[a-z0-9@.]+$/i',
+            'password' => 'required|same:confirm-password|string|min:'.$password_config->num_znak.'|regex:/^(?-i)'.$format_up.$format_num.$format_spec.'+/i',
+            'roles' => 'required',
+            'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
         ]);
 
         $input = $request->all();
+        dd($input['password']);
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
@@ -63,7 +83,6 @@ class UserController extends Controller
               AdminController::log_record('Добавил пользователя '.$user->name.' и назначил роль '.$v);
         else
             AdminController::log_record('Добавил пользователя '.$user->name.' и неназначил роль ');
-     //  AdminController::log_record('Добавил пользователя '.$user->name.' и назначил роль'. $user->getRole());//пишем в журнал
 
         return redirect()->route('users.index')
             ->with('success','User created successfully');
@@ -90,11 +109,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $password_config = Logs_safety::first();
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole', 'password_config'));
     }
 
     /**
@@ -106,11 +126,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $password_config = Logs_safety::first();
+        if($password_config->up_register == 1)
+            $format_up = '(?=.*[a-z])(?=.*[A-Z])';
+        else
+            $format_up = '(?=.*[a-z])';
+        if($password_config->num_check == 1)
+            $format_num = '(?=.*[0-9])';
+        else
+            $format_num = '(?=.*[0-9]*)';
+        if($password_config->spec_check == 1)
+            $format_spec = '(?=.*[!%?@,.<>#№^:])';
+        else
+            $format_spec = '(?=.*[!%?@,.<>#№^:]*)';
         $this->validate($request, [
-            'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required',
-            'roles' => 'required'
+            'name' => 'required|regex:/^(?-i)[a-zA-Z0-9]+$/i',
+            'password' => 'required|same:confirm-password|string|min:'.$password_config->num_znak.'|regex:/^(?-i)'.$format_up.$format_num.$format_spec.'+/i',
+            'roles' => 'required',
+            'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
         ]);
 
         $input = $request->all();

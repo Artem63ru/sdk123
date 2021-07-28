@@ -22,8 +22,7 @@ class Ref_opo extends Model
     //************************** Выбор элементов конкретного ОПО *********************************************
         public function opo_to_obj()
     {
-        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')
-            ->where('status','=','50');
+        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')->where('status', '=', '50');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
     }
     //************************** Текущее значение ИП ОПО для конкретного ОПО *********************************************

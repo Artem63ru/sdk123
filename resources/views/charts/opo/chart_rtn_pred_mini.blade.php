@@ -1,7 +1,7 @@
 
 
 
-<div id="chart_mini1" style="height: 100px; padding-top: 20px; width: 30%;"></div>
+<div id="chart_mini1" style="height: 95px; padding-top: 20px; width: 30%;"></div>
 
 <script language="JavaScript">
     Highcharts.chart('chart_mini1', {
@@ -15,7 +15,7 @@
             categories: [''],
             title: {
                 text: null
-            }
+            },
         },
         yAxis: {
             min: 0,
@@ -59,7 +59,7 @@
         }, {
             name: 'Выполнено',
             data: [{{count($data_rtn_check)}}],
-            color: 'rgba(1,234,1,1)'
+            color: 'rgba(1,234,1,1)',
         }, ]
     });
 </script>

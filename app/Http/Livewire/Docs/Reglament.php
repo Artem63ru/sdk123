@@ -19,11 +19,11 @@ class Reglament extends Component
 
     public function render()
     {
-        if ($this->search <>'')
+        if ($this->search <>'') {
             return view('livewire.docs.reglament', [
                 'reglaments'=> Tech_reglament::orwhere('idObj', '=', $this->search)->orderBy('id')->get(),
             ]);
-
+        }
         else
        return view('livewire.docs.reglament', [
             'reglaments'=> Tech_reglament::orderby('id')->get(),

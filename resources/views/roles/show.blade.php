@@ -1,5 +1,7 @@
 @extends('web.layouts.app')
-
+@section('title')
+    Просмотр
+@endsection
 
 @section('content')
     @push('app-css')
@@ -9,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    @include('admin.inc.menu')
+                    @include('web.admin.inc.menu')
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Просмотр роли :   {{ $role->name }}</h2>
 
                             <div class="pull-right">
@@ -17,12 +19,11 @@
                             </div>
                     </div>
 
-                    <div class="table-responsive">
-                        <div style="height: 75vh" class="no_tab_table open">
+                    <div class="table-responsive form51">
                             <table   class="table table-hover table-bordered">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th style="width: 8%" scope="col">#</th>
                                     <th scope="col">Привелегии</th>
 
                                 </tr>
@@ -31,8 +32,8 @@
                                 @if(!empty($rolePermissions))
                                   @foreach ($rolePermissions as $v)
                                     <tr>
-                                        <th scope="row-4">{{ $v->id }}</th>
-                                        <td>{{ $v->runame }}</td>
+                                        <td scope="row-4">{{ $v->id }}</td>
+                                        <td style="text-align: left">{{ $v->runame }}</td>
 
 
                                     </tr>

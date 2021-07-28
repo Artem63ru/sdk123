@@ -9,19 +9,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" >
                     @include('web.admin.inc.menu')
                     <div class="card-header"><h2 class="text-muted" style="text-align: center">Журнал событий</h2></div>
-                    <div class="table-responsive">
-                        <div style="height: 75vh" class="no_tab_table open">
+                    <div class="table-responsive form51"  style="height: 70.5vh">
                             <table class="table table-hover table-bordered">
-                                <thead class="table-light">
+                                <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col-3">Описание события</th>
-                                    <th class="centered">Пользователь</th>
-                                    <th rowspan="3" class="centered">IP адрес</th>
-                                    <th rowspan="3" class="centered">Дата</th>
+                                    <th  class="centered" style="width: 10%">#</th>
+                                    <th  class="centered" style="width: 45%">Описание события</th>
+                                    <th  class="centered" style="width: 15%">Пользователь</th>
+                                    <th  class="centered" style="width: 15%">IP адрес</th>
+                                    <th  class="centered" style="width: 15%">Дата</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -36,27 +35,24 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="table_use">
-                            <table class="table table-hover ">
-                                <tbody>
-                                <tr>
-                                    <td><p style="font-size: 18px">Всего записей:{{$logs->count()}}</p></td>
-                                    <td>  {{ $logs->links() }}</td>
-                                    @can('role-delete')
-                                        <td><a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Export PDF</a>
-                                            <a href="{{ url('clear_logs') }}" class="btn btn-danger mb-2">Delete
-                                                logs</a></td>
-                                    @endcan
-                                </tr>
-                                </tbody>
 
-                            </table>
-
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="table_use" style="width: 61%; margin-left: 22.2%">
+            <table class="table table-hover ">
+                <tbody>
+                <tr>
+                    <td><p style="font-size: 18px">Всего записей:{{$all_logs->count()}}</p></td>
+                    <td>  {{ $logs->links() }}</td>
+                    @can('role-delete')
+                        <td><a href="{{ url('pdf_logs') }}" class="btn btn-success mb-2">Создать PDF</a>
+                            <a href="{{ url('clear_logs') }}" class="btn btn-danger mb-2">Очистить журнал</a></td>
+                    @endcan
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

@@ -1,7 +1,7 @@
 
 
 
-<div id="chart_mini2" style="height: 100px; padding-top: 20px"></div>
+<div id="chart_mini2" style="height: 95px; padding-top: 20px"></div>
 
 <script language="JavaScript">
     $(document).ready(function() {

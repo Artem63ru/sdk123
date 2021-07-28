@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use App\Models\Logs_safety;
 
 return [
 
@@ -30,8 +31,10 @@ return [
     | to immediately expire on the browser closing, set that option.
     |
     */
-
-    'lifetime' => env('SESSION_LIFETIME', 60),
+//    $config_safety = Logs_safety::first(),
+//    $time_session = $config_safety->time_session,
+//    dd($time_session),
+    'lifetime' => env('SESSION_LIFETIME', 1),
 
     'expire_on_close' => false,
 

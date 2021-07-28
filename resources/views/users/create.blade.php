@@ -1,75 +1,110 @@
 @extends('web.layouts.app')
+@section('title')
+    Создание
+@endsection
 @push('app-css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"">
             <div class="col-md-12">
-                <div class="card">
-                    @include('admin.inc.menu')
-                    <div class="row">
-                        <div class="col-lg-12 margin-tb">
-                            <div class="pull-left">
-                                <h2>Список пользователей</h2>
-                            </div>
-
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('users.index') }}"> Назад</a>
-            </div>
-        </div>
-    </div>
-
-
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+                <div class="card" >
+                    @include('web.admin.inc.menu')
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Создание пользователя</h2>
+                        <div class="pull-right">
+                            <a class="btn btn-primary" href="{{ route('users.index') }}"> Назад</a>
+                        </div>
+                    </div>
 
 
 
     {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="table-responsive" style="overflow-x:hidden">
+                                <div class="col-xs-12 col-sm-12 col-md-12"  style="height: 76vh">
+                                    @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <strong>Внимание!</strong> Неверно заполнена форма<br><br>
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3">Фамилия:</strong>
+                                </div>
+                                {!! Form::text('surname', null, array('placeholder' => 'Введите фамилию','class' => 'form-control', 'required')) !!}
+                            </div>
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3">Имя:</strong>
+                                </div>
+                                {!! Form::text('imya', null, array('placeholder' => 'Введите имя','class' => 'form-control', 'required')) !!}
+                            </div>
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3">Отчество:</strong>
+                                </div>
+                                {!! Form::text('middle_name', null, array('placeholder' => 'Введите отчество','class' => 'form-control', 'required')) !!}
+                            </div>
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3">Логин:</strong>
+                                </div>
+                                {!! Form::text('name', null, array('placeholder' => 'Введите логин','class' => 'form-control', 'required')) !!}
+                            </div>
             <div class="form-group">
-                <strong>Name:</strong>
-                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                <div style="padding: 10px" class="">
+                    <strong class="text-muted h3">Email:</strong>
+                </div>
+                {!! Form::text('email', null, array('placeholder' => 'Введите email','class' => 'form-control', 'required')) !!}
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Email:</strong>
-                {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                <div style="padding: 10px" class="">
+                    <strong class="text-muted h3">Пароль:</strong>
+                    @if($password_config->up_register == 1 || $password_config->num_check == 1 || $password_config->spec_check == 1)
+                        <br><h9>Пароль должен содержать:</h9>
+                        @if($password_config->up_register == 1)
+                            <h9>заглавные буквы</h9>
+                            @if($password_config->num_check == 1 || $password_config->spec_check == 1)
+                                <h9>;</h9>
+                            @endif
+                        @endif
+                        @if($password_config->num_check == 1)
+                            <h9>цифры</h9>
+                            @if($password_config->spec_check == 1)
+                                <h9>;</h9>
+                            @endif
+                        @endif
+                        @if($password_config->spec_check == 1)
+                            <h9>специальные символы:</h9><h9 style="margin-left: 3%">! % ? @ , . < > # № ^</h9>
+                        @endif
+                    @endif
+                </div>
+                {!! Form::password('password', array('placeholder' => 'Введите пароль','class' => 'form-control', 'required', 'minlength'=>"$password_config->num_znak")) !!}
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                                    <div class="form-group">
+                                    <div style="padding: 10px" class="">
+                        <strong class="text-muted h3">Подтверждение пароля:</strong>
+                    </div>
+                {!! Form::password('confirm-password', array('placeholder' => 'Повторно введите пароль','class' => 'form-control', 'required')) !!}
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Confirm Password:</strong>
-                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Role:</strong>
+                <div style="padding: 10px" class="">
+                    <strong class="text-muted h3">Роли пользователя:</strong>
+                </div>
                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+                        <div class="form-group">
+                            <div style="padding: 10px" class="">
+
+                        <button type="submit" class="btn btn-primary" style="margin-left: 45%">Сохранить</button>
+    </div>
+    </div>
     </div>
     {!! Form::close() !!}
 
