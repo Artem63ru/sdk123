@@ -1,7 +1,7 @@
 
 <div class="tabs">
-   <div class="tab two_col_tab">
-        <input type="radio" id="opo_info" name="tab_group" checked>
+    <div class="tab two_col_tab">
+        <input type="radio" id="opo_info" name="tab_group" onclick="to_localstorage(this)">
         <label for="opo_info" class="tab_title">Общие сведения ОПО</label>
         <section class="tab_content not_white">
             <div class="inside_tab_padding not_white">
@@ -11,8 +11,8 @@
                     <table class="opo_info">
                         <tbody>
                         <tr class="padding_tabl_button">
-                         <td class="fond_calendar_btn"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
-                         <td class="fond_calendar_btn"><a href="{{ url('/docs/predRTN')}}">Журнал предписаний</a></td>
+                            <td class="fond_calendar_btn"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
+                            <td class="fond_calendar_btn"><a href="{{ url('/docs/predRTN')}}">Журнал предписаний</a></td>
                         </tr>
                         <tr>
                             <td>Наименование ОПО:</td>
@@ -61,7 +61,7 @@
                         </tr>
 
 
-                     </tbody>
+                        </tbody>
                     </table>
 
                 </div>
@@ -98,17 +98,18 @@
 
 
     <div class="tab two_col_tab" style="100px">
-        <input type="radio" id="pk_rate" name="tab_group">
+        <input type="radio" id="pk_rate" name="tab_group" onclick="to_localstorage(this)">
         <label for="pk_rate" class="tab_title">Оценка проведения ПК</label>
         <section class="tab_content">
             <div class="inside_tab_padding" style="height: 450px">
                 <div class="tech_passport_tab rate_page">
                     <div class="tabs-container">
                         <ul class="tabs">
-                            <li class="active"><a class="ret" href="">Оценка эффективности</a></li>
-                            <li><a class="ret" href="">Показатель безопасности ОПО</a></li>
-                            <li><a class="ret" href="">Показатель безаварийности ОПО</a></li>
-                            <li><a class="ret" href="">Показатель готовности организации ОПО</a></li>
+{{--                            onclick="to_localstorage(this)"--}}
+                            <li id="0" onclick="to_localstorage_mini(this)"><a class="ret" href="">Оценка эффективности</a></li>
+                            <li id="1" onclick="to_localstorage_mini(this)"><a class="ret" href="">Показатель безопасности ОПО</a></li>
+                            <li id="2" onclick="to_localstorage_mini(this)"><a class="ret" href="">Показатель безаварийности ОПО</a></li>
+                            <li id="3" onclick="to_localstorage_mini(this)"><a class="ret" href="">Показатель готовности организации ОПО</a></li>
                         </ul>
                         <div class="tabs-content">
                             <div class="tabs-panel active" data-index="0">
@@ -142,32 +143,32 @@
                                     <div class="bat_add" style="margin-top: 7px"><a href="{{"/opo/".$id."/main/new_safety"}}">Добавить данные</a></div>
                                 </div>
                                 <div>
-                                <table style="margin-top: 15px">
+                                    <table style="margin-top: 15px">
 
-                                    <thead>
-                                    <tr>
-                                        <th style="text-align: center">Год </th>
-                                        <th style="text-align: center">Квартал</th>
-                                        <th style="text-align: left"></th>
-                                    </tr>
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">Год </th>
+                                            <th style="text-align: center">Квартал</th>
+                                            <th style="text-align: left"></th>
+                                        </tr>
 
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($oper_safety as $data)
-                                    <tr>
-                                        <td style="text-align: center">{{ $data->year }}</td>
-                                        <td style="text-align: center">{{ $data->quarter }}</td>
-                                        <td style="align: left">
-                                            <a href={{route('operational.edit', $id_row = $data->id)}}><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>
-                                            <a href="{{ route('operational.show',$id_row = $data->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>
-                                            {!! Form::open(['method' => 'DELETE','route' => ['operational.destroy', $id_row = $data->id],'style'=>'display:inline']) !!}
-                                            <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px" />
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($oper_safety as $data)
+                                            <tr>
+                                                <td style="text-align: center">{{ $data->year }}</td>
+                                                <td style="text-align: center">{{ $data->quarter }}</td>
+                                                <td style="align: left">
+                                                    <a href={{route('operational.edit', $id_row = $data->id)}}><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>
+                                                    <a href="{{ route('operational.show',$id_row = $data->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>
+                                                    {!! Form::open(['method' => 'DELETE','route' => ['operational.destroy', $id_row = $data->id],'style'=>'display:inline']) !!}
+                                                    <input type="image" name="picture" src="{{asset('assets/images/icons/trash.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px" />
+                                                    {!! Form::close() !!}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
 
 
@@ -235,14 +236,14 @@
                                                 <td style="text-align: center">{{ $data->year }}</td>
                                                 <td style="text-align: center">{{ $data->quarter }}</td>
                                                 <td style="align: left">
-{{--                                                    <a href="{{route('ready.edit',$data->id)}}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>--}}
+                                                    {{--                                                    <a href="{{route('ready.edit',$data->id)}}"><img  alt="" src="{{asset('assets/images/icons/edit.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>--}}
                                                     {!! Form::open(['method' => 'GET','route' => ['ready.edit', $id_row = $data->id],'style'=>'display:inline']) !!}
                                                     <input type="image" name="picture" src="{{asset('assets/images/icons/edit.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px" />
                                                     <input type="hidden" name="from_opo" value="{{ $id }}">
                                                     {!! Form::close() !!}
 
 
-{{--                                                    <a href="{{ route('ready.show',$id_row = $data->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>--}}
+                                                    {{--                                                    <a href="{{ route('ready.show',$id_row = $data->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px"></a>--}}
                                                     {!! Form::open(['method' => 'GET','route' => ['ready.show', $id_row = $data->id],'style'=>'display:inline']) !!}
                                                     <input type="image" name="picture" src="{{asset('assets/images/icons/search.svg')}}" style="width: 15px; height: 15px; margin-top:3px; margin-left: 25px" />
                                                     <input type="hidden" name="from_opo" value="{{ $id }}">
@@ -264,7 +265,7 @@
                         </div>
                     </div>
 
-             </div>
+                </div>
 
             </div>
         </section>
@@ -272,8 +273,50 @@
 
 </div>
 
+
+<script>
+
+    function get_active_page(){
+        var active_element_id=localStorage.getItem('active')
+        if (active_element_id!=null){
+            var element=document.getElementById(active_element_id)
+            element.checked=true;
+        }
+        else{
+            var opo_info=document.getElementById('opo_info');
+            opo_info.checked=true;
+        }
+    }
+
+    function to_localstorage(element){
+        localStorage.setItem('active', element.id)
+    }
+
+    function get_active_page_mini(){
+        var active_element_mini_id=localStorage.getItem('active_mini')
+        if (active_element_mini_id!=null){
+            var element_mini=document.getElementById(active_element_mini_id)
+            element_mini.className='active';
+        }
+        else{
+            var first_page=document.getElementById('0');
+            first_page.className='active';
+        }
+    }
+    function to_localstorage_mini(element_mini){
+        console.log(element_mini.id)
+        localStorage.setItem('active_mini', element_mini.id)
+    }
+    get_active_page()
+    get_active_page_mini()
+
+
+</script>
+
 @include('web.include.script-lib.am4')
 @include('web.include.script-lib.highcharts')
+
+
 
 
 

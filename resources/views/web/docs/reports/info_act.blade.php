@@ -12,7 +12,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</h2>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность<br>
+                            В период с {{$start}} по {{$finish}}</h2>
                         @can('role-create')
                             <div class="bat_info"><a href="{{ url('pdf_info_act') }}">Создать PDF</a></div>
                         @endcan
@@ -25,7 +26,8 @@
                     <tr>
                         <th rowspan="2" class="centered">№ П/П</th>
                         <th rowspan="2" class="centered">Структура ПБ, выдавшая акт, акт-предписание</th>
-                        <th rowspan="2" class="centered">№ акта, акта-предписания, дата</th>
+                        <th rowspan="2" class="centered">№ акта, акта-предписания</th>
+                        <th rowspan="2" class="centered">Дата</th>
                         <th colspan="4" class="centered">Количество пунктов нарушений</th>
                     </tr>
                     <tr>
@@ -39,6 +41,7 @@
                     <tbody>
                     @foreach ($rows as $item)
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

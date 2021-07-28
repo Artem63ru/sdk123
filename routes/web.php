@@ -234,12 +234,12 @@ Route::group(['middleware' => ['auth']], function() {
     //********************  Отчеты  ***********************************
 
     Route::get('docs/report','ReportController@report')->name('obj_status');
-    Route::get('docs/report1','ReportController@report1')->name('scena_report');
-    Route::get('docs/report2','ReportController@report2')->name('result_pk');
-    Route::get('docs/report3','ReportController@report3')->name('violations_report');
+    Route::post('docs/report1','ReportController@report1')->name('scena_report');
+    Route::post('docs/report2','ReportController@report2')->name('result_pk');
+    Route::post('docs/report3','ReportController@report3')->name('violations_report');
     Route::get('docs/report4','ReportController@report4')->name('status_opo');
-    Route::get('docs/report5','ReportController@report5')->name('repiat_report');
-    Route::get('docs/report6','ReportController@report6')->name('event_pk');
+    Route::post('docs/report5','ReportController@report5')->name('repiat_report');
+    Route::post('docs/report6','ReportController@report6')->name('event_pk');
 
     Route::resource('form51',Form51Controller::class);
     Route::resource('form52',Form52Controller::class);
@@ -272,9 +272,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
     Route::get('docs/effect_pk','ReportController@report_effect')->name('effect_pk');
-    Route::get('docs/info_act','ReportController@report_info_act')->name('info_act');
-    Route::get('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
-    Route::get('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
+    Route::post('docs/info_act','ReportController@report_info_act')->name('info_act');
+    Route::post('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
+    Route::post('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
 
     ////////////******************** Отчеты XML**************************************
     Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут

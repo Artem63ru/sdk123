@@ -12,7 +12,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии элементов опасных производственных объектов по состоянию на</h2>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии элементов опасных производственных объектов<br>
+                        По состоянию на {{$date}}</h2>
                         @can('role-create')
                             <div class="bat_info"><a href="{{ url('pdf_elem') }}">Создать PDF</a></div>
                         @endcan

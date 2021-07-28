@@ -12,7 +12,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за период с по</h2>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях<br>
+                            За период с {{$start}} по {{$finish}}</h2>
                         @can('role-create')
                             <div class="bat_info"><a href="{{ url('pdf_event') }}">Создать PDF</a></div>
                         @endcan
@@ -52,7 +53,6 @@
                     <tbody>
                     @foreach ($rows6 as $row)
                         <tr>
-
                             <td></td>
                             <td></td>
                             <td></td>

@@ -12,7 +12,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах</h2>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах<br>
+                        События в период с {{$start}} по {{$finish}}</h2>
                         @can('role-create')
                             <div class="bat_info"><a href="{{ url('pdf_scena') }}">Создать PDF</a></div>
                         @endcan
@@ -44,8 +45,8 @@
                     @foreach ($rows1 as $row)
                         <tr>
                             <td>{{$row->data}}</td>
-                            <td>{{$row->jas_to_opo->descOPO}}</td>
-                            <td>{{$row->jas_to_elem->nameObj}}</td>
+                            <td>{{$row->jas_to_opo}}</td>
+                            <td>{{$row->jas_to_elem}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->level}}</td>
                             <td>{{$row->status}}</td>

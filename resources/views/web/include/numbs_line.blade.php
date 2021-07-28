@@ -10,8 +10,15 @@
                                 @else critical
                                 @endif
 
-                "><a href="/opo/{{$this_opo->idOPO}}/main">{{$this_opo->descOPO}}
-                <span>{{$this_opo->opo_to_calc1->first()->ip_opo}}</span></a></div>
+                "><a onclick="clearStorage()" href="/opo/{{$this_opo->idOPO}}/main">{{$this_opo->descOPO}}
+                <span>{{$this_opo->opo_to_calc1->first()->ip_opo}}</span></a>
+            <script>
+                function clearStorage() {
+                    localStorage.removeItem('active');
+                    localStorage.removeItem('active_mini');
+                }
+            </script>
+        </div>
 
     @endforeach
 

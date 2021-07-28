@@ -49,27 +49,37 @@ class ReportController extends Controller
 
     public function report(Request $request)
     {
-
-        return view('web.docs.reports.form_8', ['rows'=>Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get()]);
+        $date = date('Y-m-d');
+        return view('web.docs.reports.form_8', compact('date'), ['rows'=>Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get()]);
     }
 
     public function report1(Request $request)
     {
-        return view('web.docs.reports.scena_report', ['rows1'=>Jas::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.scena_report', compact('start', 'finish'), ['rows1'=>Jas::orderby('id')->where('data', '<', $finish)
+            ->where('data', '>', $start)->get()]);
     }
 
     public function report2(Request $request)
     {
-        return view('web.docs.reports.result_pk', ['rows2'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.result_pk', compact('start', 'finish'), ['rows2'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report3(Request $request)
     {
-        return view('web.docs.reports.violations_report', ['rows3'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.violations_report', compact('start', 'finish'), ['rows3'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+        ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report4(Request $request)
     {
+        $date = date('Y-m-d');
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
 
@@ -91,7 +101,7 @@ class ReportController extends Controller
              "name_elem"=> $name,
              "IP_ELEM"=>$ip ];
           }
-        return view('web.docs.reports.status_opo', ['data' => $data]);
+        return view('web.docs.reports.status_opo', compact('date'), ['data' => $data]);
     }
 
     public function child_form52_table (Request $request, $id_event)
@@ -181,32 +191,48 @@ class ReportController extends Controller
 
     public function report5(Request $request)
     {
-        return view('web.docs.reports.repiat_report', ['rows5'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.repiat_report', compact('start', 'finish'), ['rows5'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report6(Request $request)
     {
-        return view('web.docs.reports.event_pk', ['rows6'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.event_pk', compact('start', 'finish'), ['rows6'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+        ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_effect()
+    public function report_effect(Request $request)
     {
-        return view('web.docs.reports.effect_pk', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $date = date('Y-m-d');
+        return view('web.docs.reports.effect_pk', compact('date'), ['rows'=>Data_check_out::orderby('id')->get()]);
     }
 
-    public function report_info_act()
+    public function report_info_act(Request $request)
     {
-        return view('web.docs.reports.info_act', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.info_act', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_act_pb()
+    public function report_act_pb(Request $request)
     {
-        return view('web.docs.reports.act_pb', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.act_pb', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_quality_criteria()
+    public function report_quality_criteria(Request $request)
     {
-        return view('web.docs.reports.quality_criteria', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.quality_criteria', compact(['rows'=>Data_check_out::orderby('id')->
+        where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get(), 'start', 'finish']));
     }
 
     public function Showrtn2()

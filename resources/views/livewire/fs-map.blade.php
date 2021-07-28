@@ -42,7 +42,13 @@
                             <td>
                                 <p>Ситуационный план ОПО</p>
                                 <h3>Фонд Скважин</h3><br/>
-                                <a href="/opo/1/main">Общие сведения</a>
+                                <a onclick="clearStorage()" href="/opo/1/main" >Общие сведения</a>
+                                <script>
+                                    function clearStorage() {
+                                        localStorage.removeItem('active');
+                                        localStorage.removeItem('active_mini');
+                                    }
+                                </script>
                             </td>
                             <td class="centered">
                                 <p>Текущее состояние:</p>
