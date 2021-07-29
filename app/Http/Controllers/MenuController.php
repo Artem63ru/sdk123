@@ -15,7 +15,7 @@ class MenuController extends Controller
    {
        $time_password = Logs_safety::first()->time_password; //время действия пароля
        $date_last_update_password = User::orderByDesc('id')->first()->date_new_password;
-       $date_next_update_password = Carbon::createFromDate($date_last_update_password)->subDays($time_password);
+       $date_next_update_password = Carbon::createFromDate($date_last_update_password)->addDays($time_password);
 
        if($date_next_update_password < date('Y-m-d')){
            $check_date_password = true;
