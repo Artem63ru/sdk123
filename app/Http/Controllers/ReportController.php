@@ -231,8 +231,8 @@ class ReportController extends Controller
     {
         $start = $request->start_date;
         $finish = $request->finish_date;
-        return view('web.docs.reports.quality_criteria', compact(['rows'=>Data_check_out::orderby('id')->
-        where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get(), 'start', 'finish']));
+        return view('web.docs.reports.quality_criteria', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->
+        where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get()]);
     }
 
     public function Showrtn2()
