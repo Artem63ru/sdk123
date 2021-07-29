@@ -420,15 +420,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modalShow(modal);
 
         }
-        // loading:function(isLoading){
-        //     if (isLoading==false){
-        //         var opo_name_div=document.createElement('div');
-        //         opo_name_div.className='fc-toolbar-chunk';
-        //         opo_name_div.innerHTML=`<h2>${opo_name}</h2>`;
-        //         $(".fc-toolbar-chunk")[0].insertAdjacentElement("afterend", opo_name_div);
-        //     }
-        //
-        // }
 
 
 

@@ -97,20 +97,42 @@
                             <a href="{{ route('form61.index') }}">ОС о аварии п 6.1</a>
                             <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>
                             <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
+
+                            {{--                            <a href="#">Термины и определения</a>--}}
+                            {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
+                            <a class="clieckable_report" data-route="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
+                            <a class="clieckable_report" data-route="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
+                            <a class="clieckable_report" data-route="{{ route('result_pk') }}">Сведения о результатах проверок</a>
+                            <a class="clieckable_report" data-route="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
+                            <a class="clieckable_report" data-route="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
+                            <a class="clieckable_report" data-route="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
+                            <a class="clieckable_report" data-route="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
+                            <a class="clieckable_report" data-route="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>
+                            <a class="clieckable_report" data-route="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>
+                            <a class="clieckable_report" data-route="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>
+                            <a class="clieckable_report" data-route="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
+                        </div>
+{{--                        <div class="accordion__content">--}}
+{{--                            <a href="{{ route('form51.index') }}">ОС о инциденте п 5.1</a>--}}
+{{--                            <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>--}}
+{{--                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>--}}
+{{--                            <a href="{{ route('form61.index') }}">ОС о аварии п 6.1</a>--}}
+{{--                            <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>--}}
+{{--                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>--}}
 {{--                            <a href="#">Термины и определения</a>--}}
 {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
-                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
-                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
-                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>
-                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
-                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
-                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
-                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
-                            <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>
-                            <a href="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>
-                            <a href="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>
-                            <a href="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
-                        </div>
+{{--                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>--}}
+{{--                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>--}}
+{{--                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>--}}
+{{--                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>--}}
+{{--                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>--}}
+{{--                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>--}}
+{{--                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>--}}
+{{--                            <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>--}}
+{{--                            <a href="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>--}}
+{{--                            <a href="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>--}}
+{{--                            <a href="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>--}}
+{{--                        </div>--}}
                     </label>
                     @endcan
                 </div>
@@ -123,6 +145,30 @@
         </div>
     </div>
 </div>
+
+<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide">
+    <div class="form_header">
+        <span class="closer_btn" data-close="" ></span>
+        <h3>Выберите дату отчета</h3>
+    </div>
+    <form id="choice_report_date" action="">
+        <div class="form-group date">
+            <label for="start_date">Дата начала периода</label>
+            <input class="form-control" id="start_date" type="date" name="start_date" required="required">
+        </div>
+        <div class="form-group date">
+            <label for="end_date">Дата окончания периода</label>
+            <input class="form-control" id="end_date" type="date" name="end_date" required="required">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="upload_report_btn">Добавить</button>
+        </div>
+{{--        <input type="hidden" value="" id="report_route_input"/>--}}
+    </form>
+</div>
+<div class="overlay" data-close=""></div>
+
 
 <script>
     let checkboxes = document.getElementsByName('checkbox-accordion');
@@ -156,3 +202,35 @@
 
     pageStart();
 </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        $(document).ready(function (){
+            $.getScript("{{asset('/js/modals_function.js')}}", function() {
+                console.log("Script loaded but not necessarily executed.");
+            });
+        })
+
+        var report=document.getElementsByClassName('clieckable_report')
+        // console.log(report)
+
+        for (var r of report){
+            r.addEventListener('click', function(){
+                var form=document.getElementById('choice_report_date')
+                form.action=this.dataset.route
+                var modal=document.getElementById('choice_report_date_modal')
+                modalShow(modal)
+            })
+        }
+    })
+</script>
+
+
+<style>
+    #choice_report_date_modal{
+        width: 500px;
+        height: 300px;
+    }
+</style>

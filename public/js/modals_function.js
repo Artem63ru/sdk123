@@ -21,7 +21,6 @@ function modalClose(event) {
     function close(){
         for (let modal of modals) {
             modal.className='dlg-modal dlg-modal-slide slideOutUp'
-
         }
         overlay.className='overlay fadeOut';
         mStatus = false;
