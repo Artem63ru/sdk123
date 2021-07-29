@@ -86,7 +86,7 @@ async function getDbInfo(){
 
                 }
 
-                console.log('new_opo');
+                // console.log('Get info about new opo');
                 let arr=[]
                 arr=JSON.parse(GetDataReq.responseText);//Принимаем данные в json
                 //console.log(tablePage);

@@ -1,7 +1,7 @@
 
 <div class="tabs">
    <div class="tab two_col_tab">
-        <input type="radio" id="opo_info" name="tab_group" checked>
+        <input type="radio" id="opo_info" name="tab_group" onclick="to_localstorage(this)">
         <label for="opo_info" class="tab_title">Общие сведения ОПО</label>
         <section class="tab_content not_white">
             <div class="inside_tab_padding not_white">
@@ -11,8 +11,15 @@
                     <table class="opo_info">
                         <tbody>
                         <tr class="padding_tabl_button">
-                         <td class="fond_calendar_btn"><a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a></td>
-                         <td class="fond_calendar_btn"><a href="{{ url('/docs/predRTN')}}">Журнал предписаний</a></td>
+                            <td class="fond_calendar_btn">
+                                <a href="{{ url('/eventsCal/'.$ver_opo->idOPO)}}">Календарь событий</a>
+
+                            </td>
+                            <td class="fond_calendar_btn">
+                                <a href="{{ url('/docs/predRTN')}}">Журнал предписаний</a>
+                                <a href="{{ url('/opo/'.$ver_opo->idOPO.'/maintenances')}}">Календарь ППР</a>
+                            </td>
+
                         </tr>
                         <tr>
                             <td>Наименование ОПО:</td>
@@ -98,7 +105,7 @@
 
 
     <div class="tab two_col_tab" style="100px">
-        <input type="radio" id="pk_rate" name="tab_group">
+        <input type="radio" id="pk_rate" name="tab_group" onclick="to_localstorage(this)">
         <label for="pk_rate" class="tab_title">Оценка проведения ПК</label>
         <section class="tab_content">
             <div class="inside_tab_padding" style="height: 450px">
@@ -271,6 +278,29 @@
     </div>
 
 </div>
+
+
+<script>
+
+    function get_active_page(){
+        var active_element_id=localStorage.getItem('active')
+        if (active_element_id!=null){
+            var element=document.getElementById(active_element_id)
+            element.checked=true;
+        }
+        else{
+            var opo_info=document.getElementById('opo_info');
+            opo_info.checked=true;
+        }
+    }
+
+    function to_localstorage(element){
+        // console.log(element.id)
+        localStorage.setItem('active', element.id)
+    }
+
+    get_active_page()
+</script>
 
 @include('web.include.script-lib.am4')
 @include('web.include.script-lib.highcharts')

@@ -4,6 +4,7 @@
 
 
             <div class="tabs opo_tabs">
+
                 <div class="tab two_col_tab">
                     <input type="radio" id="main_opo" name="tab_group" checked>
                     <label for="main_opo" class="tab_title">Основные сведения по элементу ОПО</label>
@@ -36,9 +37,11 @@
                                 </table>
 
                             </div>
+                            <div class="bat_info"> <a href="/maintenance/{{$this_elem->idObj}}">Календарь технического обслуживания</a></div>
 
                         </div>
                     </section>
+
                 </div>
 
 
@@ -80,13 +83,7 @@
                     </section>
                 </div>
 
-
-
             </div>
-
-
-
-
 
         </div>
 

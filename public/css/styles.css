@@ -753,3 +753,7 @@ table {
     text-align: center;
     padding-bottom: 10px;
 }
+
+#calendar{
+    height: calc(100vh - 170px);
+}
