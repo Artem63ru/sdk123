@@ -233,11 +233,11 @@ Route::group(['middleware' => ['auth']], function() {
 
     //********************  Отчеты  ***********************************
 
-    Route::get('docs/report','ReportController@report')->name('obj_status');
+    Route::post('docs/report','ReportController@report')->name('obj_status');
     Route::post('docs/report1','ReportController@report1')->name('scena_report');
     Route::post('docs/report2','ReportController@report2')->name('result_pk');
     Route::post('docs/report3','ReportController@report3')->name('violations_report');
-    Route::get('docs/report4','ReportController@report4')->name('status_opo');
+    Route::post('docs/report4','ReportController@report4')->name('status_opo');
     Route::post('docs/report5','ReportController@report5')->name('repiat_report');
     Route::post('docs/report6','ReportController@report6')->name('event_pk');
 
@@ -271,7 +271,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_quality_criteria', 'PdfReportController@pdf_quality_criteria')->name('pdf_quality_criteria');     // скачать отчет по критериям качественной оценки
     Route::get('docs/report5','ReportController@report5')->name('repiat_report');
     Route::get('docs/report6','ReportController@report6')->name('event_pk');
-    Route::get('docs/effect_pk','ReportController@report_effect')->name('effect_pk');
+    Route::post('docs/effect_pk','ReportController@report_effect')->name('effect_pk');
     Route::post('docs/info_act','ReportController@report_info_act')->name('info_act');
     Route::post('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
     Route::post('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');

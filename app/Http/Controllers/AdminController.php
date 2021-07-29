@@ -65,7 +65,8 @@ class AdminController extends Controller
             'num_error' => 'required|numeric|min:1',
             'time_ban' => 'required|numeric|min:1',
             'num_password' => 'required|numeric|min:1',
-            'time_session' => 'required|numeric|min:1'
+            'time_session' => 'required|numeric|min:1',
+            'time_password' => 'required|numeric|min:1',
         ]);
         $input = $request->all();
         $config = Logs_safety::first();

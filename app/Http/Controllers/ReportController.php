@@ -49,8 +49,45 @@ class ReportController extends Controller
 
     public function report(Request $request)
     {
+        $start = $request->start_date;
+        $finish = $request->finish_date;
         $date = date('Y-m-d');
-        return view('web.docs.reports.form_8', compact('date'), ['rows'=>Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get()]);
+        $i=0;
+        $j = 0;
+        $desc_opo[$i] = "";
+        $name_obj[$i] = "";
+        $ip_elem[$i] = "";
+        $op_m[$i] = "";
+        $op_el[$i] = "";
+        $op_r[$i] = "";
+        $input = Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get();
+        foreach ($input as $row){
+            $desc_opo[$j] = $row->obj_to_opo->descOPO;
+            $name_obj[$j] = $row->nameObj;
+            foreach ($row->elem_to_calc_report as $rows){
+                if($rows->date <= $finish && $rows->date >= $start){
+                    $ip[$j][$i] = $rows->ip_elem;
+                    $m[$j][$i] = $rows->op_m;
+                    $el[$j][$i] = $rows->op_el;
+                    $r[$j][$i] = $rows->op_r;
+                    $i++;
+                }
+            }
+            $ip_elem[$j] = min($ip[$j]);
+            $op_m[$j] = min($m[$j]);
+            $op_el[$j] = min($el[$j]);
+            $op_r[$j] = min($r[$j]);
+            $j++;
+        }
+
+        $data['desc_opo'] = $desc_opo;
+        $data['name_obj'] = $name_obj;
+        $data['ip_elem'] = $ip_elem;
+        $data['op_m'] = $op_m;
+        $data['op_el'] = $op_el;
+        $data['op_r'] = $op_r;
+//        dd($data);
+        return view('web.docs.reports.form_8', compact('data', 'start', 'finish'));
     }
 
     public function report1(Request $request)
@@ -79,18 +116,19 @@ class ReportController extends Controller
 
     public function report4(Request $request)
     {
+        $start = $request->start_date;
+        $finish = $request->finish_date;
         $date = date('Y-m-d');
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
 
-            foreach ($rows1->opo_to_calc_day_min as $rows2) {
+            foreach ($rows1->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish) as $rows2) {
                 $ip_opos = $rows2->ip_opo;
-
             }
             $ip = 1;
             foreach ($rows1->opo_to_obj as $item) {
-                    if ($item->elem_to_calc->first()->ip_elem <= $ip) {
-                        $ip = $item->elem_to_calc->first()->ip_elem;
+                    if ($item->elem_to_calc_report->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_elem <= $ip) {
+                        $ip = $item->elem_to_calc_report->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_elem;
                         $name = $item->nameObj;
                     }
               }
@@ -101,7 +139,7 @@ class ReportController extends Controller
              "name_elem"=> $name,
              "IP_ELEM"=>$ip ];
           }
-        return view('web.docs.reports.status_opo', compact('date'), ['data' => $data]);
+        return view('web.docs.reports.status_opo', compact('date', 'start', 'finish'), ['data' => $data]);
     }
 
     public function child_form52_table (Request $request, $id_event)
@@ -207,8 +245,10 @@ class ReportController extends Controller
 
     public function report_effect(Request $request)
     {
-        $date = date('Y-m-d');
-        return view('web.docs.reports.effect_pk', compact('date'), ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+//        $date = date('Y-m-d');
+        return view('web.docs.reports.effect_pk', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->get()]);
     }
 
     public function report_info_act(Request $request)

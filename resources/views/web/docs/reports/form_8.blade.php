@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии элементов опасных производственных объектов<br>
-                        По состоянию на {{$date}}</h2>
+                            В период с {{$start}} по {{$finish}}</h2>
                         @can('role-create')
                             <div class="bat_info"><a href="{{ url('pdf_elem') }}">Создать PDF</a></div>
                         @endcan
@@ -29,7 +29,7 @@
 
 
                     <div class="inside_tab_padding form51">
-                        <div style="background: #FFFFFF; border-radius: 6px" class="row_block form51">
+                        <div style="background: #FFFFFF; border-radius: 6px; height: auto" class="row_block form51">
                 <table>
                     <thead>
                     <tr>
@@ -42,16 +42,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($rows as $row)
-                              <tr>
-                                <td>{{$row->obj_to_opo->descOPO}}</td>
-                                <td>{{$row->nameObj}}</td>
-                                <td>{{$row->elem_to_calc->first()->ip_elem}}</td>
-                                <td>{{$row->elem_to_calc->first()->op_m}}</td>
-                                <td>{{$row->elem_to_calc->first()->op_el}}</td>
-                                <td>{{$row->elem_to_calc->first()->op_r}}</td>
+
+                        @for($i=0; $i<count($data['desc_opo']); $i++)
+                            <tr>
+                                <td>{{$data['desc_opo'][$i]}}</td>
+                                <td>{{$data['name_obj'][$i]}}</td>
+                                <td>{{$data['ip_elem'][$i]}}</td>
+                                <td>{{$data['op_m'][$i]}}</td>
+                                <td>{{$data['op_el'][$i]}}</td>
+                                <td>{{$data['op_r'][$i]}}</td>
                             </tr>
-                    @endforeach
+                        @endfor
 
                     </tbody>
 

@@ -8,7 +8,6 @@
 @section('content')
     @include('web.include.sidebar_doc')
     <div class="container">
-
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -45,8 +44,8 @@
                     @foreach ($rows1 as $row)
                         <tr>
                             <td>{{$row->data}}</td>
-                            <td>{{$row->jas_to_opo}}</td>
-                            <td>{{$row->jas_to_elem}}</td>
+                            <td>{{$row->jas_to_opo->descOPO}}</td>
+                            <td>{{$row->jas_to_elem->descObj}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->level}}</td>
                             <td>{{$row->status}}</td>

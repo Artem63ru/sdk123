@@ -98,6 +98,14 @@
                                 {!! Form::text('time_session', null, array('placeholder' => 'Укажите длительность сессии в минутах','class' => 'form-control', 'required')) !!}
                             </div>
                         </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <div style="padding: 10px" class="">
+                                        <strong class="text-muted h3" id="session_long">Время действия пароля (дней):</strong>
+                                    </div>
+                                    {!! Form::text('time_password', null, array('placeholder' => 'Укажите время действия пароля','class' => 'form-control', 'required')) !!}
+                                </div>
+                            </div>
 
                         <div style="padding-bottom: 40px" class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Сохранить</button>

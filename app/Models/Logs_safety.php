@@ -13,7 +13,7 @@ class Logs_safety extends Model
 
 
     protected $fillable = [
-        'num_znak', 'up_register', 'num_check', 'spec_check', 'num_error', 'time_ban', 'num_password', 'time_session',
+        'num_znak', 'up_register', 'num_check', 'spec_check', 'num_error', 'time_ban', 'num_password', 'time_session', 'time_password',
     ];
 
 }

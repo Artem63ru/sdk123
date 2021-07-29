@@ -73,8 +73,8 @@ class UserController extends Controller
         ]);
 
         $input = $request->all();
-        dd($input['password']);
         $input['password'] = Hash::make($input['password']);
+        $input['date_new_password'] = date('Y-m-d');
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -157,6 +157,7 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
+        $input['date_new_password'] = date('Y-m-d');
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 

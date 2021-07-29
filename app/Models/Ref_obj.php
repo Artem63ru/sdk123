@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Ref_obj extends Model
@@ -14,6 +15,11 @@ class Ref_obj extends Model
     {
         return $this->hasMany('App\Jas', 'from_elem_opo', 'idObj');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
+    }
+    //************************** Значения расчетных параметров для елемента ОПО **********************************************
+    public function elem_to_calc_report()
+    {
+        return $this->hasMany('App\Models\Calc_elem', 'from_elem', 'idObj')->orderByDesc('id');
     }
     //************************** Последнее значение расчетных параметров для елемента ОПО **********************************************
     public function elem_to_calc()

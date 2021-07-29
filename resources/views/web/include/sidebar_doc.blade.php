@@ -99,14 +99,15 @@
                                 <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
                                 {{--                            <a href="#">Термины и определения</a>--}}
                                 {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
-                                <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
+                                <a class="clieckable_report" data-route="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
                                 <a class="clieckable_report" data-route="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
                                 <a class="clieckable_report" data-route="{{ route('result_pk') }}">Сведения о результатах проверок</a>
                                 <a class="clieckable_report" data-route="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
-                                <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
+                                <a class="clieckable_report" data-route="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
                                 <a class="clieckable_report" data-route="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
                                 <a class="clieckable_report" data-route="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
-                                <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>
+{{--                                <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>--}}
+                                <a class="clieckable_report" data-route="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>
                                 <a class="clieckable_report" data-route="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>
                                 <a class="clieckable_report" data-route="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>
                                 <a class="clieckable_report" data-route="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
@@ -154,11 +155,11 @@
         @csrf
         <div class="form-group date">
             <label for="start_date">Дата начала периода</label>
-            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" value="{{ old('start_date') }} required="required">
+            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>
         </div>
         <div class="form-group date">
             <label for="end_date">Дата окончания периода</label>
-            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" value="{{ old('finish_date') }} required="required">
+            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>
         </div>
 
         <div class="form-group">
