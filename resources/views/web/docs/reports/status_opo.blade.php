@@ -15,7 +15,7 @@
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии опасных производственных объектов
                         <br>В период с {{$start}} по {{$finish}}</h2>
                         @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_opo/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -34,18 +34,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($data as $item)
+                    @for($i=0; $i<count($data['name_opos']); $i++)
                         <tr>
-                            <td>{{$item['name_opo']}}</td>
-                            <td class="centered">{{$item['IP_OPO']}}</td>
-                            <td class="centered">{{$item['IP_ELEM']}}</td>
-                            <td>{{$item['name_elem']}}</td>
-
-
+                            <td>{{$data['name_opos'][$i]}}</td>
+                            <td class="centered">{{$data['ip_opos'][$i]}}</td>
+                            <td class="centered">{{$data['ip'][$i]}}</td>
+                            <td>{{$data['name'][$i]}}</td>
                         </tr>
-
-                    @endforeach
-
+                    @endfor
 
                     </tbody>
 

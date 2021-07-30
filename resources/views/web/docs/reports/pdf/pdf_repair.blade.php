@@ -12,7 +12,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >Отчет о состоянии елементов опасных производственных объектов по состоянию на</h2>
+<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
             <tr>
@@ -32,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($rows as $row)
+            @foreach ($data['rows'] as $row)
                 <tr>
                     <td></td>
                     <td></td>

@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность<br>В период с {{"$start"}} по {{"$finish"}}</h2>
                         @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_quality_criteria') }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_quality_criteria/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 

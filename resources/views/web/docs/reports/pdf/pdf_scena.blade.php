@@ -13,7 +13,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах</h2>
+<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
             <tr>
@@ -26,16 +26,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($rows as $row)
+            @foreach ($data['rows'] as $row)
                 <tr>
-                    <td>{{date('d-m-Y h:m', strtotime($row->data))}}</td>
+                    <td>{{$row->data}}</td>
                     <td>{{$row->jas_to_opo->descOPO}}</td>
-                    <td>{{$row->jas_to_elem->nameObj}}</td>
+                    <td>{{$row->jas_to_elem->descObj}}</td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->level}}</td>
                     <td>{{$row->status}}</td>
                 </tr>
             @endforeach
             </tbody>
-
-</table>
+        </table>

@@ -13,26 +13,26 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >Сведения о результатах проверок, проводимых при осуществлении <br> производственного контроля, устранении нарушений по состоянию на</h2>
+<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
             <tr>
-                <th style="width: 10vh">№</th>
-                <th style="width: 10vh">Номер и дата акта проверки</th>
-                <th style="width: 10vh">Пункт и НПА, положения которого нарушены</th>
-                <th style="width: 10vh">Нарушение</th>
-                <th style="width: 10vh">Мероприятия по устранению нарушений</th>
-                <th style="width: 10vh">Срок устранения нарушения</th>
-                <th style="width: 10vh">Дата устранения</th>
-                <th style="width: 10vh">Ответственный за контроль устранения нарушений</th>
-                <th style="width: 10vh">Причины невыполнения в срок</th>
-                <th style="width: 10vh">Перенос срока</th>
-                <th style="width: 10vh">Основание переноса срока</th>
-                <th style="width: 10vh">Работники, привлеченные к ответственности за допущенное нарушение</th>
+                <th>№</th>
+                <th>Номер и дата акта проверки</th>
+                <th>Пункт и НПА, положения которого нарушены</th>
+                <th>Нарушение</th>
+                <th>Мероприятия по устранению нарушений</th>
+                <th>Срок устранения нарушения</th>
+                <th>Дата устранения</th>
+                <th>Ответственный за контроль устранения нарушений</th>
+                <th>Причины невыполнения в срок</th>
+                <th>Перенос срока</th>
+                <th>Основание переноса срока</th>
+                <th>Работники, привлеченные к ответственности за допущенное нарушение</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($rows as $row)
+            @foreach ($data['rows'] as $row)
                 <tr>
                     <td>{{$row->id}}</td>
                     <td>{{$row->date_check_out}}</td>
