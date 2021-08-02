@@ -7,24 +7,25 @@ use Illuminate\Support\Facades\Auth;
 //Групировка от бана
 //Route::group(['middleware' => 'forbid-banned-user',], function () {
 Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['restrictedToDayLight']], function() {
     Route::get('/', ['as' => 'gazprom', 'uses' => 'MenuController@view_menu']);   //Главная
 
 
 //********************* Технологический блок ****************************************
-    Route::get('/opo/{id}','OpoController@view_opo_id');  //страница опо с графиками
+    Route::get('/opo/{id}', 'OpoController@view_opo_id');  //страница опо с графиками
     Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
-    Route::get('/opo/{id}/main','OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
+    Route::get('/opo/{id}/main', 'OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     //********************* Данные ручного ввода ****************************************
-    Route::resource('operational',OperationalSafetyController::class);   //ручной ввод показателя безопасности
-    Route::get('/opo/{id}/main/new_safety','OpoController@new');   // cоздание новой записи
-    Route::resource('ready',ReadyController::class);   //ручной ввод показателя готовности
-    Route::get('/opo/{id}/main/new_ready','OpoController@new_ready');   // cоздание новой записи
-    Route::resource('failure_free',FailureFreeController::class);   //ручной ввод показателя безаварийности
-    Route::get('/opo/{id}/main/new_failure_free','OpoController@new_failure_free');   // cоздание новой записи
+    Route::resource('operational', OperationalSafetyController::class);   //ручной ввод показателя безопасности
+    Route::get('/opo/{id}/main/new_safety', 'OpoController@new');   // cоздание новой записи
+    Route::resource('ready', ReadyController::class);   //ручной ввод показателя готовности
+    Route::get('/opo/{id}/main/new_ready', 'OpoController@new_ready');   // cоздание новой записи
+    Route::resource('failure_free', FailureFreeController::class);   //ручной ввод показателя безаварийности
+    Route::get('/opo/{id}/main/new_failure_free', 'OpoController@new_failure_free');   // cоздание новой записи
 
 
-    Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"    ); // страница поспортов и схем ТБ
-    Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"    ); // страница поспортов и схем элемента ОПО
+    Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"); // страница поспортов и схем ТБ
+    Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"); // страница поспортов и схем элемента ОПО
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
@@ -70,17 +71,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/infoTB/create', "MatrixControllers@create_TB")->name('create_TB'); // создание
     Route::post('/docs/infoTB/store', "MatrixControllers@store_TB")->name('store_TB'); // сохранение
 
-    Route::get('/docs/rtn', ['as' => 'rtn', 'uses' =>'MatrixControllers@Showrtn']); // страница справочника коэфициетов
-    Route::get('/docs/reglament',['as' => 'reglament', 'uses' =>'MatrixControllers@Showregl']); // страница справочника регламентных значений
-    Route::get('/docs/matrix',['as' => 'matrix', 'uses' =>'MatrixControllers@Showmatrix']); // страница справочника регламентных значений
+    Route::get('/docs/rtn', ['as' => 'rtn', 'uses' => 'MatrixControllers@Showrtn']); // страница справочника коэфициетов
+    Route::get('/docs/reglament', ['as' => 'reglament', 'uses' => 'MatrixControllers@Showregl']); // страница справочника регламентных значений
+    Route::get('/docs/matrix', ['as' => 'matrix', 'uses' => 'MatrixControllers@Showmatrix']); // страница справочника регламентных значений
 
     Route::get('docs/upload', ['as' => 'upload_form', 'uses' => 'UploadController@getForm']); //Отображение списка файлов
     Route::post('docs/upload', ['as' => 'upload_file', 'uses' => 'UploadController@upload']); // Загрузка файла на сервер
     Route::get('docs/open/{id}', ['as' => 'open_file', 'uses' => 'UploadController@open']); // Просмотр файла
-    Route::get('docs/upload/delete/{id}',['as' => 'upload_delete','uses' => 'UploadController@delete']); //Удаление файла
+    Route::get('docs/upload/delete/{id}', ['as' => 'upload_delete', 'uses' => 'UploadController@delete']); //Удаление файла
 
     //****************** Для НОВОГО годового отчета  *************************************
-    Route::get('/docs/rtn2', ['as' => 'rtn', 'uses' =>'ReportController@Showrtn2']); // страница нового годового отчета
+    Route::get('/docs/rtn2', ['as' => 'rtn', 'uses' => 'ReportController@Showrtn2']); // страница нового годового отчета
     //****************** tab 1.1  *************************************
     Route::get('/docs/tab11/delete/{id}', 'ReportController@delete_row_tab11');  //Удаление строки год отчета
     Route::get('/docs/tab11/edit/{id}', 'ReportController@edit_tab11');  //Изменение строки год отчета
@@ -209,14 +210,22 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/docs/tab10/save', 'ReportController@save_tab10'); //сохранить строку
 
 
- //**************** Ситуационный план ***************************************************
-    Route::get('/opo/{id}/plan', function ($id) { return view('web.maps.plan',['id' => $id]);}); // страница ситуационного плана ОПО
+    //**************** Ситуационный план ***************************************************
+    Route::get('/opo/{id}/plan', function ($id) {
+        return view('web.maps.plan', ['id' => $id]);
+    }); // страница ситуационного плана ОПО
 
 
- //**************** Все остальное *******************************************************
-    Route::get('/opo_plan/{opo}', function ($opo) { return view('opo_plan', ['opo' => $opo]);     })->name('opo')->middleware('auth');  // Уровень ОПО план
-    Route::get('/element/{elem}', function ($elem) {         return view('element', ['elem' => $elem]);     })->name('element')->middleware('auth');  // Уровень Элемента главная
-    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);})->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
+    //**************** Все остальное *******************************************************
+    Route::get('/opo_plan/{opo}', function ($opo) {
+        return view('opo_plan', ['opo' => $opo]);
+    })->name('opo')->middleware('auth');  // Уровень ОПО план
+    Route::get('/element/{elem}', function ($elem) {
+        return view('element', ['elem' => $elem]);
+    })->name('element')->middleware('auth');  // Уровень Элемента главная
+    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {
+        return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);
+    })->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
     Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
     Route::view('/tests', 'ref_opo');
 
@@ -233,29 +242,29 @@ Route::group(['middleware' => ['auth']], function() {
 
     //********************  Отчеты  ***********************************
 
-    Route::post('docs/report','ReportController@report')->name('obj_status');
-    Route::post('docs/report1','ReportController@report1')->name('scena_report');
-    Route::post('docs/report2','ReportController@report2')->name('result_pk');
-    Route::post('docs/report3','ReportController@report3')->name('violations_report');
-    Route::post('docs/report4','ReportController@report4')->name('status_opo');
-    Route::post('docs/report5','ReportController@report5')->name('repiat_report');
-    Route::post('docs/report6','ReportController@report6')->name('event_pk');
+    Route::post('docs/report', 'ReportController@report')->name('obj_status');
+    Route::post('docs/report1', 'ReportController@report1')->name('scena_report');
+    Route::post('docs/report2', 'ReportController@report2')->name('result_pk');
+    Route::post('docs/report3', 'ReportController@report3')->name('violations_report');
+    Route::post('docs/report4', 'ReportController@report4')->name('status_opo');
+    Route::post('docs/report5', 'ReportController@report5')->name('repiat_report');
+    Route::post('docs/report6', 'ReportController@report6')->name('event_pk');
 
-    Route::resource('form51',Form51Controller::class);
-    Route::resource('form52',Form52Controller::class);
-    Route::get('form52-add-table/{id}','ReportController@child_form52_table')->name('add-child-form52');
+    Route::resource('form51', Form51Controller::class);
+    Route::resource('form52', Form52Controller::class);
+    Route::get('form52-add-table/{id}', 'ReportController@child_form52_table')->name('add-child-form52');
     Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
     Route::get('form52-change-table/{id_event}', 'ReportController@edit_table')->name('form52-change-table');
     Route::post('form52-change-table/{id_event}', 'ReportController@update_table')->name('form52-update-table');
     Route::get('form52-delete-table/{id_event}', 'ReportController@destroy_row_tab_52')->name('form52-delete-table');
-    Route::resource('form5363',Form5363Controller::class);
-    Route::get('form5363-add-table/{id}','ReportController@child_form5363_table')->name('add-child-form5363');
+    Route::resource('form5363', Form5363Controller::class);
+    Route::get('form5363-add-table/{id}', 'ReportController@child_form5363_table')->name('add-child-form5363');
     Route::post('form5363-add-table/{id}', 'ReportController@store_child_form5363')->name('form5363-add-table');
     Route::get('form5363-change-table/{id_event}', 'ReportController@edit_table5363')->name('form5363-change-table');
     Route::post('form5363-change-table/{id_event}', 'ReportController@update_table5363')->name('form5363-update-table');
     Route::get('form5363-delete-table/{id_event}', 'ReportController@destroy_row_tab_5363')->name('form5363-delete-table');
-    Route::resource('form61',Form61Controller::class);
-    Route::resource('form62',Form62Controller::class);
+    Route::resource('form61', Form61Controller::class);
+    Route::resource('form62', Form62Controller::class);
 
     ///////////************** Отчеты PDF **************************************/////////////////////////
     Route::get('pdf_elem/{start}/{finish}', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам
@@ -269,12 +278,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_info_act/{start}/{finish}', 'PdfReportController@pdf_info_act')->name('pdf_info_act');     // скачать справку о выполнении актов внутреннее
     Route::get('pdf_act_pb/{start}/{finish}', 'PdfReportController@pdf_act_pb')->name('pdf_act_pb');     // скачать справку о выполнении актов надзорные организации
     Route::get('pdf_quality_criteria/{start}/{finish}', 'PdfReportController@pdf_quality_criteria')->name('pdf_quality_criteria');     // скачать отчет по критериям качественной оценки
-    Route::get('docs/report5','ReportController@report5')->name('repiat_report');
-    Route::get('docs/report6','ReportController@report6')->name('event_pk');
-    Route::post('docs/effect_pk','ReportController@report_effect')->name('effect_pk');
-    Route::post('docs/info_act','ReportController@report_info_act')->name('info_act');
-    Route::post('docs/act_pb','ReportController@report_act_pb')->name('act_pb');
-    Route::post('docs/quality_criteria','ReportController@report_quality_criteria')->name('quality_criteria');
+    Route::get('docs/report5', 'ReportController@report5')->name('repiat_report');
+    Route::get('docs/report6', 'ReportController@report6')->name('event_pk');
+    Route::post('docs/effect_pk', 'ReportController@report_effect')->name('effect_pk');
+    Route::post('docs/info_act', 'ReportController@report_info_act')->name('info_act');
+    Route::post('docs/act_pb', 'ReportController@report_act_pb')->name('act_pb');
+    Route::post('docs/quality_criteria', 'ReportController@report_quality_criteria')->name('quality_criteria');
 
     ////////////******************** Отчеты XML**************************************
     Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут
@@ -287,21 +296,25 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
 
 
-
     //*******************************************************
 
-    Route::get('/jas_up_chek', function () {  App\Jas::updated_check(5);})->name('trend');
-    Route::get('/php', function () {        phpinfo();    });
+    Route::get('/jas_up_chek', function () {
+        App\Jas::updated_check(5);
+    })->name('trend');
+    Route::get('/php', function () {
+        phpinfo();
+    });
 
-    Route::get('/opo_day', function () {        return view('opo_day');    })->name('opo_day');
+    Route::get('/opo_day', function () {
+        return view('opo_day');
+    })->name('opo_day');
     Route::get('opo/charts/fetch-data', 'Opo_dayController@view_day')->name('opo/charts/fetch-data');
     Route::get('charts/fetch-data', 'Opo_dayController@view_day')->name('charts/fetch-data');
     // Route::get('charts/fetch-data/{id}', 'Opo_dayController@view_day')->name('charts/fetch-data/{id}');
 //Route::get('charts/chart_1', function () {return view('charts/chart_1');})->name('chart_1');
-    Route::get('/charts/chart_ip_opo', function () {        return view('charts/chart_ip_opo');    })->name('chart_ip_opo');
-
-
-
+    Route::get('/charts/chart_ip_opo', function () {
+        return view('charts/chart_ip_opo');
+    })->name('chart_ip_opo');
 
 
 //настройка доступа по ролям и привелегиям пользователя https://laravel.demiart.ru/guide-to-roles-and-permissions/
@@ -339,15 +352,12 @@ Route::group(['middleware' => ['auth']], function() {
 //Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
 
-
-
 //Смена пароля
     Route::get('/change-password', 'ChangePasswordController@index')->name('changepwd');
     Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 
 //Route::group(['middleware' => ['auth']], function() {
-
 
 
     //----------КАЛЕНДАРЬ СОБЫТИЙ--------------//
@@ -361,7 +371,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/sumcontroller/test', 'SumCheckerController@test');
     Route::get('/sumcontroller/test2', 'SumCheckerController@test_view');
     Route::get('/sumcontroller/get_choiced', 'SumCheckerController@get_choiced');
-    Route::post('/sumcontroller/set_paths','SumCheckerController@set_paths');
+    Route::post('/sumcontroller/set_paths', 'SumCheckerController@set_paths');
     Route::get('/sumcontroller/cmd', 'SumCheckerController@sumchecker_cmd');
     Route::get('/sumcontroller/get_all_logs', 'SumCheckerController@get_all_logs');
 
@@ -370,6 +380,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/maintenance/action', 'MaintenanceCalendarController@action');
     Route::get('/opo/{opo_id}/maintenances', 'MaintenanceCalendarController@index_opo');
 
+});
 });
 //*******************************************
 Auth::routes();

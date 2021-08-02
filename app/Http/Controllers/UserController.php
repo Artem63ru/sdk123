@@ -48,6 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $time_stop_session = $request->time_stop;
         $password_config = Logs_safety::first();
         if($password_config->up_register == 1)
             $format_up = '(?=.*[a-z])(?=.*[A-Z])';
@@ -70,6 +71,7 @@ class UserController extends Controller
             'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
             'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
             'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
+            'time_begin'=>'before:'.$time_stop_session,
         ]);
 
         $input = $request->all();
@@ -126,6 +128,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $time_stop_session = $request->time_stop;
         $password_config = Logs_safety::first();
         if($password_config->up_register == 1)
             $format_up = '(?=.*[a-z])(?=.*[A-Z])';
@@ -147,6 +150,7 @@ class UserController extends Controller
             'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
             'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
             'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
+            'time_begin'=>'before:'.$time_stop_session,
         ]);
 
         $input = $request->all();
@@ -170,6 +174,7 @@ class UserController extends Controller
         return redirect()->route('users.index')
             ->with('success','User updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

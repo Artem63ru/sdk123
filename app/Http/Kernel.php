@@ -23,6 +23,8 @@ class Kernel extends HttpKernel
 
     ];
 
+
+
     /**
      * The application's route middleware groups.
      *
@@ -38,7 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\UserActivity::class,
-         //   \App\Http\Middleware\SessionTimeout::class,   //раскоментировать выбивает пользователя при простое 90 сек
+            \App\Http\Middleware\SessionTimeout::class,   //раскоментировать выбивает пользователя при простое 90 сек
 
         ],
 
@@ -71,5 +73,6 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'forbid-banned-user' => \Cog\Laravel\Ban\Http\Middleware\ForbidBannedUser::class,
+        'restrictedToDayLight' => \App\Http\Middleware\TimeBasedRestriction::class,
     ];
 }
