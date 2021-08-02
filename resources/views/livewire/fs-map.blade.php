@@ -48,6 +48,7 @@
                                         localStorage.removeItem('active');
                                         localStorage.removeItem('active_mini');
                                     }
+             
                                 </script>
                             </td>
                             <td class="centered">
