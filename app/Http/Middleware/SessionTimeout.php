@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Controllers\AdminController;
+use App\Models\Logs_safety;
 use Closure;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,7 @@ class SessionTimeout {
      */
     private function getTimeOut()
     {
-        return  (90) ?: $this->timeout;
+        return  ((Logs_safety::first()->time_session)*60) ?: $this->timeout;
     }
 
     /**

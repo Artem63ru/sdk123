@@ -118,6 +118,17 @@
                 {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
+        <div class="form-group">
+            <div style="padding: 10px" class="">
+                <strong class="text-muted h3">Время доступа к системе:</strong>
+            </div>
+            <table style="width: 40%; margin-left: 30%">
+                <th class="text-muted h3" style="width: 3%; text-align: center"><h3>C</h3></th>
+                <th style="width: 5%">{!! Form::time('time_begin', null, array('placeholder' => 'Введите время начала сессии','class' => 'form-control', 'required', 'style' => 'width: 50%;text-align: center')) !!}</th>
+                <th class="text-muted h3" style="width: 3%; text-align: center"><h3>по</h3></th>
+                <th style="width: 5%">{!! Form::time('time_stop', null, array('placeholder' => 'Введите время окончания сессии','class' => 'form-control', 'required', 'style' => 'width: 50%; text-align: center')) !!}</th>
+            </table>
+        </div>
                         <div style="padding-bottom: 40px" class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Сохранить</button>
                         </div>

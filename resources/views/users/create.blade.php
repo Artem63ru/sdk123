@@ -99,6 +99,17 @@
                 </div>
                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
             </div>
+            <div class="form-group">
+                <div style="padding: 10px" class="">
+                    <strong class="text-muted h3">Время доступа к системе:</strong>
+                </div>
+                <table style="width: 40%; margin-left: 30%">
+                    <th class="text-muted h3" style="width: 3%; text-align: center"><h4>C</h4></th>
+                    <th style="width: 5%">{!! Form::time('time_begin', null, array('placeholder' => 'Введите время начала сессии','class' => 'form-control', 'required', 'style' => 'width: 50%;text-align: center')) !!}</th>
+                    <th class="text-muted h3" style="width: 3%; text-align: center"><h4>по</h4></th>
+                    <th style="width: 5%">{!! Form::time('time_stop', null, array('placeholder' => 'Введите время окончания сессии','class' => 'form-control', 'required', 'style' => 'width: 50%; text-align: center')) !!}</th>
+                </table>
+            </div>
                         <div class="form-group">
                             <div style="padding: 10px" class="">
 

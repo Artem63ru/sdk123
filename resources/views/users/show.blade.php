@@ -27,7 +27,7 @@
               <tr>
                   <td><div class="col-xs-12 col-sm-12 col-md-12">
                           <div class="form-group">
-                              <div style="padding: 15px" class="">
+                              <div style="padding: 10px" class="">
                                   <strong class="text-muted h3">Фамилия:      {{ $user->surname }}</strong>
                               </div>
 
@@ -38,7 +38,7 @@
               <tr>
                   <td><div class="col-xs-12 col-sm-12 col-md-12">
                           <div class="form-group">
-                              <div style="padding: 15px" class="">
+                              <div style="padding: 10px" class="">
                                   <strong class="text-muted h3">Имя:      {{ $user->imya }}</strong>
                               </div>
 
@@ -49,7 +49,7 @@
               <tr>
                   <td><div class="col-xs-12 col-sm-12 col-md-12">
                           <div class="form-group">
-                              <div style="padding: 15px" class="">
+                              <div style="padding: 10px" class="">
                                   <strong class="text-muted h3">Отчество:      {{ $user->middle_name }}</strong>
                               </div>
 
@@ -60,7 +60,7 @@
               <tr>
         <td><div class="col-xs-12 col-sm-12 col-md-12">
              <div class="form-group">
-                <div style="padding: 15px" class="">
+                <div style="padding: 10px" class="">
                     <strong class="text-muted h3">Логин:      {{ $user->name }}</strong>
                 </div>
 
@@ -72,7 +72,7 @@
                     <td>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div style="padding: 15px" class="">
+                <div style="padding: 10px" class="">
                     <strong class="text-muted h3">Email:   {{ $user->email }}</strong>
                 </div>
 
@@ -84,7 +84,7 @@
                     <td>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div style="padding: 15px" class="">
+                <div style="padding: 10px" class="">
                     <strong class="text-muted h3">Роли пользователя:</strong>
 
                 @if(!empty($user->getRoleNames()))
@@ -96,6 +96,18 @@
             </div>
         </div>
               </td>
+              </tr>
+              <tr>
+                  <td>
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                              <div style="padding: 10px" class="">
+                                  <strong class="text-muted h3">Доступ к системе предоставлен:   {{"C"." ".$user->time_begin." "."по"." ".$user->time_stop }}</strong>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
               </tr>
               </tbody>
           </table>
