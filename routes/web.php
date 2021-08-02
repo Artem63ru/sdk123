@@ -365,6 +365,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/sumcontroller/cmd', 'SumCheckerController@sumchecker_cmd');
     Route::get('/sumcontroller/get_all_logs', 'SumCheckerController@get_all_logs');
 
+    //----------------КАЛЕНДАРЬ ТЕХНИЧЕСКОГО ОБСЛУЖИВАНИЯ--------------//
+    Route::get('/maintenance/{obj_id}', 'MaintenanceCalendarController@index_elem');
+    Route::post('/maintenance/action', 'MaintenanceCalendarController@action');
+    Route::get('/opo/{opo_id}/maintenances', 'MaintenanceCalendarController@index_opo');
 
 });
 //*******************************************

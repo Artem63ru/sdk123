@@ -1,5 +1,3 @@
-{{--<!DOCTYPE html>--}}
-{{--<html>--}}
 @extends('web.layouts.app')
 @section('title')
     Календарь событий
@@ -18,29 +16,17 @@
         });
     })
 
-
-    // console.log(opo_name)
 </script>
 
 
 
 <style>
     /*--- CONTENT ---*/
-    #calendar{
-        height: 80vh;
-    }
     .fc-list-column-names{
         font-weight: 800;
         font-style: oblique;
         font-size:130%;
     }
-    /*#calendar{*/
-    /*    width:100%; !* ширина нашего блока *!*/
-    /*    height:800px; !* высота нашего блока *!*/
-    /*    overflow-y:scroll;*/
-    /*    scrollbar-width: thin;*/
-    /*    white-space: nowrap;*/
-    /*}*/
 
 
 
@@ -74,33 +60,6 @@
         cursor: pointer;
     }
 </style>
-
-
-{{--<head>--}}
-{{--    <title>Календарь событий</title>--}}
-{{--    <meta name="csrf-token" content="{{csrf_token()}}">--}}
-{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />--}}
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
-
-{{--    <script src="{{asset('/calendarEvents/fullcalendar/main.js')}}"></script>--}}
-{{--    <script src="{{asset('/calendarEvents/fullcalendar/main.min.js')}}"></script>--}}
-{{--    <link rel="stylesheet" href="{{asset('/calendarEvents/fullcalendar/main.css')}}">--}}
-
-{{--    <script src="{{asset('/calendarEvents/datetimepicker/moment-with-locales.min.js')}}"></script>--}}
-{{--    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap.min.js')}}"></script>--}}
-{{--    <script src="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>--}}
-{{--    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.min.css')}}">--}}
-{{--    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.css')}}">--}}
-
-
-{{--    <script src="{{asset('/calendarEvents/calendarEvents.js')}}"></script>--}}
-
-{{--    --}}{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />--}}
-{{--    --}}{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>--}}
-{{--    --}}{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>--}}
-
-{{--</head>--}}
-{{--<body>--}}
     <div id="opo_name_div">
         <h2 id="opo_name_h">
             <script>
@@ -179,13 +138,8 @@
 
         </div>
     </div>
-{{--</body>--}}
-
-{{--</html>--}}
     @push('calendar_scripts')
-{{--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />--}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-{{--        <script src="{{asset('/js/modals_function.js')}}"></script>--}}
 
         <script src="{{asset('/calendarEvents/fullcalendar/main.js')}}"></script>
         <script src="{{asset('/calendarEvents/fullcalendar/main.min.js')}}"></script>
