@@ -322,10 +322,14 @@ Route::group(['middleware' => ['auth']], function() {
     //  Route::group(['middleware' => 'role:admin',], function () {
     // Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
     Route::get('/admin', 'AdminController@log_view')->name('admin'); // Главная админка логи
+    Route::get('/admin_ib', 'AdminController@log_view_ib')->name('admin_ib'); // Логи действий администратора
+    Route::get('/check_journal_full', 'AdminController@check_journal_full'); // проверка заполненности журналов
     Route::get('/admin/config_safety', 'AdminController@config_edit')->name('config_safety'); // Редактирование конфигурации безопасности
     Route::post('/admin/update_config_safety', 'AdminController@config_update')->name('update_config_safety'); // Сохранение конфигурации безопасности
     Route::get('pdf_logs', 'AdminController@pdf_logs')->name('pdf_logs')->middleware('password.confirm'); // скачать журнал логов
+    Route::get('pdf_logs_ib', 'AdminController@pdf_logs_ib')->name('pdf_logs_ib')->middleware('password.confirm'); // скачать журнал логов
     Route::get('clear_logs', 'AdminController@clear_logs')->name('clear_logs')->middleware('password.confirm'); // очистить журнал логов
+    Route::get('clear_logs_ib', 'AdminController@clear_logs_ib')->name('clear_logs_ib')->middleware('password.confirm'); // очистить журнал логов
     Route::get('reg_user', 'AdminController@reg_user')->name('reg_user')->middleware('password.confirm');
     Route::post('add_user', 'AdminController@add_user')->name('add_user');
     Route::post('update_user', 'AdminController@update_user')->name('update_user');

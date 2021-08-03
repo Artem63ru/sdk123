@@ -15,7 +15,7 @@
 
     @foreach ($logs as $log)
         <tr>
-            <th scope="row-4">{{ $log->id }}</th>
+            <th scope="row-4">{{ $count-- }}</th>
             <td>{{ $log->description }}</td>
             <td>{{ $log->username }}</td>
             <td>{{ $log->ip }}</td>
