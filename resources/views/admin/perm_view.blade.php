@@ -21,9 +21,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            $i=1;
+                            ?>
                             @foreach ($perms as $perm)
                                 <tr>
-                                    <td>{{ $perm->id }}</td>
+                                    <td>{{ $i++ }}</td>
                                     <td style="text-align: left">{{ $perm->runame }}</td>
                                 </tr>
                             @endforeach

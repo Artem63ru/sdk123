@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о выяленных нарушениях на опасных производственных объектах<br>
                             Срок устранения в период с {{$start}} по {{$finish}}</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_info"><a href="{{ url('pdf_violations_report/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>

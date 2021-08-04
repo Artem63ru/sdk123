@@ -48,6 +48,9 @@ class AdminController extends Controller
             orderByDesc('logs.id')->get();
         $i = count($logs_all);
         $page = $request->page;
+        if ($page == null){
+            $page = 1;
+        }
 
         return view('web.admin.admin_main', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
     }
@@ -64,6 +67,9 @@ class AdminController extends Controller
             orderByDesc('logs.id')->get();
         $i = count($logs_all);
         $page = $request->page;
+        if ($page == null){
+            $page = 1;
+        }
 
          return view('web.admin.admin_ib', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
 

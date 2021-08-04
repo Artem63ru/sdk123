@@ -120,7 +120,7 @@
                                         <div style="padding: 10px" class="">
                                             <strong class="text-muted h5" id="session_long">Допустимое количество записей:</strong>
                                         </div>
-                                        {!! Form::text('js_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('js_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -130,7 +130,7 @@
                                         <div style="padding: 10px" class="">
                                             <strong class="text-muted h5" id="session_long">Предупреждение о заполненности (%):</strong>
                                         </div>
-                                        {!! Form::text('js_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('js_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #FFFF00; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -138,9 +138,10 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <div style="padding: 10px" class="">
+
                                             <strong class="text-muted h5" id="session_long">Аварийное предупреждение о заполненности (%):</strong>
                                         </div>
-                                        {!! Form::text('js_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('js_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #BC8F8F; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -160,7 +161,7 @@
                                         <div style="padding: 10px" class="">
                                             <strong class="text-muted h5" id="session_long">Допустимое количество записей:</strong>
                                         </div>
-                                        {!! Form::text('jda_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('jda_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -170,7 +171,7 @@
                                         <div style="padding: 10px" class="">
                                             <strong class="text-muted h5" id="session_long">Предупреждение о заполненности (%):</strong>
                                         </div>
-                                        {!! Form::text('jda_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('jda_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #FFFF00; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -180,7 +181,7 @@
                                         <div style="padding: 10px" class="">
                                             <strong class="text-muted h5" id="session_long">Аварийное предупреждение о заполненности (%):</strong>
                                         </div>
-                                        {!! Form::text('jda_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%')) !!}
+                                        {!! Form::text('jda_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #BC8F8F; text-align: center')) !!}
                                     </div>
                                 </div>
                             </td>

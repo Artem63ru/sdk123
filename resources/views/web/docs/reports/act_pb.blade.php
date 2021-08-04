@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Справка о выполнении актов, предписаний, выданных органами надзора и контроля в области ПБ<br>
                             В период с {{$start}} по {{$finish}}</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_info"><a href="{{ url('pdf_act_pb/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>

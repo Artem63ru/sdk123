@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет "Анализ повторяемости несоответствий"<br>
                             В период с {{$start}} по {{$finish}}</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_info"><a href="{{ url('pdf_repair/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
