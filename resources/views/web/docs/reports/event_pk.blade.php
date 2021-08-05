@@ -20,7 +20,7 @@
                     </div>
 
 
-                    <div style="background: #FFFFFF; border-radius: 6px; height: auto" class="inside_tab_padding form51">
+                    <div style="background: #FFFFFF; border-radius: 6px" class="inside_tab_padding form51">
                         <div  class="row_block form51">
                 <table>
                     <thead>

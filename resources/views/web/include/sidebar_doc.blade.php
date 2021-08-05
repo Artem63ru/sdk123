@@ -6,7 +6,11 @@
 {{--    <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">--}}
 
 {{--@endpush--}}
-
+<script src="{{asset('/calendarEvents/datetimepicker/moment-with-locales.min.js')}}"></script>
+<script src="{{asset('/calendarEvents/datetimepicker/bootstrap.min.js')}}"></script>
+<script src="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">
+<link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">
 
 <div class="sidebar">
     <div class="inside_sidebar">
@@ -146,20 +150,24 @@
     </div>
 </div>
 
-<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide" style="height: 27%; width: 20%">
+<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide">
     <div class="form_header">
         <span class="closer_btn" data-close="" ></span>
         <h3>Укажите отчетный период</h3>
     </div>
-        <form method="POST" id="choice_report_date" action="">
+        <form method="POST" id="choice_report_date" action="" >
         @csrf
         <div class="form-group date">
+{{--            <label for="start_date">Дата начала периода</label>--}}
+{{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>--}}
             <label for="start_date">Дата начала периода</label>
-            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>
+            <input type="text" name="start_date" id="start_date" autocomplete="off"/>
         </div>
         <div class="form-group date">
-            <label for="end_date">Дата окончания периода</label>
-            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>
+{{--            <label for="end_date">Дата окончания периода</label>--}}
+{{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>--}}
+            <label for="finish_date">Дата окончания периода</label>
+            <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>
         </div>
 
         <div class="form-group">
@@ -218,6 +226,28 @@
 
         for (var r of report){
             r.addEventListener('click', function(){
+                var event_start=$('#start_date')
+                var event_end=$('#finish_date')
+                // console.log(event_start)
+                // console.log(event_end)
+                var start_date_buffer=new Date()
+                start_date_buffer.setHours(0, 0)
+
+                event_start.datetimepicker({
+                    maxDate:start_date_buffer,
+                    locale: 'ru',
+                    format: 'DD.MM.YYYY',
+                    date:start_date_buffer
+                });
+                var end_date_buffer=new Date()
+                end_date_buffer.setHours(23, 59)
+
+                event_end.datetimepicker({
+                    maxDate:end_date_buffer,
+                    locale: 'ru',
+                    format: 'DD.MM.YYYY',
+                    date:end_date_buffer
+                });
                 var form=document.getElementById('choice_report_date')
                 form.action=this.dataset.route
                 var modal=document.getElementById('choice_report_date_modal')
@@ -225,12 +255,104 @@
             })
         }
     })
+
+
+    $('#finish_date').on('dp.change', function(e){
+        try{
+            $('#finish_date').data("DateTimePicker").minDate($('#start_date').data("DateTimePicker").date());
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+    $('#start_date').on('dp.change', function(e){
+        try{
+            $('#finish_date').data("DateTimePicker").minDate(e.date);
+        }
+        catch (err){
+            console.log(err);
+        }
+    });
+
 </script>
 
 
 <style>
     #choice_report_date_modal{
-        width: 500px;
+        width: 350px;
         height: 300px;
     }
+
+    #choice_report_date{
+        background: #ffffff;
+        width: 100%;
+        height: 90%;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .form-group {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0 0 20px;
+    }
+
+
+    .form-group:last-child {
+        margin: 0;
+    }
+    .form-group label {
+        display: block;
+        margin: 0 0 10px;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+    }
+    .form-group input {
+        outline: none;
+        display: block;
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        border: 0;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        line-height: inherit;
+        transition: 0.3s ease;
+    }
+
+    .form-group input:focus {
+        color: rgba(0, 0, 0, 0.8);
+    }
+    .form-group button {
+        outline: none;
+        background: #4285f4;
+        width: 100%;
+        border: 0;
+        border-radius: 4px;
+        padding: 12px 20px;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        line-height: inherit;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+
 </style>
+
+
+
+
