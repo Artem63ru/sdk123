@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет об эффективности производственного контроля за соблюдением требований промышленной безопасности по ОПО<br>
                             За период с {{$start}} по {{$finish}}</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_info"><a href="{{ url('pdf_effect/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>

@@ -51,7 +51,7 @@
                     </div>
                     <div class="card-header"><h4 class="text-muted" style="text-align: left">Наличие пострадавших</h4>
                         <div class="form-group">
-                            {!! Form::textarea('victim', null, array('placeholder' => 'Введите пострадавших','style' => 'height: 8vh; width: 70%')) !!}
+                            {!! Form::textarea('victim', null, array('placeholder' => 'Введите пострадавших','style' => 'height: 8vh; width: 70%', 'class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="card-header">
@@ -60,7 +60,7 @@
                                     инцидента</h4>
                             </div>
                             <div class="col">
-                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off")) !!}
+                                {!! Form::text('date', null, array('placeholder' => 'Введите дату и время','style' => 'height: 3vh; width: 70%', 'id'=>'from', 'autocomplete'=>"off", 'class' => 'form-control')) !!}
                                 </select></div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                 <h4 class="text-muted" style="text-align: left">Территориальный орган, вид надзора</h4>
                             </div>
                             <div class="col">
-                                {!! Form::select('supervision', array('РТН' => 'Ростехнадзор', 'ГН' => 'Газнадзор'), null, ['style' => 'width: 70%']) !!}
+                                {!! Form::select('supervision', array('РТН' => 'Ростехнадзор', 'ГН' => 'Газнадзор'), null, ['style' => 'width: 70%', 'class' => 'form-control']) !!}
 
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                 <h4 class="text-muted" style="text-align: left">Наименование организации</h4>
                             </div>
                             <div class="col">
-                                {!! Form::select('organisation', array('ГДА' => 'ООО Газпром Добыча Астрахань'), null, ['style' => 'width: 70%']) !!}
+                                {!! Form::select('organisation', array('ГДА' => 'ООО Газпром Добыча Астрахань'), null, ['style' => 'width: 70%', 'class' => 'form-control']) !!}
                                 </select>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::textarea('adress', null, array('placeholder' => 'Введите адрес','style' => 'height: 6vh; width: 70%')) !!}
+                                    {!! Form::textarea('adress', null, array('placeholder' => 'Введите адрес','style' => 'height: 6vh; width: 70%', 'class' => 'form-control')) !!}
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::textarea('place_accident', null, array('placeholder' => 'Введите адрес','style' => 'height: 6vh; width: 70%')) !!}
+                                    {!! Form::textarea('place_accident', null, array('placeholder' => 'Введите адрес','style' => 'height: 6vh; width: 70%', 'class' => 'form-control')) !!}
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off")) !!}
+                                    {!! Form::text('num_obj', null, array('placeholder' => 'Введите номер объекта','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class' => 'form-control')) !!}
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    {!! Form::textarea('result_acccident', null, array('placeholder' => 'Введите обстоятельства инцидента','style' => 'height: 6vh; width: 70%')) !!}
+                                    {!! Form::textarea('result_acccident', null, array('placeholder' => 'Введите обстоятельства инцидента','style' => 'height: 6vh; width: 70%', 'class' => 'form-control')) !!}
                                 </div>
                             </div>
                         </div>

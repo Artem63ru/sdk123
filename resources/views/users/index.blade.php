@@ -15,7 +15,7 @@
 
 
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список пользователей СДК ПБ</h2>
-                        @can('role-create')
+                        @can('product-create')
                 <a class="btn btn-success" href="{{ route('users.create') }}"> + Создать</a>
                         @endcan
                     </div>

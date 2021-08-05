@@ -30,9 +30,12 @@
                                 </thead>
                                 <tbody>
                                 @if(!empty($rolePermissions))
+                                    <?php
+                                        $i=1;
+                                    ?>
                                   @foreach ($rolePermissions as $v)
                                     <tr>
-                                        <td scope="row-4">{{ $v->id }}</td>
+                                        <td scope="row-4">{{ $i++ }}</td>
                                         <td style="text-align: left">{{ $v->runame }}</td>
 
 

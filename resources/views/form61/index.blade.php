@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список ОС об аварииях,
                             случаях утраты взрывчатых материалов промышленного назначения</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_add"><a href="{{ route('form61.create') }}">Создать Акт</a></div>
                         @endcan
                     </div>
