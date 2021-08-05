@@ -14,7 +14,7 @@
                     @include('web.admin.inc.menu')
 
                             <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список ролей пользователя</h2>
-                @can('role-create')
+                @can('product-create')
                     <a class="btn btn-success" href="{{ route('roles.create') }}"> + Создать</a>
                 @endcan
                             </div>

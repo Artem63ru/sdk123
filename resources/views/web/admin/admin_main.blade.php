@@ -26,7 +26,7 @@
                                 <tbody>
                                 @foreach ($logs as $log)
                                     <tr>
-                                        <td class="centered">{{ $log->id }}</td>
+                                        <td class="centered">{{ ($i-- -($page-1)*20) }}</td>
                                         <td style="width: 60%" class="col-3">{{ $log->description }}</td>
                                         <td style="width: 10%" class="centered col-1">{{ $log->username }}</td>
                                         <td style="width: 10%" class="centered">{{ $log->ip }}</td>

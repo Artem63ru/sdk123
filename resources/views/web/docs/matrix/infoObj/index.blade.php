@@ -15,7 +15,7 @@
 <div class="inside_content">
 
     <div class="card-header", style="margin-top: 30px"><h2 class="text-muted" style="text-align: center" >Справочник элементов ОПО</h2>
-        @can('role-create')
+        @can('product-create')
             <div class="bat_add"><a href="{{ route('create_Obj') }}">Добавить элемент ОПО</a></div>
         @endcan
     </div>

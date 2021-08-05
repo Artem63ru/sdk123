@@ -48,7 +48,7 @@
                                 <div style="padding: 10px" class="">
                                     <strong class="text-muted h3">Наличие заглавных букв:</strong>
                                 </div>
-                                {!! Form::select('up_register', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control']) !!}
+                                {!! Form::select('up_register', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -56,14 +56,14 @@
                                 <div style="padding: 10px" class="">
                                     <strong class="text-muted h3">Наличие цифр:</strong>
                                 </div>
-                                {!! Form::select('num_check', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control']) !!}
+                                {!! Form::select('num_check', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <div style="padding: 10px" class="">
                                     <strong class="text-muted h3">Наличие специальных символов:                                          </div>
-                                {!! Form::select('spec_check', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control']) !!}
+                                {!! Form::select('spec_check', array('1' => 'Обязательно', '0' => 'Не обязательно'), null, ['style' => 'width: 70%', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -106,8 +106,87 @@
                                     {!! Form::text('time_password', null, array('placeholder' => 'Укажите время действия пароля','class' => 'form-control', 'required')) !!}
                                 </div>
                             </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3" id="session_long">Настройка журнала событий:</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <table style="background-color: #87CEFA; margin-left: 3%">
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
+                                            <strong class="text-muted h5" id="session_long">Допустимое количество записей:</strong>
+                                        </div>
+                                        {!! Form::text('js_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
+                                            <strong class="text-muted h5" id="session_long">Предупреждение о заполненности (%):</strong>
+                                        </div>
+                                        {!! Form::text('js_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #FFFF00; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
 
-                        <div style="padding-bottom: 40px" class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                            <strong class="text-muted h5" id="session_long">Аварийное предупреждение о заполненности (%):</strong>
+                                        </div>
+                                        {!! Form::text('js_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #BC8F8F; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                        </table>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <div style="padding: 10px" class="">
+                                    <strong class="text-muted h3" id="session_long">Настройка журнала действий администратора:</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <table style="background-color: #87CEFA; margin-left: 3%">
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
+                                            <strong class="text-muted h5" id="session_long">Допустимое количество записей:</strong>
+                                        </div>
+                                        {!! Form::text('jda_max', null, array('placeholder' => 'Укажите макс. кол-вл записей','class' => 'form-control', 'required', 'style' => 'width: 30%; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
+                                            <strong class="text-muted h5" id="session_long">Предупреждение о заполненности (%):</strong>
+                                        </div>
+                                        {!! Form::text('jda_attention', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #FFFF00; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <div style="padding: 10px" class="">
+                                            <strong class="text-muted h5" id="session_long">Аварийное предупреждение о заполненности (%):</strong>
+                                        </div>
+                                        {!! Form::text('jda_warning', null, array('placeholder' => '% заполненности','class' => 'form-control', 'required', 'style' => 'width: 30%; background-color: #BC8F8F; text-align: center')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                        </table>
+                        <div style="padding-bottom: 40px; margin-top: 20px" class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Сохранить</button>
                         </div>
                     </div>

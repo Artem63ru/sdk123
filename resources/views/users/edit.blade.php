@@ -36,6 +36,11 @@
                                 </ul>
                             </div>
                         @endif
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-danger">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @endif
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <div style="padding: 10px" class="">

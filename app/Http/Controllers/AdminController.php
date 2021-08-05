@@ -7,6 +7,7 @@ use App\Events\AddLogs;
 use App\Events\WasBanned;
 use App\Events\WasUnbanned;
 use App\Models\Logs;
+use App\Models\Logs_ib;
 use App\Models\Logs_safety;
 use App\Models\Permission;
 //use App\Models\Role;
@@ -29,17 +30,71 @@ class AdminController extends Controller
     // Запись логов
     public static function log_record($message)
     {
+        $logs_all = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->where('model_has_roles.role_id', '=', 2)->orWhere('model_has_roles.role_id', '=', 3)->where('users.name', '=', Auth::user()->name)->get();
+
         $ip = request()->ip();
-        event(new WasUnbanned(Auth::user()->name,  $message, $ip));  //пишем в журнал
+        $message_new = "Пользователь"." ".Auth::user()->name." ".$message;
+        $input['description'] = $message_new;
+        $input['username'] = Auth::user()->name;
+        $input['ip'] = $ip;
+        if(sizeof($logs_all)){
+            $logs = Logs_ib::create($input);
+        } else {
+            $logs = Logs::create($input);
+        }
     }
 
     // Вывод логов
-    public function log_view()
+    public function log_view(Request $request)
     {
        // AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
        // return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
+        $logs = Logs::orderBydesc('id')->paginate(20);
+        $logs_all = Logs::orderByDesc('id')->get();
+        $i = count($logs_all);
+        $page = $request->page;
+        if ($page == null){
+            $page = 1;
+        }
+        return view('web.admin.admin_main', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
+    }
+    // Вывод логов администратора
+    public function log_view_ib(Request $request)
+    {
+        $logs = Logs_ib::orderBydesc('id')->paginate(20);
+        $logs_all = Logs_ib::orderByDesc('id')->get();
+        $i = count($logs_all);
+        $page = $request->page;
+        if ($page == null){
+            $page = 1;
+        }
+         return view('web.admin.admin_ib', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
 
-        return view('web.admin.admin_main', ['logs' => Logs::orderBy('id', 'desc')->paginate(20), 'all_logs' => Logs::orderBy('id')->get()]);
+    }
+    //проверка заполненности журналов
+    public function check_journal_full()
+    {
+       $setting_journal = Logs_safety::first();
+       $jda_logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
+            orderByDesc('logs.id')->get();
+       $js_logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
+            orderByDesc('logs.id')->get();
+       //проверки на заполненность
+       if ((count($jda_logs)/$setting_journal->jda_max)*100 > $setting_journal->jda_attention and (count($jda_logs)/$setting_journal->jda_max)*100 < $setting_journal->jda_warning){
+            return 1;   //если предупредительный ЖДА
+       } elseif ((count($jda_logs)/$setting_journal->jda_max)*100 > $setting_journal->jda_warning){
+            return 2;   //если аварийный ЖДА
+       } elseif ((count($js_logs)/$setting_journal->js_max)*100 > $setting_journal->js_attention and (count($js_logs)/$setting_journal->js_max)*100 > $setting_journal->js_warning){
+            return 3;   //если предупредительный ЖС
+       } elseif ((count($js_logs)/$setting_journal->js_max)*100 > $setting_journal->js_warning) {
+           return 4;   //если аварийный ЖС
+       }
     }
 
 //    // Конфигурация безовасности
@@ -60,6 +115,8 @@ class AdminController extends Controller
     //обновление настроек
     public function config_update(Request $request)
     {
+        $js_warning = $request->js_attention;
+        $jda_warning = $request->jda_attention;
         $this->validate($request, [
             'num_znak' => 'required|numeric|min:1',
             'num_error' => 'required|numeric|min:1',
@@ -67,6 +124,13 @@ class AdminController extends Controller
             'num_password' => 'required|numeric|min:1',
             'time_session' => 'required|numeric|min:1',
             'time_password' => 'required|numeric|min:1',
+            'js_max' => 'required|numeric|min:1',
+            'js_attention' => 'required|numeric|min:1',
+            'js_warning' => 'required|numeric|min:'.$js_warning,
+            'jda_max' => 'required|numeric|min:1',
+            'jda_attention' => 'required|numeric|min:1',
+            'jda_warning' => 'required|numeric|min:'.$jda_warning,
+
         ]);
         $input = $request->all();
         $config = Logs_safety::first();
@@ -93,6 +157,7 @@ class AdminController extends Controller
     // Вывод привелегий
     public function perm_view()
     {
+        AdminController::log_record('Открыл для просмотра справочник привелегий');
         return view('admin.perm_view', ['perms' => Permission::orderBy('id')->get()]);
     }
 
@@ -101,8 +166,30 @@ class AdminController extends Controller
     {
 
         $data['title'] = 'Журнал событий';
-        $data['logs'] = Logs::orderBy('id', 'desc')->get();
+        $data['logs'] = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
+            orderByDesc('logs.id')->get();
+        $data['count'] = count($data['logs']);
         $patch = 'logs' . Carbon::now() . '.pdf';
+        $ip = request()->ip();
+        event(new AddLogs(Auth::user()->name, $patch, $ip));  //пишем в журнал
+        $pdf = PDF::loadView('admin.logs_pdf', $data);
+
+
+        return $pdf->download($patch);
+    }
+
+    public function pdf_logs_ib()
+    {
+
+        $data['title'] = 'Журнал событий';
+        $data['logs'] = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
+            orderByDesc('logs.id')->get();
+        $data['count'] = count($data['logs']);
+        $patch = 'admin.logs' . Carbon::now() . '.pdf';
         $ip = request()->ip();
         event(new AddLogs(Auth::user()->name, $patch, $ip));  //пишем в журнал
         $pdf = PDF::loadView('admin.logs_pdf', $data);
@@ -112,11 +199,19 @@ class AdminController extends Controller
     // Удаление логов
     public function clear_logs()
     {
+            Logs::truncate();
 
-        Logs::truncate();
         $this->log_record('Очистил журнал событий ИБ');//пишем в журнал
 
         return redirect('/admin');
+    }
+    public function clear_logs_ib()
+    {
+        Logs_ib::truncate();
+
+        $this->log_record('Очистил журнал действий администратора');//пишем в журнал
+
+        return redirect('/admin_ib');
     }
 
     // Добавить нового пользователя

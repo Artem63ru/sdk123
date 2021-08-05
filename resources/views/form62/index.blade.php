@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список актов технического расследования причин аварии</h2>
-                        @can('role-create')
+                        @can('product-create')
                             <div class="bat_add"><a href="{{ route('form62.create') }}">Создать Акт</a></div>
                         @endcan
                     </div>
