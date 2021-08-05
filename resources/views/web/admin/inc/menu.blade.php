@@ -59,8 +59,9 @@
         function modalClose(event) {
             function close(){
                 for (let modal of modals) {
-                    modal.className='dlg-modal dlg-modal-slide slideOutUp'
-
+                    if (modal.className=="dlg-modal dlg-modal-slide slideInDown"){
+                        modal.className='dlg-modal dlg-modal-slide slideOutUp'
+                    }
                 }
                 overlay.className='overlay fadeOut';
                 mStatus = false;
@@ -91,6 +92,8 @@
 
                         btn.className="btn btn-danger"
                         btn.textContent='Очистить журнал'
+
+                        console.log(data)
                         if (data==1){
                             if (form.getElementsByClassName('btn btn-danger').length!=0){
                                 modal.getElementsByClassName('form_header')[0].removeChild(btn)

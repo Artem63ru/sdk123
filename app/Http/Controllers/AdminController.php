@@ -76,15 +76,9 @@ class AdminController extends Controller
     //проверка заполненности журналов
     public function check_journal_full()
     {
+       $js_logs = Logs::orderByDesc('id')->get();
+       $jda_logs = Logs_ib::orderByDesc('id')->get();
        $setting_journal = Logs_safety::first();
-       $jda_logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
-       $js_logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
        //проверки на заполненность
        if ((count($jda_logs)/$setting_journal->jda_max)*100 > $setting_journal->jda_attention and (count($jda_logs)/$setting_journal->jda_max)*100 < $setting_journal->jda_warning){
             return 1;   //если предупредительный ЖДА
