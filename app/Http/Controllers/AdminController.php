@@ -7,6 +7,7 @@ use App\Events\AddLogs;
 use App\Events\WasBanned;
 use App\Events\WasUnbanned;
 use App\Models\Logs;
+use App\Models\Logs_ib;
 use App\Models\Logs_safety;
 use App\Models\Permission;
 //use App\Models\Role;
@@ -29,8 +30,20 @@ class AdminController extends Controller
     // Запись логов
     public static function log_record($message)
     {
+        $logs_all = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
+            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
+            ->where('model_has_roles.role_id', '=', 2)->orWhere('model_has_roles.role_id', '=', 3)->where('users.name', '=', Auth::user()->name)->get();
+
         $ip = request()->ip();
-        event(new WasUnbanned(Auth::user()->name,  $message, $ip));  //пишем в журнал
+        $message_new = "Пользователь"." ".Auth::user()->name." ".$message;
+        $input['description'] = $message_new;
+        $input['username'] = Auth::user()->name;
+        $input['ip'] = $ip;
+        if(sizeof($logs_all)){
+            $logs = Logs_ib::create($input);
+        } else {
+            $logs = Logs::create($input);
+        }
     }
 
     // Вывод логов
@@ -38,39 +51,25 @@ class AdminController extends Controller
     {
        // AdminController::log_record('Открыл журнал ИБ для просмотра  ');//пишем в журнал
        // return view('admin.admin', ['logs' => Logs::orderBy('id', 'desc')->paginate(15)]);
-        $logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
-            orderByDesc('logs.id')->paginate(20);
-        $logs_all = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
+        $logs = Logs::orderBydesc('id')->paginate(20);
+        $logs_all = Logs::orderByDesc('id')->get();
         $i = count($logs_all);
         $page = $request->page;
         if ($page == null){
             $page = 1;
         }
-
         return view('web.admin.admin_main', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
     }
     // Вывод логов администратора
     public function log_view_ib(Request $request)
     {
-        $logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-        ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
-            orderByDesc('logs.id')->paginate(20);
-        $logs_all = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
+        $logs = Logs_ib::orderBydesc('id')->paginate(20);
+        $logs_all = Logs_ib::orderByDesc('id')->get();
         $i = count($logs_all);
         $page = $request->page;
         if ($page == null){
             $page = 1;
         }
-
          return view('web.admin.admin_ib', ['logs' => $logs, 'all_logs' => $logs_all, 'i'=>$i, 'page'=>$page]);
 
     }
@@ -200,26 +199,16 @@ class AdminController extends Controller
     // Удаление логов
     public function clear_logs()
     {
-        $logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '!=', "Администратор ИС")->where('roles.name', '!=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
-        foreach ($logs as $log){
-            Logs::find($log->id)->delete();
-        }
+            Logs::truncate();
+
         $this->log_record('Очистил журнал событий ИБ');//пишем в журнал
 
         return redirect('/admin');
     }
     public function clear_logs_ib()
     {
-        $logs = Role::join('model_has_roles', 'id', '=', 'model_has_roles.role_id')
-            ->join('users', 'model_has_roles.model_id', '=', 'users.id')
-            ->join('logs', 'users.name', '=', 'logs.username')->where('roles.name', '=', "Администратор ИС")->orWhere('roles.name', '=', "Администратор ИБ")->
-            orderByDesc('logs.id')->get();
-        foreach ($logs as $log){
-            Logs::find($log->id)->delete();
-        }
+        Logs_ib::truncate();
+
         $this->log_record('Очистил журнал действий администратора');//пишем в журнал
 
         return redirect('/admin_ib');
