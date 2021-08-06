@@ -40,6 +40,7 @@ use App\Models\Ref_obj;
 use App\Jas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class ReportController extends Controller
 {
@@ -49,12 +50,11 @@ class ReportController extends Controller
     //===============================================
     public function xml_journal(Request $request)
     {
-        $start = $request->start_date;
-        $finish = $request->finish_date;
+        $start = DateTime::createFromFormat('d.m.Y', $request->start_date)->format('Y-m-d');
+        $finish = DateTime::createFromFormat('d.m.Y', $request->finish_date)->format('Y-m-d');
         $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
-        $check_full =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->first();
         $i = 0;
-        if (empty($check_full->fullDescOPO)){
+        if (empty($ver_opo->first()->fullDescOPO)){
             $data['fullDescOPO'][$i] = "";
             $data['regNumOPO'][$i] = " ";
             $data['ip_opo'][$i] = " ";
