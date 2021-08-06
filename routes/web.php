@@ -242,6 +242,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     //********************  Отчеты  ***********************************
 
+    Route::post('docs/xml_journal', 'ReportController@xml_journal')->name('xml_journal');
+    Route::get('docs/xml_journal_delete', 'ReportController@xml_journal_delete')->name('xml_journal_delete');
     Route::post('docs/report', 'ReportController@report')->name('obj_status');
     Route::post('docs/report1', 'ReportController@report1')->name('scena_report');
     Route::post('docs/report2', 'ReportController@report2')->name('result_pk');
@@ -267,6 +269,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('form62', Form62Controller::class);
 
     ///////////************** Отчеты PDF **************************************/////////////////////////
+    Route::get('pdf_xml_journal/{start}/{finish}', 'PdfReportController@pdf_xml_journal')->name('pdf_xml_journal');     // скачать отчет по элементам
     Route::get('pdf_elem/{start}/{finish}', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам
     Route::get('pdf_scena/{start}/{finish}', 'PdfReportController@pdf_scena')->name('pdf_scena');     // скачать отчет по сценариям
     Route::get('pdf_result_pk/{start}/{finish}', 'PdfReportController@pdf_result_pk')->name('pdf_result_pk');     // скачать отчет по проверкам

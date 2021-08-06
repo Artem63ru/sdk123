@@ -95,6 +95,7 @@
                                 <a href=''>  Отчеты</a>
                             </div>
                             <div class="accordion__content">
+                                <a class="clieckable_report" data-route="{{ route('xml_journal') }}">Журнал отправки XML</a>
                                 <a href="{{ route('form51.index') }}">ОС о инциденте п 5.1</a>
                                 <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>
                                 <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
