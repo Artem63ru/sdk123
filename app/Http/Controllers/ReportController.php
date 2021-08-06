@@ -28,6 +28,7 @@ use App\Models\Rtn2\Pmla;
 use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
+use App\Models\XML_journal;
 use Illuminate\Http\Request;
 use App\Models\Calc_elem;
 use App\Models\Calc_ip_opo_i;
@@ -46,6 +47,43 @@ class ReportController extends Controller
     //===============================================
     //$request->date  ========дата из браузера=======
     //===============================================
+    public function xml_journal(Request $request)
+    {
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
+        $check_full =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->first();
+        $i = 0;
+        if (empty($check_full->fullDescOPO)){
+            $data['fullDescOPO'][$i] = "";
+            $data['regNumOPO'][$i] = " ";
+            $data['ip_opo'][$i] = " ";
+            $data['status'][$i] = " ";
+            $data['date'][$i] = " ";
+            $data['time'][$i] = " ";
+            $data['id'][$i] = "Журнал пуст";
+        } else{
+            foreach ($ver_opo as $ver){
+                $data['fullDescOPO'][$i] = $ver->fullDescOPO;
+                $data['regNumOPO'][$i] = $ver->regNumOPO;
+                $data['ip_opo'][$i] = $ver->ip_opo;
+                $data['status'][$i] = $ver->status;
+                $data['date'][$i] = $ver->date;
+                $data['time'][$i] = $ver->time;
+                $data['id'][$i] = $ver->id;
+                $i++;
+            }
+        }
+        return view('web.docs.reports.xml_journal', compact('data', 'start', 'finish'));
+    }
+    public function xml_journal_delete()
+    {
+        XML_journal::truncate();
+
+        AdminController::log_record('Очистил журнал отправки XML');
+
+        return redirect('docs/rtn');
+    }
 
     public function report(Request $request)
     {
