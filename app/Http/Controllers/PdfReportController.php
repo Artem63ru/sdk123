@@ -15,9 +15,9 @@ class PdfReportController extends Controller
 {
     public function pdf_xml_journal($start, $finish)
     {
-        $ver_opo =  XML_journal::orderByDesc('id')->get();
+        $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
         $i = 0;
-        if (isset($ver_opo)){
+        if (empty($ver_opo->first()->fullDescOPO)){
             $data['fullDescOPO'][$i] = "";
             $data['regNumOPO'][$i] = " ";
             $data['ip_opo'][$i] = " ";
