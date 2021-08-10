@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Calc_ip_opo_day;
+use App\Models\Calc_ip_opo_hour;
+use App\Models\Calc_pro_ip_opoi;
 use App\Models\Failure_free;
 use App\Models\Operational_safety;
 use App\Models\Ready;
@@ -350,27 +353,47 @@ class OpoController extends Controller
         else
             return  $str;//->first()->date;
     }
-    public static function view_ip_last_test ($id, $data)
+    ///************************* Формирование данных интегрального показателя **********************************
+    public static function view_ip_last_test ($id, $data)    //текущее
     {
-
-        $opos = Ref_opo::find($id);
-
-            $calcs = Calc_ip_opo_i::where('from_opo', '=', $id)->
-//            whereDate('date', '=', '2021-5-27')->
-            whereDate('date', '=', $data)->
-            get();
-            foreach ($calcs as $ip) {
-                $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo']);
-            }
+        $calcs = Calc_ip_opo_i::orderByDesc('id')->where('from_opo', '=', $id)->where('date', '<=', $data)->take(30)->get();
+        foreach ($calcs as $ip) {
+            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo']);
+        }
         $str = 'неудача';
         if(isset($data1)){
-
             return str_replace('"', '', json_encode(array_reverse($data1, false)));
         }
         else
-            return  $str;//->first()->date;
-
-
+            return  $str;
+    }
+    public static function view_ip_last_test_hour ($id, $data) //часовое
+    {
+        $opos = Ref_opo::find($id);
+        $calcs = Calc_ip_opo_hour::select('ip_opo_'.$id, 'date')->where('date', '<=', $data)->orderByDesc('id')->take(30)->get();
+        foreach ($calcs as $ip) {
+            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo_'.$id]);
+        }
+        $str = 'неудача';
+        if(isset($data1)){
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;
+    }
+    public static function view_ip_last_test_day ($id, $data)    //суточное
+    {
+        $opos = Ref_opo::find($id);
+        $calcs = Calc_ip_opo_day::select('ip_opo_'.$id, 'date')->where('date', '<=', $data)->orderByDesc('id')->take(30)->get();
+        foreach ($calcs as $ip) {
+            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo_'.$id]);
+        }
+        $str = 'неудача';
+        if(isset($data1)){
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;
     }
     ///************************* Формирование данных для мини графика прогнозного показателя **********************************
     public static function view_ip_pro_last ($id)
@@ -383,7 +406,6 @@ class OpoController extends Controller
         }
         $str = 'неудача';
         if(isset($data1)){
-
             return str_replace('"', '', json_encode(array_reverse($data1, false)));
         }
         else
@@ -391,11 +413,45 @@ class OpoController extends Controller
 
     }
     ///************************* Формирование данных для графика прогнозного показателя **********************************
-    public static function view_ip_pro_date ($id, $data)
+    public static function view_ip_pro_date ($id, $data)   //часовой
     {
-//        $data1;
-        $opos = Ref_opo::find($id);
-        foreach ($opos->opo_to_calc_opo_pro_in_date($data) as $ip)
+        $opos = Calc_pro_ip_opoi::orderByDesc('id')->where('from_opo', '=', $id)->where('forecast_period', '=', '0 years 0 mons 0 days 1 hours 0 mins 0.00 secs')
+            ->where('date', '<=', $data)->take(30)->get();
+        foreach ($opos as $ip)
+        {
+            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+        }
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+
+    }
+    public static function view_ip_pro_date_day ($id, $data)   //суточный
+    {
+        $opos = Calc_pro_ip_opoi::orderByDesc('id')->where('from_opo', '=', $id)->where('forecast_period', '=', '0 years 0 mons 1 days 0 hours 0 mins 0.00 secs')
+            ->where('date', '<=', $data)->take(30)->get();
+        foreach ($opos as $ip)
+        {
+            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+        }
+        $str = 'неудача';
+        if(isset($data1)){
+
+            return str_replace('"', '', json_encode(array_reverse($data1, false)));
+        }
+        else
+            return  $str;//->first()->date;
+
+    }
+    public static function view_ip_pro_date_month ($id, $data)   //месячный
+    {
+        $opos = Calc_pro_ip_opoi::orderByDesc('id')->where('from_opo', '=', $id)->where('forecast_period', '=', '0 years 1 mons 0 days 0 hours 0 mins 0.00 secs')
+            ->where('date', '<=', $data)->take(30)->get();
+        foreach ($opos as $ip)
         {
             $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
         }

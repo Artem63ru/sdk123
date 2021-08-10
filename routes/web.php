@@ -231,9 +231,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
-    Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату
+    Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату ТЕКУЩАЯ
+    Route::get('charts/fetch-data-hour/{id}/data/{data}', 'OpoController@view_ip_last_test_hour'); //вывод показателя ИП ОПО за данную дату ЧАСОВАЯ
+    Route::get('charts/fetch-data-day/{id}/data/{data}', 'OpoController@view_ip_last_test_day'); //вывод показателя ИП ОПО за данную дату СУТОЧНАЯ
     Route::get('charts/fetch-data-prognoz/{id}', 'OpoController@view_ip_pro_last'); //вывод прогнозного показателя ИП ОПО 30 последних
-    Route::get('charts/fetch-data-prognoz/{id}/data/{data}', 'OpoController@view_ip_pro_date'); //вывод прогнозного показателя ИП ОПО за данную дату
+    Route::get('charts/fetch-data-prognoz/{id}/data/{data}', 'OpoController@view_ip_pro_date'); //вывод прогнозного показателя ИП ОПО за данную дату ЧАСОВАЯ
+    Route::get('charts/fetch-data-prognoz-day/{id}/data/{data}', 'OpoController@view_ip_pro_date_day'); //вывод прогнозного показателя ИП ОПО за данную дату СУТОЧНАя
+    Route::get('charts/fetch-data-prognoz-month/{id}/data/{data}', 'OpoController@view_ip_pro_date_month'); //вывод прогнозного показателя ИП ОПО за данную дату МЕСЯЧНАЧ
     Route::get('charts/fetch-data_day/{id}', 'Opo_dayController@view_day');
     Route::get('charts/fetch-data_elem/{id_obj}', 'ObjController@calc_elem_all');          // вывод интегрального показателя элемента ОПО
     Route::get('charts/fetch-data_elem_op_m/{id_obj}', 'ObjController@calc_elem_op_m');    //вывод Обобщенного показателя по матричным сценариям

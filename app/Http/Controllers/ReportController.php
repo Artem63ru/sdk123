@@ -52,9 +52,8 @@ class ReportController extends Controller
         $start = $request->start_date;
         $finish = $request->finish_date;
         $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
-        $check_full =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->first();
         $i = 0;
-        if (empty($check_full->fullDescOPO)){
+        if (empty($ver_opo->first()->fullDescOPO)){
             $data['fullDescOPO'][$i] = "";
             $data['regNumOPO'][$i] = " ";
             $data['ip_opo'][$i] = " ";

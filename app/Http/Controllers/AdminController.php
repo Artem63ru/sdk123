@@ -365,9 +365,10 @@ class AdminController extends Controller
         $data['regNumOPO'] = $ver_opo->regNumOPO;
         $data['ip_opo'] = $ver_opo->opo_to_calc1->first()->ip_opo;
         $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
-        $data['date'] = $ver_opo->date("m-d-y");
-        $data['time'] = $ver_opo->date("H:i:s");
+        $data['date'] = date("m-d-y");
+        $data['time'] = date("H:i:s");
         $xml = XML_journal::create($data);
+
         //для xml
         $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
         $contents = $contents."<do id = \"gda\">\n";
@@ -382,8 +383,8 @@ class AdminController extends Controller
         $contents = $contents."</do>";
 
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
-       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
-     //  Storage::disk('local')->put('15_min.xml', $contents, 'public');
+//       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+       Storage::disk('local')->put('15_min.xml', $contents, 'public');
 
     }
 
