@@ -1224,6 +1224,8 @@ img.table_left_corner {height: 28px;margin-top: -5px;margin-left: -28px;}
 .row_block::before {display: table;}
 .row_block::after{clear:both;}
 
-
+#calendar{
+    height: calc(100vh - 170px);
+}
 
 /**/
