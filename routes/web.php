@@ -15,7 +15,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/opo/{id}', 'OpoController@view_opo_id');  //страница опо с графиками
     Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
     Route::get('/opo/{id}/main', 'OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
-    //********************* Данные ручного ввода ****************************************
+    Route::get('/min_opo', 'OpoController@min_ip_of_opo'); // вытягиваем минимальное значение ИП по ОПО
+    Route::get('/mini_graphics_opo/{id}', 'OpoController@mini_graphics_opo'); // вытягиваем минимальное значение ИП по ОПО
+
+        //********************* Данные ручного ввода ****************************************
     Route::resource('operational', OperationalSafetyController::class);   //ручной ввод показателя безопасности
     Route::get('/opo/{id}/main/new_safety', 'OpoController@new');   // cоздание новой записи
     Route::resource('ready', ReadyController::class);   //ручной ввод показателя готовности
