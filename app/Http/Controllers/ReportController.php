@@ -87,9 +87,8 @@ class ReportController extends Controller
 
     public function report(Request $request)
     {
-
-        $start = $request->start_date;
-        $finish = $request->finish_date;
+        $start = date("Y-m-d", strtotime($request->start_date));
+        $finish = date("Y-m-d H", strtotime($request->finish_date.'+ 24 hour'));
         $date = date('Y-m-d');
         $i=0;
         $j = 0;
@@ -175,8 +174,8 @@ class ReportController extends Controller
             $data[]=[
                 'name_opos' => $name_opos,
                 'ip_opos' => $ip_opos,
-                "name"=> $name,
-                "ip"=>$ip ];
+                'name_elem'=> $name,
+                'ip'=>$ip ];
 
         }
         return view('web.docs.reports.status_opo', compact('data', 'start', 'finish'), ['data' => $data]);
