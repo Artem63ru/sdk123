@@ -39,7 +39,7 @@
                             <td>{{$dat['name_opos']}}</td>
                             <td class="centered">{{$dat['ip_opos']}}</td>
                             <td class="centered">{{$dat['ip']}}</td>
-                            <td>{{$dat['name']}}</td>
+                            <td>{{$dat['name_elem']}}</td>
                         </tr>
                     @endforeach
                     </tbody>

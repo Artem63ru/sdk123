@@ -85,29 +85,32 @@ class PdfReportController extends Controller
 
     public function opo_pdf($start, $finish)
     {
-
+//        $start1 = date("Y-m-d", strtotime($start));
+//        $finish1 = date("Y-m-d H", strtotime($finish.'+ 24 hour'));
 
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
+
             $ip_opos = $rows1->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
 
             $ip = 1;
             foreach ($rows1->opo_to_obj as $item) {
                 foreach ($item->elem_to_calc_report as $it){
-
                     if ($it->ip_elem <= $ip) {
                         $ip = $it->ip_elem;
                         $name = $item->nameObj;
                     }
                 }
-
             }
+
             $data[]=[
                 'name_opos' => $name_opos,
                 'ip_opos' => $ip_opos,
-                "name"=> $name,
-                "ip"=>$ip ];
+                'name'=> $name,
+                'ip'=>$ip ];
         }
+
+      //  $data['title'] = 'Отчет о состоянии элементов опасных производственных объектов в период с'.' '.$start. 'по'.' '. $finish;
             $patch = 'report_opo' . Carbon::now() . '.pdf';
             $pdf = PDF::loadView('web.docs.reports.pdf.opo_pdf', compact('data'))->setPaper('a4', 'landscape');
             return $pdf->download($patch);
