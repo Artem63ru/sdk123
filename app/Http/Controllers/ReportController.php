@@ -155,7 +155,7 @@ class ReportController extends Controller
     {
 
         $start = date("Y-m-d", strtotime($request->start_date));
-        $finish = date("Y-m-d H", strtotime($request->finish_date.'+ 24 hour'));
+        $finish = date("Y-m-d", strtotime($request->finish_date.'+ 24 hour'));
 
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;

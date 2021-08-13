@@ -85,8 +85,7 @@ class PdfReportController extends Controller
 
     public function opo_pdf($start, $finish)
     {
-//        $start1 = date("Y-m-d", strtotime($start));
-//        $finish1 = date("Y-m-d H", strtotime($finish.'+ 24 hour'));
+
 
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
@@ -110,9 +109,9 @@ class PdfReportController extends Controller
                 'ip'=>$ip ];
         }
 
-      //  $data['title'] = 'Отчет о состоянии элементов опасных производственных объектов в период с'.' '.$start. 'по'.' '. $finish;
+        $title = 'Отчет о состоянии элементов опасных производственных объектов в период с'.' '.$start.' '.'по'.' '. date("Y-m-d", strtotime($finish.'-1 hour'));
             $patch = 'report_opo' . Carbon::now() . '.pdf';
-            $pdf = PDF::loadView('web.docs.reports.pdf.opo_pdf', compact('data'))->setPaper('a4', 'landscape');
+            $pdf = PDF::loadView('web.docs.reports.pdf.opo_pdf', compact('data', 'title'))->setPaper('a4', 'landscape');
             return $pdf->download($patch);
         }
 
