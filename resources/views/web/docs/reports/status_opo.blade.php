@@ -34,15 +34,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @for($i=0; $i<count($data['name_opos']); $i++)
+                    @foreach($data as $dat)
                         <tr>
-                            <td>{{$data['name_opos'][$i]}}</td>
-                            <td class="centered">{{$data['ip_opos'][$i]}}</td>
-                            <td class="centered">{{$data['ip'][$i]}}</td>
-                            <td>{{$data['name'][$i]}}</td>
+                            <td>{{$dat['name_opos']}}</td>
+                            <td class="centered">{{$dat['ip_opos']}}</td>
+                            <td class="centered">{{$dat['ip']}}</td>
+                            <td>{{$dat['name']}}</td>
                         </tr>
-                    @endfor
-
+                    @endforeach
                     </tbody>
 
                 </table>
