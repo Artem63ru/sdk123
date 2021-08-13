@@ -85,39 +85,34 @@ class PdfReportController extends Controller
 
     public function opo_pdf($start, $finish)
     {
-        $j = 0;
+
+
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
-
-            foreach ($rows1->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->take(1) as $rows2) {
-                $ip_opos = $rows2->ip_opo;
-            }
+            $ip_opos = $rows1->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
 
             $ip = 1;
             foreach ($rows1->opo_to_obj as $item) {
-                foreach ($item->elem_to_calc_report->where('date', '>=', $start)->where('date', '<=', $finish) as $it){
+                foreach ($item->elem_to_calc_report as $it){
+
                     if ($it->ip_elem <= $ip) {
                         $ip = $it->ip_elem;
                         $name = $item->nameObj;
                     }
                 }
-            }
-            $NAME_OPO[$j] = $name_opos;
-            $IP_OPO[$j] = $ip_opos;
-            $IP_OBJ[$j] = $ip;
-            $NAME_OBJ[$j] = $name;
-            $j++;
-        }
-        $data['name_opos'] = $NAME_OPO;
-        $data['ip_opos'] = $IP_OPO;
-        $data['ip'] = $IP_OBJ;
-        $data['name'] = $NAME_OBJ;
-        $data['title'] = 'Отчет о состоянии опасных производственных объектов в  период с'.' '.$start.' '. 'по'.' '.$finish;
-        $patch = 'report_opo' . Carbon::now() . '.pdf';
-        $pdf = PDF::loadView('web.docs.reports.pdf.opo_pdf', compact('data'))->setPaper('a4', 'landscape');
-        return $pdf->download($patch);
 
-    }
+            }
+            $data[]=[
+                'name_opos' => $name_opos,
+                'ip_opos' => $ip_opos,
+                "name"=> $name,
+                "ip"=>$ip ];
+        }
+            $patch = 'report_opo' . Carbon::now() . '.pdf';
+            $pdf = PDF::loadView('web.docs.reports.pdf.opo_pdf', compact('data'))->setPaper('a4', 'landscape');
+            return $pdf->download($patch);
+        }
+
 
     public function pdf_scena($start, $finish)
     {
