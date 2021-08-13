@@ -179,7 +179,7 @@
             }
         } );
         function colors_charts(params) {
-            if ((param s<=1.00)&&(params>0.8)) {
+            if ((params<=1.00)&&(params>0.8)) {
                 return "rgba(70,183,78,0.5)";
             }
             if ((params<=0.80)&&(params>0.5)) {
