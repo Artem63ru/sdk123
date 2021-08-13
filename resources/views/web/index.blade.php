@@ -15,10 +15,14 @@
        <div class="row_block centered">
             <div class="third_size col_block main_info_col">
                 <div class="padding_ins">
-                    <div class="inside_main_info left"><p>Текущий показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
+                    <div class="inside_main_info left">
+                        <p>Текущий показатель</p>
+                        <p id="delta_ip"></p>
+                    </div>
                     <div class="inside_main_info right">
                         <p class="bold dark_grey_text clear" id="ip_opo"></p>
-                        <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
+                        <input alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear v" id="good" type="hidden">
+                        <input alt="Показатель" src="{{asset('assets/images/icons/rate/bad.svg')}}" class="rate_icon clear v" id="bad" type="hidden">
                     </div>
                     <div class="clearfix"></div>
                     @include('charts.chart_ip_opo_mini')
@@ -27,10 +31,14 @@
 
             <div class="third_size col_block main_info_col">
                 <div class="padding_ins">
-                    <div class="inside_main_info left"><p>Прогнозный показатель</p><img alt="" src="{{asset('replace/2.png')}}"></div>
+                    <div class="inside_main_info left">
+                        <p>Прогнозный показатель</p>
+                        <p id="delta_pro"></p>
+                    </div>
                     <div class="inside_main_info right">
                         <p class="bold dark_grey_text clear">{{isset($ver_opo->opo_to_calc_opo_pro->first()->pro_ip_opo) ? $ver_opo->opo_to_calc_opo_pro->first()->pro_ip_opo : '1.00'}}</p>
-                        <img alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear">
+                        <input alt="Показатель" src="{{asset('assets/images/icons/rate/good.svg')}}" class="rate_icon clear v" id="good-pro" type="hidden">
+                        <input alt="Показатель" src="{{asset('assets/images/icons/rate/bad.svg')}}" class="rate_icon clear v" id="bad-pro" type="hidden">
                     </div>
                     <div class="clearfix"></div>
                     @include('charts.chart_ip_opo_mini_prognoz')
@@ -111,6 +119,55 @@
       @include('charts.opo.charts_opo')
       @include('web.include.futer_table')
   </div>
+
+<script>
+    $(document).ready(function (){
+        $.ajax({
+            url:"/mini_graphics_opo/{{$id}}",
+            type:"GET",
+            success:function(data)
+            {
+                $('#delta_ip').text(data['raznost'])
+                if (data['check'] == 1){
+                    document.getElementById('delta_ip').style.color='#49ce56'
+                    document.getElementById('good').type="image"
+                    document.getElementById('good').style.maxHeight="15px"
+                    document.getElementById('bad').type="hidden"
+                } if (data['check'] == 0) {
+                    document.getElementById('delta_ip').style.color='#f26161'
+                    document.getElementById('good').type="hidden"
+                    document.getElementById('bad').type="image"
+                    document.getElementById('bad').style.maxHeight="15px"
+                } else {
+                    $('#delta_ip').text('0.00')
+                    document.getElementById('delta_ip').style.color="#49ce56"
+                    document.getElementById('good').type="hidden"
+                    document.getElementById('bad').type="hidden"
+                }
+                $('#delta_pro').text(data['raznost_pro'])
+                if (data['pro_check'] == 1){
+                    document.getElementById('delta_pro').style.color='#49ce56'
+                    document.getElementById('good-pro').type="image"
+                    document.getElementById('good-pro').style.maxHeight="15px"
+                    document.getElementById('bad-pro').type="hidden"
+                    } if (data['pro_check'] == 0) {
+                    document.getElementById('delta_pro').style.color='#f26161'
+                    document.getElementById('good-pro').type="hidden"
+                    document.getElementById('bad-pro').type="image"
+                    document.getElementById('bad-pro').style.maxHeight="15px"
+                    } else {
+                        $('#delta_pro').text('0.00')
+                        document.getElementById('delta_pro').style.color="#49ce56"
+                        document.getElementById('good-pro').type="hidden"
+                        document.getElementById('bad-pro').type="hidden"
+                    }
+            }
+        })
+    })
+</script>
+
+
+
 
 <script>
     function sleep(sec) {

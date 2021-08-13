@@ -152,6 +152,75 @@ class OpoController extends Controller
 
        return view('web.index', compact('jas', 'opo', 'id'));
     }
+
+    public function min_ip_of_opo()
+//       ********************** вытягиваем минимальное значение ИП по ОПО *****************************
+    {
+       $all_data_last = Calc_opo::orderByDesc('id')->first();
+       $min_last = min($all_data_last['ip_opo_1'], $all_data_last['ip_opo_2'], $all_data_last['ip_opo_3'], $all_data_last['ip_opo_4'], $all_data_last['ip_opo_5'], $all_data_last['ip_opo_6'], $all_data_last['ip_opo_7'],
+           $all_data_last['ip_opo_8'], $all_data_last['ip_opo_9']);
+       $all_data_pred = Calc_opo::find($all_data_last->id - 1);
+       $min_pred = min($all_data_pred['ip_opo_1'], $all_data_pred['ip_opo_2'], $all_data_pred['ip_opo_3'], $all_data_pred['ip_opo_4'], $all_data_pred['ip_opo_5'], $all_data_pred['ip_opo_6'], $all_data_pred['ip_opo_7'],
+            $all_data_pred['ip_opo_8'], $all_data_pred['ip_opo_9']);
+       $raznost = abs($min_last - $min_pred);
+       if ($min_last > $min_pred){
+           $check = 1;
+       } if ($min_last == $min_pred){
+           $check = 2;
+       } else {
+           $check = 0;
+       }
+       $data = array(
+           "min_last" => $min_last,
+           "min_pred"=> $min_pred,
+           "check"=> $check,
+           "raznost"=> $raznost
+       );
+       return $data;
+    }
+
+    public function mini_graphics_opo($id)
+//       ********************** для мини графиков на страницах ОПО *****************************
+    {
+        //для ИП ОПО
+       $all_data_last = Calc_opo::orderByDesc('id')->first();
+        $name_opo = "ip_opo_".$id;
+       $ip_last = $all_data_last["$name_opo"];
+        $all_data_pred = Calc_opo::find($all_data_last->id - 1);
+        $ip_pred = $all_data_pred["$name_opo"];
+
+       $raznost = abs($ip_last - $ip_pred);
+       if ($ip_last > $ip_pred){
+           $check = 1;
+       } if ($ip_last == $ip_pred){
+           $check = 2;
+       } else {
+           $check = 0;
+       }
+       // для прогн. ИП ОПО
+        $all_data_pro = Calc_pro_ip_opoi::orderByDesc('id')->where('from_opo', '=', $id)->where('forecast_period', '=', '0 years 0 mons 0 days 1 hours 0 mins 0.00 secs')
+            ->take(2)->get();
+        $last = $all_data_pro[0];
+        $pred = $all_data_pro[1];
+        $pro_last = $last['pro_ip_opo'];
+        $pro_pred = $pred['pro_ip_opo'];
+        $raznost_pro = abs($pro_last - $pro_pred);
+        if ($pro_last > $pro_pred){
+            $pro_check = 1;
+        } if ($pro_last == $pro_pred){
+        $pro_check = 2;
+        } else {
+        $pro_check = 0;
+        }
+       $data = array(
+           "check"=> $check,
+           "raznost"=> $raznost,
+           "pro_check"=> $pro_check,
+           "raznost_pro"=> $raznost_pro
+       );
+       return $data;
+    }
+
     public function view_opo_id($id)
 //       ********************** Вывести данные на страницу Конкретного ОПО по ИД *****************************
     {
@@ -163,8 +232,7 @@ class OpoController extends Controller
        $mins_opos = $ver_opo->opo_to_calc_day_min->first();
        $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
-       //$data=array('opo'=>$opo, 'id'=>$id, 'jas_opo'=>$jas_opo, 'mins_opos'=>$mins_opos, 'mins_opo_months'=>$mins_opo_months, 'mins_opo_year'=>$mins_opo_year);
-       //return json_encode($data, JSON_UNESCAPED_UNICODE);
+
        return view('web.index', compact('opo', 'id', 'jas_opo', 'ver_opo', 'mins_opos', 'mins_opo_months', 'mins_opo_year'));
     }
 

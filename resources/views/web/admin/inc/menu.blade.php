@@ -93,7 +93,7 @@
                         btn.className="btn btn-danger"
                         btn.textContent='Очистить журнал'
 
-                        console.log(data)
+                        // console.log(data)
                         if (data==1){
                             if (form.getElementsByClassName('btn btn-danger').length!=0){
                                 modal.getElementsByClassName('form_header')[0].removeChild(btn)
