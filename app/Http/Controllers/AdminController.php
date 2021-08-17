@@ -365,7 +365,7 @@ class AdminController extends Controller
         $data['regNumOPO'] = $ver_opo->regNumOPO;
         $data['ip_opo'] = $ver_opo->opo_to_calc1->first()->ip_opo;
         $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
-        $data['date'] = date("m-d-y");
+        $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
         $xml = XML_journal::create($data);
 
