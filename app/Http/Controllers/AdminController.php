@@ -11,6 +11,7 @@ use App\Models\Logs_ib;
 use App\Models\Logs_safety;
 use App\Models\Permission;
 //use App\Models\Role;
+use App\Models\Ref_obj;
 use App\Models\XML_journal;
 use App\Ref_opo;
 use App\User;
@@ -358,33 +359,51 @@ class AdminController extends Controller
     }
 
     public function xml_view ()
-    {
+    {   $i=1;
         $ver_opo =  Ref_opo::find(1);
         //для записи в журнал
         $data['fullDescOPO'] = $ver_opo->fullDescOPO;
         $data['regNumOPO'] = $ver_opo->regNumOPO;
         $data['ip_opo'] = $ver_opo->opo_to_calc1->first()->ip_opo;
+        $data['prognoz_ip_opo'] = $ver_opo->opo_sample_mons->first()->pro_ip_opo;
         $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
+
+        if ($ver_opo->opo_to_calc1->first()->ip_opo<0.8) {
+            $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get();
+            foreach ($elemet as $item)
+            {
+//                dd($item->elem_to_calc->first()->ip_elem);
+                if ($item->elem_to_calc->first()->ip_elem < 0.6)
+                {
+                    $data ['factors'.$i++] = [
+                        'Name_factor' => $item->nameObj,
+                        'IP_factor' => $item->elem_to_calc->first()->ip_elem];
+                }
+
+            }
+
+        }
         $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
         $xml = XML_journal::create($data);
-
+        return response()->xml($data);
+//        return $elemet;
         //для xml
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<opo>\n";
-        $contents = $contents."<name>".$data['fullDescOPO']."</name>\n";
-        $contents = $contents."<regnumder>".$data['regNumOPO']."</regnumder>\n";
-        $contents = $contents."<ip_reackt>".$data['ip_opo']."</ip_reackt>\n";
-        $contents = $contents."<status>".$data['status']."</status>\n";
-        $contents = $contents."</opo>\n";
-        $contents = $contents."<date>".$data['date']."</date>\n";
-        $contents = $contents."<time>".$data['time']."</time>\n";
-        $contents = $contents."</do>";
+/*        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";*/
+//        $contents = $contents."<do id = \"gda\">\n";
+//        $contents = $contents."<opo>\n";
+//        $contents = $contents."<name>".$data['fullDescOPO']."</name>\n";
+//        $contents = $contents."<regnumder>".$data['regNumOPO']."</regnumder>\n";
+//        $contents = $contents."<ip_reackt>".$data['ip_opo']."</ip_reackt>\n";
+//        $contents = $contents."<status>".$data['status']."</status>\n";
+//        $contents = $contents."</opo>\n";
+//        $contents = $contents."<date>".$data['date']."</date>\n";
+//        $contents = $contents."<time>".$data['time']."</time>\n";
+//        $contents = $contents."</do>";
 
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
-       Storage::disk('local')->put('15_min.xml', $contents, 'public');
+//       Storage::disk('local')->put('15_min.xml', $contents, 'public');
 
     }
 

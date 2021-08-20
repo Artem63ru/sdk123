@@ -440,6 +440,21 @@ Route::get('/reports', function (){
 }); // Главная xml
 
 
+Route::get('/xml2', function () {
+//    $config = [
+//        'template' => '<test></test>',
+//        'rowName' => 'name'
+//    ];
+    $data = [
+        'status' => 'success',
+        'data' => [
+            'first_name' => 'John',
+            'last_name' => 'Smith',
+        ]
+    ];
+    return response()->xml($data);
+});
+
 
 
 
