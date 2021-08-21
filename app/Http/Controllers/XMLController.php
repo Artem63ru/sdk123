@@ -37,60 +37,49 @@ use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
 use App\Models\Status_work;
+use App\Models\XML_journal;
 use App\Ref_opo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use XmlResponse\Facades\XmlFacade;
 
 class XMLController extends Controller
 {
 
     public function fifty_min()
     {
-        $OPO = Ref_opo::find(1);
-        $name_OPO = $OPO->descOPO;
-        $reg_num = $OPO->regNumOPO;
-        $IP = $OPO->opo_to_calc1;
-        foreach ($IP as $item) {
-            $ip = $item->ip_opo;
-            $status = $item->status;
+        $i=1;
+        $ver_opo =  Ref_opo::find(1);
+        //для записи в журнал
+        $data['fullDescOPO'] = $ver_opo->fullDescOPO;
+        $data['regNumOPO'] = $ver_opo->regNumOPO;
+        $data['ip_opo'] = $ver_opo->opo_to_calc1->first()->ip_opo;
+        $data['prognoz_ip_opo'] = $ver_opo->opo_sample_mons->first()->pro_ip_opo;
+        $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
+
+        if ($ver_opo->opo_to_calc1->first()->ip_opo<0.8) {
+            $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get();
+            foreach ($elemet as $item)
+            {
+                if ($item->elem_to_calc->first()->ip_elem < 0.6)
+                {
+                    $obj ['factors'.$i++] = [
+                        'Name_factor' => $item->nameObj,
+                        'IP_factor' => $item->elem_to_calc->first()->ip_elem];
+                }
+
+            }
+            $data['factors'] = $obj;
+
         }
-        $status_desc = Status_work::find($status);
-        $stat = $status_desc->status;
-
-        $IP_PRO = $OPO->opo_to_calc_opo_pro->take(1);
-        foreach ($IP_PRO as $item) {
-            $ip_pro = $item->pro_ip_opo;
-        }
-
-        $date = date('m/d/Y');
-
-        $time = date('h:i:s');
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<opo>\n";
-        //наименование ОПО
-        $contents = $contents."<name>$name_OPO</name>\n";
-        //рег номер ОПО
-        $contents = $contents."<regnumder>$reg_num</regnumder>\n";
-        //Реактивный интегральный показатель риска аварии на ОПО
-        $contents = $contents."<ip_reackt>$ip</ip_reackt>\n";
-        //Проактивный суточный интегральный показатель риска аварии на ОПО
-        $contents = $contents."<ip_proackt_day>$ip_pro</ip_proackt_day>\n";
-        //Расчетный статус режима работы ОПО
-        $contents = $contents."<status>$stat</status>\n";
-        $contents = $contents."</opo>\n";
-        //текущая дата
-        $contents = $contents."<date>$date</date>\n";
-        //текущее время
-        $contents = $contents."<time>$time</time>\n";
-        $contents = $contents."</do>\n";
-
-
-        Storage::disk('local')->put('15_min.xml', $contents, 'public');
+        $data['date'] = date("Y-m-d");
+        $data['time'] = date("H:i:s");
+        XML_journal::create($data);
+        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+//        return response()->xml($data);   // Для тестов
+//       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
 
     public function events()

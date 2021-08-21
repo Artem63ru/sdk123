@@ -296,7 +296,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('docs/quality_criteria', 'ReportController@report_quality_criteria')->name('quality_criteria');
 
     ////////////******************** Отчеты XML**************************************
-    Route::get('/xml', 'AdminController@xml_view'); // создание xml 15 минут
+    Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут
     Route::get('/xml1', 'XMLController@events'); // создание xml events
     Route::get('/xml2', 'XMLController@year'); // создание xml year
     Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
