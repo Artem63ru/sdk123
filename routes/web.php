@@ -297,6 +297,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     ////////////******************** Отчеты XML**************************************
     Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут
+    Route::get('/xml_obj', 'XMLController@xml_obj'); // создание xml справочника по элементам ОПО
     Route::get('/xml1', 'XMLController@events'); // создание xml events
     Route::get('/xml2', 'XMLController@year'); // создание xml year
     Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2

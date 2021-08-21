@@ -82,6 +82,13 @@ class XMLController extends Controller
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
 
+    public function xml_obj()
+    {
+        $i=1;
+        $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get(['idObj','nameObj', 'descObj']);
+      //  return response()->xml($elemet);   // Для тестов
+        Storage::disk('local')->put('reference_list.xml', XmlFacade::asXml($elemet), 'public');
+    }
     public function events()
     {
         $Jas = Jas::orderByDesc('id')->first();
