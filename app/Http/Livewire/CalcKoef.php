@@ -16,6 +16,7 @@ class CalcKoef extends Component
 
     public function render()
     {
+        AdminController::log_record('Открыл для редактирования коэффициент для расчета');//пишем в журнал
         return view('livewire.calc-koef', [
             'koefs'=> Calc_koef::orderby('id')->get(),
         ]);

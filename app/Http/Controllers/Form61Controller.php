@@ -14,6 +14,7 @@ class Form61Controller extends Controller
      */
     public function index()
     {
+        AdminController::log_record('Открыл список ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');//пишем в журнал
         $data = Form61::orderBy('id','DESC')->paginate(10);
         return view('form61.index',compact('data'));
     }
@@ -39,8 +40,7 @@ class Form61Controller extends Controller
         $input = $request->all();
         $report61 = Form61::create($input);
         AdminController::log_record('Создал ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
-        return redirect()->route('form61.index')
-            ->with('success','User created successfully');
+        return redirect()->route('form61.index');
     }
 
     /**
@@ -80,8 +80,7 @@ class Form61Controller extends Controller
         $data = Form61::find($id);
         $data->update($input);
         AdminController::log_record('Сохранил после изменения ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
-        return redirect()->route('form61.index')
-            ->with('success','User updated successfully');
+        return redirect()->route('form61.index');
     }
 
     /**
@@ -94,7 +93,6 @@ class Form61Controller extends Controller
     {
         Form61::find($id)->delete();
         AdminController::log_record('Удалил ОС об аварииях, случаях утраты взрывчатых материалов промышленного назначения форма 6.1');
-        return redirect()->route('form61.index')
-            ->with('success','User deleted successfully');
+        return redirect()->route('form61.index');
     }
 }

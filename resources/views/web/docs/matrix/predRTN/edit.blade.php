@@ -14,14 +14,7 @@
         @include('web.include.toptable')
     </div>
 
-{{--<div class="inside_content">--}}
-{{--    <div style="background: #f8f9fa">--}}
-{{--        <div class="card-header"><h2 class="text-muted" style="text-align: center">Редактирование предписания РТН</h2></div>--}}
-{{--    </div>--}}
 
-{{--        <div class="inside_tab_padding" style="margin-right: 20px; width: 1250px">--}}
-
-{{--            <div style="border-radius: 6px; width: 1210px" class="row_block form51">--}}
     <div class="inside_content">
         <div class="inside_tab_padding">
             <div class="row_block">
@@ -37,7 +30,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group" style="width: 900px">
-                                {!! Form::textarea('descr', null, array('placeholder' => 'Укажите содержание предписания','style' => 'height: 3vh; width: 95%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::textarea('descr', null, array('placeholder' => 'Укажите содержание предписания','style' => 'height: 3vh; width: 95%', 'autocomplete'=>"off", 'class'=>'form-control', 'required')) !!}
                             </div>
                         </div>
                     </div>
@@ -50,7 +43,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                {!! Form::date('date', null, array('placeholder' => 'Укажите дату предписания','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::date('date', null, array('placeholder' => 'Укажите дату предписания','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control', 'required')) !!}
                             </div>
                         </div>
                     </div>
@@ -64,22 +57,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <input type="checkbox" name="status" id="status_checkbox">
-
-                                <script>
-                                    function test(){
-                                        var checkbox=document.getElementById('status_checkbox')
-                                        if ({{$data->status}}==1) {
-                                            document.getElementById('status_checkbox').checked=true;
-                                            // console.log(checkbox.checked)
-                                        }
-                                        else{
-                                            document.getElementById('status_checkbox').checked=false;
-                                        }
-                                    }
-                                    test();
-                                </script>
-
+                            {!! Form::select('status', array('1' => 'Выполнено', '0' => 'Не выполнено'), null, ['style' => 'width: 425px', 'class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -107,7 +85,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <div style="padding-bottom: 40px; margin-top: 20px"

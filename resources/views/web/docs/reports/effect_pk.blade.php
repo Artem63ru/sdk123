@@ -12,14 +12,15 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет об эффективности производственного контроля за соблюдением требований промышленной безопасности по ОПО</h2>
-                        @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_effect') }}">Создать PDF</a></div>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет об эффективности производственного контроля за соблюдением требований промышленной безопасности по ОПО<br>
+                            За период с {{$start}} по {{$finish}}</h2>
+                        @can('product-create')
+                            <div class="bat_info"><a href="{{ url('pdf_effect/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
                     <div class="inside_tab_padding form51">
-                        <div style="background: #FFFFFF; border-radius: 6px" class="row_block form51">
+                        <div style="background: #FFFFFF; border-radius: 6px; width: 120%" class="row_block form51">
                 <table>
                     <thead>
                     <tr>

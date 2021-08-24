@@ -19,7 +19,15 @@ function addRowToTable(table, item, button=false){
 
     td_status=document.createElement("td");
     td_status.className="td_status";
-    status_text=document.createTextNode(item["level"]);
+    status_text=document.createElement('a')
+    status_text.textContent=item["level"]
+    console.log('level', item['level'])
+    if (item['level']==='C1'){
+        status_text.href='/xml_svr';
+    }
+    if (item['level']==='С2'){
+        status_text.href='/xml_ssr'
+    }
     td_status.appendChild(status_text);
 
     td_opo=document.createElement("td");
@@ -67,75 +75,70 @@ function addRowToTable(table, item, button=false){
 var ids_to_kv=[];
 
 
-
 async function getDbInfo(){
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     while(true){
-        var GetDataReq=new XMLHttpRequest();
-        var GetSumReq=new XMLHttpRequest();
-
-
-        GetDataReq.onreadystatechange =function() {
-            if (GetDataReq.readyState == 4 && GetDataReq.status == 200) {
-                dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
-                clearTable(dialTabBody);
-                if (typeof tablePage !== 'undefined') {
-                    tabBody = document.getElementById("top_table_inside").getElementsByTagName("tbody").item(0);
-
-                    //Удаление прошлой инфы из базы данных
+        $.ajax({
+            url:'/opo/get_sum/all',
+            type:'GET',
+            success:function(data){
+                var new_sum=data;//Принимаем данные в json
+                var old_sum=getFromLocalStorage('sum');
+                if (old_sum==null || old_sum!==new_sum) {
+                    setToLocalStorage('sum', new_sum);
+                    get_data();
+                }
+            }
+        })
+        function get_data(){
+            $.ajax({
+                url:"/opo/getjas1/15",
+                type:"GET",
+                success:function(data)
+                {
+                    var tabBody = document.getElementById("top_table_inside").getElementsByTagName("tbody").item(0);
                     clearTable(tabBody);
+                    var arr=JSON.parse(data);
+                    arr.forEach(function(item, i, arr) {
+                        if (typeof tablePage !== 'undefined') {
+                            addRowToTable(tabBody, item);
+                        }
+
+                    });
 
                 }
+            })
 
-                // console.log('Get info about new opo');
-                let arr=[]
-                arr=JSON.parse(GetDataReq.responseText);//Принимаем данные в json
-                //console.log(tablePage);
-                var new_data_flag=false;
-                //Перегружаем функцию и раскидываем инфу по таблице
-                arr.forEach(function(item, i, arr){
-                    if (typeof tablePage !== 'undefined') {
-                        addRowToTable(tabBody, item);
-                    }
 
-                    if (item["check"]==false){
+            $.ajax({
+                url:"/opo/getjas1/0",
+                type:"GET",
+                success:function(data)
+                {
+                    // console.log(data)
+                    var dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
+                    clearTable(dialTabBody);
+
+                    var arr=JSON.parse(data);
+                    var new_data_flag=false;
+                    arr.forEach(function(item, i, arr){
                         ids_to_kv.push(item['id']);
                         new_data_flag=true;
                         addRowToTable(dialTabBody, item, true);
+                    });
+
+                    if (new_data_flag){
+                        ShowAlert();
                     }
-
-                });
-                //console.log(new_data_flag);
-                if (new_data_flag){
-                    ShowAlert();
                 }
-
-            }
-        };
-
-        GetSumReq.onreadystatechange=function (){
-            if (GetSumReq.readyState == 4 && GetSumReq.status == 200) {
-                new_sum=GetSumReq.response;//Принимаем данные в json
-                old_sum=getFromLocalStorage('sum');
-                //console.log(new_sum, old_sum);
-                if (old_sum==null || old_sum!=new_sum) {
-                    GetDataReq.open("GET", "/opo/get_db_info/15", true);
-                    GetDataReq.send();
-                    setToLocalStorage('sum', new_sum)
-                }
-            }
+            })
         }
 
-
-
-        GetSumReq.open("GET", "/opo/get_sum/all", true);
-        GetSumReq.send();
-
-
-
-
-
         await sleep(60);
-
     }
 }
 
@@ -150,7 +153,7 @@ function setToLocalStorage(key, value){
 }
 
 function ShowAlert(){
-    console.log('SHOWALERT')
+    // console.log('SHOWALERT')
     const mClose = document.querySelectorAll('[data-close]');
     let	mStatus = false;
     var overlay = document.querySelector('.not_click_overlay');

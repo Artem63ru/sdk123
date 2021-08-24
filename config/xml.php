@@ -11,9 +11,9 @@ return [
     | <root xmlns:v1="http://www.site.com/schema"></root>
     |
     */
-    'template' => '<opo></opo>',
+    'template' => '<do id = "gda"></do>',
     'caseSensitive' => false,
-    'showEmptyField' => true, //Show empty field
+    'showEmptyField' => false, //Show empty field
     'charset' => 'utf-8',
 
     /**
@@ -23,5 +23,5 @@ return [
      * value null = <row_0></row_0>
      * value name item = <item></item>
      */
-    'rowName' => null
+    'rowName' => 'name1'
 ];

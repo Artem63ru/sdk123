@@ -12,9 +12,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии опасных производственных объектов по состоянию на</h2>
-                        @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_opo') }}">Создать PDF</a></div>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии опасных производственных объектов
+                        <br>В период с {{$start}} по {{$finish}}</h2>
+                        @can('product-create')
+                            <div class="bat_info"><a href="{{ url('pdf_opo/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -33,19 +34,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($data as $item)
+                    @foreach($data as $dat)
                         <tr>
-                            <td>{{$item['name_opo']}}</td>
-                            <td class="centered">{{$item['IP_OPO']}}</td>
-                            <td class="centered">{{$item['IP_ELEM']}}</td>
-                            <td>{{$item['name_elem']}}</td>
-
-
+                            <td>{{$dat['name_opos']}}</td>
+                            <td class="centered">{{$dat['ip_opos']}}</td>
+                            <td class="centered">{{$dat['ip']}}</td>
+                            <td>{{$dat['name_elem']}}</td>
                         </tr>
-
                     @endforeach
-
-
                     </tbody>
 
                 </table>

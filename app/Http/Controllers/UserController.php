@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AdminController;
+use App\Models\Logs_safety;
+use App\Models\Password_history;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -22,7 +24,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(10);
-        AdminController::log_record('Открыл справочник пользователей для просмотра и редактировния');
+        AdminController::log_record('Открыл справочник пользователей');
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -35,7 +37,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        $password_config = Logs_safety::first();
+        return view('users.create',compact('roles', 'password_config'));
     }
 
     /**
@@ -46,15 +49,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $time_stop_session = $request->time_stop;
+        $password_config = Logs_safety::first();
+        if($password_config->up_register == 1)
+            $format_up = '(?=.*[a-z])(?=.*[A-Z])';
+        else
+            $format_up = '(?=.*[a-z])';
+        if($password_config->num_check == 1)
+            $format_num = '(?=.*[0-9])';
+        else
+            $format_num = '(?=.*[0-9]*)';
+        if($password_config->spec_check == 1)
+            $format_spec = '(?=.*[!%?@,.<>#№^:])';
+        else
+            $format_spec = '(?=.*[!%?@,.<>#№^:]*)';
+
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'name' => 'required|unique:users,name|regex:/^(?-i)[a-zA-Z0-9]+$/i',
+            'email' => 'required|email|unique:users,email|regex:/^(?-i)[a-z0-9@.]+$/i',
+            'password' => 'required|same:confirm-password|string|min:'.$password_config->num_znak.'|regex:/^(?-i)'.$format_up.$format_num.$format_spec.'+/i',
+            'roles' => 'required',
+            'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
+            'time_begin'=>'before:'.$time_stop_session,
         ]);
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        $input['date_new_password'] = date('Y-m-d');
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -63,10 +86,9 @@ class UserController extends Controller
               AdminController::log_record('Добавил пользователя '.$user->name.' и назначил роль '.$v);
         else
             AdminController::log_record('Добавил пользователя '.$user->name.' и неназначил роль ');
-     //  AdminController::log_record('Добавил пользователя '.$user->name.' и назначил роль'. $user->getRole());//пишем в журнал
 
         return redirect()->route('users.index')
-            ->with('success','User created successfully');
+            ->with('success','Новый пользователь успешно добавлен');
     }
 
     /**
@@ -90,11 +112,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $password_config = Logs_safety::first();
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
-
-        return view('users.edit',compact('user','roles','userRole'));
+        $text = 1;
+        return view('users.edit',compact('user','roles','userRole', 'password_config', 'text'));
     }
 
     /**
@@ -106,21 +129,51 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required',
-            'roles' => 'required'
-        ]);
+        $time_stop_session = $request->time_stop;
+        $password_config = Logs_safety::first();
+        if($password_config->up_register == 1)
+            $format_up = '(?=.*[a-z])(?=.*[A-Z])';
+        else
+            $format_up = '(?=.*[a-z])';
+        if($password_config->num_check == 1)
+            $format_num = '(?=.*[0-9])';
+        else
+            $format_num = '(?=.*[0-9]*)';
+        if($password_config->spec_check == 1)
+            $format_spec = '(?=.*[!%?@,.<>#№^:])';
+        else
+            $format_spec = '(?=.*[!%?@,.<>#№^:]*)';
 
+        $this->validate($request, [
+            'email' => 'required|email|unique:users,email,'.$id,
+            'name' => 'required|regex:/^(?-i)[a-zA-Z0-9]+$/i',
+            'password' => 'required|same:confirm-password|string|min:'.$password_config->num_znak.'|regex:/^(?-i)'.$format_up.$format_num.$format_spec.'+/i',
+            'roles' => 'required',
+            'surname' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'middle_name' => 'required|alpha|regex:/^(?-i)[а-яА-Я]/i',
+            'imya' => 'required|alpha|regex:/^(?-i)[а-я]/i',
+            'time_begin'=>'before:'.$time_stop_session,
+        ]);
         $input = $request->all();
+
+        $history_pass = Password_history::where('id_user', '=', $id)->orderByDesc('id_pass')->take($password_config->num_password)->get(); //вывели последние пароли в количестве указанном в конфигурации безопасности
+
+        foreach ($history_pass as $history){                //проходимся по паролям
+            if (Hash::check($input['password'], $history->password)){   //если есть совпадения, то ставим в таблицу отметку "не подходит"
+                return redirect()->route('users.edit',$id)->with('success','Введенный пароль был использован ранее. Введите уникальный пароль');
+            }
+        }
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
+            $data_pass['id_user'] = $id;
+            $data_pass['password'] = $input['password'];
+            $pass = Password_history::create($data_pass);
         }else{
             $input = Arr::except($input,array('password'));
         }
 
         $user = User::find($id);
+        $input['date_new_password'] = date('Y-m-d');
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
@@ -131,8 +184,9 @@ class UserController extends Controller
         else
             AdminController::log_record('Изменил пользователя '.$user->name.' и неназначил роль ');
         return redirect()->route('users.index')
-            ->with('success','User updated successfully');
+            ->with('success','Данные пользователя обновлены');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -146,7 +200,7 @@ class UserController extends Controller
         AdminController::log_record('Удалил пользователя '.$user->name);
         User::find($id)->delete();
         return redirect()->route('users.index')
-            ->with('success','User deleted successfully');
+            ->with('success','Пользователь удален');
     }
 
 }

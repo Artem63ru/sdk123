@@ -20,7 +20,11 @@ function modalShow(modal) {
 function modalClose(event) {
     function close(){
         for (let modal of modals) {
-            modal.className='dlg-modal dlg-modal-slide slideOutUp'
+            for (let modal of modals) {
+                if (modal.className=="dlg-modal dlg-modal-slide slideInDown"){
+                    modal.className='dlg-modal dlg-modal-slide slideOutUp'
+                }
+            }
         }
         overlay.className='overlay fadeOut';
         mStatus = false;

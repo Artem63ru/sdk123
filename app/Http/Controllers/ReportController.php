@@ -28,6 +28,7 @@ use App\Models\Rtn2\Pmla;
 use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
+use App\Models\XML_journal;
 use Illuminate\Http\Request;
 use App\Models\Calc_elem;
 use App\Models\Calc_ip_opo_i;
@@ -39,6 +40,7 @@ use App\Models\Ref_obj;
 use App\Jas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class ReportController extends Controller
 {
@@ -46,52 +48,137 @@ class ReportController extends Controller
     //===============================================
     //$request->date  ========дата из браузера=======
     //===============================================
+    public function xml_journal(Request $request)
+    {
+        $start = DateTime::createFromFormat('d.m.Y', $request->start_date)->format('Y-m-d');
+        $finish = DateTime::createFromFormat('d.m.Y', $request->finish_date)->format('Y-m-d');
+        $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
+        $i = 0;
+        if (empty($ver_opo->first()->fullDescOPO)){
+            $data['fullDescOPO'][$i] = "";
+            $data['regNumOPO'][$i] = " ";
+            $data['ip_opo'][$i] = " ";
+            $data['status'][$i] = " ";
+            $data['date'][$i] = " ";
+            $data['time'][$i] = " ";
+            $data['id'][$i] = "Журнал пуст";
+        } else{
+            foreach ($ver_opo as $ver){
+                $data['fullDescOPO'][$i] = $ver->fullDescOPO;
+                $data['regNumOPO'][$i] = $ver->regNumOPO;
+                $data['ip_opo'][$i] = $ver->ip_opo;
+                $data['status'][$i] = $ver->status;
+                $data['date'][$i] = $ver->date;
+                $data['time'][$i] = $ver->time;
+                $data['id'][$i] = $ver->id;
+                $i++;
+            }
+        }
+        return view('web.docs.reports.xml_journal', compact('data', 'start', 'finish'));
+    }
+    public function xml_journal_delete()
+    {
+        XML_journal::truncate();
+
+        AdminController::log_record('Очистил журнал отправки XML');
+
+        return redirect('docs/rtn');
+    }
 
     public function report(Request $request)
     {
+        $start = date("Y-m-d", strtotime($request->start_date));
+        $finish = date("Y-m-d H", strtotime($request->finish_date.'+ 24 hour'));
+        $date = date('Y-m-d');
+        $i=0;
+        $j = 0;
+        $desc_opo[$i] = "";
+        $name_obj[$i] = "";
+        $ip_elem[$i] = "";
+        $op_m[$i] = "";
+        $op_el[$i] = "";
+        $op_r[$i] = "";
+        $input = Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get();
+        foreach ($input as $row){
+            $desc_opo[$j] = $row->obj_to_opo->descOPO;
+            $name_obj[$j] = $row->nameObj;
+            foreach ($row->elem_to_calc_report as $rows){
+                if($rows->date <= $finish && $rows->date >= $start){
+                    $ip[$j][$i] = $rows->ip_elem;
+                    $m[$j][$i] = $rows->op_m;
+                    $el[$j][$i] = $rows->op_el;
+                    $r[$j][$i] = $rows->op_r;
+                    $i++;
+                }
+            }
+            $ip_elem[$j] = min($ip[$j]);
+            $op_m[$j] = min($m[$j]);
+            $op_el[$j] = min($el[$j]);
+            $op_r[$j] = min($r[$j]);
+            $j++;
+        }
 
-        return view('web.docs.reports.form_8', ['rows'=>Ref_obj::where('InUse','=','1')->where('status','=','50')->orderby('idObj')->get()]);
+        $data['desc_opo'] = $desc_opo;
+        $data['name_obj'] = $name_obj;
+        $data['ip_elem'] = $ip_elem;
+        $data['op_m'] = $op_m;
+        $data['op_el'] = $op_el;
+        $data['op_r'] = $op_r;
+        return view('web.docs.reports.form_8', compact('data', 'start', 'finish'));
     }
 
     public function report1(Request $request)
     {
-        return view('web.docs.reports.scena_report', ['rows1'=>Jas::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.scena_report', compact('start', 'finish'), ['rows1'=>Jas::orderby('id')->where('data', '<', $finish)
+            ->where('data', '>', $start)->get()]);
     }
 
     public function report2(Request $request)
     {
-        return view('web.docs.reports.result_pk', ['rows2'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.result_pk', compact('start', 'finish'), ['rows2'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report3(Request $request)
     {
-        return view('web.docs.reports.violations_report', ['rows3'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.violations_report', compact('start', 'finish'), ['rows3'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+        ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report4(Request $request)
     {
+
+        $start = date("Y-m-d", strtotime($request->start_date));
+        $finish = date("Y-m-d H", strtotime($request->finish_date.'+ 24 hour'));
+
         foreach (Ref_opo::orderby('idOPO')->get() as $rows1) {
             $name_opos = $rows1->descOPO;
 
-            foreach ($rows1->opo_to_calc_day_min as $rows2) {
-                $ip_opos = $rows2->ip_opo;
+            $ip_opos = $rows1->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
 
-            }
             $ip = 1;
             foreach ($rows1->opo_to_obj as $item) {
-                    if ($item->elem_to_calc->first()->ip_elem <= $ip) {
-                        $ip = $item->elem_to_calc->first()->ip_elem;
+                foreach ($item->elem_to_calc_report as $it){
+                    if ($it->ip_elem <= $ip) {
+                        $ip = $it->ip_elem;
                         $name = $item->nameObj;
                     }
-              }
-
+                }
+            }
             $data[]=[
-            'name_opo'=>$name_opos,
-            "IP_OPO"=>$ip_opos,
-             "name_elem"=> $name,
-             "IP_ELEM"=>$ip ];
-          }
-        return view('web.docs.reports.status_opo', ['data' => $data]);
+                'name_opos' => $name_opos,
+                'ip_opos' => $ip_opos,
+                'name_elem'=> $name,
+                'ip'=>$ip ];
+
+        }
+        return view('web.docs.reports.status_opo', compact('data', 'start', 'finish'), ['data' => $data]);
     }
 
     public function child_form52_table (Request $request, $id_event)
@@ -181,32 +268,50 @@ class ReportController extends Controller
 
     public function report5(Request $request)
     {
-        return view('web.docs.reports.repiat_report', ['rows5'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.repiat_report', compact('start', 'finish'), ['rows5'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
     public function report6(Request $request)
     {
-        return view('web.docs.reports.event_pk', ['rows6'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.event_pk', compact('start', 'finish'), ['rows6'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+        ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_effect()
+    public function report_effect(Request $request)
     {
-        return view('web.docs.reports.effect_pk', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+//        $date = date('Y-m-d');
+        return view('web.docs.reports.effect_pk', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->get()]);
     }
 
-    public function report_info_act()
+    public function report_info_act(Request $request)
     {
-        return view('web.docs.reports.info_act', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.info_act', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_act_pb()
+    public function report_act_pb(Request $request)
     {
-        return view('web.docs.reports.act_pb', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.act_pb', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->where('date_check_out', '<', $finish)
+            ->where('date_check_out', '>', $start)->get()]);
     }
 
-    public function report_quality_criteria()
+    public function report_quality_criteria(Request $request)
     {
-        return view('web.docs.reports.quality_criteria', ['rows'=>Data_check_out::orderby('id')->get()]);
+        $start = $request->start_date;
+        $finish = $request->finish_date;
+        return view('web.docs.reports.quality_criteria', compact('start', 'finish'), ['rows'=>Data_check_out::orderby('id')->
+        where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get()]);
     }
 
     public function Showrtn2()

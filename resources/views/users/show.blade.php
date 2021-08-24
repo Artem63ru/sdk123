@@ -1,5 +1,7 @@
 @extends('web.layouts.app')
-
+@section('title')
+    Просмотр
+@endsection
 
 @section('content')
     @push('app-css')
@@ -9,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    @include('admin.inc.menu')
+                    @include('web.admin.inc.menu')
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Просмотр данных пользователя :{{ $user->name }}</h2>
                             <div class="pull-right">
                                 <a class="btn btn-primary" href="{{ route('users.index') }}"> Назад</a>
@@ -18,16 +20,48 @@
                     </div>
 
 
-{{--      <div class="row px-xl-5">--}}
-          <div class="table-responsive">
+          <div class="table-responsive" >
               <div style="height: 75vh" class="no_tab_table open">
           <table   class="table table-hover table-bordered">
               <tbody>
               <tr>
+                  <td><div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                              <div style="padding: 10px" class="">
+                                  <strong class="text-muted h3">Фамилия:      {{ $user->surname }}</strong>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                              <div style="padding: 10px" class="">
+                                  <strong class="text-muted h3">Имя:      {{ $user->imya }}</strong>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                              <div style="padding: 10px" class="">
+                                  <strong class="text-muted h3">Отчество:      {{ $user->middle_name }}</strong>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
         <td><div class="col-xs-12 col-sm-12 col-md-12">
              <div class="form-group">
-                <div style="padding: 15px" class="">
-                    <strong class="text-muted h3">Фамилия Имя Отчество:      {{ $user->name }}</strong>
+                <div style="padding: 10px" class="">
+                    <strong class="text-muted h3">Логин:      {{ $user->name }}</strong>
                 </div>
 
             </div>
@@ -38,7 +72,7 @@
                     <td>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div style="padding: 15px" class="">
+                <div style="padding: 10px" class="">
                     <strong class="text-muted h3">Email:   {{ $user->email }}</strong>
                 </div>
 
@@ -50,7 +84,7 @@
                     <td>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <div style="padding: 15px" class="">
+                <div style="padding: 10px" class="">
                     <strong class="text-muted h3">Роли пользователя:</strong>
 
                 @if(!empty($user->getRoleNames()))
@@ -62,6 +96,18 @@
             </div>
         </div>
               </td>
+              </tr>
+              <tr>
+                  <td>
+                      <div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                              <div style="padding: 10px" class="">
+                                  <strong class="text-muted h3">Доступ к системе предоставлен:   {{"C"." ".$user->time_begin." "."по"." ".$user->time_stop }}</strong>
+                              </div>
+
+                          </div>
+                      </div>
+                  </td>
               </tr>
               </tbody>
           </table>

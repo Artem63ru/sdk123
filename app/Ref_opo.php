@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Ref_opo extends Model
@@ -22,8 +23,7 @@ class Ref_opo extends Model
     //************************** Выбор элементов конкретного ОПО *********************************************
         public function opo_to_obj()
     {
-        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')
-            ->where('status','=','50');
+        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')->where('status', '=', '50');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
     }
     //************************** Текущее значение ИП ОПО для конкретного ОПО *********************************************
@@ -62,6 +62,11 @@ class Ref_opo extends Model
     {
         return $this->hasMany('App\Models\Calc_ip_opo_i', 'from_opo', 'idOPO')->orderBy('ip_opo')
             ->where('date', '>',Carbon::now()->subHours(150) )->take(1);
+    }
+    //************************** Минимальное значение за период *********************************************
+    public function opo_to_calc_period_min()
+    {
+        return $this->hasMany('App\Models\Calc_ip_opo_i', 'from_opo', 'idOPO')->orderBy('ip_opo');
     }
     //************************** Минимальное значение за месяц *********************************************
     public function opo_to_calc_months_min()

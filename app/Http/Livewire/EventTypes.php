@@ -38,13 +38,13 @@ class EventTypes extends Component
     public function render()
     {
         if ($this->search <>'') {
-           return view('livewire.event-types', [
+            return view('livewire.event-types', [
                 'events'=> Event_types::orwhere('from_type_obj', '=', $this->search)->orderBy('id')->get(),
             ]);
         }
         else
         {
-           return view('livewire.event-types', [
+            return view('livewire.event-types', [
                 'events'=>Event_types::orderby('id')->get(),
             ]);
         }

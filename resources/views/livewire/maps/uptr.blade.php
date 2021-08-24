@@ -42,7 +42,13 @@
                             <td>
                                 <p>Ситуационный план ОПО</p>
                                 <h3>Парк резервуарный<br/>(промысловый)</h3>
-                                <a href="/opo/9/main">Общие сведения</a>
+                                <a onclick="clearStorage()" href="/opo/9/main">Общие сведения</a>
+                                <script>
+                                    function clearStorage() {
+                                        localStorage.removeItem('active');
+                                        localStorage.removeItem('active_mini');
+                                    }
+                                </script>
                             </td>
                             <td class="centered">
                                 <p>Текущее состояние:</p>

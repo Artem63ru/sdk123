@@ -37,108 +37,69 @@ use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
 use App\Models\Status_work;
+use App\Models\Xml\Ssr_reports;
+use App\Models\Xml\Svr_reports;
+use App\Models\XML_journal;
 use App\Ref_opo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use XmlResponse\Facades\XmlFacade;
 
 class XMLController extends Controller
 {
 
     public function fifty_min()
     {
-        $OPO = Ref_opo::find(1);
-        $name_OPO = $OPO->descOPO;
-        $reg_num = $OPO->regNumOPO;
-        $IP = $OPO->opo_to_calc1;
-        foreach ($IP as $item) {
-            $ip = $item->ip_opo;
-            $status = $item->status;
+        $i=1;
+        $ver_opo =  Ref_opo::find(1);
+        //для записи в журнал
+        $data['fullDescOPO'] = $ver_opo->fullDescOPO;
+        $data['regNumOPO'] = $ver_opo->regNumOPO;
+        $data['ip_opo'] = $ver_opo->opo_to_calc1->first()->ip_opo;
+        $data['prognoz_ip_opo'] = $ver_opo->opo_sample_mons->first()->pro_ip_opo;
+        $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
+
+        if ($ver_opo->opo_to_calc1->first()->ip_opo<0.8) {
+            $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get();
+            foreach ($elemet as $item)
+            {
+                if ($item->elem_to_calc->first()->ip_elem < 0.6)
+                {
+                    $obj ['factors'.$i++] = [
+                        'Name_factor' => $item->nameObj,
+                        'IP_factor' => $item->elem_to_calc->first()->ip_elem];
+                }
+
+            }
+            $data['factors'] = $obj;
+
         }
-        $status_desc = Status_work::find($status);
-        $stat = $status_desc->status;
-
-        $IP_PRO = $OPO->opo_to_calc_opo_pro->take(1);
-        foreach ($IP_PRO as $item) {
-            $ip_pro = $item->pro_ip_opo;
-        }
-
-        $date = date('m/d/Y');
-
-        $time = date('h:i:s');
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<opo>\n";
-        //наименование ОПО
-        $contents = $contents."<name>$name_OPO</name>\n";
-        //рег номер ОПО
-        $contents = $contents."<regnumder>$reg_num</regnumder>\n";
-        //Реактивный интегральный показатель риска аварии на ОПО
-        $contents = $contents."<ip_reackt>$ip</ip_reackt>\n";
-        //Проактивный суточный интегральный показатель риска аварии на ОПО
-        $contents = $contents."<ip_proackt_day>$ip_pro</ip_proackt_day>\n";
-        //Расчетный статус режима работы ОПО
-        $contents = $contents."<status>$stat</status>\n";
-        $contents = $contents."</opo>\n";
-        //текущая дата
-        $contents = $contents."<date>$date</date>\n";
-        //текущее время
-        $contents = $contents."<time>$time</time>\n";
-        $contents = $contents."</do>\n";
-
-
-        Storage::disk('local')->put('15_min.xml', $contents, 'public');
+        $data['date'] = date("Y-m-d");
+        $data['time'] = date("H:i:s");
+        XML_journal::create($data);
+        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+//        return response()->xml($data);   // Для тестов
+//       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
 
-    public function events()
+    public function xml_obj()
     {
-        $Jas = Jas::orderByDesc('id')->first();
-        $klass = $Jas->level;
-        $desc = $Jas->name;
-        $date_event = $Jas->data;
-        $data = substr($date_event, 0, strpos($date_event, ' '));
-        $vremya = substr($date_event, 10, strpos($date_event, ' '));
-        $id_elem = $Jas->from_elem_opo;
-        $descObj = Ref_obj::find($id_elem);
-        $obj = $descObj->nameObj;
-
-        $number_opo = $Jas->from_opo;
-        $OPO = Ref_opo::find($number_opo);
-        $name_OPO = $OPO->fullDescOPO;
-        $reg_num = $OPO->regNumOPO;
-
-        $date = date('m/d/Y');
-        $time = date('h:i:s');
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<event>\n";
-        //Описание события высокого риска (СВР) с указанием даты, времени
-        $contents = $contents."<klass>$klass </klass>";
-        //Наименование события согластно журналу событий
-        $contents = $contents."<descript>$desc</descript>\n";
-        //Регистрационный номер ОПО
-        $contents = $contents."<regnumder_opo>$reg_num</regnumder_opo>\n";
-        //Наименование ОПО
-        $contents = $contents."<name_opo>$name_OPO</name_opo>\n";
-        //Наименование элемента ОПО
-        $contents = $contents."<name_obj>$obj</name_obj>\n";
-        //Дата возникновения события
-        $contents = $contents."<date_event>$data</date_event>\n";
-        //Время возникновения события
-        $contents = $contents."<time_event>$vremya</time_event>\n";
-        $contents = $contents."</event> \n";
-        //Дата и время формирования данных для передачи
-        $contents = $contents."<date>$date</date>\n";
-        $contents = $contents."<time>$time</time>\n";
-        $contents = $contents."</do>\n";
-
-
-        Storage::disk('local')->put('events.xml', $contents, 'public');
+        $i=1;
+        $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get(['idObj','nameObj', 'descObj']);
+        //  return response()->xml($elemet);   // Для тестов
+        Storage::disk('local')->put('reference_list.xml', XmlFacade::asXml($elemet), 'public');
+    }
+    public function events_svr_view()
+    {
+        $svr = Svr_reports::all();
+        return view('web.docs.reports.Xml_reports.Svr_reports.index', compact('svr'));
+    }
+    public function events_ssr_view()
+    {
+        $ssr = Ssr_reports::all();
+        return view('web.docs.reports.Xml_reports.Ssr_reports.index', compact('ssr'));
     }
 
     public function form51()
@@ -164,25 +125,25 @@ class XMLController extends Controller
         $date_accept = $data_form51->date_accept;
         $reason_delay = $data_form51->reason_delay;
 
-            $contents = $contents . "<vid_acccident>\n";
-            $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
-            $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
-            $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
-            $contents = $contents . "</vid_acccident>\n";
-            $contents = $contents . "<victim>$victim</victim>\n";
-            $contents = $contents . "<date>$date</date>\n";
-            $contents = $contents . "<supervision>$supervision</supervision>\n";
-            $contents = $contents . "<organisation>$organisation</organisation>\n";
-            $contents = $contents . "<adress>$adress</adress>\n";
-            $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
-            $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
-            $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
-            $contents = $contents . "<passed>$passed</passed>\n";
-            $contents = $contents . "<accepted>$accepted</accepted>\n";
-            $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
-            $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
+        $contents = $contents . "<vid_acccident>\n";
+        $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
+        $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
+        $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
+        $contents = $contents . "</vid_acccident>\n";
+        $contents = $contents . "<victim>$victim</victim>\n";
+        $contents = $contents . "<date>$date</date>\n";
+        $contents = $contents . "<supervision>$supervision</supervision>\n";
+        $contents = $contents . "<organisation>$organisation</organisation>\n";
+        $contents = $contents . "<adress>$adress</adress>\n";
+        $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
+        $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
+        $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
+        $contents = $contents . "<passed>$passed</passed>\n";
+        $contents = $contents . "<accepted>$accepted</accepted>\n";
+        $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
+        $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
 
-            $contents = $contents."</form>\n";
+        $contents = $contents."</form>\n";
 
 
         Storage::disk('local')->put('form51.xml', $contents, 'public');
@@ -426,7 +387,7 @@ class XMLController extends Controller
         $finish_organisation = Info_GDA::find(7)->values;
 
 
-                $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
 
         $contents = $contents."<do id = \"gda\">\n";
         //данные организации

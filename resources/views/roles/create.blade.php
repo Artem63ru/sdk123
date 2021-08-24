@@ -1,5 +1,7 @@
 @extends('web.layouts.app')
-
+@section('title')
+    Создание
+@endsection
 
 @section('content')
     @push('app-css')
@@ -9,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    @include('admin.inc.menu')
+                    @include('web.admin.inc.menu')
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Создание новой роли</h2>
 
                         <div class="pull-right">

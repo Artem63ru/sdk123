@@ -10,39 +10,31 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                 @include('admin.inc.menu')
+                 @include('web.admin.inc.menu')
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Список Привелегий</h2></div>
-
-                    <div class="table-responsive">
-                        <div style="height: 75vh" class="no_tab_table open">
-                            <table   class="table table-hover table-bordered">
+                    <div class="table-responsive form51"  style="height: 70.5vh">
+                            <table   class="table table-hover table-bordered" style="height: 68vh">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Наименование</th>
-
+                                <th class="centered">#</th>
+                                <th>Наименование</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            <?php
+                            $i=1;
+                            ?>
                             @foreach ($perms as $perm)
                                 <tr>
-                                    <th scope="row-4">{{ $perm->id }}</th>
-                                    <td>{{ $perm->runame }}</td>
-
-
+                                    <td>{{ $i++ }}</td>
+                                    <td style="text-align: left">{{ $perm->runame }}</td>
                                 </tr>
                             @endforeach
-
-
-
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

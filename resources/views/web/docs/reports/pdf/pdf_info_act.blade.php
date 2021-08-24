@@ -12,7 +12,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</h2>
+<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
                 <thead>
                 <tr>
@@ -26,11 +26,10 @@
                     <th class="centered">Устранено</th>
                     <th class="centered">Срок исполнения не истек</th>
                     <th class="centered">С истекшим сроком исполнения</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($rows as $item)
+                @foreach ($data['rows'] as $item)
                     <tr>
                         <td></td>
                         <td></td>

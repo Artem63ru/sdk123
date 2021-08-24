@@ -15,15 +15,6 @@
         @include('web.include.toptable')
     </div>
 
-{{--<div class="inside_content">--}}
-
-{{--        <div style="background: #f8f9fa">--}}
-{{--            <div class="card-header"><h2 class="text-muted" style="text-align: center" >Создание предписания РТН</h2></div>--}}
-{{--        </div>--}}
-
-{{--        <div class="inside_tab_padding" style="margin-right: 20px; width: 1250px">--}}
-
-{{--            <div style="border-radius: 6px; width: 1210px" class="row_block form51">--}}
     <div class="inside_content">
         <div class="inside_tab_padding">
             <div class="row_block">
@@ -39,7 +30,7 @@
                         </div>
                         <div class="col" >
                             <div class="form-group" style="width: 900px">
-                                {!! Form::textarea('descr', null, array('placeholder' => 'Укажите содержание предписания','style' => 'height: 3vh; width: 95%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::textarea('descr', null, array('placeholder' => 'Укажите содержание предписания','style' => 'height: 3vh; width: 95%', 'autocomplete'=>"off", 'class'=>'form-control', 'required')) !!}
                             </div>
                         </div>
                     </div>
@@ -52,24 +43,24 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                {!! Form::date('date', null, array('placeholder' => 'Укажите дату предписания','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::date('date', null, array('placeholder' => 'Укажите дату предписания','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control', 'required')) !!}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card-header">
-                    <div class="row justify-content-start">
-                        <div class="col">
-                            <h4 class="text-muted" style="text-align: left">Статус</h4>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                {!! Form::checkbox('status', null, array('placeholder' => 'Укажите дату предписания','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                    <div class="card-header">
+                        <div class="row justify-content-start">
+                            <div class="col">
+                                <h4 class="text-muted" style="text-align: left">Отметка о выполнении</h4>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    {!! Form::select('status', array('1' => 'Выполнено', '0' => 'Не выполнено'), null, ['style' => 'width: 425px', 'class' => 'form-control', 'required']) !!}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="card-header">
                     <div class="row justify-content-start">

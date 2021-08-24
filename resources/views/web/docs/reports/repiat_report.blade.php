@@ -12,9 +12,10 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет "Анализ повторяемости несоответствий" по состоянию на по</h2>
-                        @can('role-create')
-                            <div class="bat_info"><a href="{{ url('pdf_repair') }}">Создать PDF</a></div>
+                    <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет "Анализ повторяемости несоответствий"<br>
+                            В период с {{$start}} по {{$finish}}</h2>
+                        @can('product-create')
+                            <div class="bat_info"><a href="{{ url('pdf_repair/'.$start.'/'.$finish) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -53,16 +54,6 @@
                             <td></td>
                             <td></td>
                             <td></td>
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id.''.$row->id}}</td>--}}
-{{--                            <td>{{$row->id.''.$row->id.''.$row->id}}</td>--}}
-{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
-{{--                            <td>{{$row->id.''.$row->id.''.$row->id.''.$row->id.''.$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
                         </tr>
                     @endforeach
                     </tbody>

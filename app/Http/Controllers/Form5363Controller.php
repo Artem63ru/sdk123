@@ -16,6 +16,8 @@ class Form5363Controller extends Controller
      */
     public function index()
     {
+        AdminController::log_record('Открыл список справок о выполнении мероприятий
+по результатам расследования и анализа коренных причин инцидентов 5.3, 6.3');//пишем в журнал
         $data = Form5363::orderBy('id','DESC')->paginate(15);
         return view('form5363.index',compact('data'));
     }
@@ -55,8 +57,7 @@ class Form5363Controller extends Controller
             $item->save();
         }
         AdminController::log_record('Создал справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
-        return redirect()->route('form5363.index')
-            ->with('success','User created successfully');
+        return redirect()->route('form5363.index');
     }
 
     public function store_table(Request $request)
@@ -108,8 +109,7 @@ class Form5363Controller extends Controller
            $data = Form5363::find($id);
            $data->update($input);
            AdminController::log_record('Сохранил после редактирования справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
-           return redirect()->route('form5363.index')
-               ->with('success', 'User updated successfully');
+           return redirect()->route('form5363.index');
        }
        elseif($_POST['save']== 'Update_childtablle')
        {
@@ -130,8 +130,7 @@ class Form5363Controller extends Controller
     {
         Form5363::find($id)->delete();
         AdminController::log_record('Удалил справку о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов формы 5.3, 6.3');
-        return redirect()->route('form5363.index')
-            ->with('success','User deleted successfully');
+        return redirect()->route('form5363.index');
     }
 
 }

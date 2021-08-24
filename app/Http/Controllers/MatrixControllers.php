@@ -58,6 +58,7 @@ class MatrixControllers extends Controller
     //******************** Обзор предписаний РТН ****************************
     public function show_RTN_all()
     {
+        AdminController::log_record('Открыл список предписаний РТН');//пишем в журнал
         $data = Rtn::orderByDesc('id')->get();
         return view('web.docs.matrix.predRTN.index', compact('data'));
     }
@@ -81,6 +82,7 @@ class MatrixControllers extends Controller
     {
         $data = Rtn::find($id);
         $data_all = Ref_opo::all();
+        AdminController::log_record('Открыл для просмотра предписание РТН');//пишем в журнал
 
         return view('web.docs.matrix.predRTN.show',compact('data', 'data_all'));
     }
@@ -108,6 +110,7 @@ class MatrixControllers extends Controller
     public function show_OPO_all()
     {
         $data = Ref_opo::orderBy('idOPO')->get();
+        AdminController::log_record('Открыл справочник ОПО');//пишем в журнал
         return view('web.docs.matrix.infoOPO.index', compact('data'));
     }
     public function edit_OPO($idOPO)
@@ -128,6 +131,7 @@ class MatrixControllers extends Controller
     public function show_OPO($idOPO)
     {
         $data = Ref_opo::find($idOPO);
+        AdminController::log_record('Открыл для просмотра запись о ОПО');//пишем в журнал
         return view('web.docs.matrix.infoOPO.show',compact('data'));
     }
     public function create_OPO()
@@ -155,6 +159,7 @@ class MatrixControllers extends Controller
 
     {
         $data = Ref_obj::orderBy('idObj')->where('idOPO', '>', '0')->get();
+        AdminController::log_record('Открыл справочник элементов ОПО');//пишем в журнал
         return view('web.docs.matrix.infoObj.index', compact('data'));
     }
     public function edit_Obj($idObj)
@@ -182,6 +187,7 @@ class MatrixControllers extends Controller
         $data_opo = Ref_opo::all();
         $data_obj_type = Type_obj::all();
         $data_status = Status_obj::all();
+        AdminController::log_record('Открыл для просмотра запись о элементе ОПО');//пишем в журнал
         return view('web.docs.matrix.infoObj.show',compact('data', 'data_all', 'data_opo', 'data_obj_type', 'data_status'));
     }
     public function create_Obj()
@@ -211,6 +217,7 @@ class MatrixControllers extends Controller
     public function show_TB_all()
     {
         $data = Ref_oto::orderBy('idOTO')->get();
+        AdminController::log_record('Открыл справочник ТБ элементов ОПО');//пишем в журнал
         return view('web.docs.matrix.infoTB.index', compact('data'));
     }
     public function edit_TB($idOTO)
@@ -241,6 +248,7 @@ class MatrixControllers extends Controller
     {
         $data = Ref_oto::find($idOTO);
         $data_all = Type_obj::all();
+        AdminController::log_record('Открыл запись о ТБ элемента ОПО');//пишем в журнал
         return view('web.docs.matrix.infoTB.show',compact('data', 'data_all'));
     }
     public function create_TB()

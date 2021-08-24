@@ -21,6 +21,7 @@
     <a class="btn btn-primary" href="{{ route('roles.index') }}">Список ролей</a>
     <a class="btn btn-primary" href="{{ route('users.index') }}">Список пользователей</a>
     <a class="btn btn-primary" id="seumchecker_go_btn">Контрольные суммы</a>
+{{--    <a class="btn btn-primary" href="{{ route('logs_safety.index') }}">Конфигурация безопасности</a>--}}
 </div>
 
 

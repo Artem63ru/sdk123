@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Logs;
+use App\Models\Logs_safety;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+//    $password_config = Logs_safety::first();
     // Блокировка при неудачном вводе пароля
     protected $maxAttempts = 15;  // количество неудачных попыток
     protected $decayMinutes = 1; // время блокировки в минутах

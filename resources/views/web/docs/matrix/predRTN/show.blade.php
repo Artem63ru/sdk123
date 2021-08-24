@@ -55,31 +55,19 @@
                     </div>
                 </div>
 
-                <div class="card-header">
-                    <div class="row justify-content-start">
-                        <div class="col">
-                            <h4 class="text-muted" style="text-align: left">Отметка о выполнении</h4>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <input type="checkbox" name="status" id="status_checkbox" disabled>
-                                <script>
-                                    function test(){
-                                        var checkbox=document.getElementById('status_checkbox')
-                                        if ({{$data->status}}==1) {
-                                            document.getElementById('status_checkbox').checked=true;
-                                            console.log(checkbox.checked)
-                                        }
-                                        else{
-                                            document.getElementById('status_checkbox').checked=false;
-                                        }
-                                    }
-                                    test();
-                                </script>
+
+                    <div class="card-header">
+                        <div class="row justify-content-start">
+                            <div class="col">
+                                <h4 class="text-muted" style="text-align: left">Отметка о выполнении</h4>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    {!! Form::select('status', array('1' => 'Выполнено', '0' => 'Не выполнено'), null, ['style' => 'width: 425px', 'class' => 'form-control', 'disabled']) !!}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="card-header">
                     <div class="row justify-content-start">
