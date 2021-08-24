@@ -579,7 +579,7 @@ class OpoController extends Controller
         $post = $request->all();
         $res=Jas::updated_check($post['id']);
         if ($res) {
-            return json_encode(array('result'=>'true'));
+         return json_encode(array('result'=>'true'));
         }
         else{
             $res=array('result'=>'false', 'error'=>$res);

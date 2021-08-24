@@ -298,13 +298,15 @@ Route::group(['middleware' => ['auth']], function() {
     ////////////******************** Отчеты XML**************************************
     Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут
     Route::get('/xml_obj', 'XMLController@xml_obj'); // создание xml справочника по элементам ОПО
-    Route::get('/xml1', 'XMLController@events'); // создание xml events
+    Route::get('/xml_svr', 'XMLController@events_svr_view'); // создание xml Описание события высокого риска (СВР) на ОПО с указанием даты, времени
+    Route::get('/xml_ssr', 'XMLController@events_ssr_view'); // создание xml Описание события среднего риска (ССР) на ОПО с указанием даты, времени
     Route::get('/xml2', 'XMLController@year'); // создание xml year
     Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
     Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
     Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
     Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
     Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
+
 
 
     //*******************************************************

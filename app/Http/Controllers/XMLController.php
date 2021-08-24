@@ -37,6 +37,8 @@ use App\Models\Rtn2\Realization;
 use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
 use App\Models\Status_work;
+use App\Models\Xml\Ssr_reports;
+use App\Models\Xml\Svr_reports;
 use App\Models\XML_journal;
 use App\Ref_opo;
 use Illuminate\Http\Request;
@@ -89,52 +91,15 @@ class XMLController extends Controller
       //  return response()->xml($elemet);   // Для тестов
         Storage::disk('local')->put('reference_list.xml', XmlFacade::asXml($elemet), 'public');
     }
-    public function events()
+    public function events_svr_view()
     {
-        $Jas = Jas::orderByDesc('id')->first();
-        $klass = $Jas->level;
-        $desc = $Jas->name;
-        $date_event = $Jas->data;
-        $data = substr($date_event, 0, strpos($date_event, ' '));
-        $vremya = substr($date_event, 10, strpos($date_event, ' '));
-        $id_elem = $Jas->from_elem_opo;
-        $descObj = Ref_obj::find($id_elem);
-        $obj = $descObj->nameObj;
-
-        $number_opo = $Jas->from_opo;
-        $OPO = Ref_opo::find($number_opo);
-        $name_OPO = $OPO->fullDescOPO;
-        $reg_num = $OPO->regNumOPO;
-
-        $date = date('m/d/Y');
-        $time = date('h:i:s');
-
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
-
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<event>\n";
-        //Описание события высокого риска (СВР) с указанием даты, времени
-        $contents = $contents."<klass>$klass </klass>";
-        //Наименование события согластно журналу событий
-        $contents = $contents."<descript>$desc</descript>\n";
-        //Регистрационный номер ОПО
-        $contents = $contents."<regnumder_opo>$reg_num</regnumder_opo>\n";
-        //Наименование ОПО
-        $contents = $contents."<name_opo>$name_OPO</name_opo>\n";
-        //Наименование элемента ОПО
-        $contents = $contents."<name_obj>$obj</name_obj>\n";
-        //Дата возникновения события
-        $contents = $contents."<date_event>$data</date_event>\n";
-        //Время возникновения события
-        $contents = $contents."<time_event>$vremya</time_event>\n";
-        $contents = $contents."</event> \n";
-        //Дата и время формирования данных для передачи
-        $contents = $contents."<date>$date</date>\n";
-        $contents = $contents."<time>$time</time>\n";
-        $contents = $contents."</do>\n";
-
-
-        Storage::disk('local')->put('events.xml', $contents, 'public');
+        $svr = Svr_reports::all();
+        return view('web.docs.reports.Xml_reports.Svr_reports.index', compact('svr'));
+    }
+    public function events_ssr_view()
+    {
+        $ssr = Ssr_reports::all();
+        return view('web.docs.reports.Xml_reports.Ssr_reports.index', compact('ssr'));
     }
 
     public function form51()
