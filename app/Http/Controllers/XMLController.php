@@ -79,7 +79,8 @@ class XMLController extends Controller
         $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
         XML_journal::create($data);
-        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+//        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+        Storage::disk('remote-sftp')->put('15_min.xml', XmlFacade::asXml($data), 'public');
 //        return response()->xml($data);   // Для тестов
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }

@@ -219,19 +219,6 @@ Route::group(['middleware' => ['auth']], function() {
     }); // страница ситуационного плана ОПО
 
 
-    //**************** Все остальное *******************************************************
-    Route::get('/opo_plan/{opo}', function ($opo) {
-        return view('opo_plan', ['opo' => $opo]);
-    })->name('opo')->middleware('auth');  // Уровень ОПО план
-    Route::get('/element/{elem}', function ($elem) {
-        return view('element', ['elem' => $elem]);
-    })->name('element')->middleware('auth');  // Уровень Элемента главная
-    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {
-        return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);
-    })->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
-    Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
-    Route::view('/tests', 'ref_opo');
-
     //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
     Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату ТЕКУЩАЯ
@@ -417,18 +404,6 @@ Route::get('/search/{id_s}', function ($id_s){
 }); // С датапикером
 
 
-//*********** Проба выгрузки картинки выгрузки не работает
-Route::post('user/1', function (Request $request, $id) {
-    // Get the file from the request
-    $file = $request->file('image');
-    // Get the contents of the file
-    $contents = $file->openFile()->fread($file->getSize());
-    // Store the contents to the database
-    $user = App\User::find(1);
-    $user->avatar = $contents;
-    $user->save();
-})->name('uploaded');
-
 //*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
 Route::get('invoices/download', 'InvoiceController@download');
 Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
@@ -440,7 +415,7 @@ Route::resource('/images', 'ImageController');
 
 Route::get('/reports', function (){
     return view('web.docs.reports.opo_5_1');
-}); // Главная xml
+});
 
 
 Route::get('/xml2', function () {
