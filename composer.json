@@ -25,6 +25,7 @@
         "laravelcollective/html": "^6.2",
         "league/flysystem-sftp": "~1.0",
         "livewire/livewire": "^2.4",
+        "spatie/array-to-xml": "^2.15",
         "spatie/laravel-permission": "^4.0",
         "unicodeveloper/laravel-sessiontimeout": "1.0.x-dev"
     },

@@ -72,14 +72,14 @@ return [
         ],
         'remote-sftp' => [
             'driver' => 'sftp',
-          //  'host' => '10.25.254.140',
-            'host' => '10.25.144.133',
+            'host' => '10.25.254.140',
+          //  'host' => '10.25.144.133',
             'username' => 'sdk',
             'password' => 'Potok-DU',
             'visibility' => 'public',
-            'permPublic' => 0766, /// <- this one did the trick
-        //    'root' => '/var/www/html/sdkpb/',
-            'root' => '/home/sdk/',
+            'permPublic' => 0777, /// <- this one did the trick
+            'root' => '/var/www/html/sdkpb/',
+         //   'root' => '/home/sdk/',
 
         ],
 

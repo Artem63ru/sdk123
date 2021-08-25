@@ -97,6 +97,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
             'Symfony\\Component\\Console\\' => 26,
             'Svg\\' => 4,
             'Spatie\\Permission\\' => 18,
+            'Spatie\\ArrayToXml\\' => 18,
         ),
         'R' => 
         array (
@@ -350,6 +351,10 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'Spatie\\Permission\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
+        ),
+        'Spatie\\ArrayToXml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/array-to-xml/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -764,6 +769,8 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Models\\Wells_project' => __DIR__ . '/../..' . '/app/Models/Wells_project.php',
         'App\\Models\\Wells_type' => __DIR__ . '/../..' . '/app/Models/Wells_type.php',
         'App\\Models\\XML_journal' => __DIR__ . '/../..' . '/app/Models/XML_journal.php',
+        'App\\Models\\Xml\\Ssr_reports' => __DIR__ . '/../..' . '/app/Models/Xml/Ssr_reports.php',
+        'App\\Models\\Xml\\Svr_reports' => __DIR__ . '/../..' . '/app/Models/Xml/Svr_reports.php',
         'App\\OPO' => __DIR__ . '/../..' . '/app/OPO.php',
         'App\\Opo_day' => __DIR__ . '/../..' . '/app/Opo_day.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -4817,6 +4824,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\ArrayToXml\\ArrayToXml' => __DIR__ . '/..' . '/spatie/array-to-xml/src/ArrayToXml.php',
         'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',
