@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e0435b0ba74aaeed1a4a50f89d4817693d06a3b7',
+    'reference' => '40b2add70ba545fab95fc60f273b9908337aa7e4',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -509,7 +509,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e0435b0ba74aaeed1a4a50f89d4817693d06a3b7',
+      'reference' => '40b2add70ba545fab95fc60f273b9908337aa7e4',
     ),
     'laravel/tinker' => 
     array (
@@ -1027,6 +1027,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '99732be0ddb3361e16ad77b68ba41efc8e979019',
+    ),
+    'spatie/array-to-xml' => 
+    array (
+      'pretty_version' => '2.15.0',
+      'version' => '2.15.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1795afad4e5a1f4b7af2e0e09802550eaa00a6f8',
     ),
     'spatie/laravel-permission' => 
     array (

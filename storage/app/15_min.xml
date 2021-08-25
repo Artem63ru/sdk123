@@ -1,2 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
-<do id="gda"><fullDescOPO>Фонд скважин Астраханского газоконденсатного месторождения</fullDescOPO><regNumOPO>А38-00528-0011</regNumOPO><ip_opo>0.26</ip_opo><prognoz_ip_opo>0.26</prognoz_ip_opo><status>Средний риск аварии</status><factors><factors1><Name_factor>СКВ1109</Name_factor><IP_factor>0.48</IP_factor></factors1><factors2><Name_factor>СКВ722</Name_factor><IP_factor>0.56</IP_factor></factors2><factors3><Name_factor>СКВ720</Name_factor><IP_factor>0.55</IP_factor></factors3><factors4><Name_factor>СКВ718</Name_factor><IP_factor>0.54</IP_factor></factors4><factors5><Name_factor>СКВ723</Name_factor><IP_factor>0.55</IP_factor></factors5><factors6><Name_factor>СКВ724</Name_factor><IP_factor>0.58</IP_factor></factors6><factors7><Name_factor>СКВ406</Name_factor><IP_factor>0.50</IP_factor></factors7><factors8><Name_factor>СКВ266</Name_factor><IP_factor>0.48</IP_factor></factors8><factors9><Name_factor>СКВ3ГФ</Name_factor><IP_factor>0.58</IP_factor></factors9><factors10><Name_factor>СКВ711</Name_factor><IP_factor>0.57</IP_factor></factors10><factors11><Name_factor>СКВ709</Name_factor><IP_factor>0.54</IP_factor></factors11><factors12><Name_factor>СКВ726</Name_factor><IP_factor>0.48</IP_factor></factors12><factors13><Name_factor>СКВ923</Name_factor><IP_factor>0.53</IP_factor></factors13><factors14><Name_factor>СКВ911</Name_factor><IP_factor>0.57</IP_factor></factors14><factors15><Name_factor>СКВ4429</Name_factor><IP_factor>0.53</IP_factor></factors15><factors16><Name_factor>СКВ608</Name_factor><IP_factor>0.28</IP_factor></factors16><factors17><Name_factor>СКВ606</Name_factor><IP_factor>0.26</IP_factor></factors17><factors18><Name_factor>СКВ844</Name_factor><IP_factor>0.47</IP_factor></factors18><factors19><Name_factor>СКВ841</Name_factor><IP_factor>0.55</IP_factor></factors19><factors20><Name_factor>СКВ913</Name_factor><IP_factor>0.53</IP_factor></factors20></factors><date>2021-08-24</date><time>22:10:28</time></do>
+<?xml version="1.0" encoding="UTF-8" ?> 
+ <do id = "gda">
+<opo>
+<name>Фонд скважин Астраханского газоконденсатного месторождения</name>
+<regnumder>А38-00528-0011</regnumder>
+<ip_opo>0.26</ip_opo>
+<prognoz_ip_opo>0.26</prognoz_ip_opo>
+<status>Средний риск аварии</status>
+<factors>
+<factor id =1>
+<Name_factor>СКВ1109</Name_factor>
+<IP_factor>0.48</IP_factor>
+</factor>
+<factor id =2>
+<Name_factor>СКВ722</Name_factor>
+<IP_factor>0.56</IP_factor>
+</factor>
+<factor id =3>
+<Name_factor>СКВ720</Name_factor>
+<IP_factor>0.55</IP_factor>
+</factor>
+<factor id =4>
+<Name_factor>СКВ718</Name_factor>
+<IP_factor>0.54</IP_factor>
+</factor>
+<factor id =5>
+<Name_factor>СКВ723</Name_factor>
+<IP_factor>0.55</IP_factor>
+</factor>
+<factor id =6>
+<Name_factor>СКВ724</Name_factor>
+<IP_factor>0.58</IP_factor>
+</factor>
+<factor id =7>
+<Name_factor>СКВ406</Name_factor>
+<IP_factor>0.50</IP_factor>
+</factor>
+<factor id =8>
+<Name_factor>СКВ266</Name_factor>
+<IP_factor>0.48</IP_factor>
+</factor>
+<factor id =9>
+<Name_factor>СКВ3ГФ</Name_factor>
+<IP_factor>0.58</IP_factor>
+</factor>
+<factor id =10>
+<Name_factor>СКВ711</Name_factor>
+<IP_factor>0.57</IP_factor>
+</factor>
+<factor id =11>
+<Name_factor>СКВ709</Name_factor>
+<IP_factor>0.54</IP_factor>
+</factor>
+<factor id =12>
+<Name_factor>СКВ726</Name_factor>
+<IP_factor>0.48</IP_factor>
+</factor>
+<factor id =13>
+<Name_factor>СКВ923</Name_factor>
+<IP_factor>0.53</IP_factor>
+</factor>
+<factor id =14>
+<Name_factor>СКВ911</Name_factor>
+<IP_factor>0.57</IP_factor>
+</factor>
+<factor id =15>
+<Name_factor>СКВ4429</Name_factor>
+<IP_factor>0.53</IP_factor>
+</factor>
+<factor id =16>
+<Name_factor>СКВ608</Name_factor>
+<IP_factor>0.28</IP_factor>
+</factor>
+<factor id =17>
+<Name_factor>СКВ606</Name_factor>
+<IP_factor>0.26</IP_factor>
+</factor>
+<factor id =18>
+<Name_factor>СКВ844</Name_factor>
+<IP_factor>0.47</IP_factor>
+</factor>
+<factor id =19>
+<Name_factor>СКВ841</Name_factor>
+<IP_factor>0.55</IP_factor>
+</factor>
+<factor id =20>
+<Name_factor>СКВ913</Name_factor>
+<IP_factor>0.53</IP_factor>
+</factor>
+</factors>
+</opo>
+<date>2021-08-25</date>
+<time>10:25:13</time>
+</do>
