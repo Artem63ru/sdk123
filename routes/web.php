@@ -32,7 +32,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
-    Route::get('/opo/get_db_info/15', 'OpoController@get_db_info'); //Достаем данные из базы данных для таблицы
+//    Route::get('/opo/getjas1/', 'OpoController@get_jas1'); //Достаем данные из базы данных для таблицы
+    Route::get('/opo/getjas1/{count}', 'OpoController@get_jas1');
     Route::get('/opo/get_sum/all', 'OpoController@get_sum');
     Route::post('/opo/set_check_for_opo', 'OpoController@set_check');
 
@@ -219,6 +220,19 @@ Route::group(['middleware' => ['auth']], function() {
     }); // страница ситуационного плана ОПО
 
 
+    //**************** Все остальное *******************************************************
+    Route::get('/opo_plan/{opo}', function ($opo) {
+        return view('opo_plan', ['opo' => $opo]);
+    })->name('opo')->middleware('auth');  // Уровень ОПО план
+    Route::get('/element/{elem}', function ($elem) {
+        return view('element', ['elem' => $elem]);
+    })->name('element')->middleware('auth');  // Уровень Элемента главная
+    Route::get('/element/{elem_id}/oto/{oto}', function ($elem_id, $oto) {
+        return view('oto', ['elem_id' => $elem_id, 'oto' => $oto]);
+    })->name('oto')->middleware('auth');  // Уровень Элемента декомпозиция на ОТО
+    Route::get('/ref_opo', 'ElemController@view_tu')->name('ref_opo');
+    Route::view('/tests', 'ref_opo');
+
     //*****************   Данные  **************************
     Route::get('charts/fetch-data/{id}', 'OpoController@view_ip_last'); //вывод текущего показателя ИП ОПО 30 последних
     Route::get('charts/fetch-data/{id}/data/{data}', 'OpoController@view_ip_last_test'); //вывод текущего показателя ИП ОПО за данную дату ТЕКУЩАЯ
@@ -282,21 +296,22 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('docs/act_pb', 'ReportController@report_act_pb')->name('act_pb');
     Route::post('docs/quality_criteria', 'ReportController@report_quality_criteria')->name('quality_criteria');
 
-    ////////////******************** Отчеты XML**************************************
-    Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут
-    Route::get('/xml_obj', 'XMLController@xml_obj'); // создание xml справочника по элементам ОПО
-    Route::get('/xml_svr', 'XMLController@events_svr_view'); // создание xml Описание события высокого риска (СВР) на ОПО с указанием даты, времени
-    Route::get('/xml_ssr', 'XMLController@events_ssr_view'); // создание xml Описание события среднего риска (ССР) на ОПО с указанием даты, времени
-    Route::get('/xml2', 'XMLController@year'); // создание xml year
-    Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
-    Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
-    Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
-    Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
-    Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
+        ////////////******************** Отчеты XML**************************************
+        Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут
+        Route::get('/xml_obj', 'XMLController@xml_obj'); // создание xml справочника по элементам ОПО
+        Route::get('/xml_svr', 'XMLController@events_svr_view'); // создание xml Описание события высокого риска (СВР) на ОПО с указанием даты, времени
+        Route::get('/xml_ssr', 'XMLController@events_ssr_view'); // создание xml Описание события среднего риска (ССР) на ОПО с указанием даты, времени
+        Route::get('/xml2', 'XMLController@year'); // создание xml year
+        Route::get('/xml_form52', 'XMLController@form52'); // создание xml формы 5.2
+        Route::get('/xml_form51', 'XMLController@form51'); // создание xml формы 5.1
+        Route::get('/xml_form61', 'XMLController@form61'); // создание xml формы 6.1
+        Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
+        Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
 
 
 
-    //*******************************************************
+
+        //*******************************************************
 
     Route::get('/jas_up_chek', function () {
         App\Jas::updated_check(5);
@@ -404,6 +419,18 @@ Route::get('/search/{id_s}', function ($id_s){
 }); // С датапикером
 
 
+//*********** Проба выгрузки картинки выгрузки не работает
+Route::post('user/1', function (Request $request, $id) {
+    // Get the file from the request
+    $file = $request->file('image');
+    // Get the contents of the file
+    $contents = $file->openFile()->fread($file->getSize());
+    // Store the contents to the database
+    $user = App\User::find(1);
+    $user->avatar = $contents;
+    $user->save();
+})->name('uploaded');
+
 //*********** Проба ПДФ выгрузка в пдф работает https://si-dev.com/ru/blog/laravel-html-to-pdf
 Route::get('invoices/download', 'InvoiceController@download');
 Route::get('opos', 'NotesController@index')->name('opos')->middleware('password.confirm');
@@ -415,7 +442,7 @@ Route::resource('/images', 'ImageController');
 
 Route::get('/reports', function (){
     return view('web.docs.reports.opo_5_1');
-});
+}); // Главная xml
 
 
 Route::get('/xml2', function () {

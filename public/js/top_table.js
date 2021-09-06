@@ -10,39 +10,52 @@ function clearTable(table){
 }
 
 function addRowToTable(table, item, button=false){
-    row=document.createElement("tr");
+    var row=document.createElement("tr");
 
-    td_date=document.createElement("td");
+    var td_date=document.createElement("td");
     td_date.className="td_date";
-    date_text=document.createTextNode(item["date"]);
+    var date_text=document.createTextNode(item["date"]);
     td_date.appendChild(date_text);
 
-    td_status=document.createElement("td");
+    var td_status=document.createElement("td");
     td_status.className="td_status";
-    status_text=document.createTextNode(item["level"]);
+    var status_text=document.createElement('a')
+    status_text.textContent=item["level"]
+    // console.log('level', item['level'])
+    // if (item['level']==='C1'){
+    //     status_text.href='/xml_svr';
+    // }
+    // if (item['level']==='С2'){
+    //     status_text.href='/xml_ssr'
+    // }
     td_status.appendChild(status_text);
 
-    td_opo=document.createElement("td");
+    var td_opo=document.createElement("td");
     td_opo.className="td_opo";
-    opo_text=document.createTextNode(item["descOPO"]);
+    var opo_text=document.createTextNode(item["descOPO"]);
     td_opo.appendChild(opo_text);
 
-    td_element=document.createElement("td");
+    var td_element=document.createElement("td");
     td_element.className="td_element";
-    element_text=document.createTextNode(item["nameObj"]+` (Элемен объекта ОПО ${item["descOPO"]})`);
+    var element_text=document.createTextNode(item["nameObj"]+` (Элемент объекта ОПО ${item["descOPO"]})`);
     td_element.appendChild(element_text);
 
-    td_number=document.createElement("td");
+    var td_number=document.createElement("td");
     td_number.className="td_number";
-    number_text=document.createTextNode(item["status"]);
+    var number_text=document.createTextNode(item["status"]);
     td_number.appendChild(number_text);
 
-    td_event=document.createElement("td");
+    var td_event=document.createElement("td");
     td_event.className="td_event";
-    event_text=document.createTextNode(item["name"]);
+    var event_text=document.createTextNode(item["name"]);
     td_event.appendChild(event_text);
 
-
+    td_date.addEventListener('click', go_to);
+    td_status.addEventListener('click', go_to);
+    td_opo.addEventListener('click', go_to);
+    td_element.addEventListener('click', go_to);
+    td_number.addEventListener('click', go_to);
+    td_event.addEventListener('click', go_to);
 
     row.appendChild(td_date);
     row.appendChild(td_status);
@@ -51,8 +64,19 @@ function addRowToTable(table, item, button=false){
     row.appendChild(td_number);
     row.appendChild(td_event);
 
+    function go_to(){
+        var href='#'
+        if (item['level']=='С2'){
+            href='/xml_ssr';
+        }
+        if (item['level']=='C1'){
+            href='/xml_svr';
+        }
+        document.location.href=href;
+    }
+
     if (button){
-        td_confirm=document.createElement("button")
+        var td_confirm=document.createElement("button")
         td_confirm.className="td_confirm_btn";
         td_confirm.id=item['id'];
         td_confirm.type="button";
@@ -67,74 +91,75 @@ function addRowToTable(table, item, button=false){
 var ids_to_kv=[];
 
 
-
 async function getDbInfo(){
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     while(true){
-        var GetDataReq=new XMLHttpRequest();
-        var GetSumReq=new XMLHttpRequest();
-
-
-        GetDataReq.onreadystatechange =function() {
-            if (GetDataReq.readyState == 4 && GetDataReq.status == 200) {
-                dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
-                clearTable(dialTabBody);
-                if (typeof tablePage !== 'undefined') {
-                    tabBody = document.getElementById("top_table_inside").getElementsByTagName("tbody").item(0);
-
-                    //Удаление прошлой инфы из базы данных
+        $.ajax({
+            url:'/opo/get_sum/all',
+            type:'GET',
+            success:function(data){
+                // console.log(data)
+                var new_sum=data;//Принимаем данные в json
+                var old_sum=getFromLocalStorage('sum');
+                if (old_sum==null || old_sum!==new_sum) {
+                    setToLocalStorage('sum', new_sum);
+                    get_data();
+                }
+            }
+        })
+        function get_data(){
+            $.ajax({
+                url:"/opo/getjas1/15",
+                type:"GET",
+                success:function(data)
+                {
+                    var tabBody = document.getElementById("top_table_inside").getElementsByTagName("tbody").item(0);
                     clearTable(tabBody);
+                    var arr=JSON.parse(data);
+                    arr.forEach(function(item, i, arr) {
+                        if (typeof tablePage !== 'undefined') {
+                            addRowToTable(tabBody, item);
+                        }
+
+                    });
 
                 }
+            })
 
-                let arr=[]
-                arr=JSON.parse(GetDataReq.responseText);//Принимаем данные в json
-                //console.log(tablePage);
-                var new_data_flag=false;
-                //Перегружаем функцию и раскидываем инфу по таблице
-                arr.forEach(function(item, i, arr){
-                    if (typeof tablePage !== 'undefined') {
-                        addRowToTable(tabBody, item);
+
+            $.ajax({
+                url:"/opo/getjas1/0",
+                type:"GET",
+                success:function(data)
+                {
+
+                    var dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
+                    clearTable(dialTabBody);
+
+
+                    var arr=JSON.parse(data);
+                    var new_data_flag=false;
+
+                    if (arr[0].length!==0) {
+                        arr.forEach(function (item, i, arr) {
+                            ids_to_kv.push(item['id']);
+                            new_data_flag = true;
+                            addRowToTable(dialTabBody, item, true);
+                        });
                     }
 
-                    if (item["check"]==false){
-                        ids_to_kv.push(item['id']);
-                        new_data_flag=true;
-                        addRowToTable(dialTabBody, item, true);
+                    if (new_data_flag){
+                        ShowAlert();
                     }
-
-                });
-                //console.log(new_data_flag);
-                if (new_data_flag){
-                    ShowAlert();
                 }
-
-            }
-        };
-
-        GetSumReq.onreadystatechange=function (){
-            if (GetSumReq.readyState == 4 && GetSumReq.status == 200) {
-                new_sum=GetSumReq.response;//Принимаем данные в json
-                old_sum=getFromLocalStorage('sum');
-                //console.log(new_sum, old_sum);
-                if (old_sum==null || old_sum!=new_sum) {
-                    GetDataReq.open("GET", "/opo/get_db_info/15", true);
-                    GetDataReq.send();
-                    setToLocalStorage('sum', new_sum)
-                }
-            }
+            })
         }
 
-
-
-        GetSumReq.open("GET", "/opo/get_sum/all", true);
-        GetSumReq.send();
-
-
-
-
-
         await sleep(60);
-
     }
 }
 
@@ -149,7 +174,7 @@ function setToLocalStorage(key, value){
 }
 
 function ShowAlert(){
-    console.log('SHOWALERT')
+    // console.log('SHOWALERT')
     const mClose = document.querySelectorAll('[data-close]');
     let	mStatus = false;
     var overlay = document.querySelector('.not_click_overlay');
@@ -201,7 +226,7 @@ function ShowAlert(){
         request.onreadystatechange=function (){
             if ((request.readyState==4) && (request.status==200)) {
                 var res=JSON.parse(request.responseText);
-                console.log(request.responseText);
+                // console.log(request.responseText);
                 if (res['result']=='true'){
                     td_confirm_res=document.createElement("td");
                     td_confirm_res.textContent="Успешно";

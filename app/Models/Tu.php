@@ -11,6 +11,6 @@ class Tu extends Model
     public $primaryKey = 'id';
     public function tu_to_elem()
     {
-        return $this->belongsTo('App\Models\Ref_Obj', 'from_el_opo', 'idObj');
+        return $this->belongsTo('App\Models\Ref_Obj', 'from_el_opo', 'buildingName');
     }
 }

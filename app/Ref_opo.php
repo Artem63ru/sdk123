@@ -12,7 +12,9 @@ class Ref_opo extends Model
     public $timestamps = true;
     public $primaryKey = 'idOPO';
     protected $fillable = [
-        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login',
+        'descOPO', 'opoNum', 'opoRegtDate', 'hazarClass', 'opoName', 'flDel', 'dateMode', 'login', 'opoAddress', 'opoInsuranceNum', 'opoInsuranceDate', 'pbRegNum', 'opoLaunchDate', 'pbState',
+        'pbIssueDate', 'pbValidUntil', 'rtnReg', 'rtnAdv', 'isGovShare', 'tName', 'rName', 'numName', 'classOPO', 'seasonWork', 'riskCategory', 'opoPkName', 'opoPkPosition', 'opoPkPhone','opoPkEmail', 'opoLcName','opoLcPosition',
+        'opoLcPhone', 'opoLcEmail'
     ];
     //************************** Последние 90 записей в ЖАС для конкретного ОПО *********************************************
         public function opo_to_jas()
@@ -23,7 +25,7 @@ class Ref_opo extends Model
     //************************** Выбор элементов конкретного ОПО *********************************************
         public function opo_to_obj()
     {
-        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('idObj')->where('InUse', '!=', '0')->where('status', '=', '50');
+        return $this->hasMany('App\Models\Ref_obj', 'idOPO', 'idOPO')->orderBy('buildingName')->where('InUse', '!=', '0')->where('status', '=', '50');
 //        return $this->hasMany('App\Jas', 'idOPO', 'from_opo');
     }
     //************************** Текущее значение ИП ОПО для конкретного ОПО *********************************************

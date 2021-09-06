@@ -119,6 +119,7 @@
       <path value="$PROJECT_DIR$/vendor/jailtonsc/laravel-response-xml" />
       <path value="$PROJECT_DIR$/vendor/kyslik/column-sortable" />
       <path value="$PROJECT_DIR$/vendor/jenssegers/date" />
+      <path value="$PROJECT_DIR$/vendor/spatie/array-to-xml" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

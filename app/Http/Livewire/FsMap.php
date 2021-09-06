@@ -18,7 +18,7 @@ class FsMap extends Component
 
         return view('livewire.fs-map',[
         'objs'=>Ref_obj::orwhere([['InUse', '!=', '0'],['idOPO','=','1']])
-            ->orderby('idObj')
+            ->orderby('buildingGUID')
             ->get(),
         'opo' =>Ref_opo::find(1),
             ]);
@@ -26,7 +26,7 @@ class FsMap extends Component
     public function Show($id)
     {
         $this->updateMode = true;
-        $elem= Ref_obj::where('idObj',$id)->first();
+        $elem= Ref_obj::where('buildingGUID',$id)->first();
         $this->elem_id = $id;
         $this->name = $elem->nameObj;
         $this->status = $elem->obj_to_status->desc_work;
