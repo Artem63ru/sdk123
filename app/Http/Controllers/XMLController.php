@@ -980,4 +980,8 @@ class XMLController extends Controller
 
         Storage::disk('local')->put('year.xml', $contents, 'public');
     }
+
+    public function xml_test(){
+        return view('web.xml_test');
+    }
 }

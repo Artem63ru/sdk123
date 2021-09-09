@@ -22,14 +22,6 @@
 
 <style>
     /*--- CONTENT ---*/
-    .fc-list-column-names{
-        font-weight: 800;
-        font-style: oblique;
-        font-size:130%;
-    }
-
-
-
     #calendar_event_content {
         width:100%; /* ширина нашего блока */
         height:95%; /* высота нашего блока */
@@ -38,13 +30,6 @@
         width: 90%; /* Ширина поля в процентах */
         height: 200px; /* Высота поля в пикселах */
         resize: none; /* Запрещаем изменять размер */
-    }
-
-    #new_calendar_event_modal{
-        width: 100%; max-width: 570px; height: 550px;
-    }
-    #calendar_event_info_modal{
-        width: 100%; max-width: 570px; height: 350px;
     }
 
     .calendar_page_modal_btn{
@@ -68,12 +53,12 @@
         </h2>
     </div>
     <div id="calendar"></div>
-    <div class="overlay" data-close=""></div>
-    <div id="calendar_event_info_modal" class="dlg-modal dlg-modal-slide">
-        <div class="modal_header">
-            <span class="closer_btn" data-close=""></span>
-            <h3 id="event_title"></h3>
-        </div>
+{{--    <div class="overlay" data-close=""></div>--}}
+{{--    <div id="calendar_event_info_modal" class="dlg-modal dlg-modal-slide">--}}
+{{--        <div class="modal_header">--}}
+{{--            <span class="closer_btn" data-close=""></span>--}}
+{{--            <h3 id="event_title"></h3>--}}
+{{--        </div>--}}
         <div id="calendar_event_content">
             <input type="hidden" id="current_event_id" value="">
             <p id="event_description"></p>
@@ -90,14 +75,14 @@
             </p>
         </div>
 
-    </div>
+{{--    </div>--}}
 
 
-    <div id="new_calendar_event_modal" class="dlg-modal dlg-modal-slide">
-        <div class="modal_header">
-            <span class="closer_btn" data-close=""></span>
-            <h3 id="new_event_modal_title">Новое событие</h3>
-        </div>
+{{--    <div id="new_calendar_event_modal" class="dlg-modal dlg-modal-slide">--}}
+{{--        <div class="modal_header">--}}
+{{--            <span class="closer_btn" data-close=""></span>--}}
+{{--            <h3 id="new_event_modal_title">Новое событие</h3>--}}
+{{--        </div>--}}
         <div id="new_calendar_event_content">
             <p>
                 <label for="new_event_title">Событие: </label>
@@ -136,7 +121,7 @@
                 <input type="button" id="change_event_button" class="calendar_page_modal_btn" value="Применить">
             </p>
 
-        </div>
+{{--        </div>--}}
     </div>
     @push('calendar_scripts')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

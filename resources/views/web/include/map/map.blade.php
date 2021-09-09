@@ -20,66 +20,73 @@
 
 </div>
 
-<div id="open_window" class="dlg-modal dlg-modal-slide" style="height: 14%; width: 20%">
-    <div class="form_header">
-        <span class="closer_btn" data-close="" ></span>
-        <h3>Внимание!<br> Пароль от учетной записи необходимо обновить</h3>
-    </div>
+{{--<div id="open_window" class="dlg-modal dlg-modal-slide" style="height: 14%; width: 20%">--}}
+{{--    <div class="form_header">--}}
+{{--        <span class="closer_btn" data-close="" ></span>--}}
+{{--        <h3>Внимание!<br> Пароль от учетной записи необходимо обновить</h3>--}}
+{{--    </div>--}}
+{{--</div>--}}
+{{--<div class="overlay" data-close=""></div>--}}
+<div id="change_password_message_content" style="text-align: center">
+    <h3>Пароль от учетной записи необходимо обновить!</h3>
 </div>
-<div class="overlay" data-close=""></div>
 
 
 <script>
     document.addEventListener('DOMContentLoaded', function test() {
-
-        //-------------ДИАЛОГ----------------//
-        const overlay = document.querySelector('.overlay'),
-            modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
-            mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
-        let	mStatus = false;
-
-        for (let el of mClose) {
-            el.addEventListener('click', modalClose);
+        var content=document.getElementById('change_password_message_content')
+        var mod=new ModalWindow('ВНИМАНИЕ',content, AnimationsTypes.slideIn)
+        if ({{$check_date_password}}==1){
+            mod.show();
         }
+        {{--//-------------ДИАЛОГ----------------//--}}
+        {{--const overlay = document.querySelector('.overlay'),--}}
+        {{--    modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),--}}
+        {{--    mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');--}}
+        {{--let	mStatus = false;--}}
 
-        document.addEventListener('keydown', modalClose);
+        {{--for (let el of mClose) {--}}
+        {{--    el.addEventListener('click', modalClose);--}}
+        {{--}--}}
 
-        function modalShow(modal) {
-            overlay.className='overlay fadeIn';
-            modal.className='dlg-modal dlg-modal-slide slideInDown';
+        {{--document.addEventListener('keydown', modalClose);--}}
 
-            mStatus = true;
-        }
+        {{--function modalShow(modal) {--}}
+        {{--    overlay.className='overlay fadeIn';--}}
+        {{--    modal.className='dlg-modal dlg-modal-slide slideInDown';--}}
 
-        function modalClose(event) {
-            function close(){
-                for (let modal of modals) {
-                    modal.className='dlg-modal dlg-modal-slide slideOutUp'
+        {{--    mStatus = true;--}}
+        {{--}--}}
 
-                }
-                overlay.className='overlay fadeOut';
-                mStatus = false;
-            }
-            if (typeof event ==='undefined'){
-                if (mStatus){
-                    close()
-                }
-            }
-            else{
-                if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {
-                    close()
-                }
-            }
-        }
+        {{--function modalClose(event) {--}}
+        {{--    function close(){--}}
+        {{--        for (let modal of modals) {--}}
+        {{--            modal.className='dlg-modal dlg-modal-slide slideOutUp'--}}
 
-        function open_dialog(){
-            var mod=document.getElementById('open_window');
-            console.log(mod);
-            modalShow(mod);
-        }
+        {{--        }--}}
+        {{--        overlay.className='overlay fadeOut';--}}
+        {{--        mStatus = false;--}}
+        {{--    }--}}
+        {{--    if (typeof event ==='undefined'){--}}
+        {{--        if (mStatus){--}}
+        {{--            close()--}}
+        {{--        }--}}
+        {{--    }--}}
+        {{--    else{--}}
+        {{--        if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {--}}
+        {{--            close()--}}
+        {{--        }--}}
+        {{--    }--}}
+        {{--}--}}
 
-            if ({{$check_date_password}} == 1) {
-                    open_dialog();
-            }
+        {{--function open_dialog(){--}}
+        {{--    var mod=document.getElementById('open_window');--}}
+        {{--    console.log(mod);--}}
+        {{--    modalShow(mod);--}}
+        {{--}--}}
+
+        {{--    if ({{$check_date_password}} == 1) {--}}
+        {{--            open_dialog();--}}
+        {{--    }--}}
     })
 </script>

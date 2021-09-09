@@ -1,6 +1,7 @@
 var calendar;
 var action=''
 var dateOptions={day:'numeric', month:'numeric',year:'numeric'};
+var add_maintenance_modal;
 document.addEventListener('DOMContentLoaded', function() {
     $.ajaxSetup({
         headers:{
@@ -8,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    var add_maintenance_dialog=document.getElementById('add_new_maintenance_dialog')
+    var add_maintenance_dialog_content=document.getElementById('new_maintenance_form')
+    add_maintenance_modal=new ModalWindow('', add_maintenance_dialog_content, AnimationsTypes.slideIn, true, true)
 
 
     var calendarEl = document.getElementById('calendar');
@@ -57,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 add_new_value:{
                     text:'Добавить',
                     click: function() {
+                        add_maintenance_modal.change_header_text('Добавить новое техническое обслуживание')
                         clearModal()
                         $('.form_btn').removeClass('resize')
                         $('#delete_maintenance_button').hide()
@@ -79,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                         }
                         action='add'
-                        modalShow(add_maintenance_dialog)
+                        add_maintenance_modal.show()
 
                     }
                 }
@@ -142,17 +145,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
 
-
-                $('#maintenance_title').val(info.event.title)
-
                 $('#add_new_maintenance_button').text('Изменить')
 
                 if (calendar_type=='opo'){
                     // console.log(info.event.extendedProps['obj_id'])
                     $('#obj_id_select').val(info.event.extendedProps['obj_id']).change();
                 }
-
-                modalShow(add_maintenance_dialog)
+                add_maintenance_modal.change_header_text(info.event.title)
+                add_maintenance_modal.show()
+                // modalShow(add_maintenance_dialog)
             }
 
         });
@@ -189,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             success:function(responce)
             {
                 if (responce==1){
-                    modalClose();
+                    add_maintenance_modal.close()
                     calendar.getEventById($('#obj_id_input').val()).remove()
                 }
                 else{
@@ -238,7 +239,7 @@ function add_maintenance(form){
         {
             console.log(responce)
             if (responce==1){
-                modalClose();
+                add_maintenance_modal.close();
                 calendar.refetchEvents();
             }
         }

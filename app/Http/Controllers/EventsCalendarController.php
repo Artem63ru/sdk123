@@ -107,8 +107,8 @@ class EventsCalendarController extends  Controller {
                     CalendarEvent::where('id', $request->event_id)->update(['dest_user_id'=>$request->dest_user_id,
                         'type'=>$request->event_type,
                         'title'=>$request->title,
-                        'start_date'=>$request->start_datetime,
-                        'end_date'=>$request->end_datetime,
+                        'start_datetime'=>$request->start_datetime,
+                        'end_datetime'=>$request->end_datetime,
                         'description'=>$request->description]);
                     return true;
                 }

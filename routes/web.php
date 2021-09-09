@@ -308,6 +308,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/xml_form62', 'XMLController@form62'); // создание xml формы 6.2
         Route::get('/xml_form5363', 'XMLController@form5363'); // создание xml формы 5.3 6.3
 
+        Route::get('/xml_test', 'XMLController@xml_test');
+
 
 
 

@@ -92,6 +92,7 @@ class AdminController extends Controller
        } elseif ((count($js_logs)/$setting_journal->js_max)*100 > $setting_journal->js_warning) {
            return 4;   //если аварийный ЖС
        }
+//        return 4;
     }
 
 //    // Конфигурация безовасности

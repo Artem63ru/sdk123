@@ -10,47 +10,52 @@ function clearTable(table){
 }
 
 function addRowToTable(table, item, button=false){
-    row=document.createElement("tr");
+    var row=document.createElement("tr");
 
-    td_date=document.createElement("td");
+    var td_date=document.createElement("td");
     td_date.className="td_date";
-    date_text=document.createTextNode(item["date"]);
+    var date_text=document.createTextNode(item["date"]);
     td_date.appendChild(date_text);
 
-    td_status=document.createElement("td");
+    var td_status=document.createElement("td");
     td_status.className="td_status";
-    status_text=document.createElement('a')
+    var status_text=document.createElement('a')
     status_text.textContent=item["level"]
-    console.log('level', item['level'])
-    if (item['level']==='C1'){
-        status_text.href='/xml_svr';
-    }
-    if (item['level']==='С2'){
-        status_text.href='/xml_ssr'
-    }
+    // console.log('level', item['level'])
+    // if (item['level']==='C1'){
+    //     status_text.href='/xml_svr';
+    // }
+    // if (item['level']==='С2'){
+    //     status_text.href='/xml_ssr'
+    // }
     td_status.appendChild(status_text);
 
-    td_opo=document.createElement("td");
+    var td_opo=document.createElement("td");
     td_opo.className="td_opo";
-    opo_text=document.createTextNode(item["descOPO"]);
+    var opo_text=document.createTextNode(item["descOPO"]);
     td_opo.appendChild(opo_text);
 
-    td_element=document.createElement("td");
+    var td_element=document.createElement("td");
     td_element.className="td_element";
-    element_text=document.createTextNode(item["nameObj"]+` (Элемен объекта ОПО ${item["descOPO"]})`);
+    var element_text=document.createTextNode(item["nameObj"]+` (Элемен объекта ОПО ${item["descOPO"]})`);
     td_element.appendChild(element_text);
 
-    td_number=document.createElement("td");
+    var td_number=document.createElement("td");
     td_number.className="td_number";
-    number_text=document.createTextNode(item["status"]);
+    var number_text=document.createTextNode(item["status"]);
     td_number.appendChild(number_text);
 
-    td_event=document.createElement("td");
+    var td_event=document.createElement("td");
     td_event.className="td_event";
-    event_text=document.createTextNode(item["name"]);
+    var event_text=document.createTextNode(item["name"]);
     td_event.appendChild(event_text);
 
-
+    td_date.addEventListener('click', go_to);
+    td_status.addEventListener('click', go_to);
+    td_opo.addEventListener('click', go_to);
+    td_element.addEventListener('click', go_to);
+    td_number.addEventListener('click', go_to);
+    td_event.addEventListener('click', go_to);
 
     row.appendChild(td_date);
     row.appendChild(td_status);
@@ -59,8 +64,19 @@ function addRowToTable(table, item, button=false){
     row.appendChild(td_number);
     row.appendChild(td_event);
 
+    function go_to(){
+        var href='#'
+        if (item['level']=='С2'){
+            href='/xml_ssr';
+        }
+        if (item['level']=='C1'){
+            href='/xml_svr';
+        }
+        document.location.href=href;
+    }
+
     if (button){
-        td_confirm=document.createElement("button")
+        var td_confirm=document.createElement("button")
         td_confirm.className="td_confirm_btn";
         td_confirm.id=item['id'];
         td_confirm.type="button";
@@ -86,6 +102,7 @@ async function getDbInfo(){
             url:'/opo/get_sum/all',
             type:'GET',
             success:function(data){
+                // console.log(data)
                 var new_sum=data;//Принимаем данные в json
                 var old_sum=getFromLocalStorage('sum');
                 if (old_sum==null || old_sum!==new_sum) {
@@ -119,17 +136,21 @@ async function getDbInfo(){
                 type:"GET",
                 success:function(data)
                 {
-                    // console.log(data)
-                    var dialTabBody = document.getElementById("new_jas_1_modal").getElementsByTagName("tbody").item(0);
+
+                    var dialTabBody = document.getElementById("new_jas_1_modal_content").getElementsByTagName("tbody").item(0);
                     clearTable(dialTabBody);
+
 
                     var arr=JSON.parse(data);
                     var new_data_flag=false;
-                    arr.forEach(function(item, i, arr){
-                        ids_to_kv.push(item['id']);
-                        new_data_flag=true;
-                        addRowToTable(dialTabBody, item, true);
-                    });
+
+                    if (arr[0].length!==0) {
+                        arr.forEach(function (item, i, arr) {
+                            ids_to_kv.push(item['id']);
+                            new_data_flag = true;
+                            addRowToTable(dialTabBody, item, true);
+                        });
+                    }
 
                     if (new_data_flag){
                         ShowAlert();
@@ -154,40 +175,46 @@ function setToLocalStorage(key, value){
 
 function ShowAlert(){
     // console.log('SHOWALERT')
-    const mClose = document.querySelectorAll('[data-close]');
-    let	mStatus = false;
-    var overlay = document.querySelector('.not_click_overlay');
-    var modal = document.getElementById("new_jas_1_modal");
-    modalShow(modal);
+    var modal_content=document.getElementById('new_jas_1_modal_content')
+    var modal=new ModalWindow('Внимание, новое событие', modal_content, AnimationsTypes.justMe, false, true, 'asd')
+    // modal.set_overlay_background_color('white');
+    modal.set_button_background_color_on_justme('#4285f4');
+    modal.show()
 
-    for (let el of mClose) {
-        el.addEventListener('click', modalClose);
-    }
-
-    function modalShow(modal) {
-
-        // показываем подложку всплывающего окна
-        overlay.classList.remove('fadeOut');
-        overlay.classList.add('fadeIn');
-
-        modal.classList.remove('fadeOut');
-        modal.classList.add('fadeIn');
-
-        mStatus = true;
-    }
-
-    function modalClose() {
-        if (mStatus) {
-            modal.classList.remove('fadeIn');
-            modal.classList.add('fadeOut');
-            overlay.classList.remove('fadeIn');
-            overlay.classList.add('fadeOut');
-            // сбрасываем флаг, устанавливая его значение в 'false'
-            // это значение указывает нам, что на странице нет открытых
-            // всплывающих окон
-            mStatus = false;
-        }
-    }
+    // const mClose = document.querySelectorAll('[data-close]');
+    // let	mStatus = false;
+    // var overlay = document.querySelector('.not_click_overlay');
+    // var modal = document.getElementById("new_jas_1_modal");
+    // modalShow(modal);
+    //
+    // for (let el of mClose) {
+    //     el.addEventListener('click', modalClose);
+    // }
+    //
+    // function modalShow(modal) {
+    //
+    //     // показываем подложку всплывающего окна
+    //     overlay.classList.remove('fadeOut');
+    //     overlay.classList.add('fadeIn');
+    //
+    //     modal.classList.remove('fadeOut');
+    //     modal.classList.add('fadeIn');
+    //
+    //     mStatus = true;
+    // }
+    //
+    // function modalClose() {
+    //     if (mStatus) {
+    //         modal.classList.remove('fadeIn');
+    //         modal.classList.add('fadeOut');
+    //         overlay.classList.remove('fadeIn');
+    //         overlay.classList.add('fadeOut');
+    //         // сбрасываем флаг, устанавливая его значение в 'false'
+    //         // это значение указывает нам, что на странице нет открытых
+    //         // всплывающих окон
+    //         mStatus = false;
+    //     }
+    // }
 
     // confirmBtn=document.getElementById("kvitir");
     // confirmBtn.addEventListener('click');
@@ -205,7 +232,7 @@ function ShowAlert(){
         request.onreadystatechange=function (){
             if ((request.readyState==4) && (request.status==200)) {
                 var res=JSON.parse(request.responseText);
-                console.log(request.responseText);
+                // console.log(request.responseText);
                 if (res['result']=='true'){
                     td_confirm_res=document.createElement("td");
                     td_confirm_res.textContent="Успешно";

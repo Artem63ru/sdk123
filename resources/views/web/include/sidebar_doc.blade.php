@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">
 <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">
 
+<script src="{{asset('modal-windows/modal_windows.js')}}"></script>
+<link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+
 <div class="sidebar">
     <div class="inside_sidebar">
         @include('web.include.sidebar_top')
@@ -150,33 +153,53 @@
         </div>
     </div>
 </div>
-
-<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide">
-    <div class="form_header">
-        <span class="closer_btn" data-close="" ></span>
-        <h3>Укажите отчетный период</h3>
+<form method="POST" id="choice_report_date" action="" style="opacity: 0">
+    @csrf
+    <div class="form-group date">
+{{--        <label for="start_date">Дата начала периода</label>--}}
+{{--        <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>--}}
+        <label for="start_date">Дата начала периода</label>
+        <input type="text" name="start_date" id="start_date" autocomplete="off"/>
     </div>
-        <form method="POST" id="choice_report_date" action="" >
-        @csrf
-        <div class="form-group date">
+    <div class="form-group date">
+{{--        <label for="end_date">Дата окончания периода</label>--}}
+{{--        <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>--}}
+        <label for="finish_date">Дата окончания периода</label>
+        <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" style="margin-top: 10px" id="upload_report_btn">Добавить</button>
+    </div>
+</form>
+{{--<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide">--}}
+{{--    <div class="form_header">--}}
+{{--        <span class="closer_btn" data-close="" ></span>--}}
+{{--        <h3>Укажите отчетный период</h3>--}}
+{{--    </div>--}}
+{{--        <form method="POST" id="choice_report_date" action="" >--}}
+{{--        @csrf--}}
+{{--        <div class="form-group date">--}}
 {{--            <label for="start_date">Дата начала периода</label>--}}
 {{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>--}}
-            <label for="start_date">Дата начала периода</label>
-            <input type="text" name="start_date" id="start_date" autocomplete="off"/>
-        </div>
-        <div class="form-group date">
+{{--            <label for="start_date">Дата начала периода</label>--}}
+{{--            <input type="text" name="start_date" id="start_date" autocomplete="off"/>--}}
+{{--        </div>--}}
+{{--        <div class="form-group date">--}}
 {{--            <label for="end_date">Дата окончания периода</label>--}}
 {{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>--}}
-            <label for="finish_date">Дата окончания периода</label>
-            <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>
-        </div>
+{{--            <label for="finish_date">Дата окончания периода</label>--}}
+{{--            <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>--}}
+{{--        </div>--}}
 
-        <div class="form-group">
-            <button type="submit" style="margin-top: 10px" id="upload_report_btn">Добавить</button>
-        </div>
-    </form>
-</div>
-<div class="overlay" data-close=""></div>
+{{--        <div class="form-group">--}}
+{{--            <button type="submit" style="margin-top: 10px" id="upload_report_btn">Добавить</button>--}}
+{{--        </div>--}}
+{{--    </form>--}}
+{{--</div>--}}
+{{--<div class="overlay" data-close=""></div>--}}
+
+
 
 
 <script>
@@ -215,12 +238,15 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var modal_content=document.getElementById('choice_report_date');
+        modal_content.style.opacity=1;
+        var choice_report_date_modal=new ModalWindow('Укажите отчетный период', modal_content, AnimationsTypes.fadeIn);
 
-        $(document).ready(function (){
-            $.getScript("{{asset('/js/modals_function.js')}}", function() {
-                console.log("Script loaded but not necessarily executed.");
-            });
-        })
+        {{--$(document).ready(function (){--}}
+        {{--    $.getScript("{{asset('/js/modals_function.js')}}", function() {--}}
+        {{--        console.log("Script loaded but not necessarily executed.");--}}
+        {{--    });--}}
+        {{--})--}}
 
         var report=document.getElementsByClassName('clieckable_report')
         // console.log(report)
@@ -251,8 +277,8 @@
                 });
                 var form=document.getElementById('choice_report_date')
                 form.action=this.dataset.route
-                var modal=document.getElementById('choice_report_date_modal')
-                modalShow(modal)
+                // var modal=document.getElementById('choice_report_date_modal')
+                choice_report_date_modal.show()
             })
         }
     })
@@ -279,19 +305,19 @@
 
 
 <style>
-    #choice_report_date_modal{
-        width: 350px;
-        height: 300px;
-    }
+    /*#choice_report_date_modal{*/
+    /*    width: 350px;*/
+    /*    height: 300px;*/
+    /*}*/
 
-    #choice_report_date{
-        background: #ffffff;
-        width: 100%;
-        height: 90%;
-        border-radius: 4px;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
+    /*#choice_report_date{*/
+    /*    background: #ffffff;*/
+    /*    width: 100%;*/
+    /*    height: 90%;*/
+    /*    border-radius: 4px;*/
+    /*    box-sizing: border-box;*/
+    /*    overflow: hidden;*/
+    /*}*/
 
     .form-group {
         width: 100%;
@@ -350,8 +376,6 @@
         text-transform: uppercase;
         cursor: pointer;
     }
-
-
 </style>
 
 
