@@ -2,7 +2,7 @@
     mapPage=true;
 </script>
 
-<div class="content map_content">
+<div class="map_content">
 {{--    <p style="text-align: center; font-size: 42px;color: #1d68a7;" class="bold blue_text">Ситуационная карта ПАО Газпром</p>--}}
 {{--    <p  class="bold ">Ситуационная карта ПАО Газпром</p>--}}
     <div class="map_bottom centered">

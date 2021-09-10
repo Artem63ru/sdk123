@@ -49,7 +49,7 @@
 
 </head>
 <body>
-@include('web.include.modal.modal')
+
 
 <div class="side_menu">
     @include('web.include.side_menu')
@@ -68,6 +68,8 @@
 
 
 </div>
+
+@include('web.include.modal.modal')
 
 @livewireScripts
 @stack('scripts')

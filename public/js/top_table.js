@@ -175,10 +175,6 @@ function setToLocalStorage(key, value){
 
 function ShowAlert(){
     // console.log('SHOWALERT')
-    var modal_content=document.getElementById('new_jas_1_modal_content')
-    var modal=new ModalWindow('Внимание, новое событие', modal_content, AnimationsTypes.justMe, false, true, 'asd')
-    // modal.set_overlay_background_color('white');
-    modal.set_button_background_color_on_justme('#4285f4');
     modal.show()
 
     // const mClose = document.querySelectorAll('[data-close]');
@@ -269,7 +265,14 @@ function deleteFromArray(array, element){
 if (getFromLocalStorage('sum')!=null){
     window.localStorage.removeItem('sum');
 }
+document.addEventListener('DOMContentLoaded', function (){
+    var modal_content=document.getElementById('new_jas_1_modal_content')
+    var modal=new ModalWindow('Внимание, новое событие', modal_content, AnimationsTypes.justMe, false, true, 'asd')
+// modal.set_overlay_background_color('white');
+    modal.set_button_background_color_on_justme('#4285f4');
 
-if (typeof mapPage == 'undefined') {
-    getDbInfo();
-}
+    if (typeof mapPage == 'undefined') {
+        getDbInfo();
+    }
+})
+

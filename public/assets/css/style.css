@@ -595,7 +595,7 @@ table.plan_table tr td:nth-of-type(4){border-right:0;}
 .tech_block_search_doc input {
     color: #868686;padding: 16px;margin-top: 10px;border: none;background: #f9f9f9;
     width: 90.5%;float: none;border-radius: 8px 8px 0 0;}
-.sidebar .sidebar_bottom.doc_sidebar{margin-top:-5px;height:52vh;}
+.sidebar .sidebar_bottom.doc_sidebar{/*margin-top:-5px;*/height:52vh;}
 
 .tech_block_search_doc input:focus,
 .tech_block_search_doc input:active{outline:none;}
