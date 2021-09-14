@@ -22,7 +22,7 @@
                                         <th>Тип проекта</th>
                                         <th>Тип объекта</th>
                                         <th>Коэф. загруженности</th>
-                                    </tr>
+                                    </tr>`
                                     </thead>
                                     <tbody>
                                     <tr>
@@ -89,7 +89,7 @@
 
         <div class="period_block opo_period">
 
-            <div class="func_passport_bottom">
+            <div class="func_passport_bottom" style="width: 95%; padding-top: 20px" >
                 <h4>Перечень несоответствий производственного контроля</h4>
                 <div class="ppr_date_single">Всего несоответствий <span>{{$this_elem->elem_to_APK->count()}}</span></div>
                 <table>
@@ -141,14 +141,14 @@
                     <div id="chartdiv1"></div>
                     @include('charts.elem_main_charts.chart_2')
                     <p style="margin-top: -23px"> Обобщенный показатель <br/>по комплексным сценариям</p></a></div>
-            <div class="opo_page_square" id = "3"><a href="#">
+            <div class="opo_page_square" style="height: 10rem" id = "3"><a href="#">
                 <div id="chartdiv2"></div>
                 @include('charts.elem_main_charts.chart_3')
                     <p style="margin-top: -23px">Обобщенный показатель
                         <br/>превышения пределов безопасности
                         <br/>технологического процесса
                     </p></a></div>
-            <div class="opo_page_square" id = "4"><a href="#">
+            <div class="opo_page_square" style="height: 10rem" id = "4"><a href="#">
                     <div id="chartdiv3"></div>
                     @include('charts.elem_main_charts.chart_4')
                     <p style="margin-top: -23px"> Обобщенный показатель

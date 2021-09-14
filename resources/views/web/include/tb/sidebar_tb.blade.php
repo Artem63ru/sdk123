@@ -26,7 +26,7 @@
                 @livewire('search', ['id_opo'=>$ver_opo->idOPO])
             @endif
 
-
         </div>
     </div>
 </div>
+

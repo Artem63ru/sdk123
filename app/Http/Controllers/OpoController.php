@@ -229,6 +229,7 @@ class OpoController extends Controller
        $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
        $ver_opo =  Ref_opo::find($id);
        $jas_opo =  $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
+//        dd($ver_opo->opo_to_calc_opo_pro->first());
        $mins_opos = $ver_opo->opo_to_calc_day_min->first();
        $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
@@ -549,8 +550,14 @@ class OpoController extends Controller
     }
 
 
-    public function get_db_info(){
-        $jas = OpoController::view_jas_15();
+    public function get_jas1($count){
+        if ($count==0){
+            $jas = Jas::where('check', 'false')->get();
+        }
+        else{
+            $jas=Jas::orderBy('id','DESC')->take($count)->get();
+        }
+
         $data[]=array();
 
         $i=0;
@@ -563,6 +570,7 @@ class OpoController extends Controller
             $data[$i]['name']=$value->name;
             $data[$i]['check']=$value->check;
             $data[$i]['id']=$value->id;
+
             $i+=1;
         }
 
@@ -579,7 +587,7 @@ class OpoController extends Controller
         $post = $request->all();
         $res=Jas::updated_check($post['id']);
         if ($res) {
-         return json_encode(array('result'=>'true'));
+            return json_encode(array('result'=>'true'));
         }
         else{
             $res=array('result'=>'false', 'error'=>$res);
