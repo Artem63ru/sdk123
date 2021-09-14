@@ -549,8 +549,14 @@ class OpoController extends Controller
     }
 
 
-    public function get_db_info(){
-        $jas = OpoController::view_jas_15();
+    public function get_jas1($count){
+        if ($count==0){
+            $jas = Jas::where('check', 'false')->get();
+        }
+        else{
+            $jas=Jas::orderBy('id','DESC')->take($count)->get();
+        }
+
         $data[]=array();
 
         $i=0;
@@ -563,6 +569,7 @@ class OpoController extends Controller
             $data[$i]['name']=$value->name;
             $data[$i]['check']=$value->check;
             $data[$i]['id']=$value->id;
+
             $i+=1;
         }
 

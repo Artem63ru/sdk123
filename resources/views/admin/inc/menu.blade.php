@@ -1,12 +1,15 @@
 @include('web.include.sum_checker_tree.sumchecker_tree')
 <script>
     document.addEventListener('DOMContentLoaded', function (){
+        var modal_content=document.getElementById('files_tree_modal_content')
+        var modal=new ModalWindow('Контрольные суммы', modal_content, AnimationsTypes.stickyUp)
         document.getElementById('seumchecker_go_btn').addEventListener('click',function (){
             clear_tree();
             load_files_tree();
-            var modal=document.getElementById('files_tree_modal');
-            // console.log(modal)
-            modalShow(modal)
+            // var modal=document.getElementById('files_tree_modal');
+            // // console.log(modal)
+            // modalShow(modal)
+            modal.show()
         });
         document.getElementById('files_tree_closer').addEventListener('click', function (){
             console.log($('#choice_files_tree').removeData('uiFancytree'))

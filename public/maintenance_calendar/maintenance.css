@@ -1,10 +1,4 @@
-#add_new_maintenance_dialog{
-    width: 500px;
-    height: 300px;
-}
-
 #new_maintenance_form{
-    background: #ffffff;
     width: 100%;
     border-radius: 4px;
     box-sizing: border-box;

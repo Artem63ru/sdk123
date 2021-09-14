@@ -32,7 +32,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 
-    Route::get('/opo/get_db_info/15', 'OpoController@get_db_info'); //Достаем данные из базы данных для таблицы
+//    Route::get('/opo/getjas1/', 'OpoController@get_jas1'); //Достаем данные из базы данных для таблицы
+    Route::get('/opo/getjas1/{count}', 'OpoController@get_jas1');
     Route::get('/opo/get_sum/all', 'OpoController@get_sum');
     Route::post('/opo/set_check_for_opo', 'OpoController@set_check');
 

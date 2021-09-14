@@ -20,7 +20,7 @@
         @endcan
     </div>
 
-    <div class="inside_tab_padding" style="height: 500px">
+    <div class="inside_tab_padding" >
         <div style="background: #FFFFFF; border-radius: 6px; width: 1220px" class="row_block form51">
             <table>
                 <thead>

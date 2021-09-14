@@ -92,6 +92,7 @@ class AdminController extends Controller
        } elseif ((count($js_logs)/$setting_journal->js_max)*100 > $setting_journal->js_warning) {
            return 4;   //если аварийный ЖС
        }
+//        return 4;
     }
 
 //    // Конфигурация безовасности
@@ -359,5 +360,26 @@ class AdminController extends Controller
         return redirect('/admin/roles');
     }
 
+    public function xml_view ()
+    {
+        $ver_opo =  Ref_opo::find(1);
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
+        $contents = $contents."<do id = \"gda\">\n";
+        $contents = $contents."<opo>\n";
+        $contents = $contents."<name>".$ver_opo->fullDescOPO."</name>\n";
+        $contents = $contents."<regnumder>".$ver_opo->regNumOPO."</regnumder>\n";
+        $contents = $contents."<ip_reackt>".$ver_opo->opo_to_calc1->first()->ip_opo."</ip_reackt>\n";
+        $contents = $contents."<status>".$ver_opo->opo_to_calc1->first()->calc_to_status->status."</status>\n";
+        $contents = $contents."</opo>\n";
+        $contents = $contents."<date>".date("m-d-y")."</date>\n";
+        $contents = $contents."<time>".date("H:i:s")."</time>\n";
+        $contents = $contents."</do>";
+
+
+//       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+     //  Storage::disk('local')->put('15_min.xml', $contents, 'public');
+
+    }
 
 }

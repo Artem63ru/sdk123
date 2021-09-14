@@ -1,0 +1,8 @@
+<h:RequestHeader xmlns="http://dom.gosuslugi.ru/schema/integration/8.5.0.4/"
+                 xmlns:h="http://dom.gosuslugi.ru/schema/integration/8.5.0.4/"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Date></Date>
+    <MessageGUID></MessageGUID>
+    <orgPPAGUID></orgPPAGUID>
+</h:RequestHeader>

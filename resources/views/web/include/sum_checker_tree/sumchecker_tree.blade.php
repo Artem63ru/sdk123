@@ -11,11 +11,8 @@
 
     <style>
         #tree_footer{
-            position: fixed; /* Фиксированное положение */
-            left: 0; bottom: 0; /* Левый нижний угол */
-            float: bottom;
-            padding: 10px; /* Поля вокруг текста */
-            width: 100%;
+            left: 0;
+            bottom: 0; /* Левый нижний угол */
         }
         ul.fancytree-container {
             border: none;
@@ -113,6 +110,7 @@
             display: inline-block;
             vertical-align: middle;
             text-align: left;
+            justify-content: center;
         }
         #files_trees{
             display: flex;
@@ -133,11 +131,10 @@
 
         /*All logs dialog*/
         dialog{
-            z-index: 100000;
+            z-index: 2001;
             border:none;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.85);
-            width: 80%;
             height: 60%;
             max-height: 60%;
             position: fixed; /* Фиксированное положение */
@@ -200,6 +197,9 @@
         #all_logs_table tbody tr:nth-child(even){
             background: #f3f3f3;
         }
+        #files_tree_modal_content{
+            text-align: center;
+        }
     </style>
     <!-- (Irrelevant source removed.) -->
 {{--</head>--}}
@@ -207,12 +207,12 @@
 {{--<body class="example">--}}
 
 
-    <div class="overlay" data-close=""></div>
-    <div id="files_tree_modal"  class="dlg-modal dlg-modal-slide">
-        <div class="modal_header">
-            <span class="closer_btn" data-close="" id="files_tree_closer"></span>
-            <h1 >Контрольные суммы</h1>
-        </div>
+{{--    <div class="overlay" data-close=""></div>--}}
+{{--    <div id="files_tree_modal"  class="dlg-modal dlg-modal-slide">--}}
+{{--        <div class="modal_header">--}}
+{{--            <span class="closer_btn" data-close="" id="files_tree_closer"></span>--}}
+{{--            <h1 >Контрольные суммы</h1>--}}
+{{--        </div>--}}
         <div id="files_tree_modal_content">
             <div id="files_trees">
                 <div id="all_files_tree" class="files_tree_div" data-type="json">
@@ -255,7 +255,7 @@
             </div>
             <input type="button" id="all_logs_dialog-exit" class="files_tree_btns" value="Закрыть">
         </dialog>
-    </div>
+{{--    </div>--}}
 {{--ALL LOGS DIALOG--}}
 
 

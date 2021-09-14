@@ -40,13 +40,16 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 
+    <script src="{{asset('modal-windows/modal_windows.js')}}"></script>
+    <link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+
     @stack('app-css')
 
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
 </head>
 <body>
-@include('web.include.modal.modal')
+
 
 <div class="side_menu">
     @include('web.include.side_menu')
@@ -65,6 +68,8 @@
 
 
 </div>
+
+@include('web.include.modal.modal')
 
 @livewireScripts
 @stack('scripts')

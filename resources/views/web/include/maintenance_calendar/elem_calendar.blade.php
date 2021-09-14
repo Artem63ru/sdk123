@@ -30,13 +30,13 @@
         </h3>
     </div>
     <div id="calendar"></div>
-    <div class="overlay" data-close=""></div>
-    <div id="add_new_maintenance_dialog" class="dlg-modal dlg-modal-slide">
+{{--    <div class="overlay" data-close=""></div>--}}
+{{--    <div id="add_new_maintenance_dialog" class="dlg-modal dlg-modal-slide">--}}
 
-        <div class="dialog_header">
-            <span class="closer_btn" data-close="" ></span>
-            <h3>Добавить новое техническое обслуживание</h3>
-        </div>
+{{--        <div class="dialog_header">--}}
+{{--            <span class="closer_btn" data-close="" ></span>--}}
+{{--            <h3>Добавить новое техническое обслуживание</h3>--}}
+{{--        </div>--}}
         <form id="new_maintenance_form" onsubmit="return add_maintenance(this);">
             <input type="hidden" id="obj_id_input" value="">
             <div class="form-group">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </form>
-    </div>
+{{--    </div>--}}
 
 
 

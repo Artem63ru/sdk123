@@ -6,6 +6,7 @@ use App\Http\Controllers\XMLController;
 use App\Models\Xml\Svr_reports;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\DB;
 
 class Jas extends Model
 {
@@ -55,6 +56,8 @@ class Jas extends Model
         }
 
     }
+
+
 
 
 

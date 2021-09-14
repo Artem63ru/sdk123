@@ -46,8 +46,9 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Spatie\ArrayToXml\ArrayToXml;
 use XmlResponse\Facades\XmlFacade;
+use Spatie\ArrayToXml\ArrayToXml;
+
 
 class XMLController extends Controller
 {
@@ -63,45 +64,25 @@ class XMLController extends Controller
         $data['prognoz_ip_opo'] = $ver_opo->opo_sample_mons->first()->pro_ip_opo;
         $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
 
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
-        $contents = $contents."<do id = \"gda\">\n";
-        $contents = $contents."<opo>\n";
-        $contents = $contents."<name>".$data['fullDescOPO']."</name>\n";
-        $contents = $contents."<regnumder>".$data['regNumOPO']."</regnumder>\n";
-        $contents = $contents."<ip_opo>".$data['ip_opo']."</ip_opo>\n";
-        $contents = $contents."<prognoz_ip_opo>".$data['prognoz_ip_opo']."</prognoz_ip_opo>\n";
-        $contents = $contents."<status>".$data['status']."</status>\n";
-        $contents = $contents."<factors>\n";
-
         if ($ver_opo->opo_to_calc1->first()->ip_opo<0.8) {
             $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get();
             foreach ($elemet as $item)
             {
                 if ($item->elem_to_calc->first()->ip_elem < 0.6)
                 {
-                    $contents = $contents."<factor id =".$i++.">\n";
-                    $contents = $contents."<Name_factor>".$item->nameObj."</Name_factor>\n";
-                    $contents = $contents."<IP_factor>".$item->elem_to_calc->first()->ip_elem."</IP_factor>\n";
-                    $contents = $contents."</factor>\n";
+                    $obj ['factors'.$i++] = [
+                        'Name_factor' => $item->nameObj,
+                        'IP_factor' => $item->elem_to_calc->first()->ip_elem];
                 }
 
             }
+            $data['factors'] = $obj;
+
         }
         $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
-        $contents = $contents."</factors>\n";
-        $contents = $contents."</opo>\n";
-        $contents = $contents."<date>".$data['date']."</date>\n";
-        $contents = $contents."<time>".$data['time']."</time>\n";
-        $contents = $contents."</do>";
         XML_journal::create($data);
-
-        //для xml
-
-
-//        $contents = new ArrayToXml($data, [], true, 'UTF-8', '1.1', [], true);
-//        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
-        Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public');
+        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
 //        return response()->xml($data);   // Для тестов
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
@@ -117,18 +98,6 @@ class XMLController extends Controller
     {
         $svr = Svr_reports::all();
         return view('web.docs.reports.Xml_reports.Svr_reports.index', compact('svr'));
-    }
-    public function events_svr_create($id)
-    {$i=1;
-        $svr = Svr_reports::find($id);
-        $oto = Svr_factors::where ( 'from_svr_id', '=', $svr->id)->get();
-        $data['event'] = $svr->first();
-//        foreach ($oto as $item){
-            $data['factors'] = $oto;
-//        }
-      //  $arrayToXml =  new ArrayToXml(XmlFacade::asXml($data));
-        Storage::disk('local')->put('events_svr.xml', XmlFacade::asXml($data), 'public');
-//        return view('web.docs.reports.Xml_reports.Svr_reports.index', compact('svr'));
     }
     public function events_ssr_view()
     {
@@ -159,25 +128,25 @@ class XMLController extends Controller
         $date_accept = $data_form51->date_accept;
         $reason_delay = $data_form51->reason_delay;
 
-        $contents = $contents . "<vid_acccident>\n";
-        $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
-        $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
-        $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
-        $contents = $contents . "</vid_acccident>\n";
-        $contents = $contents . "<victim>$victim</victim>\n";
-        $contents = $contents . "<date>$date</date>\n";
-        $contents = $contents . "<supervision>$supervision</supervision>\n";
-        $contents = $contents . "<organisation>$organisation</organisation>\n";
-        $contents = $contents . "<adress>$adress</adress>\n";
-        $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
-        $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
-        $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
-        $contents = $contents . "<passed>$passed</passed>\n";
-        $contents = $contents . "<accepted>$accepted</accepted>\n";
-        $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
-        $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
+            $contents = $contents . "<vid_acccident>\n";
+            $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
+            $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
+            $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
+            $contents = $contents . "</vid_acccident>\n";
+            $contents = $contents . "<victim>$victim</victim>\n";
+            $contents = $contents . "<date>$date</date>\n";
+            $contents = $contents . "<supervision>$supervision</supervision>\n";
+            $contents = $contents . "<organisation>$organisation</organisation>\n";
+            $contents = $contents . "<adress>$adress</adress>\n";
+            $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
+            $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
+            $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
+            $contents = $contents . "<passed>$passed</passed>\n";
+            $contents = $contents . "<accepted>$accepted</accepted>\n";
+            $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
+            $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
 
-        $contents = $contents."</form>\n";
+            $contents = $contents."</form>\n";
 
 
         Storage::disk('local')->put('form51.xml', $contents, 'public');
@@ -421,7 +390,7 @@ class XMLController extends Controller
         $finish_organisation = Info_GDA::find(7)->values;
 
 
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+                $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
 
         $contents = $contents."<do id = \"gda\">\n";
         //данные организации
@@ -1013,9 +982,5 @@ class XMLController extends Controller
         $contents = $contents."</signed_data>\n";
 
         Storage::disk('local')->put('year.xml', $contents, 'public');
-    }
-
-    public function xml_test(){
-        return view('web.xml_test');
     }
 }

@@ -20,7 +20,7 @@
         @endcan
     </div>
 
-    <div class="inside_tab_padding" style="height: 500px">
+    <div class="inside_tab_padding">
         <div style="background: #FFFFFF; border-radius: 6px; width: 1220px" class="row_block form51">
             <table>
                 <thead>
@@ -46,7 +46,7 @@
                             @else
                             <div class="bat_info"><a href="#">Отправлен</a></div>
                             @endif
-                                <a href="{{ route('events_svr',$row->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i" style="margin-left: 25px"></a>
+                                <a href="{{ route('show_OPO',$row->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i" style="margin-left: 25px"></a>
                         </td>
                     </tr>
                 @endforeach

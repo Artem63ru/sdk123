@@ -8,68 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
             'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
         }
     });
+    var new_event_content=document.getElementById('new_calendar_event_content')
+    var event_info_content=document.getElementById('calendar_event_content')
+    var event_modal=new ModalWindow('', new_event_content, AnimationsTypes.slideIn)
 
     var dateOptions={day:'numeric', month:'numeric',year:'numeric'};
     var timeOptions={hour:"numeric", minute: "numeric"}
 
+    var atrr_buffer={}
 
-    // //-------------ДИАЛОГ----------------//
-    // const overlay = document.querySelector('.overlay'),
-    //     modals = document.querySelectorAll('.dlg-modal:not(#new_jas_1_modal)'),
-    //     mClose = document.querySelectorAll('[data-close]:not(.new_jas_1_modal_close_btn)');
-    // let	mStatus = false;
-    //
-    // for (let el of mClose) {
-    //     el.addEventListener('click', modalClose);
-    // }
-    //
-    // document.addEventListener('keydown', modalClose);
-    //
-    // function modalShow(modal) {
-    //     // показываем подложку всплывающего окна
-    //     overlay.classList.remove('fadeOut');
-    //     overlay.classList.add('fadeIn');
-    //
-    //     modal.classList.remove('slideOutUp');
-    //     modal.classList.add('slideInDown');
-    //
-    //     mStatus = true;
-    // }
-    //
-    // function modalClose(event) {
-    //     function close(){
-    //         for (let modal of modals) {
-    //             console.log(modal)
-    //             modal.classList.remove('slideInDown');
-    //             modal.classList.add('slideOutUp');
-    //         }
-    //
-    //         // закрываем overlay
-    //         overlay.classList.remove('fadeIn');
-    //         overlay.classList.add('fadeOut');
-    //         // сбрасываем флаг, устанавливая его значение в 'false'
-    //         // это значение указывает нам, что на странице нет открытых
-    //         // всплывающих окон
-    //         mStatus = false;
-    //     }
-    //     if (typeof event ==='undefined'){
-    //         if (mStatus){
-    //            close()
-    //         }
-    //     }
-    //     else{
-    //         if (mStatus && ( event.type != 'keydown' || event.keyCode === 27 ) ) {
-    //             close()
-    //         }
-    //     }
-    //
-    // }
 
-    function clearModals(){
+    function clearContent(){
         $('#new_event_title').val('');
         $('#new_event_description').val('');
         $('#new_event_start').val('');
         $('#new_event_end').val('');
+        $('#event_description').val('');
+        $('#event_start_datetime').val('');
+        $('#event_end_datetime').val('');
+        $('#event_type').val('');
+        $('#event_dest_user').val('');
+        $('#event_create_user').val('');
+        $('#event_status').val('');
     }
 
     //-------------Календарь----------------//
@@ -105,99 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             noEventsText: 'Нет событий для отображения',
         },
-        // events: [
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'asdasdasdasd',
-        //         start: '2021-06-09T12:30:00',
-        //         end: '2021-06-09T13:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Не завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     },
-        //     {
-        //         title: 'YOYOYOY',
-        //         start: '2021-06-09T10:30:00',
-        //         end: '2021-06-09T11:30:00',
-        //         extendedProps: {
-        //             description: 'Lecture',
-        //             event_type_str: 'Другое',
-        //             dest_user:'Ильвир',
-        //             create_user:'Артем',
-        //             status:'Завершено'
-        //         },
-        //         display:'auto'
-        //     }
-        // ],
+
         events: function (fetchInfo, callback){
             $.ajax({
                 url:"/full-calendar/action",
@@ -225,6 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
             newEventBtn:{
                 text:'Добавить событие',
                 click: function() {
+                    clearContent()
+                    $('#new_event_add_button').show();
+                    $('#change_event_button').hide();
+
                     var event_start=$('#new_event_start')
                     var event_end=$('#new_event_end')
                     // console.log(event_start)
@@ -240,8 +112,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
 
-                    var modal = document.getElementById("new_calendar_event_modal");
-                    modalShow(modal);
+                    // var modal = document.getElementById("new_calendar_event_modal");
+                    // modalShow(modal);
+
+                    event_modal.change_header_text('Новое событие')
+                    event_modal.change_content(new_event_content)
+                    event_modal.show()
                 }
             }
         },
@@ -251,10 +127,10 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'newEventBtn,dayGridMonth,timeGridWeek,listWeek'
         }, selectable: true,
         select:function(selectionInfo){
-            clearModals();
+            clearContent();
             $('#new_event_add_button').show();
             $('#change_event_button').hide();
-            $('#new_event_modal_title').text('Новое событие');
+            // $('#new_event_modal_title').text('Новое событие');
             var today=new Date();
             // console.log(selectionInfo.startStr)
             // console.log(today)
@@ -262,9 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var event_start=$('#new_event_start')
                 var event_end=$('#new_event_end')
 
-
-
-                if (selectionInfo.start>new Date(today.getFullYear(), today.getMonth(), today.getDate())){
+                if (selectionInfo.start>today){
                     event_start.val(selectionInfo.start.toLocaleDateString('ru-RU',dateOptions) +' '+selectionInfo.start.toLocaleTimeString('ru-RU',timeOptions));
                 }
                 else {
@@ -288,8 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
 
-                var modal = document.getElementById("new_calendar_event_modal");
-                modalShow(modal);
+                // var modal = document.getElementById("new_calendar_event_modal");
+                // modalShow(modal);
+                event_modal.change_header_text('Новое событие')
+                event_modal.change_content(new_event_content)
+                event_modal.show()
             }
 
         },
@@ -340,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
             //info.el.setAttribute('event_id', )
         },
         eventClick: function(info) {
+            clearContent()
 
             // console.log(info.event)
             var confirm_btn=$('#event_confirm_btn');
@@ -415,9 +293,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 delete_btn.hide();
             }
 
+            atrr_buffer['title']=info.event.title;
+            atrr_buffer['event_id']=info.event.id;
+            atrr_buffer['description']=info.event.extendedProps.description;
+            atrr_buffer['event_start']=info.event.start;
+            atrr_buffer['event_end']=info.event.end;
+            atrr_buffer['event_type']=info.event.extendedProps.event_type_id;
+            atrr_buffer['dest_user']=info.event.extendedProps.dest_user_id;
+            atrr_buffer['creator_user']=info.event.extendedProps.creator_user;
+            atrr_buffer['status']=info.event.extendedProps.status;
 
-            var modal = document.getElementById("calendar_event_info_modal");
-            modalShow(modal);
+            event_modal.change_header_text('Событие: '+info.event.title)
+            event_modal.change_content(event_info_content)
+            event_modal.show()
 
         }
 
@@ -474,9 +362,9 @@ document.addEventListener('DOMContentLoaded', function() {
             success:function(responce)
             {
                 if (responce==='1'){
-                    modalClose();
+                    event_modal.close()
                     calendar.refetchEvents();
-                    clearModals();
+                    clearContent();
                 }
             }
         })
@@ -494,9 +382,9 @@ document.addEventListener('DOMContentLoaded', function() {
             success:function(responce)
             {
                 if (responce==='1'){
-                    modalClose();
+                    event_modal.close()
                     calendar.refetchEvents();
-                    clearModals();
+                    clearContent();
                 }
                 else{
                     console.log(responce)
@@ -516,8 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
            success:function (responce){
                // console.log(responce)
                if (responce==='1'){
-                   modalClose();
+                   event_modal.close()
                    calendar.refetchEvents();
+                   clearContent();
                }
                else{
                    console.log(responce);
@@ -527,19 +416,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('change_this_event_btn').addEventListener('click', ()=>{
-        clearModals();
+        // clearContent();
         //console.log($('#event_title').val())
-        $('#new_event_title').val($('#event_title').val());
-        $('#new_event_description').val($('#event_description').val());
+        event_modal.change_header_text('Изменить событие')
+        event_modal.change_content(new_event_content)
+        event_modal.show()
+
+        // $('#current_event_id').val(info.event.id)
+
+        $('#new_event_title').val(atrr_buffer['title']);
+        $('#new_event_description').val(atrr_buffer['description']);
 
 
-        var start_time=$('#event_start_datetime').val().toLocaleDateString('ru-RU',dateOptions) +' '+$('#event_start_datetime').val().toLocaleTimeString('ru-RU',timeOptions);
-        var end_time=$('#event_end_datetime').val().toLocaleDateString('ru-RU',dateOptions) +' '+$('#event_end_datetime').val().toLocaleTimeString('ru-RU',timeOptions);
+        var start_time=atrr_buffer['event_start'].toLocaleDateString('ru-RU',dateOptions) +' '+atrr_buffer['event_start'].toLocaleTimeString('ru-RU',timeOptions);
+        var end_time=atrr_buffer['event_end'].toLocaleDateString('ru-RU',dateOptions) +' '+atrr_buffer['event_end'].toLocaleTimeString('ru-RU',timeOptions);
 
         $('#new_event_start').val(start_time);
         $('#new_event_end').val(end_time);
-        $('#new_event_type').val($('#event_type').val());
-        $('#new_event_dest_user').val($('#event_dest_user').val());
+        $('#new_event_type').val(atrr_buffer['event_type']);
+        $('#new_event_dest_user').val(atrr_buffer['dest_user']);
 
         $('#new_event_add_button').hide();
         $('#change_event_button').show();
@@ -554,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
             minDate:minDate,
             locale: 'ru',
             sideBySide:true,
-            date:$('#event_start_datetime').val()
+            date:atrr_buffer['event_start']
         });
 
         // console.log($('#event_start_datetime').val().toLocaleString())
@@ -562,19 +457,22 @@ document.addEventListener('DOMContentLoaded', function() {
             minDate:minDate,
             locale: 'ru',
             sideBySide:true,
-            date:$('#event_end_datetime').val()
+            date:atrr_buffer['event_end']
         });
-        $('#new_event_modal_title').text('Изменить событие');
-        var modal = document.getElementById("new_calendar_event_modal");
-        modalShow(modal);
+        // $('#new_event_modal_title').text('Изменить событие');
+        // var modal = document.getElementById("new_calendar_event_modal");
+        // modalShow(modal);
+
+
     });
 
     document.getElementById('change_event_button').addEventListener('click', ()=>{
         var event_start=$('#new_event_start')
         var event_end=$('#new_event_end')
+        console.log(atrr_buffer['event_id'])
 
         var data={
-            event_id: $('#current_event_id').val(),
+            event_id: atrr_buffer['event_id'],
             dest_user_id:$('select[id=new_event_dest_user] option').filter(':selected').val(),
             event_type:$('select[id=new_event_type] option').filter(':selected').val(),
             title:$('#new_event_title').val(),
@@ -590,12 +488,14 @@ document.addEventListener('DOMContentLoaded', function() {
             data:data,
             success:function(responce)
             {
-                // console.log(responce)
+                console.log(responce)
                 if (responce==='1'){
-                    $('#new_event_modal_title').text('Новое событие');
-                    modalClose();
+                    // $('#new_event_modal_title').text('Новое событие');
+                    // modalClose();
+                    // event_modal.change_content(new_event_content)
+                    event_modal.close();
                     calendar.refetchEvents();
-                    clearModals();
+                    clearContent();
                 }
             }
         })

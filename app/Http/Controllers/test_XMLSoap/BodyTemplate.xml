@@ -1,0 +1,11 @@
+<exportNsiListRequest
+    xmlns="http://dom.gosuslugi.ru/schema/integration/8.5.0.4/nsi/" Id="foo">
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:SignedInfo>
+            <ds:CannonicalizationMethod>
+
+            </ds:CannonicalizationMethod>
+        </ds:SignedInfo>
+
+    </ds:Signature>
+</exportNsiListRequest>
