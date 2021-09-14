@@ -46,7 +46,7 @@
                             @else
                             <div class="bat_info"><a href="#">Отправлен</a></div>
                             @endif
-                                <a href="{{ route('show_OPO',$row->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i" style="margin-left: 25px"></a>
+                                <a href="{{ route('events_svr',$row->id) }}"><img  alt="" src="{{asset('assets/images/icons/search.svg')}}" class="open_i" style="margin-left: 25px"></a>
                         </td>
                     </tr>
                 @endforeach
