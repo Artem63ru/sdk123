@@ -11,7 +11,7 @@ class Calc_elem extends Model
     public $primaryKey = 'id';
     public function calc_to_elem()
     {
-        return $this->belongsTo('App\Models\Ref_Obj', 'from_elem', 'buildingName');
+        return $this->belongsTo('App\Models\Ref_Obj', 'from_elem', 'idObj');
     }
     public function calc_elem_to_status()
     {

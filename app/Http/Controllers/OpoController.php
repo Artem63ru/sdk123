@@ -229,7 +229,6 @@ class OpoController extends Controller
        $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
        $ver_opo =  Ref_opo::find($id);
        $jas_opo =  $ver_opo->opo_to_jas;   //Журнал этого опо последние 60 записей
-//        dd($ver_opo->opo_to_calc_opo_pro->first());
        $mins_opos = $ver_opo->opo_to_calc_day_min->first();
        $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
@@ -587,7 +586,7 @@ class OpoController extends Controller
         $post = $request->all();
         $res=Jas::updated_check($post['id']);
         if ($res) {
-            return json_encode(array('result'=>'true'));
+         return json_encode(array('result'=>'true'));
         }
         else{
             $res=array('result'=>'false', 'error'=>$res);

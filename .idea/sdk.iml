@@ -124,7 +124,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jailtonsc/laravel-response-xml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kyslik/column-sortable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jenssegers/date" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/array-to-xml" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -28,7 +28,7 @@
                                 @endif
                                 @else repair
                             @endif
-                                        " id="id{{$obj->buildingGUID}}" wire:click="Show({{ $obj->buildingGUID }})"></a>
+                                        " id="id{{$obj->idObj}}" wire:click="Show({{ $obj->idObj }})"></a>
                                 {{--                            <a href="#openModal" class="map_dot" style=" background: #{{$obj->elem_to_calc->first()->calc_elem_to_status->color}}" id="id{{$obj->idObj}} wire:click="Show({{ $obj->idObj }})"></a>--}}
                             @endforeach
 

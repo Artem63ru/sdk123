@@ -72,9 +72,9 @@ class ObjController extends Controller
      public function pdf_download ($id_obj)
      {
          $this_elem = Ref_obj::find($id_obj); // Ссылка на элемент
-         $data['title'] = $this_elem->buildingName.' '.$this_elem->nameObj.' ОПО №'.$this_elem->idOPO;
+         $data['title'] = $this_elem->descObj.' '.$this_elem->nameObj.' ОПО №'.$this_elem->idOPO;
          $data['this_elem'] = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
-         $patch = 'Технологический регламент'.$this_elem->buildingName.'_'.$this_elem->nameObj.'.pdf';
+         $patch = 'Технологический регламент'.$this_elem->descObj.'_'.$this_elem->nameObj.'.pdf';
          $pdf = PDF::loadView('web.include.obj.pdf.pdf_tech_reg', $data);//->setPaper('a4', 'landscape');
          return $pdf->download($patch);
      }

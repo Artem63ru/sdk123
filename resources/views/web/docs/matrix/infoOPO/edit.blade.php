@@ -53,7 +53,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                {!! Form::text('opoNum', null, array('placeholder' => 'Укажите регистрационный номер ОПО','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
+                                {!! Form::text('regNumOPO', null, array('placeholder' => 'Укажите регистрационный номер ОПО','style' => 'height: 3vh; width: 70%', 'autocomplete'=>"off", 'class'=>'form-control')) !!}
                             </div>
                         </div>
                     </div>

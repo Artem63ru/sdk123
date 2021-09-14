@@ -34,7 +34,7 @@ class Jas extends Model
     }
     public function jas_to_elem()
     {
-        return $this->belongsTo('App\Models\Ref_obj', 'from_elem_opo', 'buildingGUID');
+        return $this->belongsTo('App\Models\Ref_obj', 'from_elem_opo', 'idObj');
     }
     public function jas_to_10()
     {
