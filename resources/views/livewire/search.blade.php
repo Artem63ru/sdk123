@@ -16,7 +16,7 @@
         @foreach($users as $elem)
             <label class="accordion">
                 @if (isset($id_obj))
-                    @if ($elem->idObj == $id_obj)
+                    @if ($elem->buildingGUID == $id_obj)
                         <input type='checkbox' name='checkbox-accordion' checked>
                     @else
                         <input type='checkbox' name='checkbox-accordion'>
@@ -25,12 +25,12 @@
                     <input type='checkbox' name='checkbox-accordion'>
                 @endif
                  <div class="accordion__header">
-                    <a href="/opo/{{$id_opo}}/elem/{{$elem->idObj}}"> {{$elem->nameObj}}</a>
+                    <a href="/opo/{{$id_opo}}/elem/{{$elem->buildingGUID}}"> {{$elem->nameObj}}</a>
                 </div>
 
                 <div class="accordion__content">
                 @foreach ($elem->obj_to_type->type_to_tb as $tb)
-                     <a href="/opo/{{$id_opo}}/elem/{{$elem->idObj}}/tb/{{$tb->idOTO}}">{{$tb->descOTO}}</a>
+                     <a href="/opo/{{$id_opo}}/elem/{{$elem->buildingGUID}}/tb/{{$tb->idOTO}}">{{$tb->descOTO}}</a>
                 @endforeach
                 </div>
             </label>

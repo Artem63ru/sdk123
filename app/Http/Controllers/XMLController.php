@@ -64,15 +64,26 @@ class XMLController extends Controller
         $data['prognoz_ip_opo'] = $ver_opo->opo_sample_mons->first()->pro_ip_opo;
         $data['status'] = $ver_opo->opo_to_calc1->first()->calc_to_status->status;
 
+        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n ";
+        $contents = $contents."<do id = \"gda\">\n";
+        $contents = $contents."<opo>\n";
+        $contents = $contents."<name>".$data['fullDescOPO']."</name>\n";
+        $contents = $contents."<regnumder>".$data['regNumOPO']."</regnumder>\n";
+        $contents = $contents."<ip_opo>".$data['ip_opo']."</ip_opo>\n";
+        $contents = $contents."<prognoz_ip_opo>".$data['prognoz_ip_opo']."</prognoz_ip_opo>\n";
+        $contents = $contents."<status>".$data['status']."</status>\n";
+        $contents = $contents."<factors>\n";
+
         if ($ver_opo->opo_to_calc1->first()->ip_opo<0.8) {
             $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get();
             foreach ($elemet as $item)
             {
                 if ($item->elem_to_calc->first()->ip_elem < 0.6)
                 {
-                    $obj ['factors'.$i++] = [
-                        'Name_factor' => $item->nameObj,
-                        'IP_factor' => $item->elem_to_calc->first()->ip_elem];
+                    $contents = $contents."<factor id =".$i++.">\n";
+                       $contents = $contents."<Name_factor>".$item->nameObj."</Name_factor>\n";
+                       $contents = $contents."<IP_factor>".$item->elem_to_calc->first()->ip_elem."</IP_factor>\n";
+                    $contents = $contents."</factor>\n";
                 }
 
             }
@@ -81,8 +92,19 @@ class XMLController extends Controller
         }
         $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
+        $contents = $contents."</factors>\n";
+        $contents = $contents."</opo>\n";
+        $contents = $contents."<date>".$data['date']."</date>\n";
+        $contents = $contents."<time>".$data['time']."</time>\n";
+        $contents = $contents."</do>";
         XML_journal::create($data);
-        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+
+        //для xml
+
+
+//        $contents = new ArrayToXml($data, [], true, 'UTF-8', '1.1', [], true);
+//        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+        Storage::disk('local')->put('15_min.xml', $contents, 'public');
 //        return response()->xml($data);   // Для тестов
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
@@ -91,7 +113,7 @@ class XMLController extends Controller
     {
         $i=1;
         $elemet = Ref_obj::where('idOPO','=','1')->where('InUse','=','1')->where('status','=','50')->get(['idObj','nameObj', 'descObj']);
-        //  return response()->xml($elemet);   // Для тестов
+      //  return response()->xml($elemet);   // Для тестов
         Storage::disk('local')->put('reference_list.xml', XmlFacade::asXml($elemet), 'public');
     }
     public function events_svr_view()

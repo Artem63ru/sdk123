@@ -61,10 +61,10 @@
                                    #chartdiv,
                                    #chartdiv1,
                                    #chartdiv2 {
-                                       /*width: 100%;*/
-                                       /*height: 100%;*/
-                                       margin-top: -50px;
-                                       margin-left: -15px;
+                                       width: 95%;
+                                       height: 95%;
+                                       margin-top: -60px;
+                                       margin-left: 0px;
                                        /*display: inline-block;*/
                                    }
 
