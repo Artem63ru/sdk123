@@ -15,8 +15,8 @@
     top: 50%;
     left: 50%;
     width: 50%;
-    min-width: 800px;
-    /* height: auto; */
+    height: auto;
+    max-height: 95vh;
     z-index: 2000;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -67,16 +67,14 @@
 }
 
 #dlg_view .close-btn{
-    display: block;
-    margin: 0 auto;
-    font-size: 1em;
+     display: block;
+     margin: 0 auto;
+     font-size: 1em;
 }
 
 /* Content styles */
 .dlg-content {
     padding: 20px;
-    max-height: calc(90vh - 2.4em);
-    overflow-y: scroll;
 }
 
 
