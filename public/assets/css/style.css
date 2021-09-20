@@ -1006,7 +1006,7 @@ thead tr:first-child th { position: sticky; top: 0; }
 
 
 .fond_map {position: absolute;  bottom: 0;background: #fff;width: 100%;padding: 15px;    margin-left: -80px;}
-.content.fond_content{  padding: 75px 20px 20px 120px;}
+.content.fond_content{  padding: 5px 20px 20px 120px;}
 .fond_map_center{background:#fff;border-radius:15px;height: 81vh;}
 .fond_map_links{padding:15px;}
 
