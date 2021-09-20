@@ -12,7 +12,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-{{--<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>--}}
+<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
 <table style="border-collapse: collapse;" class="table table-hover">
     <thead>
     <tr>

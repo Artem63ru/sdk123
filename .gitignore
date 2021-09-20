@@ -1,3 +1,6 @@
 /storage/logs/
 /public/storage/
 
+
+storage/logs/laravel.log
+*.log

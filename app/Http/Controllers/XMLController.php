@@ -38,6 +38,7 @@ use App\Models\Rtn2\Signed_data;
 use App\Models\Rtn2\Status_tu;
 use App\Models\Status_work;
 use App\Models\Xml\Ssr_reports;
+use App\Models\Xml\Svr_factors;
 use App\Models\Xml\Svr_reports;
 use App\Models\XML_journal;
 use App\Ref_opo;
@@ -46,6 +47,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use XmlResponse\Facades\XmlFacade;
+use Spatie\ArrayToXml\ArrayToXml;
+
 
 class XMLController extends Controller
 {
@@ -125,25 +128,25 @@ class XMLController extends Controller
         $date_accept = $data_form51->date_accept;
         $reason_delay = $data_form51->reason_delay;
 
-        $contents = $contents . "<vid_acccident>\n";
-        $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
-        $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
-        $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
-        $contents = $contents . "</vid_acccident>\n";
-        $contents = $contents . "<victim>$victim</victim>\n";
-        $contents = $contents . "<date>$date</date>\n";
-        $contents = $contents . "<supervision>$supervision</supervision>\n";
-        $contents = $contents . "<organisation>$organisation</organisation>\n";
-        $contents = $contents . "<adress>$adress</adress>\n";
-        $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
-        $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
-        $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
-        $contents = $contents . "<passed>$passed</passed>\n";
-        $contents = $contents . "<accepted>$accepted</accepted>\n";
-        $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
-        $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
+            $contents = $contents . "<vid_acccident>\n";
+            $contents = $contents . "<vid_1>$vid_1</vid_1>\n";
+            $contents = $contents . "<vid_2>$vid_2</vid_2>\n";
+            $contents = $contents . "<vid_3>$vid_3</vid_3>\n";
+            $contents = $contents . "</vid_acccident>\n";
+            $contents = $contents . "<victim>$victim</victim>\n";
+            $contents = $contents . "<date>$date</date>\n";
+            $contents = $contents . "<supervision>$supervision</supervision>\n";
+            $contents = $contents . "<organisation>$organisation</organisation>\n";
+            $contents = $contents . "<adress>$adress</adress>\n";
+            $contents = $contents . "<place_accident>$place_accident</place_accident>\n";
+            $contents = $contents . "<num_obj>$num_obj</num_obj>\n";
+            $contents = $contents . "<result_acccident>$result_acccident</result_acccident>\n";
+            $contents = $contents . "<passed>$passed</passed>\n";
+            $contents = $contents . "<accepted>$accepted</accepted>\n";
+            $contents = $contents . "<date_accept>$date_accept</date_accept>\n";
+            $contents = $contents . "<reason_delay>$reason_delay</reason_delay>\n";
 
-        $contents = $contents."</form>\n";
+            $contents = $contents."</form>\n";
 
 
         Storage::disk('local')->put('form51.xml', $contents, 'public');
@@ -387,7 +390,7 @@ class XMLController extends Controller
         $finish_organisation = Info_GDA::find(7)->values;
 
 
-        $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
+                $contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">\n";
 
         $contents = $contents."<do id = \"gda\">\n";
         //данные организации
@@ -979,9 +982,5 @@ class XMLController extends Controller
         $contents = $contents."</signed_data>\n";
 
         Storage::disk('local')->put('year.xml', $contents, 'public');
-    }
-
-    public function xml_test(){
-        return view('web.xml_test');
     }
 }

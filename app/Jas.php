@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Http\Controllers\XMLController;
+use App\Models\Xml\Svr_reports;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +45,7 @@ class Jas extends Model
 
     public static function updated_check($id)
     {
+
         try {
             Jas::find($id)->update([
                 'check' => 'True',

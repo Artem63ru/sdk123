@@ -20,19 +20,17 @@ use Composer\Semver\VersionParser;
 
 
 
-
-
 class InstalledVersions
 {
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => '123.x-dev',
+    'version' => '123.9999999.9999999.9999999-dev',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '40b2add70ba545fab95fc60f273b9908337aa7e4',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -506,12 +504,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => '123.x-dev',
+      'version' => '123.9999999.9999999.9999999-dev',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '40b2add70ba545fab95fc60f273b9908337aa7e4',
     ),
     'laravel/tinker' => 
     array (
@@ -1030,6 +1028,15 @@ private static $installed = array (
       ),
       'reference' => '99732be0ddb3361e16ad77b68ba41efc8e979019',
     ),
+    'spatie/array-to-xml' => 
+    array (
+      'pretty_version' => '2.15.0',
+      'version' => '2.15.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1795afad4e5a1f4b7af2e0e09802550eaa00a6f8',
+    ),
     'spatie/laravel-permission' => 
     array (
       'pretty_version' => '4.2.0',
@@ -1378,6 +1385,7 @@ foreach (self::getInstalled() as $installed) {
 $packages[] = array_keys($installed['versions']);
 }
 
+
 if (1 === \count($packages)) {
 return $packages[0];
 }
@@ -1541,23 +1549,9 @@ return $installed[0]['root'];
 
 
 
-
 public static function getRawData()
 {
-@trigger_error('getRawData only returns the first dataset loaded, which may not be what you expect. Use getAllRawData() instead which returns all datasets for all autoloaders present in the process.', E_USER_DEPRECATED);
-
 return self::$installed;
-}
-
-
-
-
-
-
-
-public static function getAllRawData()
-{
-return self::getInstalled();
 }
 
 
@@ -1583,7 +1577,6 @@ public static function reload($data)
 self::$installed = $data;
 self::$installedByVendor = array();
 }
-
 
 
 

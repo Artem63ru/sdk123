@@ -85,7 +85,7 @@
             </div>
             <div class="block_rate {{$this->colors[1][0]}}">
                 <h5>Контрольный сепаратор</h5>
-                <p>{{$this->colors[1][1]}}о</p>
+                <p>{{$this->colors[1][1]}}</p>
             </div>
             <div class="block_rate {{$this->colors[2][0]}}">
                 <h5>Технологическая насосная</h5>

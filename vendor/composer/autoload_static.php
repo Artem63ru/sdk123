@@ -97,6 +97,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
             'Symfony\\Component\\Console\\' => 26,
             'Svg\\' => 4,
             'Spatie\\Permission\\' => 18,
+            'Spatie\\ArrayToXml\\' => 18,
         ),
         'R' => 
         array (
@@ -350,6 +351,10 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'Spatie\\Permission\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
+        ),
+        'Spatie\\ArrayToXml\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/array-to-xml/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -608,6 +613,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Http\\Controllers\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImageController.php',
         'App\\Http\\Controllers\\InvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvoiceController.php',
         'App\\Http\\Controllers\\JasController' => __DIR__ . '/../..' . '/app/Http/Controllers/JasController.php',
+        'App\\Http\\Controllers\\MaintenanceCalendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/MaintenanceCalendarController.php',
         'App\\Http\\Controllers\\MatrixControllers' => __DIR__ . '/../..' . '/app/Http/Controllers/MatrixControllers.php',
         'App\\Http\\Controllers\\MenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/MenuController.php',
         'App\\Http\\Controllers\\NotesController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotesController.php',
@@ -660,6 +666,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\RoleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/RoleMiddleware.php',
         'App\\Http\\Middleware\\SessionTimeout' => __DIR__ . '/../..' . '/app/Http/Middleware/SessionTimeout.php',
+        'App\\Http\\Middleware\\TimeBasedRestriction' => __DIR__ . '/../..' . '/app/Http/Middleware/TimeBasedRestriction.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\UserActivity' => __DIR__ . '/../..' . '/app/Http/Middleware/UserActivity.php',
@@ -676,8 +683,11 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Models\\APK_SDK' => __DIR__ . '/../..' . '/app/Models/APK_SDK.php',
         'App\\Models\\Calc_elem' => __DIR__ . '/../..' . '/app/Models/Calc_elem.php',
+        'App\\Models\\Calc_ip_opo_day' => __DIR__ . '/../..' . '/app/Models/Calc_ip_opo_day.php',
+        'App\\Models\\Calc_ip_opo_hour' => __DIR__ . '/../..' . '/app/Models/Calc_ip_opo_hour.php',
         'App\\Models\\Calc_ip_opo_i' => __DIR__ . '/../..' . '/app/Models/Calc_ip_opo_i.php',
         'App\\Models\\Calc_opo' => __DIR__ . '/../..' . '/app/Models/Calc_opo.php',
+        'App\\Models\\Calc_pro_ip_opoi' => __DIR__ . '/../..' . '/app/Models/Calc_pro_ip_opoi.php',
         'App\\Models\\CalendarEvents\\CalendarEvent' => __DIR__ . '/../..' . '/app/Models/CalendarEvents/CalendarEvent.php',
         'App\\Models\\CalendarEvents\\CalendarEventStatus' => __DIR__ . '/../..' . '/app/Models/CalendarEvents/CalendarEventStatus.php',
         'App\\Models\\CalendarEvents\\CalendarEventType' => __DIR__ . '/../..' . '/app/Models/CalendarEvents/CalendarEventType.php',
@@ -691,10 +701,14 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Models\\Glossary\\Table_desc_PB' => __DIR__ . '/../..' . '/app/Models/Glossary/Table_desc_PB.php',
         'App\\Models\\Glossary\\Table_termin' => __DIR__ . '/../..' . '/app/Models/Glossary/Table_termin.php',
         'App\\Models\\Logs' => __DIR__ . '/../..' . '/app/Models/Logs.php',
+        'App\\Models\\Logs_ib' => __DIR__ . '/../..' . '/app/Models/Logs_ib.php',
+        'App\\Models\\Logs_safety' => __DIR__ . '/../..' . '/app/Models/Logs_safety.php',
+        'App\\Models\\Maintenance\\Maintenance' => __DIR__ . '/../..' . '/app/Models/Maintenance/Maintenance.php',
         'App\\Models\\Matrix\\DangerousEvent' => __DIR__ . '/../..' . '/app/Models/Matrix/DangerousEvent.php',
         'App\\Models\\Matrix\\DiagnEvent' => __DIR__ . '/../..' . '/app/Models/Matrix/DiagnEvent.php',
         'App\\Models\\Matrix\\Event_types' => __DIR__ . '/../..' . '/app/Models/Matrix/Event_types.php',
         'App\\Models\\Operational_safety' => __DIR__ . '/../..' . '/app/Models/Operational_safety.php',
+        'App\\Models\\Password_history' => __DIR__ . '/../..' . '/app/Models/Password_history.php',
         'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
         'App\\Models\\Ready' => __DIR__ . '/../..' . '/app/Models/Ready.php',
         'App\\Models\\Ref_obj' => __DIR__ . '/../..' . '/app/Models/Ref_obj.php',
@@ -754,6 +768,9 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'App\\Models\\Type_obor' => __DIR__ . '/../..' . '/app/Models/Type_obor.php',
         'App\\Models\\Wells_project' => __DIR__ . '/../..' . '/app/Models/Wells_project.php',
         'App\\Models\\Wells_type' => __DIR__ . '/../..' . '/app/Models/Wells_type.php',
+        'App\\Models\\XML_journal' => __DIR__ . '/../..' . '/app/Models/XML_journal.php',
+        'App\\Models\\Xml\\Ssr_reports' => __DIR__ . '/../..' . '/app/Models/Xml/Ssr_reports.php',
+        'App\\Models\\Xml\\Svr_reports' => __DIR__ . '/../..' . '/app/Models/Xml/Svr_reports.php',
         'App\\OPO' => __DIR__ . '/../..' . '/app/OPO.php',
         'App\\Opo_day' => __DIR__ . '/../..' . '/app/Opo_day.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -4807,6 +4824,7 @@ class ComposerStaticInit3a474885296505ad8f790dea6db70e36
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\ArrayToXml\\ArrayToXml' => __DIR__ . '/..' . '/spatie/array-to-xml/src/ArrayToXml.php',
         'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',

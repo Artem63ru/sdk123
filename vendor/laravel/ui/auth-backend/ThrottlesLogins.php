@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Models\Logs_safety;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Cache\RateLimiter;
 use Illuminate\Http\Request;
@@ -121,7 +122,7 @@ trait ThrottlesLogins
      */
     public function maxAttempts()
     {
-        return property_exists($this, 'maxAttempts') ? $this->maxAttempts : 5;
+        return property_exists($this, 'maxAttempts') ? Logs_safety::first()->num_error : 5;
     }
 
     /**
@@ -131,6 +132,6 @@ trait ThrottlesLogins
      */
     public function decayMinutes()
     {
-        return property_exists($this, 'decayMinutes') ? $this->decayMinutes : 1;
+        return property_exists($this, 'decayMinutes') ? Logs_safety::first()->time_ban : 1;
     }
 }
