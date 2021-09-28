@@ -1,7 +1,16 @@
+{{--ТУТ НАПИСАН КОНТЕНТ, КОТОРЫЙ ВСПЫЛВАЕТ--}}
+<span id="razd_83">83</span>
+<script>
+    document.addEventListener('DOMContentLoaded', function (){
+        var tooltip_content=document.getElementById('razd_83');
+        var tooltip=new Tooltip(tooltip_content, 'razd_83_tooltip', "r83_label");
+    })
+</script>
+
 <div style="display: inline-block; width: 4%;">
     <div style="width: 90%" class="tab">
         <input type="radio" id="r83" name="tab_group">
-        <label for="r83" class="tab_title razd_col_tab">Раздел<br>8.3</label>
+        <label for="r83" class="tab_title razd_col_tab" id="r83_label">Раздел<br>8.3</label>
         <section class="tab_content">
             <div style="margin-top: 15px; margin-bottom: 15px" class="bat_add"><a href={{'/docs/tab83/new'}}>Добавить запись</a></div>
             <div class="inside_tab_padding plan_new">
