@@ -279,6 +279,10 @@
 
 </div>
 
+<div id="testContent"><span>YOYOYOYO</span></div>
+
+
+
 
 <script>
 
@@ -301,20 +305,39 @@
     function get_active_page_mini(){
         var active_element_mini_id=localStorage.getItem('active_mini')
         if (active_element_mini_id!=null){
-            var element_mini=document.getElementById(active_element_mini_id)
-            element_mini.className='active';
+            try{
+                var element_mini=document.getElementById(active_element_mini_id)
+                element_mini.className='active';
+            }
+            catch (err){
+                console.log(err)
+            }
+
         }
         else{
-            var first_page=document.getElementById('0');
-            first_page.className='active';
+            try{
+                var first_page=document.getElementById('0');
+                first_page.className='active';
+            }
+            catch (err){
+                console.log(err)
+            }
+
         }
     }
     function to_localstorage_mini(element_mini){
         console.log(element_mini.id)
         localStorage.setItem('active_mini', element_mini.id)
     }
-    get_active_page()
-    get_active_page_mini()
+
+    document.addEventListener('DOMContentLoaded', function (){
+        get_active_page()
+        get_active_page_mini()
+
+        var test_cont=document.getElementById('testContent')
+        var newTooltip=new Tooltip(test_cont, 'yo', "chartdiv", TooltipTypes.classicPrompt);
+    })
+
 
 
 </script>
