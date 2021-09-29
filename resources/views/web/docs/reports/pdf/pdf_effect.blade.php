@@ -1,8 +1,8 @@
 <style>
-    body { font-family: DejaVu Sans, sans-serif; }
+    body { font-family: DejaVu Sans, sans-serif; font-size: 8px}
     .table th,
     .table td {
-        padding: 0.75rem;
+        padding: 0.01rem;
         vertical-align: top;
         border-top: 1px solid #dee2e6;
         border: 1px solid black; /* Параметры рамки */
@@ -12,7 +12,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
+<h2 class="text-muted" style="text-align: center" >{{$title}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
             <tr>
@@ -34,23 +34,23 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($data['rows'] as $item)
+            @for ($i=0; $i<count($data['name_opo']); $i++)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$data['name_opo'][$i]}}</td>
+                    <td>{{$data['p_kr'][$i]}}</td>
+                    <td>{{$data['p_un'][$i]}}</td>
+                    <td>{{$data['p_kp'][$i]}}</td>
+                    <td>{{$data['p_pn'][$i]}}</td>
+                    <td>{{$data['p_kd'][$i]}}</td>
+                    <td>{{$data['p_vp'][$i]}}</td>
+                    <td>{{$data['p_ok'][$i]}}</td>
+                    <td>{{$data['r_bf'][$i]}}</td>
+                    <td>{{$data['r_ab'][$i]}}</td>
+                    <td>{{$data['r_go'][$i]}}</td>
+                    <td>{{$data['o_pk'][$i]}}</td>
                 </tr>
 
-            @endforeach
+            @endfor
 
 
             </tbody>

@@ -93,12 +93,12 @@
                     </label>
                     @can('product-create')
                         <label class="accordion">
-                            <input type='checkbox' name='checkbox-accordion' id="report"  onclick="SaveChecked(this)" >
+                            <input type='checkbox' name='checkbox-accordion' id="report" onclick="SaveChecked(this)">
                             <div class="accordion__header">
-                                <a href=''>  Отчеты</a>
+                                <a href=''>Отчеты</a>
                             </div>
                             <div class="accordion__content">
-                                <a class="clieckable_report" data-route="{{ route('xml_journal') }}">Журнал отправки XML</a>
+                                <a href="#" class="clieckable_report" data-route="{{ route('xml_journal') }}">Журнал отправки XML</a>
                                 <a href="{{ route('form51.index') }}">ОС о инциденте п 5.1</a>
                                 <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>
                                 <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
@@ -107,99 +107,261 @@
                                 <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>
                                 {{--                            <a href="#">Термины и определения</a>--}}
                                 {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
-                                <a class="clieckable_report" data-route="{{ route('obj_status') }}">Отчет о состоянии элементов</a>
-                                <a class="clieckable_report" data-route="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>
-                                <a class="clieckable_report" data-route="{{ route('result_pk') }}">Сведения о результатах проверок</a>
-                                <a class="clieckable_report" data-route="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>
-                                <a class="clieckable_report" data-route="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>
-                                <a class="clieckable_report" data-route="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>
-                                <a class="clieckable_report" data-route="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>
+
+                                <a href="#" onclick="Status_element()" id="mother_status">Отчет о состоянии элементов</a>
+                                <div id="div_status" style="display: none">
+                                    <a href="#" class="clieckable_report" id="status_element" data-route="{{ route('obj_status') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('status_elem_day') }}" id="status_element" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('status_elem_month') }}" id="status_element" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('status_elem_quarter') }}" id="status_element" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Scena_report()" id="mother_scena">Отчет о зафиксированных событиях</a>
+                                <div id="div_scena" style="display: none">
+                                    <a href="#" class="clieckable_report" id="report_scena" data-route="{{ route('scena_report') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('scena_report_day') }}" id="report_scena" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('scena_report_month') }}" id="report_scena" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('scena_report_quarter') }}" id="report_scena" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Result_pk()" id="mother_result">Сведения о результатах проверок</a>
+                                <div id="div_result" style="display: none">
+                                    <a href="#" class="clieckable_report" id="result_pk" data-route="{{ route('result_pk') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('result_pk_day') }}" id="result_pk" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('result_pk_month') }}" id="result_pk" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('result_pk_quarter') }}" id="result_pk" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Violations_report()" id="mother_violations_report">Отчет о выяленных нарушениях</a>
+                                <div id="div_violations_report" style="display: none">
+                                    <a href="#" class="clieckable_report" id="violations_report" data-route="{{ route('violations_report') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('violations_report_day') }}" id="violations_report" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('violations_report_month') }}" id="violations_report" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('violations_report_quarter') }}" id="violations_report" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Status_opo()" id="mother_status_opo">Отчет о состоянии ОПО</a>
+                                <div id="div_status_opo" style="display: none">
+                                    <a href="#" class="clieckable_report" id="status_opo" data-route="{{ route('status_opo') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('status_opo_day') }}" id="status_opo" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('status_opo_month') }}" id="status_opo" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('status_opo_quarter') }}" id="status_opo" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Repiat_report()" id="mother_repiat_report">Отчет "Анализ повторяемости несоответствий"</a>
+                                <div id="div_repiat_report" style="display: none">
+                                    <a href="#" class="clieckable_report" id="repiat_report" data-route="{{ route('repiat_report') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('repiat_report_day') }}" id="repiat_report" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('repiat_report_month') }}" id="repiat_report" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('repiat_report_quarter') }}" id="repiat_report" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
+
+                                <a href="#" onclick="Event_pk()" id="mother_event_pk">Отчет о проведенных контрольных мероприятиях</a>
+                                <div id="div_event_pk" style="display: none">
+                                    <a href="#" class="clieckable_report" id="event_pk" data-route="{{ route('event_pk') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('event_pk_day') }}" id="event_pk" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('event_pk_month') }}" id="event_pk" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('event_pk_quarter') }}" id="event_pk" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
 {{--                                <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>--}}
-                                <a class="clieckable_report" data-route="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>
-                                <a class="clieckable_report" data-route="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>
-                                <a class="clieckable_report" data-route="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>
-                                <a class="clieckable_report" data-route="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
+                                <a href="{{route('effect_pk')}}">Отчет об эффективности производственного контроля</a>
+                                <a href="#" class="clieckable_report" data-route="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>
+                                <a href="#" class="clieckable_report" data-route="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>
+
+                                <a href="#" onclick="Quality_criteria()" id="mother_quality_criteria">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>
+                                <div id="div_quality_criteria" style="display: none">
+                                    <a href="#" class="clieckable_report" id="quality_criteria" data-route="{{ route('quality_criteria') }}" style="color: green; margin-left: 25px">За произвольный период</a>
+                                    <a href="{{ route('quality_criteria_day') }}" id="quality_criteria" style="color: green; margin-left: 25px">За день</a>
+                                    <a href="{{ route('quality_criteria_month') }}" id="quality_criteria" style="color: green; margin-left: 25px">За месяц</a>
+                                    <a href="{{ route('quality_criteria_quarter') }}" id="quality_criteria" style="color: green; margin-left: 25px">За квартал</a>
+                                </div>
                             </div>
-                            {{--                        <div class="accordion__content">--}}
-                            {{--                            <a href="{{ route('form51.index') }}">ОС о инциденте п 5.1</a>--}}
-                            {{--                            <a href="{{ route('form52.index') }}">Акты тех. расследований о инциденте п 5.2</a>--}}
-                            {{--                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>--}}
-                            {{--                            <a href="{{ route('form61.index') }}">ОС о аварии п 6.1</a>--}}
-                            {{--                            <a href="{{ route('form62.index') }}">Акты тех. расследований о аварии п 6.2</a>--}}
-                            {{--                            <a href="{{ route('form5363.index') }}">Справки о выполнении мероприятий по результатам расследования и анализа коренных причин инцидентов п 5.3, 6.3</a>--}}
-                            {{--                            <a href="#">Термины и определения</a>--}}
-                            {{--                            <a href="#">Показатели промышленной безопасности</a>--}}
-                            {{--                            <a href="{{ route('obj_status') }}">Отчет о состоянии элементов</a>--}}
-                            {{--                            <a href="{{ route('scena_report') }}">Отчет о зафиксированных событиях</a>--}}
-                            {{--                            <a href="{{ route('result_pk') }}">Сведения о результатах проверок</a>--}}
-                            {{--                            <a href="{{ route('violations_report') }}">Отчет о выяленных нарушениях</a>--}}
-                            {{--                            <a href="{{ route('status_opo') }}">Отчет о состоянии ОПО</a>--}}
-                            {{--                            <a href="{{ route('repiat_report') }}">Отчет "Анализ повторяемости несоответствий"</a>--}}
-                            {{--                            <a href="{{ route('event_pk') }}">Отчет о проведенных контрольных мероприятиях</a>--}}
-                            {{--                            <a href="{{ route('effect_pk') }}">Отчет об эффективности производственного контроля</a>--}}
-                            {{--                            <a href="{{ route('info_act') }}">Справка о выполнении актов выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность</a>--}}
-                            {{--                            <a href="{{ route('act_pb') }}">Справка о выполнении актов выданных органами надзора и контроля в области ПБ</a>--}}
-                            {{--                            <a href="{{ route('quality_criteria') }}">Отчет о выявленных нарушениях на опасных производственных объектах по Критериям качественной оценки</a>--}}
-                            {{--                        </div>--}}
                         </label>
                     @endcan
                 </div>
-
-
             </div>
-
-
-
         </div>
     </div>
 </div>
 <form method="POST" id="choice_report_date" action="" style="opacity: 0">
     @csrf
     <div class="form-group date">
-{{--        <label for="start_date">Дата начала периода</label>--}}
-{{--        <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>--}}
         <label for="start_date">Дата начала периода</label>
         <input type="text" name="start_date" id="start_date" autocomplete="off"/>
     </div>
     <div class="form-group date">
-{{--        <label for="end_date">Дата окончания периода</label>--}}
-{{--        <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>--}}
+
         <label for="finish_date">Дата окончания периода</label>
         <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>
     </div>
-
     <div class="form-group">
         <button type="submit" style="margin-top: 10px" id="upload_report_btn">Добавить</button>
     </div>
 </form>
-{{--<div id="choice_report_date_modal" class="dlg-modal dlg-modal-slide">--}}
-{{--    <div class="form_header">--}}
-{{--        <span class="closer_btn" data-close="" ></span>--}}
-{{--        <h3>Укажите отчетный период</h3>--}}
-{{--    </div>--}}
-{{--        <form method="POST" id="choice_report_date" action="" >--}}
-{{--        @csrf--}}
-{{--        <div class="form-group date">--}}
-{{--            <label for="start_date">Дата начала периода</label>--}}
-{{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="start_date" type="date" name="start_date" required>--}}
-{{--            <label for="start_date">Дата начала периода</label>--}}
-{{--            <input type="text" name="start_date" id="start_date" autocomplete="off"/>--}}
-{{--        </div>--}}
-{{--        <div class="form-group date">--}}
-{{--            <label for="end_date">Дата окончания периода</label>--}}
-{{--            <input class="form-control" style="margin-top: 15px; margin-bottom: 15px; width: 40%; text-align: center; margin-left: 26%" id="finish_date" type="date" name="finish_date" required>--}}
-{{--            <label for="finish_date">Дата окончания периода</label>--}}
-{{--            <input type="text" name="finish_date" id="finish_date" autocomplete="off"/>--}}
-{{--        </div>--}}
-
-{{--        <div class="form-group">--}}
-{{--            <button type="submit" style="margin-top: 10px" id="upload_report_btn">Добавить</button>--}}
-{{--        </div>--}}
-{{--    </form>--}}
-{{--</div>--}}
-{{--<div class="overlay" data-close=""></div>--}}
 
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', Check_history)
+
+    function Check_history(){
+        var mother = document.getElementById('mother_status');
+        var div = document.getElementById('div_status');
+        var mother_scena = document.getElementById('mother_scena');
+        var div_scena = document.getElementById('div_scena');
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "1") {
+            div.style.display = "none";
+            mother.style.color = "";
+            mother.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "1") {
+            mother.style.color = "black";
+            mother.style.fontWeight = "bold";
+            div.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "2") {
+            div_scena.style.display = "none";
+            mother_scena.style.color = "";
+            mother_scena.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "2") {
+            mother_scena.style.color = "black";
+            mother_scena.style.fontWeight = "bold";
+            div_scena.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "3") {
+            div_result.style.display = "none";
+            mother_result.style.color = "";
+            mother_result.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "3") {
+            mother_result.style.color = "black";
+            mother_result.style.fontWeight = "bold";
+            div_result.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "4") {
+            div_status_opo.style.display = "none";
+            mother_status_opo.style.color = "";
+            mother_status_opo.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "4") {
+            mother_status_opo.style.color = "black";
+            mother_status_opo.style.fontWeight = "bold";
+            div_status_opo.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "5") {
+            div_violations_report.style.display = "none";
+            mother_violations_report.style.color = "";
+            mother_violations_report.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "5") {
+            mother_violations_report.style.color = "black";
+            mother_violations_report.style.fontWeight = "bold";
+            div_violations_report.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "6") {
+            div_repiat_report.style.display = "none";
+            mother_repiat_report.style.color = "";
+            mother_repiat_report.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "6") {
+            mother_repiat_report.style.color = "black";
+            mother_repiat_report.style.fontWeight = "bold";
+            div_repiat_report.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "7") {
+            div_event_pk.style.display = "none";
+            mother_event_pk.style.color = "";
+            mother_event_pk.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "7") {
+            mother_event_pk.style.color = "black";
+            mother_event_pk.style.fontWeight = "bold";
+            div_event_pk.style.display = "block";
+        }
+        if (window.localStorage.getItem('remember_history')==null || window.localStorage.getItem('remember_history')!== "8") {
+            div_quality_criteria.style.display = "none";
+            mother_quality_criteria.style.color = "";
+            mother_quality_criteria.style.fontWeight = "";
+        }
+        if (window.localStorage.getItem('remember_history') === "8") {
+            mother_quality_criteria.style.color = "black";
+            mother_quality_criteria.style.fontWeight = "bold";
+            div_quality_criteria.style.display = "block";
+        }
+    }
+
+    function Status_element() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="1"){
+            window.localStorage.setItem('remember_history', '1');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+    function Quality_criteria() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="8"){
+            window.localStorage.setItem('remember_history', '8');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+    function Event_pk() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="7"){
+            window.localStorage.setItem('remember_history', '7');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+    function Scena_report() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="2"){
+            window.localStorage.setItem('remember_history', '2');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+    function Result_pk() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="3"){
+            window.localStorage.setItem('remember_history', '3');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+    function Status_opo() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="4"){
+            window.localStorage.setItem('remember_history', '4');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+    function Violations_report() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="5"){
+            window.localStorage.setItem('remember_history', '5');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+    function Repiat_report() {
+        if (window.localStorage.getItem('remember_history')===null || window.localStorage.getItem('remember_history')!=="6"){
+            window.localStorage.setItem('remember_history', '6');
+        } else {
+            window.localStorage.setItem('remember_history', '0');
+        }
+        Check_history();
+    }
+
+</script>
 
 
 <script>
@@ -218,7 +380,6 @@
         if (window.localStorage[element.id]!=null){
             element.checked=false;
             window.localStorage.removeItem(element.id);
-
         }
         else {
             for (let ch of checkboxes){
@@ -302,7 +463,6 @@
     });
 
 </script>
-
 
 <style>
     /*#choice_report_date_modal{*/

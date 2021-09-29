@@ -13,9 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о выяленных нарушениях на опасных производственных объектах<br>
-                            Срок устранения в период с {{$start}} по {{$finish}}</h2>
+                            В период с {{$start}} по {{$finish}}</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_violations_report/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_violations_report/'.$start.'/'.$finish_fact) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -39,30 +39,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($rows3 as $row)
+                    @for($i=0; $i<count($data['desc_violation']); $i++)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
-{{--                            <td>{{$row->id}}</td>--}}
+                            <td>{{$data['desc_violation'][$i]}}</td>
+                            <td>{{$data['name_obj'][$i]}}</td>
+                            <td>{{$data['level_km'][$i]}}</td>
+                            <td>{{$data['direction'][$i]}}</td>
+                            <td>{{$data['severity_fatal'][$i]}}</td>
+                            <td>{{$data['infi_repeat'][$i]}}</td>
+                            <td>{{$data['plan_work'][$i]}}</td>
+                            <td>{{$data['plan_date'][$i]}}</td>
+                            <td>{{$data['violation_status'][$i]}}</td>
+                            <td>{{$data['plan_pers'][$i]}}</td>
                         </tr>
-                    @endforeach
+                    @endfor
                     </tbody>
                 </table>
             </div>

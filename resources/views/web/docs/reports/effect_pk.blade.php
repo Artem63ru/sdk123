@@ -13,9 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет об эффективности производственного контроля за соблюдением требований промышленной безопасности по ОПО<br>
-                            За период с {{$start}} по {{$finish}}</h2>
+                            За {{$quarter}} квартал {{$year}} года</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_effect/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_effect/'.$quarter.'/'.$year) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -24,7 +24,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th rowspan="2" class="centered">Наименование элемента ОПО</th>
+                        <th rowspan="2" class="centered">Наименование ОПО</th>
                         <th colspan="7" class="centered">Показатели безопасности функционирования ОПО</th>
                         <th rowspan="2" class="centered">Обобщенный показатель безопасности функционирования ОПО</th>
                         <th rowspan="2" class="centered">Показатель безаварийности ОПО</th>
@@ -42,23 +42,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($rows as $item)
+                    @for ($i=0; $i<count($data['name_opo']); $i++)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$data['name_opo'][$i]}}</td>
+                            <td>{{$data['p_kr'][$i]}}</td>
+                            <td>{{$data['p_un'][$i]}}</td>
+                            <td>{{$data['p_kp'][$i]}}</td>
+                            <td>{{$data['p_pn'][$i]}}</td>
+                            <td>{{$data['p_kd'][$i]}}</td>
+                            <td>{{$data['p_vp'][$i]}}</td>
+                            <td>{{$data['p_ok'][$i]}}</td>
+                            <td>{{$data['r_bf'][$i]}}</td>
+                            <td>{{$data['r_ab'][$i]}}</td>
+                            <td>{{$data['r_go'][$i]}}</td>
+                            <td>{{$data['o_pk'][$i]}}</td>
                         </tr>
 
-                    @endforeach
+                    @endfor
 
 
                     </tbody>

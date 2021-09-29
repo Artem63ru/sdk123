@@ -457,16 +457,17 @@
                 },
                 xAxis: {
                     type: 'datetime',
-                    gridLineWidth: 1
+                    gridLineWidth: 0
                 },
                 legend: {
                     enabled: false
                 },
 
 
-                yAxis: {
+                yAxis: [{
                     min: 0,
                     max: 1,
+
                     title: {
                         text: 'Интегральный показатель',
                         style: {
@@ -474,13 +475,13 @@
                         }
                     },
                     labels: {
-                        enabled:false
+                        enabled:true
                     },
                     minorGridLineWidth: 0,
-                    gridLineWidth: 0,
+                    gridLineWidth: 1,
                     alternateGridColor: null,
 
-                },
+                }],
                 credits: {
                     enabled: false
                 },
