@@ -237,7 +237,7 @@ class PdfReportController extends Controller
         $output_data['num_all'][$id_OPO][$id_Obj][$id_violation] = '';
         $output_data['ok'][$id_OPO][$id_Obj][$id_violation] = '';
         $output_data['ok_of_all'][$id_OPO][$id_Obj][$id_violation] = '';
-        $all_violation = count(APK_SDK::where('daterec', '>', date("Y-m-d", strtotime($start.'- 1 year')))->where('daterec', '<', date("Y-m-d", strtotime($start)))->where('infi_repeat', '!=', '0')->get());
+        $all_violation = count(APK_SDK::where('daterec', '>', date("Y-m-d", strtotime($start.'- 1 year')))->where('daterec', '<', date("Y-m-d", strtotime($finish)))->where('infi_repeat', '!=', '0')->get());
         $data_all = APK_SDK::orderByDesc('id_apk')->where('infi_repeat', '!=', '0')->where('daterec', '<', date("Y-m-d H:i", strtotime($finish.'+ 23 hour 59 minutes')))->where('daterec', '>', $start)->get();
         $of_opo = $data_all->groupBy('idOPO');
         foreach ($of_opo as $rows){    //проходимся по записям одного опо

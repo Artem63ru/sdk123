@@ -318,7 +318,7 @@ class ReportController extends Controller
         $start = $request->start_date;
         $finish = date("Y-m-d H:i", strtotime($request->finish_date.'+ 23 hour 59 minutes'));
         $finish_fact = $request->finish_date;
-        $all_violation = count(APK_SDK::where('daterec', '>', date("Y-m-d", strtotime($start.'- 1 year')))->where('daterec', '<', date("Y-m-d", strtotime($start)))->where('infi_repeat', '!=', '0')->get());
+        $all_violation = count(APK_SDK::where('daterec', '>', date("Y-m-d", strtotime($start.'- 1 year')))->where('daterec', '<', date("Y-m-d", strtotime($finish)))->where('infi_repeat', '!=', '0')->get());
         $data_all = APK_SDK::orderByDesc('id_apk')->where('infi_repeat', '!=', '0')->where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
         $of_opo = $data_all->groupBy('idOPO');
         foreach ($of_opo as $rows){    //проходимся по записям одного опо
