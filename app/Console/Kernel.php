@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-//        $schedule->call('App\Http\Controllers\XMLController@fifty_min')->everyMinute();
+       $schedule->call('App\Http\Controllers\XMLController@fifty_min')->everyMinute();
 //        $schedule->call('App\Http\Controllers\ReportController_history@element_status_day_data')->dailyAt('23:59');
 //        $schedule->call('App\Http\Controllers\ReportController_history@element_status_month_data')->monthly();
 //        $schedule->call('App\Http\Controllers\ReportController_history@element_status_quarter_data')->quarterly();
