@@ -13,9 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о проведенных контрольных мероприятиях и выявленных нарушениях<br>
-                            За период с {{$start}} по {{$finish}}</h2>
+                            За период с {{date("Y-m-d", strtotime($start))}} по {{$finish}}</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_event/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_event/'.$start.'/'.$finish_fact) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -51,25 +51,25 @@
 
                     </thead>
                     <tbody>
-                    @foreach ($rows6 as $row)
+                    @for($i=1; $i<count($data['name_opo'])+1; $i++)
                         <tr>
+                            <td>{{$i}}</td>
+                            <td>{{$data['name_opo'][$i]}}</td>
                             <td></td>
+                            <td>{{$data['level_1_all'][$i]}}</td>
+                            <td>{{$data['level_1_ok'][$i]}}</td>
                             <td></td>
+                            <td>{{$data['level_2_all'][$i]}}</td>
+                            <td>{{$data['level_2_ok'][$i]}}</td>
                             <td></td>
+                            <td>{{$data['level_3_all'][$i]}}</td>
+                            <td>{{$data['level_3_ok'][$i]}}</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$data['level_4_all'][$i]}}</td>
+                            <td>{{$data['level_4_ok'][$i]}}</td>
+                            <td>{{$data['opo_all'][$i]}}</td>
                         </tr>
-                    @endforeach
+                    @endfor
 
                     </tbody>
                 </table>

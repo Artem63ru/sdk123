@@ -253,14 +253,70 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('docs/xml_journal', 'ReportController@xml_journal')->name('xml_journal');
     Route::get('docs/xml_journal_delete', 'ReportController@xml_journal_delete')->name('xml_journal_delete');
     Route::post('docs/report', 'ReportController@report')->name('obj_status');
-    Route::post('docs/report1', 'ReportController@report1')->name('scena_report');
-    Route::post('docs/report2', 'ReportController@report2')->name('result_pk');
-    Route::post('docs/report3', 'ReportController@report3')->name('violations_report');
-    Route::post('docs/report4', 'ReportController@report4')->name('status_opo');
-    Route::post('docs/report5', 'ReportController@report5')->name('repiat_report');
-    Route::post('docs/report6', 'ReportController@report6')->name('event_pk');
+        Route::get('docs/status_elem_day', 'ReportController_history@element_status_day')->name('status_elem_day');     //история по дням общая
+        Route::get('docs/status_elem_day/{id}/day', 'ReportController_history@element_status_day_show');     //история по дням просмотр
+        Route::get('docs/status_elem_month', 'ReportController_history@element_status_month')->name('status_elem_month');     //история по месяцам общая
+        Route::get('docs/status_elem_day/{id}/month', 'ReportController_history@element_status_month_show');     //история по месяцам просмотр
+        Route::get('docs/status_elem_quarter', 'ReportController_history@element_status_quarter')->name('status_elem_quarter');     //история по кварталам общая
+        Route::get('docs/status_elem_day/{id}/quarter', 'ReportController_history@element_status_quarter_show');     //история по кварталам просмотр
 
-    Route::resource('form51', Form51Controller::class);
+    Route::post('docs/report1', 'ReportController@report1')->name('scena_report');
+        Route::get('docs/scena_report_day', 'ReportController_history@scena_report_day')->name('scena_report_day');     //история по дням общая
+        Route::get('docs/scena_report/{id}/day', 'ReportController_history@scena_report_day_show');     //история по дням просмотр
+        Route::get('docs/scena_report_month', 'ReportController_history@scena_report_month')->name('scena_report_month');     //история по месяцам общая
+        Route::get('docs/scena_report/{id}/month', 'ReportController_history@scena_report_month_show');     //история по месяцам просмотр
+        Route::get('docs/scena_report_quarter', 'ReportController_history@scena_report_quarter')->name('scena_report_quarter');     //история по кварталам общая
+        Route::get('docs/scena_report/{id}/quarter', 'ReportController_history@scena_report_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/report2', 'ReportController@report2')->name('result_pk');
+        Route::get('docs/result_pk_day', 'ReportController_history@result_pk_day')->name('result_pk_day');     //история по дням общая
+        Route::get('docs/result_pk/{id}/day', 'ReportController_history@result_pk_day_show');     //история по дням просмотр
+        Route::get('docs/result_pk_month', 'ReportController_history@result_pk_month')->name('result_pk_month');     //история по месяцам общая
+        Route::get('docs/result_pk/{id}/month', 'ReportController_history@result_pk_month_show');     //история по месяцам просмотр
+        Route::get('docs/result_pk_quarter', 'ReportController_history@result_pk_quarter')->name('result_pk_quarter');     //история по кварталам общая
+        Route::get('docs/result_pk/{id}/quarter', 'ReportController_history@result_pk_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/report3', 'ReportController@report3')->name('violations_report');
+        Route::get('docs/violations_report_day', 'ReportController_history@violations_report_day')->name('violations_report_day');     //история по дням общая
+        Route::get('docs/violation_report/{id}/day', 'ReportController_history@violations_report_day_show');     //история по дням просмотр
+        Route::get('docs/violations_report_month', 'ReportController_history@violations_report_month')->name('violations_report_month');     //история по месяцам общая
+        Route::get('docs/violation_report/{id}/month', 'ReportController_history@violations_report_month_show');     //история по месяцам просмотр
+        Route::get('docs/violations_report_quarter', 'ReportController_history@violations_report_quarter')->name('violations_report_quarter');     //история по кварталам общая
+        Route::get('docs/violation_report/{id}/quarter', 'ReportController_history@violations_report_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/report4', 'ReportController@report4')->name('status_opo');
+        Route::get('docs/status_opo_day', 'ReportController_history@status_opo_day')->name('status_opo_day');     //история по дням общая
+        Route::get('docs/status_opo/{id}/day', 'ReportController_history@status_opo_day_show');     //история по дням просмотр
+        Route::get('docs/status_opo_month', 'ReportController_history@status_opo_month')->name('status_opo_month');     //история по месяцам общая
+        Route::get('docs/status_opo/{id}/month', 'ReportController_history@status_opo_month_show');     //история по месяцам просмотр
+        Route::get('docs/status_opo_quarter', 'ReportController_history@status_opo_quarter')->name('status_opo_quarter');     //история по кварталам общая
+        Route::get('docs/status_opo/{id}/quarter', 'ReportController_history@status_opo_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/report5', 'ReportController@report5')->name('repiat_report');
+        Route::get('docs/repiat_report_day', 'ReportController_history@repiat_report_day')->name('repiat_report_day');     //история по дням общая
+        Route::get('docs/repiat_report/{id}/day', 'ReportController_history@repiat_report_day_show');     //история по дням просмотр
+        Route::get('docs/repiat_report_month', 'ReportController_history@repiat_report_month')->name('repiat_report_month');     //история по месяцам общая
+        Route::get('docs/repiat_report/{id}/month', 'ReportController_history@repiat_report_month_show');     //история по месяцам просмотр
+        Route::get('docs/repiat_report_quarter', 'ReportController_history@repiat_report_quarter')->name('repiat_report_quarter');     //история по кварталам общая
+        Route::get('docs/repiat_report/{id}/quarter', 'ReportController_history@repiat_report_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/report6', 'ReportController@report6')->name('event_pk');
+        Route::get('docs/event_pk_day', 'ReportController_history@event_pk_day')->name('event_pk_day');     //история по дням общая
+        Route::get('docs/event_pk/{id}/day', 'ReportController_history@event_pk_day_show');     //история по дням просмотр
+        Route::get('docs/event_pk_month', 'ReportController_history@event_pk_month')->name('event_pk_month');     //история по месяцам общая
+        Route::get('docs/event_pk/{id}/month', 'ReportController_history@event_pk_month_show');     //история по месяцам просмотр
+        Route::get('docs/event_pk_quarter', 'ReportController_history@event_pk_quarter')->name('event_pk_quarter');     //история по кварталам общая
+        Route::get('docs/event_pk/{id}/quarter', 'ReportController_history@event_pk_quarter_show');     //история по кварталам просмотр
+
+    Route::post('docs/quality_criteria', 'ReportController@report_quality_criteria')->name('quality_criteria');
+        Route::get('docs/quality_criteria_day', 'ReportController_history@quality_criteria_day')->name('quality_criteria_day');     //история по дням общая
+        Route::get('docs/quality_criteria/{id}/day', 'ReportController_history@quality_criteria_day_show');     //история по дням просмотр
+        Route::get('docs/quality_criteria_month', 'ReportController_history@quality_criteria_month')->name('quality_criteria_month');     //история по месяцам общая
+        Route::get('docs/quality_criteria/{id}/month', 'ReportController_history@quality_criteria_month_show');     //история по месяцам просмотр
+        Route::get('docs/quality_criteria_quarter', 'ReportController_history@quality_criteria_quarter')->name('quality_criteria_quarter');     //история по кварталам общая
+        Route::get('docs/quality_criteria/{id}/quarter', 'ReportController_history@quality_criteria_quarter_show');     //история по кварталам просмотр
+
+        Route::resource('form51', Form51Controller::class);
     Route::resource('form52', Form52Controller::class);
     Route::get('form52-add-table/{id}', 'ReportController@child_form52_table')->name('add-child-form52');
     Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
@@ -279,22 +335,30 @@ Route::group(['middleware' => ['auth']], function() {
     ///////////************** Отчеты PDF **************************************/////////////////////////
     Route::get('pdf_xml_journal/{start}/{finish}', 'PdfReportController@pdf_xml_journal')->name('pdf_xml_journal');     // скачать отчет по элементам
     Route::get('pdf_elem/{start}/{finish}', 'PdfReportController@pdf_elem')->name('pdf_elem');     // скачать отчет по элементам
+    Route::get('pdf_elem/{start}/{finish}/{term}', 'PdfReportController@pdf_elem_term');     // скачать отчет по элементам за день/месяц/квартал
     Route::get('pdf_scena/{start}/{finish}', 'PdfReportController@pdf_scena')->name('pdf_scena');     // скачать отчет по сценариям
+    Route::get('pdf_scena/{start}/{finish}/{term}', 'PdfReportController@pdf_scena_term');     // скачать отчет по сценариям за день/месяц/квартал
     Route::get('pdf_result_pk/{start}/{finish}', 'PdfReportController@pdf_result_pk')->name('pdf_result_pk');     // скачать отчет по проверкам
+    Route::get('pdf_result_pk/{start}/{finish}/{term}', 'PdfReportController@pdf_result_pk_term');     // скачать отчет по проверкам за день/месяц/квартал
     Route::get('pdf_violations_report/{start}/{finish}', 'PdfReportController@pdf_violations_report')->name('pdf_violations_report');     // скачать отчет по выявленным нарушениям
+    Route::get('pdf_violations_report/{start}/{finish}/{term}', 'PdfReportController@pdf_violations_report_term')->name('pdf_violations_report');     // скачать отчет по выявленным нарушениям за день/месяц/квартал
     Route::get('pdf_opo/{start}/{finish}', 'PdfReportController@opo_pdf')->name('pdf_opo');     // скачать отчет по ОПО
+    Route::get('pdf_opo/{start}/{finish}/{term}', 'PdfReportController@opo_pdf_term');     // скачать отчет по ОПО за день/месяц/квартал
     Route::get('pdf_repair/{start}/{finish}', 'PdfReportController@pdf_repair')->name('pdf_repair');     // скачать отчет о повторах несоответствия
+    Route::get('pdf_repiat_report/{start}/{finish}/{term}', 'PdfReportController@pdf_repair_term');     // скачать отчет о повторах несоответствия за день/месяц/квартал
+    Route::get('pdf_event/{start}/{finish}/{term}', 'PdfReportController@pdf_event_term');     // скачать отчет о мероприятиях за день/месяц/квартал
     Route::get('pdf_event/{start}/{finish}', 'PdfReportController@pdf_event')->name('pdf_event');     // скачать отчет о мероприятиях
-    Route::get('pdf_effect/{start}/{finish}', 'PdfReportController@pdf_effect')->name('pdf_effect');     // скачать отчет об эффективности
+    Route::get('pdf_effect/{quarter}/{year}', 'PdfReportController@pdf_effect')->name('pdf_effect');     // скачать отчет об эффективности
     Route::get('pdf_info_act/{start}/{finish}', 'PdfReportController@pdf_info_act')->name('pdf_info_act');     // скачать справку о выполнении актов внутреннее
     Route::get('pdf_act_pb/{start}/{finish}', 'PdfReportController@pdf_act_pb')->name('pdf_act_pb');     // скачать справку о выполнении актов надзорные организации
     Route::get('pdf_quality_criteria/{start}/{finish}', 'PdfReportController@pdf_quality_criteria')->name('pdf_quality_criteria');     // скачать отчет по критериям качественной оценки
+    Route::get('pdf_quality_criteria/{start}/{finish}/{term}', 'PdfReportController@pdf_quality_criteria_term');     // скачать отчет по критериям качественной оценки
     Route::get('docs/report5', 'ReportController@report5')->name('repiat_report');
     Route::get('docs/report6', 'ReportController@report6')->name('event_pk');
-    Route::post('docs/effect_pk', 'ReportController@report_effect')->name('effect_pk');
+    Route::get('docs/effect_pk', 'ReportController_history@effect_pk_quarter')->name('effect_pk');
+    Route::get('docs/effect_pk/{quarter}/{year}', 'ReportController_history@effect_pk_quarter_show');
     Route::post('docs/info_act', 'ReportController@report_info_act')->name('info_act');
     Route::post('docs/act_pb', 'ReportController@report_act_pb')->name('act_pb');
-    Route::post('docs/quality_criteria', 'ReportController@report_quality_criteria')->name('quality_criteria');
 
         ////////////******************** Отчеты XML**************************************
         Route::get('/xml', 'XMLController@fifty_min'); // создание xml 15 минут

@@ -14,4 +14,9 @@ class APK_SDK extends Model
     {
         return $this->belongsTo('App\Models\Ref_Obj', 'idObj', 'idObj');
     }
+//Связь с APK_SDK_OF
+    public function APK_to_APK()
+    {
+        return $this->belongsTo('App\Models\APK_SDK_OF', 'id_apk', 'id_apk');
+    }
 }
