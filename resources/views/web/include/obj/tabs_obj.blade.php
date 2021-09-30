@@ -167,5 +167,68 @@
     @include('web.include.script-lib.highcharts')
 
 
-
 </div>
+@if($text['chart_1'] != '')
+    <div id="chart_1_content">
+        <h5>{{$text['chart_1']}}</h5>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltip_Chart_1 = document.getElementById('chart_1_content');
+            var Char1 = new Tooltip(tooltip_Chart_1, 'chart_1_id', 'chartdiv');
+        })
+    </script>
+@endif
+@if($text['chart_2'] != [])
+    <div id="chart_2_content">
+        <h5>
+            @foreach($text['chart_2'] as $row)
+                {{$row}}<br>
+            @endforeach
+        </h5>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltip_Chart_2 = document.getElementById('chart_2_content');
+            var Char2 = new Tooltip(tooltip_Chart_2, 'chart_2_id', 'chartdiv1');
+        })
+    </script>
+@endif
+@if($text['chart_3'] != [])
+    <div id="chart_3_content">
+        <h5>
+            @foreach($text['chart_3'] as $row)
+                {{$row}}<br><br>
+            @endforeach
+        </h5>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltip_Chart_3 = document.getElementById('chart_3_content');
+            var Char3 = new Tooltip(tooltip_Chart_3, 'chart_3_id', 'chartdiv2');
+        })
+    </script>
+@endif
+@if($text['chart_4'] != '')
+    <div id="chart_4_content">
+        <h5>{{$text['chart_4']}}</h5>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltip_Chart_4 = document.getElementById('chart_4_content');
+            var Char4 = new Tooltip(tooltip_Chart_4, 'chart_4_id', 'chartdiv3');
+        })
+    </script>
+@endif
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function (){--}}
+{{--        var tooltip_Chart_1=document.getElementById('chart_1_content');--}}
+{{--        var Char1=new Tooltip(tooltip_Chart_1, 'chart_1_id', 'chartdiv');--}}
+{{--        var tooltip_Chart_2=document.getElementById('chart_2_content');--}}
+{{--        var Char2=new Tooltip(tooltip_Chart_2, 'chart_2_id', 'chartdiv1');--}}
+{{--        var tooltip_Chart_3=document.getElementById('chart_3_content');--}}
+{{--        var Char3=new Tooltip(tooltip_Chart_3, 'chart_3_id', 'chartdiv2');--}}
+{{--        --}}
+{{--    })--}}
+
+{{--</script>--}}
