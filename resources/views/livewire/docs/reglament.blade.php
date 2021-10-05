@@ -3,14 +3,21 @@
             <table>
                 <tbody>
                 <tr>
-                    <td><img alt="" src="{{asset('assets/images/icons/search.svg')}}"></td>
-                    <td><input type="text" id=""  placeholder=""></td>
-                    <td><form><select wire:model="search" >
+                    <td style="width: 3%"><img alt="" src="{{asset('assets/images/icons/search.svg')}}"></td>
+                    <td style="width: 24%; margin-left: 0px"><input wire:model="search3" type="text" placeholder=""/></td>
+                    <td style="width: 40%; margin-left: 0px"><form><select wire:model="search1" >
                                 <option value="" >Выбрать все...</option>
-                                @foreach (App\Models\Type_obj::all() as $value)
+                                @foreach ($type_obj as $value)
                                     <option value="{{$value->type_id}}">{{ $value->type_name }}</option>
                                 @endforeach
                             </select> </form></td>
+                    @if($visible_wells == 1)
+                    <td style="width: 33%"><form><select wire:model="search2" >
+                                <option value="" >Любая очередь...</option>
+                                    <option value="{{1}}">1 очередь</option>
+                                    <option value="{{2}}">2 очередь</option>
+                            </select> </form></td>
+                    @endif
 {{--                    <td><select id=""><option select>Элемент ОПО</option><option>2</option><option>3</option></select></td>--}}
 {{--                    <td><select id=""><option select>Манессман</option><option>2</option><option>3</option></select></td>--}}
                 </tr>
@@ -34,10 +41,12 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <?php
+                        $i = 1;
+                        ?>
                     @foreach ($reglaments as $reglament)
                         <tr>
-                            <td>{{$reglament->id}}</td>
+                            <td>{{$i}}</td>
                             <td>{{$reglament->reglament_to_param->full_name}}</td>
                             <td>{{$reglament->reglament_to_param->asutp_name}}</td>
                             <td>°C</td>
@@ -47,9 +56,12 @@
                             <td>Аналог</td>
                             <td>
                                     <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
-                                    <a href="#openModal"><img wire:click="edit({{ $reglament->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
+                                    <a href="#openModal"><img wire:click="edit({{ $reglament->id_teh_reglament }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
                             </td>
                         </tr>
+                        <?php
+                        $i++;
+                        ?>
                     @endforeach
 
                     </tbody>

@@ -467,6 +467,7 @@
                 yAxis: [{
                     min: 0,
                     max: 1,
+                    stepSize: 0.5,
 
                     title: {
                         text: 'Интегральный показатель',
@@ -536,7 +537,7 @@
             </div>
         </div>
         <div class="period_info">
-            <div id="chart1" style="height: 200px; padding-top: 10px"></div>
+            <div id="chart1" style="height: 170px; padding-top: 5px"></div>
 {{--            @include('charts.chart_ip_opo')--}}
             {{--                <img alt="" src="replace/1.png">--}}
         </div>
