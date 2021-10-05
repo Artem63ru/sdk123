@@ -196,11 +196,33 @@
 @endif
 @if($text['chart_3'] != [])
     <div id="chart_3_content">
-        <h5>
-            @foreach($text['chart_3'] as $row)
-                {{$row}}<br><br>
-            @endforeach
-        </h5>
+            <table>
+                <thead>
+                <tr>
+                    <th>Наименование сигнала</th>
+                    <th style="text-align: center">Минимальное</th>
+                    <th style="text-align: center">Максимальное</th>
+                    <th style="text-align: center">Текущее значение</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if (count($text['chart_3']['name']) > 7){
+                        $num_row = 7;
+                    }    else{
+                        $num_row = count($text['chart_3']['name']);
+                    }
+                ?>
+                @for($i=0; $i<$num_row; $i++)
+                    <tr>
+                        <td>{{$text['chart_3']['name'][$i]}}</td>
+                        <td style="text-align: center">{{$text['chart_3']['min'][$i]}}</td>
+                        <td style="text-align: center">{{$text['chart_3']['max'][$i]}}</td>
+                        <td style="text-align: center">{{$text['chart_3']['tek'][$i]}}</td>
+                    </tr>
+                @endfor
+                </tbody>
+            </table>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

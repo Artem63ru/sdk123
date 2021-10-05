@@ -54,41 +54,53 @@ class ObjController extends Controller
         }
         //ДЛЯ CHART_3
         $ochered = Ref_obj::where('idObj', $id_obj)->first()->type_project;
-        if($ochered == 'W1'){
+        if($ochered == 'W1' || $ochered == 'W1 '){
             $data_param = Wells1que::orderByDesc('daterec')->where('from_ref_obj', $id_obj)->first();
             $num_error_reglament = 0;
-            foreach ($reglaments as $row){
+            foreach ($reglaments->where('wells', '=', 1) as $row){
                 if ($row->min != '' && $row->max != '') {
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
                         if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' .  round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     } else {
                         if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' . round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     }
                 }
             }
-        } elseif ($ochered == 'W'){
+        } elseif ($ochered == 'W' || $ochered == 'W '){
             $data_param = Wells2que::orderByDesc('daterec')->where('from_ref_obj', $id_obj)->first();
             $num_error_reglament = 0;
-            foreach ($reglaments as $row){
+            foreach ($reglaments->where('wells', '=', 2) as $row){
                 if ($row->min != '' && $row->max != '') {
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
                         if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' .  round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     } else {
                         if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' . round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     }
@@ -103,12 +115,18 @@ class ObjController extends Controller
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
                         if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' .  round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     } else {
                         if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
-                            $text['chart_3'][$num_error_reglament] = $row->reglament_to_param->full_name . ' выходит за пределы регламентных значений. Минимум: ' . round($row->min, 2) . ' Максимум: ' . round($row->max, 2) . ' Текущее: ' . round($znachenie_tekushee, 2);
+                            $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
+                            $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
+                            $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
+                            $text['chart_3']['tek'][$num_error_reglament] = round($znachenie_tekushee, 2);
                             $num_error_reglament++;
                         }
                     }
@@ -156,6 +174,7 @@ class ObjController extends Controller
         if ($key != 1){
             $text['chart_4'] = 'Обусловлено расчетными показателем ТБ "'.$OTO->where('idOTO', $idOTO)->first()->descOTO.'" (Минимальный = '.$key.')';
         }
+//        dd($text);
         return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text'));
 
     }
