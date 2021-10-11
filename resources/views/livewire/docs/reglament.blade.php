@@ -49,11 +49,11 @@
                             <td>{{$i}}</td>
                             <td>{{$reglament->reglament_to_param->full_name}}</td>
                             <td>{{$reglament->reglament_to_param->asutp_name}}</td>
-                            <td>°C</td>
+                            <td>{{$si[$reglament->reglament_to_param->si]}}</td>
                             <td>{{$reglament->min}}</td>
                             <td>{{$reglament->max}}</td>
                             <td>{{$reglament->koef}}</td>
-                            <td>Аналог</td>
+                            <td>{{$type_signal[$reglament->reglament_to_param->type]}}</td>
                             <td>
                                     <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
                                     <a href="#openModal"><img wire:click="edit({{ $reglament->id_teh_reglament }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Docs;
 
 use App\Http\Controllers\AdminController;
+use App\Models\Tech_reg\Table_si;
 use App\Models\Tech_reg\Tech_reglament;
 use App\Models\Type_obj;
 use Livewire\Component;
@@ -22,6 +23,14 @@ class Reglament extends Component
 
     public function render()
     {
+        $table_si = Table_si::orderBy('id')->get();
+        $i = 1;
+        foreach ($table_si as $row){
+            $si[$i] = $row->name;
+            $i++;
+        }
+        $type_signal[1] = 'Аналоговый';
+        $type_signal[10] = 'Дискретный';
         $visible_wells = 0;
         if ($this->search1 == 1 || $this->search1 == 3) {
             $visible_wells = 1;
@@ -33,6 +42,8 @@ class Reglament extends Component
                     'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                     where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->where('wells', '=', $this->search2)->orderBy('teh_reglament.id')->get(),
                     'visible_wells' => $visible_wells,
+                    'si'=> $si,
+                    'type_signal'=> $type_signal,
                 ]);
             } else {
                 $search_name_param = '%' . $this->search3 . '%';
@@ -42,6 +53,8 @@ class Reglament extends Component
                         'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                     where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
                     'visible_wells' => $visible_wells,
+                    'si'=> $si,
+                    'type_signal'=> $type_signal,
                 ]);
             }
         } elseif ($this->search1 == '') {
@@ -53,6 +66,8 @@ class Reglament extends Component
                     'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                     where('full_name', 'ilike', $search_name_param)->orderBy('teh_reglament.id')->get(),
                 'visible_wells' => $visible_wells,
+                'si'=> $si,
+                'type_signal'=> $type_signal,
             ]);
         }
         else{
@@ -65,6 +80,8 @@ class Reglament extends Component
                     'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                 where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
                 'visible_wells' => $visible_wells,
+                'si'=> $si,
+                'type_signal'=> $type_signal,
             ]);
         }
     }
