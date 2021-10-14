@@ -279,7 +279,6 @@
 
 </div>
 
-<div id="testContent"><span>YOYOYOYO</span></div>
 
 
 
@@ -334,8 +333,7 @@
         get_active_page()
         get_active_page_mini()
 
-        var test_cont=document.getElementById('testContent')
-        var newTooltip=new Tooltip(test_cont, 'yo', "chartdiv", TooltipTypes.classicPrompt);
+
     })
 
 

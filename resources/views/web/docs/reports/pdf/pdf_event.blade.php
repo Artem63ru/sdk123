@@ -14,7 +14,7 @@
 </style>
 
 
-<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
+<h2 class="text-muted" style="text-align: center" >{{$title}}</h2>
 
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
@@ -45,25 +45,25 @@
 
             </thead>
             <tbody>
-            @foreach ($data['rows'] as $row)
+            @for($i=1; $i<count($data['name_opo'])+1; $i++)
                 <tr>
+                    <td>{{$i}}</td>
+                    <td>{{$data['name_opo'][$i]}}</td>
                     <td></td>
+                    <td>{{$data['level_1_all'][$i]}}</td>
+                    <td>{{$data['level_1_ok'][$i]}}</td>
                     <td></td>
+                    <td>{{$data['level_2_all'][$i]}}</td>
+                    <td>{{$data['level_2_ok'][$i]}}</td>
                     <td></td>
+                    <td>{{$data['level_3_all'][$i]}}</td>
+                    <td>{{$data['level_3_ok'][$i]}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$data['level_4_all'][$i]}}</td>
+                    <td>{{$data['level_4_ok'][$i]}}</td>
+                    <td>{{$data['opo_all'][$i]}}</td>
                 </tr>
-            @endforeach
+            @endfor
 
             </tbody>
         </table>

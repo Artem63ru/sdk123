@@ -13,9 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о состоянии опасных производственных объектов
-                        <br>В период с {{$start}} по {{$finish}}</h2>
+                        <br>В период с {{$start}} по {{$finish_fact}}</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_opo/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_opo/'.$start.'/'.$finish_fact) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 

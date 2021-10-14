@@ -15,7 +15,7 @@
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Сведения о результатах проверок, проводимых при осуществлении <br> производственного контроля, устранении нарушений по состоянию на<br>
                             Проверка проведена в период с {{$start}} по {{$finish}}</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_result_pk/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_result_pk/'.$start.'/'.$finish_fact) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -50,11 +50,11 @@
                             <td>{{$row->name_event}}</td>
                             <td>{{$row->time_violation}}</td>
                             <td>{{$row->date_violation}}</td>
-                            <td>{{$row->name_f.' '.$row->name_l.' '.$row->name_l}}</td>
+                            <td>{{$row->name_f.' '.$row->name_l.' '.$row->name_p}}</td>
                             <td>{{$row->reasons_nonpref}}</td>
                             <td>{{$row->data_reasons}}</td>
-                            <td>{{$row->reason_post}}</td>
-                            <td>{{$row->worker_violations}}</td>
+                            <td>{{$row->reasons_post}}</td>
+                            <td>{{$row->worker_violation}}</td>
                         </tr>
                     @endforeach
                     </tbody>

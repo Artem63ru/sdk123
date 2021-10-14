@@ -14,7 +14,7 @@
                     <div class="card-header"><h2 class="text-muted" style="text-align: center" >Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах<br>
                         События в период с {{$start}} по {{$finish}}</h2>
                         @can('product-create')
-                            <div class="bat_info"><a href="{{ url('pdf_scena/'.$start.'/'.$finish) }}">Создать PDF</a></div>
+                            <div class="bat_info"><a href="{{ url('pdf_scena/'.$start.'/'.$finish_fact) }}">Создать PDF</a></div>
                         @endcan
                     </div>
 
@@ -45,7 +45,7 @@
                         <tr>
                             <td>{{$row->data}}</td>
                             <td>{{$row->jas_to_opo->descOPO}}</td>
-                            <td>{{$row->jas_to_elem->descObj}}</td>
+                            <td>{{$row->jas_to_elem->nameObj}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{$row->level}}</td>
                             <td>{{$row->status}}</td>

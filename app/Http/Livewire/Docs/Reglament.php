@@ -4,13 +4,16 @@ namespace App\Http\Livewire\Docs;
 
 use App\Http\Controllers\AdminController;
 use App\Models\Tech_reg\Tech_reglament;
+use App\Models\Type_obj;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Reglament extends Component
 {
     use WithPagination;
-    public $search = '';
+    public $search1 = '';
+    public $search2 = '';
+    public $search3 = '';
     public $min;
     public $max;
     public $koef;
@@ -19,15 +22,51 @@ class Reglament extends Component
 
     public function render()
     {
-        if ($this->search <>'') {
+        $visible_wells = 0;
+        if ($this->search1 == 1 || $this->search1 == 3) {
+            $visible_wells = 1;
+            if ($this->search2 <> '') {
+                $search_name_param = '%' . $this->search3 . '%';
+                return view('livewire.docs.reglament', [
+                    'type_obj' => Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
+                    'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
+                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->where('wells', '=', $this->search2)->orderBy('teh_reglament.id')->get(),
+                    'visible_wells' => $visible_wells,
+                ]);
+            } else {
+                $search_name_param = '%' . $this->search3 . '%';
+                return view('livewire.docs.reglament', [
+                    'type_obj' => Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
+                    'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
+                        'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
+                    'visible_wells' => $visible_wells,
+                ]);
+            }
+        } elseif ($this->search1 == '') {
+            $visible_wells = 0;
+            $search_name_param = '%' . $this->search3 . '%';
             return view('livewire.docs.reglament', [
-                'reglaments'=> Tech_reglament::orwhere('idObj', '=', $this->search)->orderBy('id')->get(),
+                'type_obj'=> Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
+                'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
+                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    where('full_name', 'ilike', $search_name_param)->orderBy('teh_reglament.id')->get(),
+                'visible_wells' => $visible_wells,
             ]);
         }
-        else
-       return view('livewire.docs.reglament', [
-            'reglaments'=> Tech_reglament::orderby('id')->get(),
-        ]);
+        else{
+            $visible_wells = 0;
+            $this->search2 = '';
+            $search_name_param = '%' . $this->search3 . '%';
+            return view('livewire.docs.reglament', [
+                'type_obj'=> Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
+                'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
+                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
+                'visible_wells' => $visible_wells,
+            ]);
+        }
     }
 
     public function submit()

@@ -1,5 +1,5 @@
 <style>
-    body { font-family: DejaVu Sans, sans-serif; }
+    body { font-family: DejaVu Sans, sans-serif; font-size: 8px}
     .table th,
     .table td {
         padding: 0.75rem;
@@ -12,7 +12,7 @@
         background-color: rgba(0, 0, 0, 0.075);
     }
 </style>
-<h2 class="text-muted" style="text-align: center" >{{$data['title']}}</h2>
+<h2 class="text-muted" style="text-align: center" >{{$title}}</h2>
         <table style="border-collapse: collapse;" class="table table-hover">
             <thead>
             <tr>
@@ -29,19 +29,19 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($data['rows'] as $row)
+            @for($i=0; $i<count($data['desc_violation']); $i++)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$data['desc_violation'][$i]}}</td>
+                    <td>{{$data['name_obj'][$i]}}</td>
+                    <td>{{$data['level_km'][$i]}}</td>
+                    <td>{{$data['direction'][$i]}}</td>
+                    <td>{{$data['severity_fatal'][$i]}}</td>
+                    <td>{{$data['infi_repeat'][$i]}}</td>
+                    <td>{{$data['plan_work'][$i]}}</td>
+                    <td>{{$data['plan_date'][$i]}}</td>
+                    <td>{{$data['violation_status'][$i]}}</td>
+                    <td>{{$data['plan_pers'][$i]}}</td>
                 </tr>
-            @endforeach
+            @endfor
             </tbody>
         </table>
