@@ -13,6 +13,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 //********************* Технологический блок ****************************************
     Route::get('/opo/{id}', 'OpoController@view_opo_id');  //страница опо с графиками
+        Route::get('/opo_params/{id}', 'OpoController@get_opo_params'); //Данные для опо
     Route::get('/opo/{id}/data/{db_count}', 'OpoController@get_opo_data');
     Route::get('/opo/{id}/main', 'OpoController@view_opo_main_shema');   // страница опо со схемой расположения елементов ОПО
     Route::get('/min_opo', 'OpoController@min_ip_of_opo'); // вытягиваем минимальное значение ИП по ОПО
@@ -29,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/opo/{id_opo?}/elem/{id_obj?}/tb/{id_tb?}', "Tb@view_elem_tb"); // страница поспортов и схем ТБ
     Route::get('/opo/{id_opo}/elem/{id_obj}', "ObjController@view_elem_main"); // страница поспортов и схем элемента ОПО
+        Route::get('/get_charts_vals/{id_obj}', "ObjController@get_charts_vals");
     Route::get('pdf_tech_reg/{this_elem}', 'ObjController@pdf_download')->name('pdf_tech_reg');     // скачать файл выгрузку по техрегламенту
     Route::get('/jas_full', "JasController@showJas"); // страница Журнала событий полная
 

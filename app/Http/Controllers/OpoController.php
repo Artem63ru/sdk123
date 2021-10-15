@@ -233,7 +233,26 @@ class OpoController extends Controller
        $mins_opo_months = $ver_opo->opo_to_calc_months_min->first();
        $mins_opo_year = $ver_opo->opo_to_calc_year_min->first();
 
-       return view('web.index', compact('opo', 'id', 'jas_opo', 'ver_opo', 'mins_opos', 'mins_opo_months', 'mins_opo_year'));
+       return view('web.index', compact( 'id', 'jas_opo', 'opo', 'ver_opo', 'mins_opos', 'mins_opo_months', 'mins_opo_year'));
+    }
+
+    public function get_opo_params($id){
+        $opo = Ref_opo::orderBy('idOPO')->get();  // Перечень всех ОПО
+        $jas_opo =  Ref_opo::find($id)->opo_to_jas;   //Журнал этого опо последние 60 записей
+
+        $all_data_last = Calc_opo::orderByDesc('id')->first();
+        $min_last = min($all_data_last['ip_opo_1'], $all_data_last['ip_opo_2'], $all_data_last['ip_opo_3'], $all_data_last['ip_opo_4'], $all_data_last['ip_opo_5'], $all_data_last['ip_opo_6'], $all_data_last['ip_opo_7'],
+            $all_data_last['ip_opo_8'], $all_data_last['ip_opo_9']);
+
+//        $data=['opo'=>$opo, 'jas_opo'=>$jas_opo, ];
+        $data=array('opo'=>array(), 'jas_opo'=>$jas_opo, 'min_last'=>$min_last);
+        foreach ($opo as $opo_val){
+            array_push($data['opo'], array('idOPO'=>$opo_val->idOPO,
+                                                'descOPO'=>$opo_val->descOPO,
+                                                'ip_opo'=>$opo_val->opo_to_calc1->first()->ip_opo));
+
+        }
+        return $data;
     }
 
     public function get_opo_data($id, $db_count){

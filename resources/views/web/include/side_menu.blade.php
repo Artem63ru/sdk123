@@ -47,6 +47,5 @@
 
         var tooltip_docs_content=document.getElementById('docs_link_li_tooltip_content');
         var tooltip3=new Tooltip(tooltip_docs_content, 'side_menu_docs_tooltip', "docs_link_li");
-
     });
 </script>

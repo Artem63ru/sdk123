@@ -242,6 +242,59 @@
         })
     </script>
 @endif
+
+<script>
+    $(document).ready(function (){
+        function updateParams(){
+            $.ajax({
+                url:'/get_charts_vals/{{$id_obj}}',
+                type:'GET',
+                success:function(data){
+                    // console.log(chart1)
+                    var charts=[{'chart':[chart1, chart1yearLabel, chart1series2], 'data':parseFloat(data['ip_elem'])},
+                        {'chart':[chart2, chart2yearLabel, chart2series2], 'data':parseFloat(data['op_m'])},
+                        {'chart':[chart3, chart3yearLabel, chart3series2], 'data':parseFloat(data['op_r'])},
+                        {'chart':[chart4, chart4yearLabel, chart4series2], 'data':parseFloat(data['op_el'])}]
+
+                    var valuesOfCharts={'chart1':parseFloat(data['ip_elem']),
+                        'chart2':parseFloat(data['op_m']),
+                        'chart3':parseFloat(data['op_r']),
+                        'chart4':parseFloat(data['op_el'])};
+
+                    function updateChart(chart){
+                        data=chart['data']
+                        chart['chart'][0].data[0]['value']=data;
+                        chart['chart'][1].text = `[bold]${data}[/]`;
+                        chart['chart'][2].columns.template.fill = am4core.color("rgba(234,87,87,0.5)");
+
+                        if (data >= 0.8) {
+                            chart['chart'][2].columns.template.fill = am4core.color("rgba(105,175,112,0.5)");
+                        }
+                        if ((data >= 0.5) && (data < 0.8)) {
+                            chart['chart'][2].columns.template.fill = am4core.color("rgba(255,225,73,0.47)");
+                        }
+                        if ((data >= 0.2) && (data < 0.5)) {
+                            chart['chart'][2].columns.template.fill = am4core.color("rgb(242,177,64)");
+                        }
+                        if ((data >= 0.0) && (data < 0.2))
+                            chart['chart'][2].columns.template.fill = am4core.color("rgba(234,87,87,0.5)");
+
+                        chart['chart'][0].invalidateData();
+                    }
+
+                    for (var ch of charts){
+                        // console.log(ch['data'])
+                        updateChart(ch);
+                    }
+                }
+            })
+        }
+
+        updateParams();
+        setInterval(updateParams, 60000);
+
+    })
+</script>
 {{--<script>--}}
 {{--    document.addEventListener('DOMContentLoaded', function (){--}}
 {{--        var tooltip_Chart_1=document.getElementById('chart_1_content');--}}
