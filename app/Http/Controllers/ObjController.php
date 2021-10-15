@@ -88,7 +88,7 @@ class ObjController extends Controller
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
-                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
+                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee >= $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -96,7 +96,7 @@ class ObjController extends Controller
                             $num_error_reglament++;
                         }
                     } else {
-                        if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
+                        if ($znachenie_tekushee >= $row->min || $znachenie_tekushee < $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -114,7 +114,7 @@ class ObjController extends Controller
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
-                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
+                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee >= $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -122,7 +122,7 @@ class ObjController extends Controller
                             $num_error_reglament++;
                         }
                     } else {
-                        if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
+                        if ($znachenie_tekushee >= $row->min || $znachenie_tekushee < $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
