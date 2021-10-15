@@ -178,6 +178,19 @@ class ObjController extends Controller
         return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text'));
 
     }
+
+    public function get_charts_vals($id_obj){
+        $this_elem = Ref_obj::find($id_obj);
+        $ip_elem=$this_elem->elem_to_calc->first()->ip_elem;
+        $op_m=$this_elem->elem_to_calc->first()->op_m;
+        $op_r=$this_elem->elem_to_calc->first()->op_r;
+        $op_el=$this_elem->elem_to_calc->first()->op_el;
+
+        return array('ip_elem'=>$ip_elem,
+                    'op_m'=>$op_m,
+                    'op_r'=>$op_r,
+                    'op_el'=>$op_el);
+    }
     //*************************  Вывод для графика 40 значений ip_elem   *************************************
     public function calc_elem_all ( $id_obj)
     {

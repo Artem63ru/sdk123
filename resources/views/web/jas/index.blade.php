@@ -41,7 +41,7 @@
                         @foreach ($jas as $value)
                             <tr>
 {{--                                <td class="td_ch">{{$value->id}}</td>--}}
-                                <td class="td_date">{{date('d-m-Y h:m', strtotime($value->data))}}</td>
+                                <td class="td_date">{{date('d-m-Y H:i', strtotime($value->data))}}</td>
                                 <td class="td_status" >{{$value->level}}</td>
                                 <td class="td_opo">{{$value->jas_to_opo->descOPO}}</td>
                                 <td class="td_element">{{$value->jas_to_elem->nameObj}} (Элемен объекта ОПО {{$value->jas_to_opo->descOPO}})</td>
