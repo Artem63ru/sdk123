@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Livewire\EventTypes;
+use App\Models\APK_SDK;
 use App\Models\Cs1que;
 use App\Models\JasBuf;
 use App\Models\Matrix\DangerousEvent;
@@ -28,7 +29,7 @@ class ObjController extends Controller
         $all_opo = Ref_opo::all(); //Сыслка на все ОПО
         $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
         $this_elem = Ref_obj::find($id_obj); // Ссылка на элемен
-        $this_elem_apk = $this_elem->elem_to_APK;  // перечень всех несоответствий АПК по элементу
+        $this_elem_apk = APK_SDK::where('idOPO', '=', $id_opo)->where('idObj', '=', $id_obj)->orderByDesc('daterec')->get();  // перечень всех несоответствий АПК по элементу
         $reglaments = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
 //работа над текстом в всплывашки chart_mini
         $text['chart_1'] = '';
@@ -175,7 +176,7 @@ class ObjController extends Controller
             $text['chart_4'] = 'Обусловлено расчетными показателем ТБ "'.$OTO->where('idOTO', $idOTO)->first()->descOTO.'" (Минимальный = '.$key.')';
         }
 //        dd($text);
-        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text'));
+        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text', 'id_opo'));
 
     }
 

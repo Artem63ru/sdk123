@@ -30,7 +30,11 @@
 
                 <div class="accordion__content">
                 @foreach ($elem->obj_to_type->type_to_tb as $tb)
+                    @if(isset($apk_info[$elem->idObj][$tb->idOTO]))
+                     <a style="color: red" href="/opo/{{$id_opo}}/elem/{{$elem->idObj}}/tb/{{$tb->idOTO}}">{{$tb->descOTO}}</a>
+                    @else
                      <a href="/opo/{{$id_opo}}/elem/{{$elem->idObj}}/tb/{{$tb->idOTO}}">{{$tb->descOTO}}</a>
+                    @endif
                 @endforeach
                 </div>
             </label>

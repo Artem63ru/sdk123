@@ -35,7 +35,6 @@
                                             y = data[data.length - 1][1];
                                         series.addPoint([x, y], true, true);
                                         old_date = data[data.length-1][0];
-                                        console.log('Внутри');
                                     }
 
                                }

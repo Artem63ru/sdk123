@@ -162,7 +162,7 @@ class OpoController extends Controller
        $all_data_pred = Calc_opo::find($all_data_last->id - 1);
        $min_pred = min($all_data_pred['ip_opo_1'], $all_data_pred['ip_opo_2'], $all_data_pred['ip_opo_3'], $all_data_pred['ip_opo_4'], $all_data_pred['ip_opo_5'], $all_data_pred['ip_opo_6'], $all_data_pred['ip_opo_7'],
             $all_data_pred['ip_opo_8'], $all_data_pred['ip_opo_9']);
-       $raznost = abs($min_last - $min_pred);
+       $raznost = round(abs($min_last - $min_pred), 3);
        if ($min_last > $min_pred){
            $check = 1;
        } if ($min_last == $min_pred){
@@ -189,7 +189,7 @@ class OpoController extends Controller
         $all_data_pred = Calc_opo::find($all_data_last->id - 1);
         $ip_pred = $all_data_pred["$name_opo"];
 
-       $raznost = abs($ip_last - $ip_pred);
+       $raznost = round(abs($ip_last - $ip_pred), 3);
        if ($ip_last > $ip_pred){
            $check = 1;
        } if ($ip_last == $ip_pred){
@@ -204,7 +204,7 @@ class OpoController extends Controller
         $pred = $all_data_pro[1];
         $pro_last = $last['pro_ip_opo'];
         $pro_pred = $pred['pro_ip_opo'];
-        $raznost_pro = abs($pro_last - $pro_pred);
+        $raznost_pro = round(abs($pro_last - $pro_pred), 3);
         if ($pro_last > $pro_pred){
             $pro_check = 1;
         } if ($pro_last == $pro_pred){
@@ -280,7 +280,7 @@ class OpoController extends Controller
 
             $i = 0;
             foreach ($jas_opo as $value) {
-                $jas_opo_data[$i]['date'] = date('d-m-Y h:m', strtotime($value->data));
+                $jas_opo_data[$i]['date'] = date('d-m-Y H:i:s', strtotime($value->data));
                 $jas_opo_data[$i]['level'] = $value->level;
                 $jas_opo_data[$i]['descOPO'] = $value->jas_to_opo->descOPO;
                 $jas_opo_data[$i]['nameObj'] = $value->jas_to_elem->nameObj;
@@ -430,7 +430,7 @@ class OpoController extends Controller
         $opos = Ref_opo::find($id);
         foreach ($opos->opo_to_calc30 as $ip)
         {
-            $data1[] = array (strtotime($ip->date)*1000, $ip['ip_opo']);
+            $data1[] = array (strtotime($ip->date.'+ 4 hours')*1000, $ip['ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -445,7 +445,7 @@ class OpoController extends Controller
     {
         $calcs = Calc_ip_opo_i::orderByDesc('id')->where('from_opo', '=', $id)->where('date', '<=', $data)->take(30)->get();
         foreach ($calcs as $ip) {
-            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo']);
+            $data1[] = array(strtotime($ip->date.'+ 4 hours') * 1000, $ip['ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -459,7 +459,7 @@ class OpoController extends Controller
         $opos = Ref_opo::find($id);
         $calcs = Calc_ip_opo_hour::select('ip_opo_'.$id, 'date')->where('date', '<=', $data)->orderByDesc('id')->take(30)->get();
         foreach ($calcs as $ip) {
-            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo_'.$id]);
+            $data1[] = array(strtotime($ip->date.'+ 4 hours') * 1000, $ip['ip_opo_'.$id]);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -473,7 +473,7 @@ class OpoController extends Controller
         $opos = Ref_opo::find($id);
         $calcs = Calc_ip_opo_day::select('ip_opo_'.$id, 'date')->where('date', '<=', $data)->orderByDesc('id')->take(30)->get();
         foreach ($calcs as $ip) {
-            $data1[] = array(strtotime($ip->date) * 1000, $ip['ip_opo_'.$id]);
+            $data1[] = array(strtotime($ip->date.'+ 4 hours') * 1000, $ip['ip_opo_'.$id]);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -580,7 +580,7 @@ class OpoController extends Controller
 
         $i=0;
         foreach ($jas as $value){
-            $data[$i]['date']=date('d-m-Y h:m', strtotime($value->data));
+            $data[$i]['date']=date('d-m-Y H:i:s', strtotime($value->data));
             $data[$i]['level']=$value->level;
             $data[$i]['descOPO']=$value->jas_to_opo->descOPO;
             $data[$i]['nameObj']=$value->jas_to_elem->nameObj;
