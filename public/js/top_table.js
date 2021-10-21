@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
         var td_element=document.createElement("td");
         td_element.className="td_element";
-        var element_text=document.createTextNode(item["nameObj"]+` (Элемен объекта ОПО ${item["descOPO"]})`);
+        var element_text=document.createTextNode(item["nameObj"]+`. (Элемент объекта ОПО ${item["descOPO"]})`);
         td_element.appendChild(element_text);
 
         var td_number=document.createElement("td");

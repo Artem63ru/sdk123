@@ -4,6 +4,24 @@
 <div id="chart_elems"  ></div>
 
 <script language="JavaScript">
+    Highcharts.setOptions({
+        lang: {
+            loading: 'Загрузка...',
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+            shortMonths: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+            exportButtonTitle: "Экспорт",
+            printButtonTitle: "Печать",
+            rangeSelectorFrom: "С",
+            rangeSelectorTo: "По",
+            rangeSelectorZoom: "Период",
+            downloadPNG: 'Скачать PNG',
+            downloadJPEG: 'Скачать JPEG',
+            downloadPDF: 'Скачать PDF',
+            downloadSVG: 'Скачать SVG',
+            printChart: 'Напечатать график'
+        }
+    });
     $(document).ready(function() {
         var data_path = '/charts/fetch-data_elem/{{$id_obj}}';
         var old_date;
@@ -128,7 +146,7 @@
             },
 
             series: [{
-                name: 'IP ОПО',
+                name: 'ИП элемента',
                 marker: {
                     enabled: false
                 },
@@ -149,13 +167,17 @@
           //  var series = chart.series[0];
             var clickId = $(this).attr('id');
             if (clickId == 1) {
+                var name_graphics = 'ИП элемента';
                 data_path = '/charts/fetch-data_elem/{{$id_obj}}';
             }
             if (clickId == 2) {
+                var name_graphics = 'ОП по ценариям';
                 data_path = '/charts/fetch-data_elem_op_m/{{$id_obj}}';
             }  if (clickId == 3) {
+                var name_graphics = 'ОП превышения пределов';
                 data_path = '/charts/fetch-data_elem_op_r/{{$id_obj}}';
             }  if (clickId == 4) {
+                var name_graphics = 'ОП тех. риска';
                 data_path = '/charts/fetch-data_elem_op_el/{{$id_obj}}';
             }
             $.getJSON({
@@ -164,6 +186,7 @@
                 success: function (data) {
                     options.series[0].data = data;
                     var chart = new Highcharts.Chart(options);
+                    chart.series[0].name = name_graphics;
                     old_date = data[data.length-1][0];
                     old_date = data[data.length-1][0];
                     if (data[data.length-1][1]<=1.00) {

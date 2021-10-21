@@ -248,7 +248,7 @@
 
     $(document).ready(function (){
         updateOpoParams();
-        setInterval(updateOpoParams, 60000);
+        setInterval(updateOpoParams, 6000);
     })
 </script>
 
@@ -386,7 +386,7 @@
                                  footer_table_date.item(i).innerHTML = item['date'];
                                  footer_table_status.item(i).innerHTML = item['level'];
                                  footer_table_opo.item(i).innerHTML = item['descOPO'];
-                                 footer_table_element.item(i).innerHTML = item['nameObj'] + 'Элемент объекта ОПО ' + item['descOPO'];
+                                 footer_table_element.item(i).innerHTML = item['nameObj'] + '. (Элемент объекта ОПО ' + item['descOPO']+')';
                                  footer_table_number.item(i).innerHTML = item['status'];
                                  footer_table_event.item(i).innerHTML = item['name'];
                              }

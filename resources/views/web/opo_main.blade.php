@@ -11,7 +11,6 @@
 
     <div class="top_table">
    @include('web.include.toptable')
-
     </div>
 <div class="inside_content">
 @include('web.include.numbs_line')

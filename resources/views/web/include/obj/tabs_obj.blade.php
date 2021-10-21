@@ -89,20 +89,20 @@
 
         <div class="period_block opo_period">
 
-            <div class="func_passport_bottom">
-                <h4>Перечень несоответствий производственного контроля</h4>
-                <div class="ppr_date_single">Всего несоответствий <span>{{$this_elem->elem_to_APK->count()}}</span></div>
+            <div class="func_passport_bottom" style="width: auto; height: 19vh">
+                <h4 style="margin-top: 10px">Перечень несоответствий производственного контроля</h4>
+                <div class="ppr_date_single" style="margin-top: 10px">Всего несоответствий <span>{{$this_elem->elem_to_APK->count()}}</span></div>
                 <table>
                     <thead>
                     <tr>
                         <th>Несоответствия</th>
                         <th>Документ</th>
-                        <th>Дата</th>
+                        <th>Срок устранения</th>
                         <th>Коэф-нт</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($this_elem->elem_to_APK as $apk)
+                    @foreach ($this_elem_apk as $apk)
                     <tr>
                         <td>{{$apk->Details}}</td>
                         <td>{{$apk->Document}} </td>

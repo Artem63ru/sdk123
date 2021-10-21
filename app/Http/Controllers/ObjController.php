@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Livewire\EventTypes;
+use App\Models\APK_SDK;
 use App\Models\Cs1que;
 use App\Models\JasBuf;
 use App\Models\Matrix\DangerousEvent;
@@ -28,7 +29,7 @@ class ObjController extends Controller
         $all_opo = Ref_opo::all(); //Сыслка на все ОПО
         $elems_opo = $ver_opo->opo_to_obj; // Перечень всех лементов ОПО
         $this_elem = Ref_obj::find($id_obj); // Ссылка на элемен
-        $this_elem_apk = $this_elem->elem_to_APK;  // перечень всех несоответствий АПК по элементу
+        $this_elem_apk = APK_SDK::where('idOPO', '=', $id_opo)->where('idObj', '=', $id_obj)->orderByDesc('daterec')->get();  // перечень всех несоответствий АПК по элементу
         $reglaments = Tech_reglament::all()->where('idObj', '==', $this_elem->typeObj);
 //работа над текстом в всплывашки chart_mini
         $text['chart_1'] = '';
@@ -88,7 +89,7 @@ class ObjController extends Controller
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
-                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
+                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee >= $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -96,7 +97,7 @@ class ObjController extends Controller
                             $num_error_reglament++;
                         }
                     } else {
-                        if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
+                        if ($znachenie_tekushee >= $row->min || $znachenie_tekushee < $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -114,7 +115,7 @@ class ObjController extends Controller
                     $name_signal = $row->reglament_to_param->asutp_name;
                     $znachenie_tekushee = $data_param->$name_signal;
                     if ($row->min < $row->max) {
-                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee > $row->max) {
+                        if ($znachenie_tekushee < $row->min || $znachenie_tekushee >= $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -122,7 +123,7 @@ class ObjController extends Controller
                             $num_error_reglament++;
                         }
                     } else {
-                        if ($znachenie_tekushee > $row->min || $znachenie_tekushee < $row->max) {
+                        if ($znachenie_tekushee >= $row->min || $znachenie_tekushee < $row->max) {
                             $text['chart_3']['name'][$num_error_reglament] = $row->reglament_to_param->full_name;
                             $text['chart_3']['min'][$num_error_reglament] = round($row->min, 2);
                             $text['chart_3']['max'][$num_error_reglament] = round($row->max, 2);
@@ -175,7 +176,7 @@ class ObjController extends Controller
             $text['chart_4'] = 'Обусловлено расчетными показателем ТБ "'.$OTO->where('idOTO', $idOTO)->first()->descOTO.'" (Минимальный = '.$key.')';
         }
 //        dd($text);
-        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text'));
+        return view('web.elem_main', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'reglaments', 'text', 'id_opo'));
 
     }
 
