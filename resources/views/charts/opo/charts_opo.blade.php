@@ -50,7 +50,8 @@
         var options;
         var flag_ip = true;  // если True then IP_OPO and False then IP_OPO_PROact
 
-        var path = '/charts/fetch-data/{{$id}}/data/'+_time;
+        var path = '/charts/fetch-data/{{$id}}';
+        console.log(_time);
         var IP=document.getElementById('ip-opo')
         var IP_strelka=document.getElementById('ip-opo-small')
         var IP_tek=document.getElementById('ip-opo-small-now')
@@ -146,7 +147,7 @@
                                     options.series[0].data = data;
                                     chart = new Highcharts.Chart(options);
                                     old_date = data[data.length-1][0];
-                                    chart.series[0].color = colors_charts(data[0][1]);
+                                    chart.series[0].color = colors_charts(data[data.length-1][1]);
                                     chart.series[0].redraw();
                                     chart.series[0].name=text_legend
 
@@ -218,11 +219,10 @@
                     url: path,
                     method: 'GET',
                     success: function (data) {
-                        console.log(data[data.length-1][0])
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -247,7 +247,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -268,11 +268,10 @@
                     url: path,
                     method: 'GET',
                     success: function (data) {
-                        console.log(data);
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -296,7 +295,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -329,7 +328,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -355,7 +354,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -381,7 +380,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -407,7 +406,7 @@
                         options.series[0].data = data;
                         chart = new Highcharts.Chart(options);
                         old_date = data[data.length-1][0];
-                        chart.series[0].color = colors_charts(data[0][1]);
+                        chart.series[0].color = colors_charts(data[data.length-1][1]);
                         chart.series[0].redraw();
                         chart.series[0].name=text_legend
 
@@ -443,15 +442,14 @@
                                                 y = data[data.length - 1][1];
                                             series.addPoint([x, y], true, true);
                                             old_date = data[data.length-1][0];
-                                            series.color = colors_charts(data[0][1]);
+                                            series.color = colors_charts(data[data.length-1][1]);
                                             series.redraw();
-                                            // console.log('Внутри');
                                         }
 
                                     }
 
                                 });
-                            }, 60000);
+                            }, 6000);
                         }
                     }
                 },
@@ -502,7 +500,7 @@
                     options.series[0].data = data;
                     chart = new Highcharts.Chart(options);
                     old_date = data[data.length-1][0];
-                    chart.series[0].color = colors_charts(data[0][1]);
+                    chart.series[0].color = colors_charts(data[data.length-1][1]);
                     chart.series[0].redraw();
 
 
