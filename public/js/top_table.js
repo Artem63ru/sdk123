@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function (){
     var modal_content=document.getElementById('new_jas_1_modal_content')
-    var modal=new ModalWindow('Внимание, новое событие', modal_content, AnimationsTypes.justMe, false, true, 'asd')
+    var modal=new ModalWindow('Внимание, новое событие', modal_content, AnimationsTypes['justMe'], false, true, 'asd')
 // modal.set_overlay_background_color('white');
     modal.set_button_background_color_on_justme('#4285f4');
     // console.log(mapPage);

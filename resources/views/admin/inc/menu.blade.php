@@ -2,7 +2,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         var modal_content=document.getElementById('files_tree_modal_content')
-        var modal=new ModalWindow('Контрольные суммы', modal_content, AnimationsTypes.stickyUp)
+        var modal=new ModalWindow('Контрольные суммы', modal_content, AnimationsTypes['stickyUp'])
         document.getElementById('seumchecker_go_btn').addEventListener('click',function (){
             clear_tree();
             load_files_tree();

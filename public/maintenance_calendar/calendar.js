@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var add_maintenance_dialog_content=document.getElementById('new_maintenance_form')
-    add_maintenance_modal=new ModalWindow('', add_maintenance_dialog_content, AnimationsTypes.slideIn, true, true)
+    add_maintenance_modal=new ModalWindow('', add_maintenance_dialog_content, AnimationsTypes['slideIn'], true, true)
 
 
     var calendarEl = document.getElementById('calendar');

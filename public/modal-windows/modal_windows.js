@@ -4,50 +4,69 @@
 //     closers=document.querySelectorAll('[dlg-close]');
 // var statuses=[]
 
-class AnimationsTypes{
-    static fadeIn='Fade';
-    static stickyUp='Sticky';
-    static justMe='JustMe';
-    static slideIn='Slide';
+// class AnimationsTypes{
+//     fadeIn='Fade';
+//     stickyUp='Sticky';
+//     justMe='JustMe';
+//     slideIn='Slide';
+// }
+
+var AnimationsTypes={
+    'fadeIn':'Fade',
+    'stickyUp':'Sticky',
+    'justMe':'JustMe',
+    'slideIn':'Slide'
 }
 
 class ModalWindow{
-    #modal;
-    #content;
-    #header;
-    #className='dlg-modal';
-    #animation_type;
-    #overlay;
-    #closer;
-    #status;
-    #view;
-    #onClose;
-    constructor(headertext, content, animation, clickable_overlay=true, closer=true) {
-        this.#content=content;
-        this.#status=false;
-        this.#animation_type=animation;
+    //Для старых не работает
+    // #modal;
+    // #content;
+    // #header;
+    // #className='dlg-modal';
+    // #animation_type;
+    // #overlay;
+    // #closer;
+    // #status;
+    // #view;
+    // #onClose;
 
-        this.#overlay=document.createElement('div');
-        if (this.#animation_type==AnimationsTypes.justMe){
-            this.#overlay.id="full_overlay"
+    constructor(headertext, content, animation, clickable_overlay=true, closer=true) {
+        this.modal=null;
+        this.header=null;
+        this.closer=null;
+        this.view=null;
+        this.onClose=null;
+
+
+        this.className='dlg-modal'
+
+        this.content=content;
+
+        this.status=false;
+        this.animation_type=animation;
+
+        this.overlay=document.createElement('div');
+        if (this.animation_type==AnimationsTypes['justMe']){
+            this.overlay.id="full_overlay"
         }
         else{
-            this.#overlay.className='overlay'
+            this.overlay.className='overlay'
         }
 
-        this.#dlg_formed(headertext, closer)
+        this.dlg_formed(headertext, closer)
 
 
 
         if (clickable_overlay){
-            this.#overlay.addEventListener('click', ()=>{
+            this.overlay.addEventListener('click', ()=>{
                 this.close();
             })
         }
     }
 
     change_header_text(header_text){
-        this.#header.innerText=header_text
+        this.header.innerText=header_text
     }
     change_content(content){
         var dlg_content=document.querySelector('.dlg-content');
@@ -56,78 +75,78 @@ class ModalWindow{
     }
 
     close(){
-        if (this.#status==true){
-            if (this.#animation_type==AnimationsTypes.justMe){
-                this.#modal.className=this.#animation_type+'Out';
+        if (this.status==true){
+            if (this.animation_type==AnimationsTypes['justMe']){
+                this.modal.className=this.animation_type+'Out';
             }
             else{
-                this.#modal.className=this.#className+' '+this.#animation_type+'Out';
+                this.modal.className=this.className+' '+this.animation_type+'Out';
             }
-            this.#status=false;
+            this.status=false;
         }
-        if (typeof(this.#onClose)!='undefined'){
-            this.#onClose();
+        if (typeof(this.onClose)!=null){
+            this.onClose();
         }
     }
     show(){
-        if (this.#status==false){
-            if (this.#animation_type==AnimationsTypes.justMe){
-                this.#modal.className=this.#animation_type+'In';
+        if (this.status==false){
+            if (this.animation_type==AnimationsTypes['justMe']){
+                this.modal.className=this.animation_type+'In';
             }
             else{
-                this.#modal.className=this.#className+' '+this.#animation_type+'In';
+                this.modal.className=this.className+' '+this.animation_type+'In';
             }
-            this.#status=true;
+            this.status=true;
         }
     }
 
     set_overlay_background_color(color){
-        this.#overlay.style.background=color;
+        this.overlay.style.background=color;
     }
     set_button_background_color_on_justme(color){
-        if (this.#animation_type==AnimationsTypes.justMe){
-            this.#closer.style.background=color;
+        if (this.animation_type==AnimationsTypes['justMe']){
+            this.closer.style.background=color;
         }
     }
 
     get_all_modal_element(){
-        return this.#modal;
+        return this.modal;
     }
 
-    #dlg_formed(headertext, closer){
-        this.#modal=document.createElement('div');
-        if (this.#animation_type==AnimationsTypes.justMe){
-            this.#modal.className=this.#animation_type+'Out';
-            this.#modal.id="dlg_modal"
+    dlg_formed(headertext, closer){
+        this.modal=document.createElement('div');
+        if (this.animation_type==AnimationsTypes['justMe']){
+            this.modal.className=this.animation_type+'Out';
+            this.modal.id="dlg_modal"
         }
         else{
-            this.#modal.className=this.#className+' '+this.#animation_type+'Out';
+            this.modal.className=this.className+' '+this.animation_type+'Out';
         }
 
 
-        this.#view=document.createElement('div')
-        if (this.#animation_type==AnimationsTypes.justMe){
-            this.#view.id='dlg_view'
+        this.view=document.createElement('div')
+        if (this.animation_type==AnimationsTypes['justMe']){
+            this.view.id='dlg_view'
         }
         else{
-            this.#view.className='dlg-view'
+            this.view.className='dlg-view'
         }
 
 
-        this.#header=document.createElement('div');
-        this.#header.className='dlg-header';
+        this.header=document.createElement('div');
+        this.header.className='dlg-header';
 
         if (closer){
-            if (this.#animation_type!=AnimationsTypes.justMe){
-                this.#closer=document.createElement('span');
-                this.#closer.className='dlg-close-btn';
-                this.#header.appendChild(this.#closer);
+            if (this.animation_type!=AnimationsTypes['justMe']){
+                this.closer=document.createElement('span');
+                this.closer.className='dlg-close-btn';
+                this.header.appendChild(this.closer);
 
             }
             else{
-                this.#closer=document.createElement('button')
-                this.#closer.className='close-btn'
-                this.#closer.innerText='Закрыть'
+                this.closer=document.createElement('button')
+                this.closer.className='close-btn'
+                this.closer.innerText='Закрыть'
             }
         }
 
@@ -136,40 +155,32 @@ class ModalWindow{
         header_text.className='dlg-header-text';
         header_text.innerText=headertext;
 
-        this.#header.appendChild(header_text);
+        this.header.appendChild(header_text);
 
 
-        this.#view.appendChild(this.#header);
+        this.view.appendChild(this.header);
 
         var dlgcontent=document.createElement('div')
         dlgcontent.className='dlg-content'
-        dlgcontent.appendChild(this.#content)
+        dlgcontent.appendChild(this.content)
 
 
-        this.#view.appendChild(dlgcontent);
+        this.view.appendChild(dlgcontent);
         if (closer){
-            if (this.#animation_type==AnimationsTypes.justMe){
-                this.#view.appendChild(this.#closer)
+            if (this.animation_type==AnimationsTypes['justMe']){
+                this.view.appendChild(this.closer)
             }
-            this.#closer.addEventListener('click', ()=>{
+            this.closer.addEventListener('click', ()=>{
                 this.close();
             })
         }
 
-        this.#modal.appendChild(this.#view)
-        document.body.appendChild(this.#modal);
-        document.body.appendChild(this.#overlay);
-        // if (this.#animation_type==AnimationsTypes.justMe){
-        //     document.body.appendChild(this.#overlay);
-        // }
-        // else{
-        //     if (document.getElementsByClassName('overlay').length<1){
-        //         document.body.appendChild(this.#overlay);
-        //     }
-        // }
+        this.modal.appendChild(this.view)
+        document.body.appendChild(this.modal);
+        document.body.appendChild(this.overlay);
     }
 
     set_on_Close(func){
-        this.#onClose=func;
+        this.onClose=func;
     }
 }

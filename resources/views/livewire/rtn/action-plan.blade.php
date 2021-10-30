@@ -29,19 +29,19 @@
                         <tbody>
 
                         @foreach ($rows as $row)
-                            <tr>
-                                <td>{{$row->reg_num_opo}}</td>
-                                <td>{{$row->name_event}}</td>
-                                <td>{{$row->date_perfom}}</td>
-                                <td>{{$row->name_f}}</td>
-                                <td>{{$row->name_l}}</td>
-                                <td>{{$row->name_p}}</td>
-                                <td>{{$row->date_compl}}</td>
-                                <td>{{$row->date_transfer}}</td>
-                                <td>{{$row->reasons_post}}</td>
-                                <td>{{$row->reasons_transfer}}</td>
-                                <td>{{$row->check_exe}}</td>
-                                <td>{{$row->note}}</td>
+                            <tr data-plan_id="{{$row->id}}">
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="reg_num_opo">{{$row->reg_num_opo}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="name_event">{{$row->name_event}}</td>
+                                <td  class="changeable_td" id="date_perfom">{{$row->date_perfom}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="name_f">{{$row->name_f}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="name_l">{{$row->name_l}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="name_p">{{$row->name_p}}</td>
+                                <td  class="changeable_td" id="date_compl">{{$row->date_compl}}</td>
+                                <td  class="changeable_td" id="date_transfer">{{$row->date_transfer}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="reasons_post">{{$row->reasons_post}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="reasons_transfer">{{$row->reasons_transfer}}</td>
+                                <td  class="changeable_td" id="check_exe">{{$row->check_exe}}</td>
+                                <td contenteditable="true" spellcheck="false" class="changeable_td" id="note">{{$row->note}}</td>
                                  <td class="hover_links">
                                     <a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
                                     <a href="#openModal"><img wire:click="edit({{ $row->id }})" alt="" src="{{asset('assets/images/icons/edit.svg')}}" class="check_i"></a>
@@ -55,6 +55,53 @@
             </div>
         </section>
     </div>
+    <script>
+        $(document).ready(function (){
+            // $.ajaxSetup({
+            //     headers:{
+            //         'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
+
+            var text=null;
+
+            $('.changeable_td').blur(function() {
+                $(this).text(text);
+                text=null;
+            });
+
+            $('.changeable_td').focus(function(event){
+                text=event.target.textContent;
+            });
+
+            $('.changeable_td').keydown(function (event){
+                if (event.keyCode === 13) {
+                    //Нужно добавить обновление данных на сервере!!!
+                    // console.log(event.target.parentNode.getAttribute('data-plan_id'))
+                    var change_data={
+                        'type':'rtn',
+                        'id':event.target.parentNode.getAttribute('data-plan_id'),
+                        'param': event.target.id,
+                        'value':event.target.innerText
+                    }
+
+                    $.ajax({
+                        url:'/docs/changeparam',
+                        type:'POST',
+                        data:change_data,
+                        success:function (data){
+                            console.log(data)
+
+                        }
+                    })
+
+
+                    text=event.target.textContent;
+                    event.target.blur();
+                }
+            });
+        })
+    </script>
     <div id="openModal" class="modal">
         <div class="modal-dialog table_use" style="margin-top: 150px">
             <div class="modal-content" style="width: 650px; height: 650px">
@@ -111,7 +158,7 @@
                                 <td><input text wire:model="check_exe" id="title" style="min-width: 350px" /></td>
                             </tr>
                             <tr>
-                                <td>Ghbvtxfybt</td>
+                                <td>Примечание</td>
                                 <td><input text wire:model="note" id="title" style="min-width: 350px" /></td>
                             </tr>
 

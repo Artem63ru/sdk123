@@ -3,15 +3,17 @@
     Реестр отчетов о средних рисках
 @endsection
 
-@section('content')
+@push('XMLSign')
     <script language="javascript" src="{{asset('XMLSign/es6-promise.min.js')}}"></script>
     <script language="javascript" src="{{asset('XMLSign/ie_eventlistner_polyfill.js')}}"></script>
     <script language="javascript" src="{{asset('XMLSign/cadesplugin_api.js')}}"></script>
-    <script src="{{asset('XMLSign/XMLSign2.js')}}"></script>
-    <script src="{{asset('modal-windows/modal_windows.js')}}"></script>
 
-    <link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+    <script src="{{asset('XMLSign/XMLSign2.js')}}"></script>
     <link href="{{ asset('XMLSign/XMLSign.css') }}" rel="stylesheet">
+@endpush
+
+@section('content')
+
 
 
 
@@ -65,12 +67,12 @@
     </div>
 
 </div>
-    <div id='XMLSign'></div>
+    <div id='SIGN'></div>
     <script>
         document.addEventListener('DOMContentLoaded', function (){
-            var xml_test=new XMLSign();
-            var dlg_content=document.getElementById('XMLSign');
-            var modal=new ModalWindow('Электронно-цифровая подпись документа', dlg_content, AnimationsTypes.stickyUp);
+            var xml_test=new XMLSign('<data>blablabla</data>', 'foo', 'SIGN');
+            var dlg_content=document.getElementById('SIGN');
+            var modal=new ModalWindow('Электронно-цифровая подпись документа', dlg_content, AnimationsTypes['stickyUp']);
             var send_btns=document.querySelectorAll('.bat_add');
             for(btn of send_btns){
                 btn.addEventListener('click', ()=>{

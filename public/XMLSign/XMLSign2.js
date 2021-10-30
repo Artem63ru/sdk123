@@ -15,46 +15,52 @@ class XMLSign {
     #AllCerts;
     #XMLStrToSign;
     #urlToSend;
-
-
-
-
+    #content_div;
 
 
 
     //КОНСТРУКТОР
-    constructor() {
-        // this.#XMLStrToSign="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-        //     "<!-- \n" +
-        //     " Original XML doc file for sign example. \n" +
-        //     "-->\n" +
-        //     "<Envelope xmlns=\"urn:envelope\">\n" +
-        //     "  <Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">\n" +
-        //     "  <SignedInfo>\n" +
-        //     "      <CanonicalizationMethod Algorithm=\"http://www.w3.org/2001/10/xml-exc-c14n#\"/>\n" +
-        //     "      <SignatureMethod Algorithm=\"urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102012-gostr34112012-256\"/>\n" +
-        //     "      <Reference URI=\"#nodeID\">\n" +
-        //     "      <Transforms>\n" +
-        //     "          <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\n" +
-        //     "      </Transforms>\n" +
-        //     "      <DigestMethod Algorithm=\"urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34112012-256\"/>\n" +
-        //     "      <DigestValue/>\n" +
-        //     "      </Reference>\n" +
-        //     "  </SignedInfo>\n" +
-        //     "  <SignatureValue/>\n" +
-        //     "  <KeyInfo/>\n" +
-        //     "  </Signature>\n" +
-        //     "<Data>\n" +
-        //     "   Hello, World!\n" +
-        //     "  </Data>\n" +
-        //     "  <Node xml:id=\"nodeID\">\n" +
-        //     "   Hello, Node!\n" +
-        //     "  </Node>\n" +
-        //     "</Envelope>";
-
+    constructor(content, data_id, content_div) {
+        this.#content_div=content_div;
         this.#canPromise=!!window.Promise;
         this.#AllCerts=[]
-        this.#XMLStrToSign;
+        this.#XMLStrToSign='<?xml version=\"1.0\" encoding=\"utf-8\"?>\n'+
+        '<s:Envelope Id=\"main\" xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:u=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n'+
+        '<s:Header>\n'+
+        '<RequestHeader xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" '+
+        'xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n'+
+        `<Date>${new Date().toISOString()}</Date>\n`+
+        `<MessageGUID>${this.#create_guid()}</MessageGUID>\n`+
+        '<orgPPAGUID></orgPPAGUID>\n'+
+        '</RequestHeader>\n'+
+        '</s:Header>\n'+
+        '<s:Body xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" '+
+        'xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n'+
+        `<exportNsiListRequest u:Id=\"${data_id}\">\n`+
+        '<ds:Signature xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\">\n'+
+        '<ds:SignedInfo>\n'+
+        '<ds:CanonicalizationMethod Algorithm=\"http://www.w3.org/2001/10/xml-exc-c14n#\"/>\n'+
+        '<ds:SignatureMethod Algorithm=\"urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34102012-gostr34112012-256\"/>\n'+
+        `<ds:Reference URI=\"#${data_id}\">\n`+
+        '<ds:Transforms>\n'+
+        '<ds:Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\n'+
+        '<ds:Transform Algorithm=\"http://www.w3.org/2001/10/xml-exc-c14n#\"/>\n'+
+        '</ds:Transforms>\n'+
+        '<ds:DigestMethod Algorithm=\"urn:ietf:params:xml:ns:cpxmlsec:algorithms:gostr34112012-256\"/>\n'+
+        '<ds:DigestValue></ds:DigestValue>\n'+
+        '</ds:Reference>\n'+
+        '</ds:SignedInfo>\n'+
+        '<ds:SignatureValue></ds:SignatureValue>\n'+
+        '<ds:KeyInfo>\n'+
+        '<ds:X509Data>\n'+
+        '<ds:X509Certificate></ds:X509Certificate>\n'+
+        '</ds:X509Data>\n'+
+        '</ds:KeyInfo>\n'+
+        '</ds:Signature>\n'+
+        '</exportNsiListRequest>\n'+
+        '</s:Body>\n'+
+        '</s:Envelope>';
+        console.log(this.#XMLStrToSign)
         this.html_formed();
         // document.getElementById('certificates_list').addEventListener('change', ()=>{
         //     var select_cert_id=document.getElementById('certificates_list').selectedIndex;
@@ -76,9 +82,16 @@ class XMLSign {
         }
     }
 
+    #create_guid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
     //Формирование html
     html_formed(){
-        var main_div=document.getElementById('XMLSign')
+        var main_div=document.getElementById(this.#content_div)
         main_div.innerText='';
 
         var plugin_info_div=document.createElement('div')
@@ -460,6 +473,7 @@ class XMLSign {
                 }
 
                 var CADESCOM_XML_SIGNATURE_TYPE_TEMPLATE = 2;
+                var CADESCOM_XADES_BES = 0x00000020;
                 console.log(self.get_xml_to_str())
                 if (typeof (self.get_xml_to_str())!='undefined') {
                     yield oSignedXML.propset_Content(self.get_xml_to_str());

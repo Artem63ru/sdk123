@@ -567,6 +567,9 @@ class OpoController extends Controller
 
     }
 
+    public function view_plan($id){
+        return view('web.maps.plan', ['id' => $id]);
+    }
 
     public function get_jas1($count){
         if ($count==0){

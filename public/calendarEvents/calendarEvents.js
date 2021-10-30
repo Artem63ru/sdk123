@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     var new_event_content=document.getElementById('new_calendar_event_content')
     var event_info_content=document.getElementById('calendar_event_content')
-    var event_modal=new ModalWindow('', new_event_content, AnimationsTypes.slideIn)
+    var event_modal=new ModalWindow('', new_event_content, AnimationsTypes['slideIn'])
 
     var dateOptions={day:'numeric', month:'numeric',year:'numeric'};
     var timeOptions={hour:"numeric", minute: "numeric"}

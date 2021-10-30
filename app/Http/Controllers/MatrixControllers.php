@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Rtn\ActionPlan;
 use App\Models\CalendarEvents\CalendarEventType;
 use App\Models\Ref_obj;
 use App\Models\Ref_oto;
@@ -273,6 +274,12 @@ class MatrixControllers extends Controller
         Ref_oto::find($idOTO)->delete();
         AdminController::log_record('Удалил запись в справочнике ТБ элемента ОПО');//пишем в журнал
         return redirect('/docs/infoTB');
+    }
+
+    public function change_param(Request $request){
+        if ($request->type=='rtn'){
+            return ActionPlan::update_param($request->id, $request->param, $request->value);
+        };
     }
 
 }

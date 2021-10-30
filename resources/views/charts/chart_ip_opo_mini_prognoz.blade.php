@@ -29,7 +29,6 @@
                                 url: '/charts/fetch-data-prognoz/{{$id}}',
                                 method: 'GET',
                                 success: function (data) {
-                                    console.log('chart1', chart1)
                                     if (data[data.length-1][0] > old_date1) {
                                         var x = data[data.length - 1][0],
                                             y = data[data.length - 1][1];
