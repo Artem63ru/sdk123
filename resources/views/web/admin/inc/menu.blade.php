@@ -14,7 +14,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         var modal_content=document.getElementById('files_tree_modal_content')
-        var modal=new ModalWindow('Контрольные суммы', modal_content, AnimationsTypes.stickyUp)
+        var modal=new ModalWindow('Контрольные суммы', modal_content, AnimationsTypes['stickyUp'])
         document.getElementById('seumchecker_go_btn').addEventListener('click',function (){
             clear_tree();
             load_files_tree();
@@ -93,7 +93,7 @@
                     success:function(data)
                     {
                         var modal_content=document.getElementById('jda_attention_modal_content')
-                        var modal=new ModalWindow('Внимание', modal_content, AnimationsTypes.fadeIn)
+                        var modal=new ModalWindow('Внимание', modal_content, AnimationsTypes['fadeIn'])
                         // var modal=document.getElementById('jda_attention')
                         // var form=modal.getElementsByClassName('form_header')[0]
                         var btn=document.createElement('a')

@@ -19,12 +19,17 @@
 {{--    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>--}}
     <script src="{{asset('tooltip/tooltip.js')}}"></script>
     <link href="{{asset('tooltip/tooltip.css')}}" rel="stylesheet">
+    <script src="{{asset('modal-windows/modal_windows.js')}}"></script>
+    <link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+
+
 
     <script src="{{asset('/js/jquery.min.js')}}"></script>
     @stack('am4-script-lib')
     @stack('highcharts-script-lib')
     @stack('datapicker')
     @stack('calendar_scripts')
+    @stack('XMLSign')
 
 {{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
 {{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
@@ -42,8 +47,6 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 
-    <script src="{{asset('modal-windows/modal_windows.js')}}"></script>
-    <link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
 
     @stack('app-css')
 

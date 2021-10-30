@@ -28,9 +28,9 @@ class ActionPlan extends Component
 
     public function render()
     {
+//        dd(Action_plan_pb::orderby('id')->get());
         return view('livewire.rtn.action-plan', ['rows'=>Action_plan_pb::orderby('id')->get()]);
     }
-
 
     private function resetInputFields(){
         $this->reg_num_opo = '';
@@ -140,6 +140,20 @@ class ActionPlan extends Component
             return redirect()->to('/docs/events');
         }
         return redirect()->to('/');
+    }
+
+    public static function update_param($id, $param, $value){
+        try{
+            $action = Action_plan_pb::find($id);
+            $action->update([
+                $param => $value
+            ]);
+            return true;
+        }
+        catch (\Exception $err){
+            return false;
+        }
+
     }
 
 

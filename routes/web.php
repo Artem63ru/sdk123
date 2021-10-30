@@ -215,11 +215,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/tab10/new', 'ReportController@new_tab10'); //новая строка
     Route::post('/docs/tab10/save', 'ReportController@save_tab10'); //сохранить строку
 
+        //ИЗМЕНЕНИЕ ДАННЫХ В ТАБЛИЦЕ!!!!
+    Route::post('/docs/changeparam', 'MatrixControllers@change_param');
+
 
     //**************** Ситуационный план ***************************************************
-    Route::get('/opo/{id}/plan', function ($id) {
-        return view('web.maps.plan', ['id' => $id]);
-    }); // страница ситуационного плана ОПО
+//    Route::get('/opo/{id}/plan', function ($id) {
+//        return view('web.maps.plan', ['id' => $id]);
+//    }); // страница ситуационного плана ОПО
+    Route::get('/opo/{id}/plan', 'OpoController@view_plan');// страница ситуационного плана ОПО
 
 
     //**************** Все остальное *******************************************************
