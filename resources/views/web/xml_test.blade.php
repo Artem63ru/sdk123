@@ -29,7 +29,7 @@
     document.addEventListener('DOMContentLoaded', function (){
         var xml_test=new XMLSign();
         var dlg_content=document.getElementById('XMLSign');
-        var modal=new ModalWindow('Электронно-цифровая подпись документа', dlg_content, AnimationsTypes.stickyUp);
+        var modal=new ModalWindow('Электронно-цифровая подпись документа', dlg_content, AnimationsTypes['stickyUp']);
         document.getElementById('yoyo').addEventListener('click', function (){
             xml_test.set_url_to_send('asdasd')
             modal.show()

@@ -35,7 +35,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function test() {
         var content=document.getElementById('change_password_message_content')
-        var mod=new ModalWindow('ВНИМАНИЕ',content, AnimationsTypes.slideIn)
+        var mod=new ModalWindow('ВНИМАНИЕ',content, AnimationsTypes['slideIn'])
         if ({{$check_date_password}}==1){
             mod.show();
         }

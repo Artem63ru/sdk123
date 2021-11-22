@@ -6,6 +6,7 @@ use App\Jas;
 use App\Models\APK_SDK;
 use App\Models\Operational_safety;
 use App\Models\Ref_obj;
+use App\Models\Ref_oto;
 use App\Models\Report_history\ElementStatus_day;
 use App\Models\Report_history\EventPk;
 use App\Models\Report_history\QualityCriteria;
@@ -15,17 +16,44 @@ use App\Models\Report_history\ScenaReport;
 use App\Models\Report_history\StatusOpo;
 use App\Models\Report_history\ViolationsReport;
 use App\Models\Rtn\Data_check_out;
+use App\Models\XML_journal;
 use App\Ref_opo;
+use Illuminate\Support\Facades\Storage;
+use XmlResponse\Facades\XmlFacade;
 
 
 class ReportController_history extends Controller
 {
+
+    public function test_ober()   //список отчетов по дням
+    {
+        $data_oto = Ref_oto::all();
+        foreach ($data as $row){
+            $title_oto = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+            $row->update(['guid' => $title_oto]);
+        }
+        $data_opo = Ref_opo::all();
+        foreach ($data_opo as $row){
+            $title_opo = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+            $row->update(['guid' => $title_opo]);
+        }
+        $data_obj = Ref_obj::all();
+        foreach ($data_obj as $row){
+            $title_obj = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+            $row->update(['guid' => $title_obj]);
+        }
+        $data_xml = XML_journal::all();
+        foreach ($data_xml as $row){
+            $title_xml = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+            $row->update(['guid' => $title_xml]);
+        }
+    }
+
     ///////////////Отчет о состоянии элементов ОПО///////////////
     public function element_status_day_data()   //загрузка данных в общую таблицу
     {
         $start = today();
         $finish = date("Y-m-d H:i", strtotime($start.'+ 23 hour 59 minutes'));
-        $i = 1;
         $input = Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get();
         foreach ($input as $row){
             $data['name_opo'] = $row->obj_to_opo->descOPO;
@@ -39,11 +67,12 @@ class ReportController_history extends Controller
                     $data['date'] = $start;
                 }
             }
-            $data['id_in_day'] = $i;
-            $i++;
             $data['type'] = 'day';
             $writing = ElementStatus_day::create($data);
         }
+//        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = ElementStatus_day::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('ElementStatus_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function element_status_day()   //список отчетов по дням
@@ -51,7 +80,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчеты о состоянии элементов опасных производственных объектов за день";
         $title['period']="За день";
         $title['adress'] = "status_elem_day";
-        $data = ElementStatus_day::orderByDesc('id')->where('id_in_day', '=', '1')->where('type', '=', 'day')->get();
+        $data = ElementStatus_day::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -66,9 +95,8 @@ class ReportController_history extends Controller
 
     public function element_status_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
-        $i = 1;
         $input = Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get();
         foreach ($input as $row){
             $data['name_opo'] = $row->obj_to_opo->descOPO;
@@ -82,8 +110,6 @@ class ReportController_history extends Controller
                     $data['date'] = $start;
                 }
             }
-            $data['id_in_day'] = $i;
-            $i++;
             $data['type'] = 'month';
             $writing = ElementStatus_day::create($data);
         }
@@ -94,25 +120,24 @@ class ReportController_history extends Controller
         $title['main'] = "Отчеты о состоянии элементов опасных производственных объектов за месяц";
         $title['period']="За месяц";
         $title['adress'] = "status_elem_day";
-        $data = ElementStatus_day::orderByDesc('id')->where('id_in_day', '=', '1')->where('type', '=', 'month')->get();
+        $data = ElementStatus_day::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();;
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
     public function element_status_month_show($date)   //содержимое отчета за конкретный месяц
     {
         $title = 'month';
-        $data = ElementStatus_day::orderByDesc('id_in_day')->where('date', '=', $date)->where('type', '=', 'month')->get();
+        $data = ElementStatus_day::where('date', '=', $date)->where('type', '=', 'month')->get();
         $start = $date;
         $month = date('m', strtotime($start));
         $finish_day = date("Y-".$month."-t", strtotime($start));
         $finish = date("Y-m-d H:i", strtotime($finish_day.'+ 23 hour 59 minutes'));
-
         return view('web.docs.report_history.status_elem', compact('data', 'start', 'finish', 'title'));
     }
 
     public function element_status_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -133,7 +158,6 @@ class ReportController_history extends Controller
             $start = date('Y-10-01');
             $finish = date('Y-12-t');
         }
-        $i = 1;
         $input = Ref_obj::where('InUse','=','1')->where('status', '=', '50')->orderby('idObj')->get();
         foreach ($input as $row){
             $data['name_opo'] = $row->obj_to_opo->descOPO;
@@ -147,8 +171,6 @@ class ReportController_history extends Controller
                     $data['date'] = $start;
                 }
             }
-            $data['id_in_day'] = $i;
-            $i++;
             $data['type'] = 'quarter';
             $writing = ElementStatus_day::create($data);
         }
@@ -159,14 +181,14 @@ class ReportController_history extends Controller
         $title['main'] = "Отчеты о состоянии элементов опасных производственных объектов за квартал";
         $title['period']="За ";
         $title['adress'] = "status_elem_day";
-        $data = ElementStatus_day::orderByDesc('id')->where('id_in_day', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = ElementStatus_day::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();;
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
     public function element_status_quarter_show($date)   //содержимое отчета за конкретный месяц
     {
         $title = 'quarter';
-        $data = ElementStatus_day::orderByDesc('id_in_day')->where('date', '=', $date)->where('type', '=', 'quarter')->get();
+        $data = ElementStatus_day::where('date', '=', $date)->where('type', '=', 'quarter')->get();
         $start = $date;
         $month = date('m', strtotime($start));
         if($month=="01")
@@ -198,7 +220,6 @@ class ReportController_history extends Controller
         $start = today();
         $finish = date("Y-m-d H:i", strtotime($start.'+ 23 hour 59 minutes'));
         $input = Jas::orderby('id')->where('data', '<=', $finish)->where('data', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_event'] = $row->data;
             $data['name_opo'] = $row->jas_to_opo->descOPO;
@@ -206,12 +227,13 @@ class ReportController_history extends Controller
             $data['name_scena'] = $row->name;
             $data['class_event'] = $row->level;
             $data['status'] = $row->status;
-            $data['id_in_calc'] = $i;
             $data['type'] = 'day';
             $data['date'] = $start;
-            $i++;
+            $writing = ScenaReport::create($data);
         }
-    $writing = ScenaReport::create($data);
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = ScenaReport::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('ScenaReport_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function scena_report_day()   //список отчетов по дням
@@ -219,7 +241,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах за день";
         $title['period']="За день";
         $title['adress'] = "scena_report";
-        $data = ScenaReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = ScenaReport::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();;
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -234,10 +256,9 @@ class ReportController_history extends Controller
 
     public function report_scena_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $input = Jas::orderby('id')->where('data', '<=', $finish)->where('data', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_event'] = $row->data;
             $data['name_opo'] = $row->jas_to_opo->descOPO;
@@ -245,19 +266,17 @@ class ReportController_history extends Controller
             $data['name_scena'] = $row->name;
             $data['class_event'] = $row->level;
             $data['status'] = $row->status;
-            $data['id_in_calc'] = $i;
             $data['type'] = 'month';
             $data['date'] = $start;
-            $i++;
+            $writing = ScenaReport::create($data);
         }
-        $writing = ScenaReport::create($data);
     }
     public function scena_report_month()   //список отчетов по дням
     {
         $title['main'] = "Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах за месяц";
         $title['period']="За месяц";
         $title['adress'] = "scena_report";
-        $data = ScenaReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = ScenaReport::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();;
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -274,7 +293,7 @@ class ReportController_history extends Controller
 
     public function report_scena_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -296,7 +315,6 @@ class ReportController_history extends Controller
             $finish = date('Y-12-t');
         }
         $input = Jas::orderby('id')->where('data', '<=', $finish)->where('data', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_event'] = $row->data;
             $data['name_opo'] = $row->jas_to_opo->descOPO;
@@ -304,19 +322,17 @@ class ReportController_history extends Controller
             $data['name_scena'] = $row->name;
             $data['class_event'] = $row->level;
             $data['status'] = $row->status;
-            $data['id_in_calc'] = $i;
             $data['type'] = 'quarter';
             $data['date'] = $start;
-            $i++;
+            $writing = ScenaReport::create($data);
         }
-        $writing = ScenaReport::create($data);
     }
     public function scena_report_quarter()   //список отчетов по дням
     {
         $title['main'] = "Отчет о зафиксированных СДК ПБ ОПО сценариях возможных техногенных событий на опасных производственных объектах за квартал";
         $title['period']="За ";
         $title['adress'] = "scena_report";
-        $data = ScenaReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = ScenaReport::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();;
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -355,7 +371,6 @@ class ReportController_history extends Controller
         $start = today();
         $finish = date("Y-m-d H:i", strtotime($start.'+ 23 hour 59 minutes'));
         $input = Data_check_out::orderby('id')->where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_check_out'] = $row->date_check_out;
             $data['norm_act'] = $row->norm_act;
@@ -371,12 +386,13 @@ class ReportController_history extends Controller
             $data['data_reasons'] = $row->data_reasons;
             $data['reasons_post'] = $row->reasons_post;
             $data['worker_violation'] = $row->worker_violation;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'day';
-            $i++;
             $writing = ResultPk::create($data);
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = ResultPk::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('ResultPk_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function result_pk_day()   //список отчетов по дням
@@ -384,7 +400,7 @@ class ReportController_history extends Controller
         $title['main'] = "Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений за день";
         $title['period']="За день";
         $title['adress'] = "result_pk";
-        $data = ResultPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = ResultPk::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -399,10 +415,9 @@ class ReportController_history extends Controller
 
     public function result_pk_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $input = Data_check_out::orderby('id')->where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_check_out'] = $row->date_check_out;
             $data['norm_act'] = $row->norm_act;
@@ -418,10 +433,8 @@ class ReportController_history extends Controller
             $data['data_reasons'] = $row->data_reasons;
             $data['reasons_post'] = $row->reasons_post;
             $data['worker_violation'] = $row->worker_violation;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'month';
-            $i++;
             $writing = ResultPk::create($data);
         }
     }
@@ -431,7 +444,7 @@ class ReportController_history extends Controller
         $title['main'] = "Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений за месяц";
         $title['period']="За месяц";
         $title['adress'] = "result_pk";
-        $data = ResultPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = ResultPk::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -448,7 +461,7 @@ class ReportController_history extends Controller
 
     public function result_pk_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -470,7 +483,6 @@ class ReportController_history extends Controller
             $finish = date('Y-12-t');
         }
         $input = Data_check_out::orderby('id')->where('date_check_out', '<=', $finish)->where('date_check_out', '>=', $start)->get();
-        $i = 1;
         foreach ($input as $row){
             $data['date_check_out'] = $row->date_check_out;
             $data['norm_act'] = $row->norm_act;
@@ -486,10 +498,8 @@ class ReportController_history extends Controller
             $data['data_reasons'] = $row->data_reasons;
             $data['reasons_post'] = $row->reasons_post;
             $data['worker_violation'] = $row->worker_violation;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'quarter';
-            $i++;
             $writing = ResultPk::create($data);
         }
     }
@@ -499,7 +509,7 @@ class ReportController_history extends Controller
         $title['main'] = "Сведения о результатах проверок, проводимых при осуществлении производственного контроля, устранении нарушений за квартал";
         $title['period']="За ";
         $title['adress'] = "result_pk";
-        $data = ResultPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = ResultPk::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -538,7 +548,6 @@ class ReportController_history extends Controller
         $start = today();
         $finish = date("Y-m-d H:i", strtotime($start.'+ 23 hour 59 minutes'));
         $input = Ref_opo::orderby('idOPO')->get();
-        $i = 1;
         foreach ($input as $row){
             $name_opos = $row->descOPO;
             $ip_opos = $row->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
@@ -555,12 +564,13 @@ class ReportController_history extends Controller
             $data['ip_opos'] = $ip_opos;
             $data['name_elem'] = $name;
             $data['ip'] = $ip;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'day';
-            $i++;
             $writing = StatusOpo::create($data);
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = StatusOpo::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('StatusOpo_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function status_opo_day()   //список отчетов по дням
@@ -568,7 +578,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о состоянии опасных производственных объектов за день";
         $title['period']="За день";
         $title['adress'] = "status_opo";
-        $data = StatusOpo::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = StatusOpo::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -583,10 +593,9 @@ class ReportController_history extends Controller
 
     public function status_opo_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $input = Ref_opo::orderby('idOPO')->get();
-        $i = 1;
         foreach ($input as $row){
             $name_opos = $row->descOPO;
             $ip_opos = $row->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
@@ -603,10 +612,8 @@ class ReportController_history extends Controller
             $data['ip_opos'] = $ip_opos;
             $data['name_elem'] = $name;
             $data['ip'] = $ip;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'month';
-            $i++;
             $writing = StatusOpo::create($data);
         }
     }
@@ -616,7 +623,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о состоянии опасных производственных объектов за месяц";
         $title['period']="За месяц";
         $title['adress'] = "status_opo";
-        $data = StatusOpo::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = StatusOpo::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -633,7 +640,7 @@ class ReportController_history extends Controller
 
     public function status_opo_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -655,7 +662,6 @@ class ReportController_history extends Controller
             $finish = date('Y-12-t');
         }
         $input = Ref_opo::orderby('idOPO')->get();
-        $i = 1;
         foreach ($input as $row){
             $name_opos = $row->descOPO;
             $ip_opos = $row->opo_to_calc_period_min->where('date', '>=', $start)->where('date', '<=', $finish)->first()->ip_opo;
@@ -672,10 +678,8 @@ class ReportController_history extends Controller
             $data['ip_opos'] = $ip_opos;
             $data['name_elem'] = $name;
             $data['ip'] = $ip;
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'quarter';
-            $i++;
             $writing = StatusOpo::create($data);
         }
     }
@@ -685,7 +689,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о состоянии опасных производственных объектов за квартал";
         $title['period']="За ";
         $title['adress'] = "status_opo";
-        $data = StatusOpo::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = StatusOpo::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -724,7 +728,6 @@ class ReportController_history extends Controller
         $start = today();
         $finish = date("Y-m-d H:i", strtotime($start.'+ 23 hour 59 minutes'));
         $data_all = APK_SDK::orderby('id_apk')->where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
-        $i = 1;
         foreach ($data_all as $row){
             if (isset($row->APK_to_APK)){
                 $data['desc_violation'] = $row->Details;
@@ -740,21 +743,21 @@ class ReportController_history extends Controller
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
-                $data['id_in_calc'] = $i;
                 $data['date'] = $start;
                 $data['type'] = 'day';
-                $i++;
                 $writing = ViolationsReport::create($data);
             }
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = ViolationsReport::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('ViolationsReport_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function violation_report_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $data_all = APK_SDK::orderby('id_apk')->where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
-        $i = 1;
         foreach ($data_all as $row){
             if (isset($row->APK_to_APK)){
                 $data['desc_violation'] = $row->Details;
@@ -770,10 +773,8 @@ class ReportController_history extends Controller
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
-                $data['id_in_calc'] = $i;
                 $data['date'] = $start;
                 $data['type'] = 'month';
-                $i++;
                 $writing = ViolationsReport::create($data);
             }
         }
@@ -781,7 +782,7 @@ class ReportController_history extends Controller
 
     public function violation_report_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -803,7 +804,6 @@ class ReportController_history extends Controller
             $finish = date('Y-12-t');
         }
         $data_all = APK_SDK::orderby('id_apk')->where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
-        $i = 1;
         foreach ($data_all as $row){
             if (isset($row->APK_to_APK)){
                 $data['desc_violation'] = $row->Details;
@@ -819,10 +819,8 @@ class ReportController_history extends Controller
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
                 $data['plan_pers'] = $row->APK_to_APK->plan_pers;
-                $data['id_in_calc'] = $i;
                 $data['date'] = $start;
                 $data['type'] = 'quarter';
-                $i++;
                 $writing = ViolationsReport::create($data);
             }
         }
@@ -833,7 +831,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о выяленных нарушениях на опасных производственных объектах за день";
         $title['period']="За день";
         $title['adress'] = "violation_report";
-        $data = ViolationsReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = ViolationsReport::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -842,7 +840,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о выяленных нарушениях на опасных производственных объектах за месяц";
         $title['period']="За ";
         $title['adress'] = "violation_report";
-        $data = ViolationsReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = ViolationsReport::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -851,7 +849,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о выяленных нарушениях на опасных производственных объектах за квартал";
         $title['period']="За ";
         $title['adress'] = "violation_report";
-        $data = ViolationsReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = ViolationsReport::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1011,7 +1009,6 @@ class ReportController_history extends Controller
             }
             $id_OPO++;
         }
-        $i = 1;
         if ($all_violation != 0 || $all_violation != null){
             for ($id_OPO=0; $id_OPO<count($output_data['name_opo']); $id_OPO++){
                 for ($id_obj=0; $id_obj<count($output_data['name_elem'][$id_OPO]); $id_obj++){
@@ -1027,20 +1024,21 @@ class ReportController_history extends Controller
                         $data_in_table['percent_ok'] = $output_data['percent_ok'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['percent_ok_all'] = $output_data['percent_ok_all'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['num_all'] = $output_data['num_all'][$id_OPO][$id_obj][$id_violation];
-                        $data_in_table['id_in_calc'] = $i;
                         $data_in_table['date'] = date("Y-m-d", strtotime($start));
                         $data_in_table['type'] = 'day';
                         $writing = RepiatReport::create($data_in_table);
-                        $i++;
                     }
                 }
             }
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = RepiatReport::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('RepiatReport_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function repiat_report_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $id_OPO = 0;
         $id_Obj = 0;
@@ -1102,7 +1100,6 @@ class ReportController_history extends Controller
             }
             $id_OPO++;
         }
-        $i = 1;
         if ($all_violation != 0 || $all_violation != null){
             for ($id_OPO=0; $id_OPO<count($output_data['name_opo']); $id_OPO++){
                 for ($id_obj=0; $id_obj<count($output_data['name_elem'][$id_OPO]); $id_obj++){
@@ -1118,11 +1115,9 @@ class ReportController_history extends Controller
                         $data_in_table['percent_ok'] = $output_data['percent_ok'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['percent_ok_all'] = $output_data['percent_ok_all'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['num_all'] = $output_data['num_all'][$id_OPO][$id_obj][$id_violation];
-                        $data_in_table['id_in_calc'] = $i;
                         $data_in_table['date'] = date("Y-m-d", strtotime($start));
                         $data_in_table['type'] = 'month';
                         $writing = RepiatReport::create($data_in_table);
-                        $i++;
                     }
                 }
             }
@@ -1131,7 +1126,7 @@ class ReportController_history extends Controller
 
     public function repiat_report_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -1213,7 +1208,6 @@ class ReportController_history extends Controller
             }
             $id_OPO++;
         }
-        $i = 1;
         if ($all_violation != 0 || $all_violation != null){
             for ($id_OPO=0; $id_OPO<count($output_data['name_opo']); $id_OPO++){
                 for ($id_obj=0; $id_obj<count($output_data['name_elem'][$id_OPO]); $id_obj++){
@@ -1229,11 +1223,9 @@ class ReportController_history extends Controller
                         $data_in_table['percent_ok'] = $output_data['percent_ok'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['percent_ok_all'] = $output_data['percent_ok_all'][$id_OPO][$id_obj][$id_violation];
                         $data_in_table['num_all'] = $output_data['num_all'][$id_OPO][$id_obj][$id_violation];
-                        $data_in_table['id_in_calc'] = $i;
                         $data_in_table['date'] = date("Y-m-d", strtotime($start));
                         $data_in_table['type'] = 'quarter';
                         $writing = RepiatReport::create($data_in_table);
-                        $i++;
                     }
                 }
             }
@@ -1245,7 +1237,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет \"Анализ повторяемости несоответствий\" за день";
         $title['period']="За день";
         $title['adress'] = "repiat_report";
-        $data = RepiatReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = RepiatReport::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1254,7 +1246,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет \"Анализ повторяемости несоответствий\" за месяц ";
         $title['period']="За ";
         $title['adress'] = "repiat_report";
-        $data = RepiatReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = RepiatReport::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1263,7 +1255,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет \"Анализ повторяемости несоответствий\" за квартал";
         $title['period']="За ";
         $title['adress'] = "repiat_report";
-        $data = RepiatReport::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = RepiatReport::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1335,16 +1327,18 @@ class ReportController_history extends Controller
             $data['level_3_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 3)->where('flComplete', '!=', 0));
             $data['level_4_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 4)->where('flComplete', '!=', 0));
             $data['opo_all'] = $data['level_1_all'] + $data['level_2_all'] + $data['level_3_all'] + $data['level_4_all'];
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'day';
             $writing = EventPk::create($data);
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = EventPk::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('EventPk_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function event_pk_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $data_opo = Ref_opo::orderby('idOPO')->get();
         $data_SDK_APK = APK_SDK::orderby('idOPO')->where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
@@ -1359,7 +1353,6 @@ class ReportController_history extends Controller
             $data['level_3_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 3)->where('flComplete', '!=', 0));
             $data['level_4_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 4)->where('flComplete', '!=', 0));
             $data['opo_all'] = $data['level_1_all'] + $data['level_2_all'] + $data['level_3_all'] + $data['level_4_all'];
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'month';
             $writing = EventPk::create($data);
@@ -1368,7 +1361,7 @@ class ReportController_history extends Controller
 
     public function event_pk_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -1402,7 +1395,6 @@ class ReportController_history extends Controller
             $data['level_3_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 3)->where('flComplete', '!=', 0));
             $data['level_4_ok'] = count($data_SDK_APK->where('idOPO', $i)->where('level_km', 4)->where('flComplete', '!=', 0));
             $data['opo_all'] = $data['level_1_all'] + $data['level_2_all'] + $data['level_3_all'] + $data['level_4_all'];
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'quarter';
             $writing = EventPk::create($data);
@@ -1414,7 +1406,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за день";
         $title['period']="За день";
         $title['adress'] = "event_pk";
-        $data = EventPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = EventPk::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1423,7 +1415,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за месяц ";
         $title['period']="За ";
         $title['adress'] = "event_pk";
-        $data = EventPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = EventPk::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1432,7 +1424,7 @@ class ReportController_history extends Controller
         $title['main'] = "Отчет о проведенных контрольных мероприятиях и выявленных нарушениях за квартал";
         $title['period']="За ";
         $title['adress'] = "event_pk";
-        $data = EventPk::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = EventPk::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1497,16 +1489,18 @@ class ReportController_history extends Controller
             $data['k1_red'] = count($data_all->where('idOPO', $i)->where('Weight', 6));
             $data['k1_yellow'] = count($data_all->where('idOPO', $i)->where('Weight', 0.3));
             $data['k1_green'] = count($data_all->where('idOPO', $i)->where('Weight', 0.11));
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'day';
             $writing = QualityCriteria::create($data);
         }
+        //        сделать запрос в базу и вытащить все, что надо передать в xml
+        $to_xml = QualityCriteria::where('type', '=', 'day')->where('date', $start)->get();
+        Storage::disk('local')->put('QualityCriteria_day.xml', XmlFacade::asXml($to_xml), 'public');
     }
 
     public function quality_criteria_month_data()   //загрузка данных в общую таблицу
     {
-        $start = date('Y-m-01');
+        $start = date('Y-m-01', strtotime(today().'- 1 month'));
         $finish = date("Y-m-t", strtotime($start));
         $data_all = APK_SDK::where('daterec', '<', $finish)->where('daterec', '>', $start)->get();
         $OPO_list = Ref_opo::orderBy('idOPO')->get();
@@ -1516,7 +1510,6 @@ class ReportController_history extends Controller
             $data['k1_red'] = count($data_all->where('idOPO', $i)->where('Weight', 6));
             $data['k1_yellow'] = count($data_all->where('idOPO', $i)->where('Weight', 0.3));
             $data['k1_green'] = count($data_all->where('idOPO', $i)->where('Weight', 0.11));
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'month';
             $writing = QualityCriteria::create($data);
@@ -1525,7 +1518,7 @@ class ReportController_history extends Controller
 
     public function quality_criteria_quarter_data()   //загрузка данных в общую таблицу
     {
-        $current_month = date('m');
+        $current_month = date('m', strtotime(today().'- 1 month'));
         if($current_month>=1 && $current_month<=3)
         {
             $start = date('Y-01-01');
@@ -1553,7 +1546,6 @@ class ReportController_history extends Controller
             $data['k1_red'] = count($data_all->where('idOPO', $i)->where('Weight', 6));
             $data['k1_yellow'] = count($data_all->where('idOPO', $i)->where('Weight', 0.3));
             $data['k1_green'] = count($data_all->where('idOPO', $i)->where('Weight', 0.11));
-            $data['id_in_calc'] = $i;
             $data['date'] = $start;
             $data['type'] = 'quarter';
             $writing = QualityCriteria::create($data);
@@ -1564,7 +1556,7 @@ class ReportController_history extends Controller
         $title['main'] = "Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность за день";
         $title['period']="За день";
         $title['adress'] = "quality_criteria";
-        $data = QualityCriteria::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'day')->get();
+        $data = QualityCriteria::select('date', 'type')->where('type', '=', 'day')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1573,7 +1565,7 @@ class ReportController_history extends Controller
         $title['main'] = "Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность за месяц ";
         $title['period']="За ";
         $title['adress'] = "quality_criteria";
-        $data = QualityCriteria::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'month')->get();
+        $data = QualityCriteria::select('date', 'type')->where('type', '=', 'month')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 
@@ -1582,7 +1574,7 @@ class ReportController_history extends Controller
         $title['main'] = "Справка о выполнении актов, предписаний, выданных службой, отделом промышленной безопасности, работником, ответственным за промышленную безопасность за квартал";
         $title['period']="За ";
         $title['adress'] = "quality_criteria";
-        $data = QualityCriteria::orderByDesc('id')->where('id_in_calc', '=', '1')->where('type', '=', 'quarter')->get();
+        $data = QualityCriteria::select('date', 'type')->where('type', '=', 'quarter')->groupBy('date')->groupBy('type')->orderByDesc('date')->get();
         return view('web.docs.report_history.index', compact('data', 'title'));
     }
 

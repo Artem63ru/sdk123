@@ -10,7 +10,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['middleware' => ['restrictedToDayLight']], function() {
     Route::get('/', ['as' => 'gazprom', 'uses' => 'MenuController@view_menu']);   //Главная
 
-
+//    Route::get('/test_ober', 'ReportController_history@test_ober'); // для добавления GUID, если их нет
+    Route::get('/test_data', 'ReportController_history@element_status_quarter_data');
 //********************* Технологический блок ****************************************
     Route::get('/opo/{id}', 'OpoController@view_opo_id');  //страница опо с графиками
         Route::get('/opo_params/{id}', 'OpoController@get_opo_params'); //Данные для опо
@@ -53,29 +54,29 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/predRTN/create', "MatrixControllers@create_RTN")->name('create_RTN'); // создание предписания РТН
     Route::post('/docs/predRTN/store', "MatrixControllers@store_RTN")->name('store_RTN'); // сохранение предписания РТН
 //****************** Справочник ОПО *************************************
-    Route::get('/docs/infoOPO', "MatrixControllers@show_OPO_all"); // страница справочника ОПО
-    Route::get('/docs/infoOPO/{idOPO}/edit', "MatrixControllers@edit_OPO")->name('edit_OPO'); // редактирование
-    Route::post('/docs/infoOPO/{idOPO}/update', "MatrixControllers@update_OPO")->name('update_OPO'); // обновление
-    Route::get('/docs/infoOPO/{idOPO}/show', "MatrixControllers@show_OPO")->name('show_OPO'); // просмотр
-    Route::get('/docs/infoOPO/{idOPO}/delete', "MatrixControllers@delete_OPO")->name('delete_OPO'); // удаление
-    Route::get('/docs/infoOPO/create', "MatrixControllers@create_OPO")->name('create_OPO'); // создание
-    Route::post('/docs/infoOPO/store', "MatrixControllers@store_OPO")->name('store_OPO'); // сохранение
+    Route::get('/docs/infoOPO', "OpoController@show_OPO_all"); // страница справочника ОПО
+    Route::get('/docs/infoOPO/{idOPO}/edit', "OpoController@edit_OPO")->name('edit_OPO'); // редактирование
+    Route::post('/docs/infoOPO/{idOPO}/update', "OpoController@update_OPO")->name('update_OPO'); // обновление
+    Route::get('/docs/infoOPO/{idOPO}/show', "OpoController@show_OPO")->name('show_OPO'); // просмотр
+    Route::get('/docs/infoOPO/{idOPO}/delete', "OpoController@delete_OPO")->name('delete_OPO'); // удаление
+    Route::get('/docs/infoOPO/create', "OpoController@create_OPO")->name('create_OPO'); // создание
+    Route::post('/docs/infoOPO/store', "OpoController@store_OPO")->name('store_OPO'); // сохранение
 //****************** Справочник элементов ОПО *************************************
-    Route::get('/docs/infoObj', "MatrixControllers@show_Obj_all"); // страница справочника элементов ОПО
-    Route::get('/docs/infoObj/{idObj}/edit', "MatrixControllers@edit_Obj")->name('edit_Obj'); // редактирование
-    Route::post('/docs/infoObj/{idObj}/update', "MatrixControllers@update_Obj")->name('update_Obj'); // обновление
-    Route::get('/docs/infoObj/{idObj}/show', "MatrixControllers@show_Obj")->name('show_Obj'); // просмотр
-    Route::get('/docs/infoObj/{idObj}/delete', "MatrixControllers@delete_Obj")->name('delete_Obj'); // удаление
-    Route::get('/docs/infoObj/create', "MatrixControllers@create_Obj")->name('create_Obj'); // создание
-    Route::post('/docs/infoObj/store', "MatrixControllers@store_Obj")->name('store_Obj'); // сохранение
+    Route::get('/docs/infoObj', "ObjController@show_Obj_all"); // страница справочника элементов ОПО
+    Route::get('/docs/infoObj/{idObj}/edit', "ObjController@edit_Obj")->name('edit_Obj'); // редактирование
+    Route::post('/docs/infoObj/{idObj}/update', "ObjController@update_Obj")->name('update_Obj'); // обновление
+    Route::get('/docs/infoObj/{idObj}/show', "ObjController@show_Obj")->name('show_Obj'); // просмотр
+    Route::get('/docs/infoObj/{idObj}/delete', "ObjController@delete_Obj")->name('delete_Obj'); // удаление
+    Route::get('/docs/infoObj/create', "ObjController@create_Obj")->name('create_Obj'); // создание
+    Route::post('/docs/infoObj/store', "ObjController@store_Obj")->name('store_Obj'); // сохранение
 //****************** Справочник ТБ *************************************
-    Route::get('/docs/infoTB', "MatrixControllers@show_TB_all"); // страница справочника ТБ
-    Route::get('/docs/infoTB/{idOTO}/edit', "MatrixControllers@edit_TB")->name('edit_TB'); // редактирование
-    Route::post('/docs/infoTB/{idOTO}/update', "MatrixControllers@update_TB")->name('update_TB'); // обновление
-    Route::get('/docs/infoTB/{idOTO}/show', "MatrixControllers@show_TB")->name('show_TB'); // просмотр
-    Route::get('/docs/infoTB/{idOTO}/delete', "MatrixControllers@delete_TB")->name('delete_TB'); // удаление
-    Route::get('/docs/infoTB/create', "MatrixControllers@create_TB")->name('create_TB'); // создание
-    Route::post('/docs/infoTB/store', "MatrixControllers@store_TB")->name('store_TB'); // сохранение
+    Route::get('/docs/infoTB', "Tb@show_TB_all"); // страница справочника ТБ
+    Route::get('/docs/infoTB/{idOTO}/edit', "Tb@edit_TB")->name('edit_TB'); // редактирование
+    Route::post('/docs/infoTB/{idOTO}/update', "Tb@update_TB")->name('update_TB'); // обновление
+    Route::get('/docs/infoTB/{idOTO}/show', "Tb@show_TB")->name('show_TB'); // просмотр
+    Route::get('/docs/infoTB/{idOTO}/delete', "Tb@delete_TB")->name('delete_TB'); // удаление
+    Route::get('/docs/infoTB/create', "Tb@create_TB")->name('create_TB'); // создание
+    Route::post('/docs/infoTB/store', "Tb@store_TB")->name('store_TB'); // сохранение
 
     Route::get('/docs/rtn', ['as' => 'rtn', 'uses' => 'MatrixControllers@Showrtn']); // страница справочника коэфициетов
     Route::get('/docs/reglament', ['as' => 'reglament', 'uses' => 'MatrixControllers@Showregl']); // страница справочника регламентных значений
@@ -215,11 +216,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/docs/tab10/new', 'ReportController@new_tab10'); //новая строка
     Route::post('/docs/tab10/save', 'ReportController@save_tab10'); //сохранить строку
 
+        //ИЗМЕНЕНИЕ ДАННЫХ В ТАБЛИЦЕ!!!!
+    Route::post('/docs/changeparam', 'MatrixControllers@change_param');
+
 
     //**************** Ситуационный план ***************************************************
-    Route::get('/opo/{id}/plan', function ($id) {
-        return view('web.maps.plan', ['id' => $id]);
-    }); // страница ситуационного плана ОПО
+//    Route::get('/opo/{id}/plan', function ($id) {
+//        return view('web.maps.plan', ['id' => $id]);
+//    }); // страница ситуационного плана ОПО
+    Route::get('/opo/{id}/plan', 'OpoController@view_plan');// страница ситуационного плана ОПО
 
 
     //**************** Все остальное *******************************************************

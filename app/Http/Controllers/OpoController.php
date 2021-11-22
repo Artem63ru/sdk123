@@ -18,6 +18,7 @@ use App\Models\ref_oto;
 use App\Models\Ref_obj;
 use App\User;
 use App\Jas;
+use Illuminate\Support\Facades\Auth;
 use Jenssegers\Date\Date;
 use Illuminate\Http\Request;
 
@@ -443,7 +444,7 @@ class OpoController extends Controller
     ///************************* Формирование данных интегрального показателя **********************************
     public static function view_ip_last_test ($id, $data)    //текущее
     {
-        $calcs = Calc_ip_opo_i::orderByDesc('id')->where('from_opo', '=', $id)->where('date', '<=', $data)->take(30)->get();
+        $calcs = Calc_ip_opo_i::orderByDesc('id')->where('from_opo', '=', $id)->where('date', '<=', $data)->take(60)->get();
         foreach ($calcs as $ip) {
             $data1[] = array(strtotime($ip->date.'+ 4 hours') * 1000, $ip['ip_opo']);
         }
@@ -485,11 +486,10 @@ class OpoController extends Controller
     ///************************* Формирование данных для мини графика прогнозного показателя **********************************
     public static function view_ip_pro_last ($id)
     {
-//        $data1;
         $opos = Ref_opo::find($id);
         foreach ($opos->opo_to_calc_opo_pro as $ip)
         {
-            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+            $data1[] = array (strtotime($ip->date.'+ 4 hours')*1000, $ip['pro_ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -506,7 +506,7 @@ class OpoController extends Controller
             ->where('date', '<=', $data)->take(30)->get();
         foreach ($opos as $ip)
         {
-            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+            $data1[] = array (strtotime($ip->date.'+ 4 hours')*1000, $ip['pro_ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -523,7 +523,7 @@ class OpoController extends Controller
             ->where('date', '<=', $data)->take(30)->get();
         foreach ($opos as $ip)
         {
-            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+            $data1[] = array (strtotime($ip->date.'+ 4 hours')*1000, $ip['pro_ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -540,7 +540,7 @@ class OpoController extends Controller
             ->where('date', '<=', $data)->take(30)->get();
         foreach ($opos as $ip)
         {
-            $data1[] = array (strtotime($ip->date)*1000, $ip['pro_ip_opo']);
+            $data1[] = array (strtotime($ip->date.'+ 4 hours')*1000, $ip['pro_ip_opo']);
         }
         $str = 'неудача';
         if(isset($data1)){
@@ -567,6 +567,9 @@ class OpoController extends Controller
 
     }
 
+    public function view_plan($id){
+        return view('web.maps.plan', ['id' => $id]);
+    }
 
     public function get_jas1($count){
         if ($count==0){
@@ -614,6 +617,55 @@ class OpoController extends Controller
 
         //return json_encode(array('result'=>'true'));
 
+    }
+
+    //******************** Справочник ОПО ****************************
+
+    public function show_OPO_all()
+    {
+        $data = Ref_opo::orderBy('idOPO')->get();
+        AdminController::log_record('Открыл справочник ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoOPO.index', compact('data'));
+    }
+    public function edit_OPO($idOPO)
+    {
+        $data = Ref_opo::find($idOPO);
+        AdminController::log_record('Открыл для редактирования запись в справочнике ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoOPO.edit',compact('data'));
+    }
+    public function update_OPO(Request $request, $idOPO)
+    {
+        $input = $request->all();
+        $data = Ref_opo::find($idOPO);
+        $data['login'] = Auth::user()->name;
+        $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике ОПО');//пишем в журнал
+        return redirect("/docs/infoOPO");
+    }
+    public function show_OPO($idOPO)
+    {
+        $data = Ref_opo::find($idOPO);
+        AdminController::log_record('Открыл для просмотра запись о ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoOPO.show',compact('data'));
+    }
+    public function create_OPO()
+    {
+        return view('web.docs.matrix.infoOPO.create');
+    }
+    public function store_OPO(Request $request)
+    {
+        $input = $request->all();
+        $input['guid'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+        $input['login'] = Auth::user()->name;
+        $predRTN = Ref_opo::create($input);
+        AdminController::log_record('Создал запись в справочнике ОПО');//пишем в журнал
+        return redirect('/docs/infoOPO');
+    }
+    public function delete_OPO($idOPO)
+    {
+        Ref_opo::find($idOPO)->delete();
+        AdminController::log_record('Удалил запись в справочнике ОПО');//пишем в журнал
+        return redirect('/docs/infoOPO');
     }
 
 }

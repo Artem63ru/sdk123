@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ref_obj extends Model
 {
     protected $table = 'public.ref_obj';
-    public $timestamps = true;
+    public $timestamps = false;
     public $primaryKey = 'idObj';
 
     public function elem_to_jas()
@@ -69,7 +69,7 @@ class Ref_obj extends Model
     }
 
     protected $fillable = [
-        'idObj', 'nameObj', 'uppg', 'InUse', 'QP1_TYPE', 'idOPO', 'descObj', 'typeObj', 'status', 'type_project',
+        'idObj', 'nameObj', 'uppg', 'InUse', 'QP1_TYPE', 'idOPO', 'descObj', 'typeObj', 'status', 'type_project', 'guid',
     ];
 
 

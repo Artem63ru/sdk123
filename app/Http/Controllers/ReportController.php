@@ -57,13 +57,13 @@ class ReportController extends Controller
         $ver_opo =  XML_journal::where('date', '<=', $finish)->where('date', '>=', $start)->orderByDesc('id')->get();
         $i = 0;
         if (empty($ver_opo->first()->fullDescOPO)){
-            $data['fullDescOPO'][$i] = "";
+            $data['fullDescOPO'][$i] = "Журнал пуст";
             $data['regNumOPO'][$i] = " ";
             $data['ip_opo'][$i] = " ";
             $data['status'][$i] = " ";
             $data['date'][$i] = " ";
             $data['time'][$i] = " ";
-            $data['id'][$i] = "Журнал пуст";
+            $data['guid'][$i] = " ";
         } else{
             foreach ($ver_opo as $ver){
                 $data['fullDescOPO'][$i] = $ver->fullDescOPO;
@@ -72,7 +72,7 @@ class ReportController extends Controller
                 $data['status'][$i] = $ver->status;
                 $data['date'][$i] = $ver->date;
                 $data['time'][$i] = $ver->time;
-                $data['id'][$i] = $ver->id;
+                $data['guid'][$i] = $ver->guid;
                 $i++;
             }
         }

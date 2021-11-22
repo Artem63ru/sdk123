@@ -1,0 +1,19 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sdk="sdkrtn">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sdk:OpoRoib>
+         <!--Optional:-->
+         <sdk:hazardousObjectRoib 
+     RoibOpoValue="10" 
+     RoibOpoDateTime="2021-10-19T15:02:31.9851104+03:00" 
+     RoibOpoDescription="Низкий Риск" 
+     ResponsibleName="wer" 
+     ResponsiblePhone="wer" 
+     ResponsibleEmail="wer" 
+     ResponsiblePosition="wer" 
+     HazardousObjectNumber="А38-00001-3000" 
+     RequestGuid="68a22882-a709-4ce0-997a-d02c3facf870" 
+     Ogrn="1023001538460"/>
+      </sdk:OpoRoib>
+   </soapenv:Body>
+</soapenv:Envelope>

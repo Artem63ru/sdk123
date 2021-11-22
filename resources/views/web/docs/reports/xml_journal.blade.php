@@ -43,18 +43,20 @@
                         <th style="width: 25vh">Статус</th>
                         <th style="width: 25vh">Дата отправки</th>
                         <th style="width: 25vh">Время отправки</th>
+                        <th style="width: 25vh">Иденттификатор отправки</th>
                     </tr>
                     </thead>
                     <tbody>
                         @for($i=0; $i<count($data['fullDescOPO']); $i++)
                             <tr>
-                                <td>{{$data['id'][$i]}}</td>
+                                <td>{{$i + 1}}</td>
                                 <td>{{$data['fullDescOPO'][$i]}}</td>
                                 <td>{{$data['regNumOPO'][$i]}}</td>
                                 <td>{{$data['ip_opo'][$i]}}</td>
                                 <td>{{$data['status'][$i]}}</td>
                                 <td>{{$data['date'][$i]}}</td>
                                 <td>{{$data['time'][$i]}}</td>
+                                <td>{{$data['guid'][$i]}}</td>
                             </tr>
                         @endfor
 

@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap.css')}}">
 <link rel="stylesheet" href="{{asset('/calendarEvents/datetimepicker/bootstrap-datetimepicker.css')}}">
 
-<script src="{{asset('modal-windows/modal_windows.js')}}"></script>
-<link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+
 
 <div class="sidebar">
     <div class="inside_sidebar">
@@ -401,7 +400,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var modal_content=document.getElementById('choice_report_date');
         modal_content.style.opacity=1;
-        var choice_report_date_modal=new ModalWindow('Укажите отчетный период', modal_content, AnimationsTypes.fadeIn);
+        var choice_report_date_modal=new ModalWindow('Укажите отчетный период', modal_content, AnimationsTypes['fadeIn']);
 
         {{--$(document).ready(function (){--}}
         {{--    $.getScript("{{asset('/js/modals_function.js')}}", function() {--}}
