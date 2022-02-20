@@ -42,16 +42,29 @@
         var yyyy = today.getFullYear();
         var hh = today.getHours();
         var min = today.getMinutes();
+        if(hh<10) {  hh = '0'+dd }
         if(dd<10) {  dd = '0'+dd }
         if(mm<10) {  mm = '0'+mm }
+        setInterval(() => {
+            today = new Date();
+            dd = today.getDate();
+            mm = today.getMonth()+1; //January is 0!
+            yyyy = today.getFullYear();
+            hh = today.getHours();
+            min = today.getMinutes();
+        }, 6000);
         var _time = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + min;
-        var chart;
+        setInterval(() => {
+            _time = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + min;
+        }, 6000);
+            var chart;
         var old_date;
         var options;
         var flag_ip = true;  // если True then IP_OPO and False then IP_OPO_PROact
-
-        var path = '/charts/fetch-data/{{$id}}';
-        console.log(_time);
+        var path = '/charts/fetch-data/{{$id}}/data/'+_time;
+        setInterval(() => {
+            path = '/charts/fetch-data/{{$id}}/data/'+_time;
+        }, 6000);
         var IP=document.getElementById('ip-opo')
         var IP_strelka=document.getElementById('ip-opo-small')
         var IP_tek=document.getElementById('ip-opo-small-now')
@@ -449,6 +462,7 @@
                                     }
 
                                 });
+                                console.log(_time)
                             }, 6000);
                         }
                     }

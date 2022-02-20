@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ref_oto;
 use App\Models\Ref_obj;
+use App\Models\Type_obj;
 use App\Ref_opo;
 use App\Models\Ref_shema;
 use Illuminate\Http\Request;
@@ -49,6 +50,70 @@ class Tb extends Controller
         $name_tb = $this_oto->descOTO;
 
        return view('web.tb', compact('jas', 'ver_opo', 'elems_opo', 'this_elem', 'id_obj', 'this_elem_apk', 'all_opo', 'this_calc_tb', 'image', 'shema', 'name_tb', 'id_tb'));
+    }
+
+    //******************** Справочник ТБ элементов ОПО ****************************
+
+    public function show_TB_all()
+    {
+        $data = Ref_oto::orderBy('idOTO')->get();
+        AdminController::log_record('Открыл справочник ТБ элементов ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoTB.index', compact('data'));
+    }
+    public function edit_TB($idOTO)
+    {
+        $data = Ref_oto::find($idOTO);
+        $data_all = Type_obj::all();
+        AdminController::log_record('Открыл для редактирования запись в справочнике ТБ элемента ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoTB.edit',compact('data', 'data_all'));
+    }
+    public function update_TB(Request $request, $idOTO)
+    {
+        $data = Ref_oto::find($idOTO);
+        if($request->hasFile('image')) {
+            $doc = $request->file('image');
+            $doc->move(public_path() . '/storage/oto',$doc->getClientOriginalName());
+            $name_doc = "oto/".$doc->getClientOriginalName();
+        }
+        else
+            $name_doc = $data->image;
+
+        $input = $request->all();
+        $input['image'] = $name_doc;
+        $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике ТБ элемента ОПО');//пишем в журнал
+        return redirect("/docs/infoTB");
+    }
+    public function show_TB($idOTO)
+    {
+        $data = Ref_oto::find($idOTO);
+        $data_all = Type_obj::all();
+        AdminController::log_record('Открыл запись о ТБ элемента ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoTB.show',compact('data', 'data_all'));
+    }
+    public function create_TB()
+    {
+        $data_all = Type_obj::all();
+        return view('web.docs.matrix.infoTB.create',compact('data_all'));
+    }
+    public function store_TB(Request $request)
+    {
+        if($request->hasFile('image')) {
+            $doc = $request->file('image');
+            $doc->move(public_path() . '/storage/oto',$doc->getClientOriginalName());
+        }
+        $input = $request->all();
+        $input['guid'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+        $input['image'] = "oto/".$doc->getClientOriginalName();
+        $predRTN = Ref_oto::create($input);
+        AdminController::log_record('Создал запись в справочнике ТБ элемента ОПО');//пишем в журнал
+        return redirect('/docs/infoTB');
+    }
+    public function delete_TB($idOTO)
+    {
+        Ref_oto::find($idOTO)->delete();
+        AdminController::log_record('Удалил запись в справочнике ТБ элемента ОПО');//пишем в журнал
+        return redirect('/docs/infoTB');
     }
 
 }

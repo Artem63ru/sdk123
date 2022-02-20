@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ref_oto extends Model
 {
     protected $table = 'public.ref_oto';
-    public $timestamps = true;
+    public $timestamps = false;
     public $primaryKey = 'idOTO';
 
     public function tb_to_type() // Отношение  ТБ к типу оборудования
@@ -16,6 +16,6 @@ class Ref_oto extends Model
     }
 
     protected $fillable = [
-        'idOTO', 'typeObj', 'descOTO', 'typeQuest', 'image',
+        'idOTO', 'typeObj', 'descOTO', 'typeQuest', 'image',  'guid',
     ];
 }

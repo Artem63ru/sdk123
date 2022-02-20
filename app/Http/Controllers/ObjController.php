@@ -10,6 +10,8 @@ use App\Models\Matrix\DangerousEvent;
 use App\Models\Matrix\Event_types;
 use App\Models\Ref_obj;
 use App\Models\Ref_oto;
+use App\Models\Status_obj;
+use App\Models\Type_obj;
 use App\Models\Wells1que;
 use App\Models\Wells2que;
 use App\Models\Wells_type;
@@ -198,7 +200,7 @@ class ObjController extends Controller
 
         foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
         {
-            $my[] =array (strtotime($row->date)*1000, $row->ip_elem);
+            $my[] =array (strtotime($row->date.'+ 4 hours')*1000, $row->ip_elem);
 
         }
         return str_replace('"','',json_encode(array_reverse($my, false)));
@@ -209,7 +211,7 @@ class ObjController extends Controller
 
         foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
         {
-            $my[] =array (strtotime($row->date)*1000, $row->op_m);
+            $my[] =array (strtotime($row->date.'+ 4 hours')*1000, $row->op_m);
 
         }
         return str_replace('"','',json_encode(array_reverse($my, false)));
@@ -220,7 +222,7 @@ class ObjController extends Controller
 
         foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
         {
-            $my[] =array (strtotime($row->date)*1000, $row->op_r);
+            $my[] =array (strtotime($row->date.'+ 4 hours')*1000, $row->op_r);
 
         }
         return str_replace('"','',json_encode(array_reverse($my, false)));
@@ -230,7 +232,7 @@ class ObjController extends Controller
 
         foreach (Ref_obj::find($id_obj)->elem_to_calc_40 as $row)
         {
-            $my[] =array (strtotime($row->date)*1000, $row->op_el);
+            $my[] =array (strtotime($row->date.'+ 4 hours')*1000, $row->op_el);
 
         }
         return str_replace('"','',json_encode(array_reverse($my, false)));
@@ -245,4 +247,63 @@ class ObjController extends Controller
          return $pdf->download($patch);
      }
 
+    //******************** Справочник элементов ОПО ****************************
+
+    public function show_Obj_all()
+
+    {
+        $data = Ref_obj::orderBy('idObj')->where('idOPO', '>', '0')->get();
+        AdminController::log_record('Открыл справочник элементов ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoObj.index', compact('data'));
+    }
+    public function edit_Obj($idObj)
+    {
+        $data = Ref_obj::find($idObj);
+        $data_all = Wells_type::all();
+        $data_opo = Ref_opo::all();
+        $data_obj_type = Type_obj::all();
+        $data_status = Status_obj::all();
+        AdminController::log_record('Открыл для редактирования запись в справочнике элементов ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoObj.edit',compact('data', 'data_all', 'data_opo', 'data_obj_type', 'data_status'));
+    }
+    public function update_Obj(Request $request, $idObj)
+    {
+        $input = $request->all();
+        $data = Ref_obj::find($idObj);
+        $data->update($input);
+        AdminController::log_record('Сохранил после редактирования запись в справочнике элементов ОПО');//пишем в журнал
+        return redirect("/docs/infoObj");
+    }
+    public function show_Obj($idObj)
+    {
+        $data = Ref_obj::find($idObj);
+        $data_all = Wells_type::all();
+        $data_opo = Ref_opo::all();
+        $data_obj_type = Type_obj::all();
+        $data_status = Status_obj::all();
+        AdminController::log_record('Открыл для просмотра запись о элементе ОПО');//пишем в журнал
+        return view('web.docs.matrix.infoObj.show',compact('data', 'data_all', 'data_opo', 'data_obj_type', 'data_status'));
+    }
+    public function create_Obj()
+    {
+        $data_all = Wells_type::all();
+        $data_opo = Ref_opo::all();
+        $data_obj_type = Type_obj::all();
+        $data_status = Status_obj::all();
+        return view('web.docs.matrix.infoObj.create',compact('data_all', 'data_opo', 'data_obj_type', 'data_status'));
+    }
+    public function store_Obj(Request $request)
+    {
+        $input = $request->all();
+        $input['guid'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+        $predRTN = Ref_obj::create($input);
+        AdminController::log_record('Создал запись в справочнике элементов ОПО');//пишем в журнал
+        return redirect('/docs/infoObj');
+    }
+    public function delete_Obj($idObj)
+    {
+        Ref_obj::find($idObj)->delete();
+        AdminController::log_record('Удалил запись в справочнике элементов ОПО');//пишем в журнал
+        return redirect('/docs/infoObj');
+    }
 }

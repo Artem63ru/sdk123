@@ -74,15 +74,49 @@ class XMLController extends Controller
                         'Name_factor' => $item->nameObj,
                         'IP_factor' => $item->elem_to_calc->first()->ip_elem];
                 }
-
             }
             $data['factors'] = $obj;
-
         }
         $data['date'] = date("Y-m-d");
         $data['time'] = date("H:i:s");
+        $data['guid'] = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
         XML_journal::create($data);
-        Storage::disk('local')->put('15_min.xml', XmlFacade::asXml($data), 'public');
+        //для отправки xml
+        $contents = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:sdk=\"sdkrtn\">\n";
+        $contents = $contents . "   <soapenv:Header/>\n";
+        $contents = $contents . "   <soapenv:Body>\n";
+        $contents = $contents . "       <sdk:OpoRoib>\n";
+        $contents = $contents . "           <!--Optional:-->\n";
+        $contents = $contents . "           <sdk:hazardousObjectRoib\n";
+        $contents = $contents . "   RoibOpoValue=\"".$data['ip_opo']."\"\n";
+        $contents = $contents . "   RoibOpoDateTime=\"".$data['date'].'T'.$data['time'].'+04:00'."\"\n";
+        if ($data['ip_opo']>=0.8) {
+            $status = 'Работа штатно';
+
+        }
+        elseif ($data['ip_opo']<0.8 && $data['ip_opo']>=0.6) {
+            $status = 'Низкий риск аварии';
+        }
+        elseif ($data['ip_opo']<0.6 && $data['ip_opo']>=0.3) {
+            $status = 'Средний риск аварии';
+        }
+        elseif ($data['ip_opo']<0.3 && $data['ip_opo']>=0) {
+            $status = 'Высокий риск аварии';
+        }
+        $contents = $contents . "   RoibOpoDescription=\"".$status."\"\n";
+        $contents = $contents . "   ResponsibleName=\"Иванов Иван Иванович\"\n";
+        $contents = $contents . "   ResponsiblePhone=\"8(999)99-99-999\"\n";
+        $contents = $contents . "   ResponsibleEmail=\"mail@mail.ru\"\n";
+        $contents = $contents . "   ResponsiblePosition=\"Должность\"\n";
+        $contents = $contents . "   HazardousObjectNumber=\"".$data['regNumOPO']."\"\n";
+        $contents = $contents . "   RequestGuid=\"".$data['guid']."\"\n";
+        $contents = $contents . "   Ogrn=\"1023001538460\"/>\n";
+        $contents = $contents . "       </sdk:OpoRoib>\n";
+        $contents = $contents . "   </soapenv:Body>\n";
+        $contents = $contents . "</soapenv:Envelope>\n";
+
+
+        Storage::disk('local')->put('15_min.xml', $contents, 'public');
 //        return response()->xml($data);   // Для тестов
 //       Storage::disk('remote-sftp')->put('15_min.xml', $contents, 'public'); // Для передачи по SFTP
     }
