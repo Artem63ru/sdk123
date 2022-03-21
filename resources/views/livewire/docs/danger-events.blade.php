@@ -64,8 +64,11 @@
                                     <td>{{$param->events_param->asutp_name}}</td>
                                     <td>{{$param->events_param->full_name}}</td>
                                     <td>{{$param->koef}}</td>
-                                    <td><label class="switch switch-sm"><input type="checkbox" {!! $param->triger ? 'checked' : '' !!}><span></span></label></td>
+                                    <td><label  id="{{$param->id}}"  class="switch switch-sm">
+                                            <input wire:click="database({{$param->id}})" type="checkbox"  {!!  $param->triger ? 'checked' : ''  !!} >
+                                            <span></span></label></td>
                                     <td><a href="#"><img alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a></td>
+{{--                                    <td>{{$triger}}</td>--}}
                                 </tr>
                                 @endforeach
 
@@ -104,3 +107,5 @@
         });
     </script>
 </div>
+
+

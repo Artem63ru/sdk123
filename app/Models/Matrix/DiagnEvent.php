@@ -24,4 +24,5 @@ class DiagnEvent extends Model
     {
         return $this->belongsTo('App\Models\Tech_reg\Param_all', 'from_param_all', 'id');
     }
+
 }
