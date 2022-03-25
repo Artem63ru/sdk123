@@ -112,10 +112,10 @@ class MatrixControllers extends Controller
         };
     }
 
-    public function change_param(Request $request){
-        if ($request->type=='rtn'){
-            return ActionPlan::update_param($request->id, $request->param, $request->value);
-        };
-    }
+//    public function change_param(Request $request){
+//        if ($request->type=='rtn'){
+//            return ActionPlan::update_param($request->id, $request->param, $request->value);
+//        };
+//    }
 
 }

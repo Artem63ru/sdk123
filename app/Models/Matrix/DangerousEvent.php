@@ -27,7 +27,7 @@ class DangerousEvent extends Model
     //************************** Отношение события к параметрам *********************************************
     public function event_to_param()
     {
-        return $this->hasMany('App\Models\Matrix\DiagnEvent', 'from_dangerous_event', 'id');
+        return $this->hasMany('App\Models\Matrix\DiagnEvent', 'from_dangerous_event', 'id')->orderBy('triger', "desc")->orderBy('koef', "desc");
     }
     //************************** Отношение события к параметрам *********************************************
     public function scena_to_wells()
