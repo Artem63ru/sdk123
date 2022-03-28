@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Operational_safety;
 use App\Ref_opo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OperationalSafetyController extends Controller
 {
@@ -90,5 +91,34 @@ class OperationalSafetyController extends Controller
         $data = Operational_safety::find($id_row);
         Operational_safety::find($id_row)->delete();
         return redirect("/opo/".$data->from_opo."/main");
+    }
+
+    public function get_params() {
+        $data_all = Operational_safety::where('year', 2021)->get();
+        foreach ($data_all as $row) {
+            $data[]=$row['o_pk'];
+        }
+        return $data;
+    }
+    public function get_params_rab() {
+        $data_all = Operational_safety::where('year', 2021)->get();
+        foreach ($data_all as $row) {
+            $data[]=$row['r_ab'];
+        }
+        return $data;
+    }
+    public function get_params_rbf() {
+        $data_all = Operational_safety::where('year', 2021)->get();
+        foreach ($data_all as $row) {
+            $data[]=$row['r_bf'];
+        }
+        return $data;
+    }
+    public function get_params_rgo() {
+        $data_all = Operational_safety::where('year', 2021)->get();
+        foreach ($data_all as $row) {
+            $data[]=$row['r_go'];
+        }
+        return $data;
     }
 }
