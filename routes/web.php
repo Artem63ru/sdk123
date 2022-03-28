@@ -22,10 +22,10 @@ Route::group(['middleware' => ['auth']], function() {
 
         //********************* Данные ручного ввода ****************************************
     Route::resource('operational', OperationalSafetyController::class);   //ручной ввод показателя безопасности
-        Route::get('/operational_safety/opk', 'OperationalSafetyController@get_params'); //Данные для ОПК
-        Route::get('/operational_safety/rab', 'OperationalSafetyController@get_params_rab'); //Данные для rab
-        Route::get('/operational_safety/rbf', 'OperationalSafetyController@get_params_rbf'); //Данные для rbf
-        Route::get('/operational_safety/rgo', 'OperationalSafetyController@get_params_rgo'); //Данные для rgo
+        Route::get('/operational_safety/opk/{id}', 'OperationalSafetyController@get_params'); //Данные для ОПК
+        Route::get('/operational_safety/rab/{id}', 'OperationalSafetyController@get_params_rab'); //Данные для rab
+        Route::get('/operational_safety/rbf/{id}', 'OperationalSafetyController@get_params_rbf'); //Данные для rbf
+        Route::get('/operational_safety/rgo/{id}', 'OperationalSafetyController@get_params_rgo'); //Данные для rgo
         Route::get('/opo/{id}/main/new_safety', 'OpoController@new');   // cоздание новой записи
     Route::resource('ready', ReadyController::class);   //ручной ввод показателя готовности
     Route::get('/opo/{id}/main/new_ready', 'OpoController@new_ready');   // cоздание новой записи

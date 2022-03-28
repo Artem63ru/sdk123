@@ -11,7 +11,7 @@
 
 
         $.ajax({
-            url: '/operational_safety/opk',
+            url: '/operational_safety/opk/{{$id}}',
             type: "GET",
             success: function (data) {
                 var options = {
@@ -55,7 +55,7 @@
 
                     series: [{
                         name: 'IP ОПО',
-                        data: [data[0]*100, data[1]*100, data[2]*100,data[3]*100],
+                        data: [ data[0]*100, data[1]*100, data[2]*100,data[3]*100],
                         marker: {
                             enabled: false
                         },

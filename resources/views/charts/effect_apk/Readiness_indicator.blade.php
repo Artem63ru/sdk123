@@ -3,7 +3,7 @@
 <div id="chart_col_redy" style="height: 280px; padding-top: 10px"></div>
 <script language="JavaScript">
     $.ajax({
-        url: '/operational_safety/rgo',
+        url: '/operational_safety/rgo/{{$id}}',
         type: "GET",
         success: function (data) {
   // $(document).ready(function() {

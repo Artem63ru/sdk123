@@ -5,7 +5,7 @@
 
 
     $.ajax({
-        url: '/operational_safety/opk',
+        url: '/operational_safety/opk/{{$id}}',
         type: "GET",
         success: function (data) {
             // $(document).ready(function() {

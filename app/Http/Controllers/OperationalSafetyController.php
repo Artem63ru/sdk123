@@ -93,31 +93,60 @@ class OperationalSafetyController extends Controller
         return redirect("/opo/".$data->from_opo."/main");
     }
 
-    public function get_params() {
-        $data_all = Operational_safety::where('year', 2021)->get();
+    public function get_params($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
         foreach ($data_all as $row) {
-            $data[]=$row['o_pk'];
+            if ($row['year']==2021) {
+                            if ($row['o_pk']) {
+                    $data[] = $row['o_pk'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
+        }
+
+        return $data;
+    }
+    public function get_params_rab($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
+        foreach ($data_all as $row) {
+            if ($row['year']==2021) {
+                if ($row['r_ab']) {
+                    $data[] = $row['r_ab'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
         }
         return $data;
     }
-    public function get_params_rab() {
-        $data_all = Operational_safety::where('year', 2021)->get();
+    public function get_params_rbf($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
         foreach ($data_all as $row) {
-            $data[]=$row['r_ab'];
+            if ($row['year']==2021) {
+                if ($row['r_bf']) {
+                    $data[] = $row['r_bf'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
         }
         return $data;
     }
-    public function get_params_rbf() {
-        $data_all = Operational_safety::where('year', 2021)->get();
+    public function get_params_rgo($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
         foreach ($data_all as $row) {
-            $data[]=$row['r_bf'];
-        }
-        return $data;
-    }
-    public function get_params_rgo() {
-        $data_all = Operational_safety::where('year', 2021)->get();
-        foreach ($data_all as $row) {
-            $data[]=$row['r_go'];
+            if ($row['year']==2021) {
+                if ($row['r_go']) {
+                    $data[] = $row['r_go'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
         }
         return $data;
     }
