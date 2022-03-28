@@ -13,10 +13,9 @@ class CalcKoef extends Component
     public $from_oto;
     public $koef_id;
     public $koef;
-
+    public  bool $show_modal=false;
     public function render()
     {
-        AdminController::log_record('Открыл для редактирования коэффициент для расчета');//пишем в журнал
         return view('livewire.calc-koef', [
             'koefs'=> Calc_koef::orderby('id')->get(),
         ]);
@@ -30,7 +29,7 @@ class CalcKoef extends Component
         $this->from_oto = $event->from_oto;
         $this->koef = $event->koef;
         AdminController::log_record('Открыл для редактирования коэффициент для расчета');//пишем в журнал
-
+        $this->show_modal=true;
     }
     public function update()
     {
@@ -46,6 +45,7 @@ class CalcKoef extends Component
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
+        $this->show_modal=false;
         AdminController::log_record('Сохранил после редактирования коэффициент для расчета');//пишем в журнал
         return redirect()->to('/docs/koef');
 //        }

@@ -44,8 +44,11 @@
             </table>
         </div>
     </div>
-
-    <div id="EditModal" class="modal">
+@if ($show_modal)
+        <div id="EditModal" class="modal" style="display:block">
+@else
+        <div id="EditModal" class="modal">
+@endif
         <div class="modal-dialog table_use">
             <div class="modal-content" style="width: 650px">
                 <div class="modal-header">
