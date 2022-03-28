@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('title')
-    Справочник коэффициекнтов для расчетово
+    Справочник коэффициекнтов для расчетов
 @endsection
 
 @section('content')
