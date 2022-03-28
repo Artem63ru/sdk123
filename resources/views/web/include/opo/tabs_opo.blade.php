@@ -90,7 +90,7 @@
                                 </div></td>
                             <td class="rating">
                                 <div class="div1">
-                                    <h3 class="green">{{$count_jas}}</h3> <p>Общее количество<br/>событий ПБ</p>
+                                    <h3 class="green">{{$jas_id_count}}</h3> <p>Общее количество<br/>событий ПБ</p>
                                     @include('charts.opo.chart_pb_event_mini')
                                 </div></td>
                         </tr>

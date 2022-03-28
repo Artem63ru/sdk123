@@ -377,9 +377,11 @@ class OpoController extends Controller
         }
         $jas_all = Jas::all();
         $count_jas = count($jas_all);   //общее кол-во событий
+        $jas_id = Jas::where('from_opo',$id)->get();
+        $jas_id_count=count($jas_id);
 
         return view('web.opo_main', compact('jas', 'ver_opo', 'elems_opo', 'all_opo', 'oper_safety', 'id', 'ready', 'failure_free',
-           'data_rtn_noncheck', 'data_rtn_check', 'count_jas', 'data_month'));
+           'data_rtn_noncheck', 'data_rtn_check', 'count_jas','jas_id_count', 'data_month'));
     }
 
     public function new($id_opo)
