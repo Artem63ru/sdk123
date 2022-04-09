@@ -2,7 +2,10 @@
 
 <div id="chart_col_redy" style="height: 280px; padding-top: 10px"></div>
 <script language="JavaScript">
-
+    $.ajax({
+        url: '/operational_safety/rgo/{{$id}}',
+        type: "GET",
+        success: function (data) {
   // $(document).ready(function() {
         Highcharts.chart('chart_col_redy', {
      //   var options = {
@@ -84,7 +87,7 @@
             series: [{
                 name: 'Tokyo',
 
-                data: [80,80,85,82],
+                data: [data[0]*100, data[1]*100, data[2]*100,data[3]*100],
                 color: {
                     linearGradient: {
                         x1: 0,
@@ -111,5 +114,7 @@
         {{--    }--}}
         {{--});--}}
 
-    });
+        });
+        }
+    })
 </script>

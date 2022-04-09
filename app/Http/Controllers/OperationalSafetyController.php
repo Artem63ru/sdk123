@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Operational_safety;
 use App\Ref_opo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OperationalSafetyController extends Controller
 {
@@ -90,5 +91,63 @@ class OperationalSafetyController extends Controller
         $data = Operational_safety::find($id_row);
         Operational_safety::find($id_row)->delete();
         return redirect("/opo/".$data->from_opo."/main");
+    }
+
+    public function get_params($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
+        foreach ($data_all as $row) {
+            if ($row['year']==2021) {
+                            if ($row['o_pk']) {
+                    $data[] = $row['o_pk'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
+        }
+
+        return $data;
+    }
+    public function get_params_rab($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
+        foreach ($data_all as $row) {
+            if ($row['year']==2021) {
+                if ($row['r_ab']) {
+                    $data[] = $row['r_ab'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
+        }
+        return $data;
+    }
+    public function get_params_rbf($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
+        foreach ($data_all as $row) {
+            if ($row['year']==2021) {
+                if ($row['r_bf']) {
+                    $data[] = $row['r_bf'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
+        }
+        return $data;
+    }
+    public function get_params_rgo($id) {
+        $data_all = Operational_safety::where('from_opo', $id)->get();
+        foreach ($data_all as $row) {
+            if ($row['year']==2021) {
+                if ($row['r_go']) {
+                    $data[] = $row['r_go'];
+                }
+                else {
+                    $data[]=0;
+                }
+            }
+        }
+        return $data;
     }
 }

@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <div id="openModal" class="modal">
+        <div id="openModal" class="modal" >
         <div class="modal-dialog table_use">
             <div class="modal-content" style="width: 650px">
                 <div class="modal-header">
@@ -99,8 +99,11 @@
             </div>
         </div>
     </div>
-
-    <div id="openModal1" class="modal">
+@if ($show_modal)
+    <div id="openModal1" class="modal" style="display: block">
+        @else
+            <div id="openModal1" class="modal">
+            @endif
         <div class="modal-dialog table_use">
             <div class="modal-content" style="width: 650px">
                 <div class="modal-header">

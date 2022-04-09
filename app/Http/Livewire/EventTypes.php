@@ -16,6 +16,7 @@ class EventTypes extends Component
     public $name;
     public $from_type_obj;
     public $event_id;
+    public  bool $show_modal=false;
 
     private function resetInputFields(){
         $this->name = '';
@@ -62,6 +63,7 @@ class EventTypes extends Component
     public function edit($id)
     {
         $this->updateMode = true;
+        $this->show_modal = true;
         $event= Event_types::where('id',$id)->first();
         $this->event_id = $id;
         $this->name = $event->name;
@@ -82,6 +84,7 @@ class EventTypes extends Component
                 'name' => $this->name,
                 'from_type_obj' => $this->from_type_obj,
             ]);
+            $this->show_modal = false;
             AdminController::log_record('Сохранил после редактирования запись о возможном опасном событии');//пишем в журнал
             $this->updateMode = false;
             session()->flash('message', 'Events Updated Successfully.');
