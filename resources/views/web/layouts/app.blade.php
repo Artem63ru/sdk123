@@ -14,13 +14,12 @@
     <meta property="og:description" content=""/>
 
     <!-- Scripts -->
-{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
-{{--    <script src="{{asset('/js/charts/highcharts.js')}}"></script>--}}
-{{--    <script src="{{asset('/js/charts/highcharts-more.js')}}"></script>--}}
+
     <script src="{{asset('tooltip/tooltip.js')}}"></script>
     <link href="{{asset('tooltip/tooltip.css')}}" rel="stylesheet">
     <script src="{{asset('modal-windows/modal_windows.js')}}"></script>
     <link href="{{ asset('modal-windows/modal_windows.css') }}" rel="stylesheet">
+
 
 
 
@@ -29,17 +28,7 @@
     @stack('highcharts-script-lib')
     @stack('datapicker')
     @stack('calendar_scripts')
-    @stack('XMLSign')
-
-{{--    <script src="/js/hchart/highcharts.src.js"></script>--}}
-{{--    <script src="/js/hchart/highcharts-more.js"></script>--}}
-{{--    <script src="/js/hchart/solid-gauge.js"></script>--}}
-
-
-    <!-- Fonts -->
-{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
-{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">--}}
+{{--    @stack('XMLSign')--}}
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
@@ -47,10 +36,9 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/fonts.css') }}">
     <link href="{{ asset('assets/favicon/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 
-
+    @stack('table_fix')
     @stack('app-css')
 
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
 </head>
 <body>

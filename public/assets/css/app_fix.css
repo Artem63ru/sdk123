@@ -1,0 +1,14 @@
+.header .user_info{margin-top:-7px;}
+.table_head_block{height:18px;padding:9px 29px 3px 29px;}
+.time_block{margin-top:-1px;}
+.links_block ul li, .info_block ul li {  padding: 15px 0 16px 0;}
+.navbar-brand {padding-top: 0;padding-bottom: 4px;margin-right: 0;}
+img.table_left_corner{margin-top:-9px;}
+.td_btn{margin-top:-9px;}
+.content .container1{height:55.2vh!important;margin-right:26%!important;}
+@media screen and (max-height:840px){
+  .content .container1{height:502px!important;}
+}
+@media screen and (max-width:1299px){
+.content .container1{margin-right:30%!important;}
+}

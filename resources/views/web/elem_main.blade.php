@@ -4,8 +4,9 @@
 @endsection
 
 @section('content')
-
-
+@push('table_fix')
+    <link rel="stylesheet" href="{{ asset('assets/css/table_fix.css') }}">
+@endpush
 @include('web.include.tb.sidebar_tb')
 
 
