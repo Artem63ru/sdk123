@@ -7,6 +7,22 @@
     $(document).ready(function() {
 
         var old_date;
+        function colors_charts(params) {
+            if ((params<=1.00)&&(params>0.8)) {
+                return "rgba(70,183,78,0.5)";
+            }
+            if ((params<=0.80)&&(params>0.5)) {
+                return  "#fae6ae";
+
+            }
+            if ((params<=0.50)&&(params>0.2)) {
+                return  "#f2b140";
+
+            }
+            if ((params<=0.20)&&(params>0.00)) {
+                return  "rgba(234,87,87,0.5)";
+            }
+        }
         var options = {
             title: {
                 text: 'Интегральный показатель ОПО' ,
@@ -34,13 +50,31 @@
                                         var x = data[data.length - 1][0],
                                             y = data[data.length - 1][1];
                                         series.addPoint([x, y], true, true);
-                                        old_date = data[data.length-1][0];
+                                        old_date = x;
+                                     series.color = colors_charts(y);
+                                     series.redraw();
                                     }
+                                    // if (data[data.length-1][1]<=1.00) {
+                                    //     chart1.series[0].color = "rgba(70,183,78,0.5)";
+                                    //     chart1.series[0].redraw();
+                                    // }
+                                    // if (data[data.length-1][1]<=0.80) {
+                                    //     chart1.series[0].color = "#fae6ae";
+                                    //     chart1.series[0].redraw();
+                                    // }
+                                    // if (data[data.length-1][1]<=0.50) {
+                                    //     chart1.series[0].color = "#f2b140";
+                                    //     chart1.series[0].redraw();
+                                    // }
+                                    // if (data[data.length-1][1]<=0.20) {
+                                    //     chart1.series[0].color = "rgba(234,87,87,0.5)";
+                                    //     chart1.series[0].redraw();
+                                    // }
 
                                }
 
                            });
-                        }, 10000);
+                        }, 6000);
                     }
                 }
             },
@@ -88,22 +122,24 @@
                 options.series[0].data = data;
                 var chart = new Highcharts.Chart(options);
                 old_date = data[data.length-1][0];
-                if (data[data.length-1][1]<=1.00) {
-                    chart.series[0].color = "rgba(70,183,78,0.5)";
-                    chart.series[0].redraw();
-                }
-                if (data[data.length-1][1]<=0.80) {
-                    chart.series[0].color = "#fae6ae";
-                    chart.series[0].redraw();
-                }
-                if (data[data.length-1][1]<=0.50) {
-                    chart.series[0].color = "#f2b140";
-                    chart.series[0].redraw();
-                }
-                if (data[data.length-1][1]<=0.20) {
-                    chart.series[0].color = "rgba(234,87,87,0.5)";
-                    chart.series[0].redraw();
-                }
+                chart.series[0].color = colors_charts(data[data.length-1][1]);
+                chart.series[0].redraw();
+                // if (data[data.length-1][1]<=1.00) {
+                //     chart.series[0].color = "rgba(70,183,78,0.5)";
+                //     chart.series[0].redraw();
+                // }
+                // if (data[data.length-1][1]<=0.80) {
+                //     chart.series[0].color = "#fae6ae";
+                //     chart.series[0].redraw();
+                // }
+                // if (data[data.length-1][1]<=0.50) {
+                //     chart.series[0].color = "#f2b140";
+                //     chart.series[0].redraw();
+                // }
+                // if (data[data.length-1][1]<=0.20) {
+                //     chart.series[0].color = "rgba(234,87,87,0.5)";
+                //     chart.series[0].redraw();
+                // }
             }
         });
     });

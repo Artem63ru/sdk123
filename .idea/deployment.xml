@@ -5,11 +5,11 @@
       <paths name="10.25.164.130">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="sdk">
+      <paths name="Main_sdk">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

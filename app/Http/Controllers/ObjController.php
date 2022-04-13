@@ -83,7 +83,8 @@ class ObjController extends Controller
                     }
                 }
             }
-        } elseif ($ochered == 'W' || $ochered == 'W '){
+        } elseif ($ochered == 'W2' || $ochered == 'W2 ')
+        {
             $data_param = Wells2que::orderByDesc('daterec')->where('from_ref_obj', $id_obj)->first();
             $num_error_reglament = 0;
             foreach ($reglaments->where('wells', '=', 2) as $row){
@@ -109,7 +110,8 @@ class ObjController extends Controller
                     }
                 }
             }
-        } else{
+        } elseif ($ochered == 'CS12')
+        {
             $data_param = Cs1que::orderByDesc('daterec')->where('from_ref_obj', $id_obj)->first();
             $num_error_reglament = 0;
             foreach ($reglaments as $row){

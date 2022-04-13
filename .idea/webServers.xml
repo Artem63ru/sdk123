@@ -2,8 +2,15 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="56d704c0-065b-4549-81f8-e2917328dde0" name="10.25.164.130" url="http://10.25.164.130">
-        <fileTransfer rootFolder="/home/sdk/" accessType="SFTP" host="10.25.164.130" port="22" sshConfigId="1a1e430b-0cac-4954-8886-41b2a7f658b0" sshConfig="sdk@10.25.164.130:22 password">
+      <webServer id="56d704c0-065b-4549-81f8-e2917328dde0" name="10.25.164.130" url="http://10.25.144.130">
+        <fileTransfer rootFolder="/var/www/html/sdk" accessType="SFTP" host="10.25.144.130" port="22" sshConfigId="1a1e430b-0cac-4954-8886-41b2a7f658b0" sshConfig="sdkpb@10.25.144.130:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="c285d3a3-acfe-4893-ba8f-4667be20d244" name="Main_sdk">
+        <fileTransfer rootFolder="/var/www/html/sdk" accessType="SFTP" host="10.25.144.180" port="22" sshConfigId="1510bd61-464e-4a45-a400-2df87a5d159b" sshConfig="sdkpb@10.25.144.180:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
