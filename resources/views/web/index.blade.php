@@ -248,7 +248,7 @@
 
     $(document).ready(function (){
         updateOpoParams();
-        setInterval(updateOpoParams, 6000);
+        setInterval(updateOpoParams, 60000);
     })
 </script>
 
@@ -328,7 +328,7 @@
                          //sidebar_bottom_rounded.getElementsByClassName('bold dark_grey_text clear').item(i).innerHTML=arr['all_opo_ip'][i];
 
                          arr['all_opo_ip'].forEach(function (item, i) {
-                             sidebars.item(i).innerHTML = item;
+                             sidebars.item.innerHTML = item;
                              let progressbar_className = 'progress-bar '
                              if (item <= 0.2) {
                                  progressbar_className += 'bg-danger'
@@ -339,8 +339,8 @@
                              } else if (item > 0.8 && item <= 1) {
                                  progressbar_className += 'bg-success'
                              }
-                             progress_bars.item(i).className = progressbar_className;
-                             progress_bars.item(i).style = "width: " + item * 100 + '%';
+                             progress_bars.item.className = progressbar_className;
+                             progress_bars.item.style = "width: " + item * 100 + '%';
                          });
                          //arr['opo'].forEach(function(item, i){
                          {{--let div_sidebar_bottom_single=document.createElement('div');--}}
