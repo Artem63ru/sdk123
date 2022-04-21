@@ -37,25 +37,25 @@
                                         console.log('Внутри');
                                     }
                                     if (data[data.length-1][1]<=1.00) {
-                                        chart1.series[0].color = "rgba(70,183,78,0.5)";
-                                        chart1.series[0].redraw();
+                                        series1.color = "rgba(70,183,78,0.5)";
+                                        series1.redraw();
                                     }
                                     if (data[data.length-1][1]<=0.80) {
-                                        chart1.series[0].color = "#fae6ae";
-                                        chart1.series[0].redraw();
+                                        series1.color = "#fae6ae";
+                                        series1.redraw();
                                     }
                                     if (data[data.length-1][1]<=0.50) {
-                                        chart1.series[0].color = "#f2b140";
-                                        chart1.series[0].redraw();
+                                        series1.color = "#f2b140";
+                                        series1.redraw();
                                     }
                                     if (data[data.length-1][1]<=0.20) {
-                                        chart1.series[0].color = "rgba(234,87,87,0.5)";
-                                        chart1.series[0].redraw();
+                                        series1.color = "rgba(234,87,87,0.5)";
+                                        series1.redraw();
                                     }
                                 }
 
                             });
-                        }, 10000);
+                        }, 60000);
                     }
                 }
             },
