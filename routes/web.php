@@ -328,6 +328,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('docs/quality_criteria/{id}/quarter', 'ReportController_history@quality_criteria_quarter_show');     //история по кварталам просмотр
 
         Route::resource('form51', Form51Controller::class);
+        Route::resource('testvideo', ObjTestController::class);
     Route::resource('form52', Form52Controller::class);
     Route::get('form52-add-table/{id}', 'ReportController@child_form52_table')->name('add-child-form52');
     Route::post('form52-add-table/{id}', 'ReportController@store_child_form52')->name('form52-add-table');
