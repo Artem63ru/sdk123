@@ -15,8 +15,10 @@ class ObjTestController extends Controller
      */
     public function index()
     {
+
+
         $data = Wels1::orderBy('id','DESC')->where('from_ref_obj', '140')->first();
-        return view('test',compact('data'));
+        return view('testvideo.index',compact('data'));
     }
 
     /**
@@ -92,5 +94,8 @@ class ObjTestController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function db() {
+
     }
 }
