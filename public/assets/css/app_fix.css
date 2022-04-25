@@ -12,3 +12,7 @@ img.table_left_corner{margin-top:-9px;}
 @media screen and (max-width:1299px){
 .content .container1{margin-right:30%!important;}
 }
+.btn-outline-success{color:#49ce56;border:1px solid #49ce56;background:#ecfaee;}
+.btn-outline-dark{color:#f27979;border:1px solid #f27979;background:#fceded;}
+.btn-outline-success:hover{color:#fff;border:1px solid #49ce56;background:#49ce56;}
+.btn-outline-dark:hover{color:#fff;border:1px solid #f27979;background:#f27979;}
