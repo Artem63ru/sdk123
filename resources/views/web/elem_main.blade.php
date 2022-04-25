@@ -108,7 +108,7 @@
 
     $(document).ready(function (){
         updateOpoParams();
-        setInterval(updateOpoParams, 6000);
+        setInterval(updateOpoParams, 60000);
     })
 </script>
 @endsection
