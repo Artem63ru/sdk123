@@ -78,10 +78,21 @@ class ObjTestController extends Controller
 
         $input = $request->all();
         $data = Wels1::find('224876');
-//        dd($input['aah001_xp03']);
-        $data->update($input);
 
+        $last_key=array_key_last($input);
+        $last= ($data->$last_key) ? 0 : 1 ;
+        $in= [
+            $last_key=>$last
+        ];
+//        if ($request->has('eal003_xh01'))
+            //$in=$request->input('aah001');
+
+
+//        dd($input['aah001_xp03']);
+        $data->update($in);
+//        aah001_xp03
 //       dd($input);
+        //return $data;
         return redirect()->route('testvideo.index');
     }
 
