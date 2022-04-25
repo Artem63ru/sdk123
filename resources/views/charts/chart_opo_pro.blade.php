@@ -26,9 +26,16 @@
     // Themes begin
     am4core.useTheme(am4themes_animated);
     // Themes end
+        @if(isset($ver_opo->opo_sample_day->first()->pro_ip_opo))
+
+        var Ip_elem={{$ver_opo->opo_sample_day->first()->pro_ip_opo}} ;
+    @else
+    var Ip_elem=0;
+@endif
 
 
-    var Ip_elem = {{$ver_opo->opo_sample_day->first()->pro_ip_opo}};
+
+
     // Create chart instance
     var chart = am4core.create("chartdiv_pro",
         am4charts.RadarChart,
@@ -66,7 +73,11 @@
     valueAxis.renderer.labels.template.disabled = true;
 
     var yearLabel = chart.radarContainer.createChild(am4core.Label);
+    @if(isset($ver_opo->opo_sample_day->first()->pro_ip_opo))
     yearLabel.text = "[bold]{{$ver_opo->opo_sample_day->first()->pro_ip_opo}}[/]";
+    @else
+    yearLabel.text = "[bold]{{0}}[/]";
+@endif
     yearLabel.horizontalCenter = 'middle'
     yearLabel.verticalCenter = 'middle'
     yearLabel.x = am4core.percent(100);
