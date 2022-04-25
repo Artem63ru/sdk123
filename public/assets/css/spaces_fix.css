@@ -1,1 +1,5 @@
 .doc_header{margin-top:28px;}
+@media screen and (min-height: 890px){
+  .inside_tab_padding {
+      height: 49.7vh;
+  }}

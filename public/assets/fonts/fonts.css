@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'HeliosCond';
-    src: url('../../../../../ГА/СДК/web/ob/ob/opo_1_plan_files/HeliosCond.ttf');
+    src: url('HeliosCond.ttf');
     src: url('HeliosCond.eot?#iefix') format('embedded-opentype'),
-        url('../../../../../ГА/СДК/web/ob/ob/opo_1_plan_files/HeliosCond.ttf') format('truetype');
+        url('HeliosCond.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -10,9 +10,9 @@
 
 @font-face {
     font-family: 'HeliosCond';
-    src: url('../../../../../ГА/СДК/web/ob/ob/opo_1_plan_files/HeliosCond-Bold.ttf');
+    src: url('HeliosCond-Bold.ttf');
     src: url('HeliosCond-Bold.eot?#iefix') format('embedded-opentype'),
-        url('../../../../../ГА/СДК/web/ob/ob/opo_1_plan_files/HeliosCond-Bold.ttf') format('truetype');
+        url('HeliosCond-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
