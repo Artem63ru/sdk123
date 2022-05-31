@@ -13,7 +13,8 @@ class XML_journal extends Model
 
 
     protected $fillable = [
-        'fullDescOPO', 'regNumOPO', 'ip_opo', 'status', 'date', 'time', 'guid',
+        'fullDescOPO', 'regNumOPO', 'ip_opo', 'status', 'date', 'time'
+//        , 'guid',
         ];
 
 }

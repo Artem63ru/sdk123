@@ -20,6 +20,7 @@ class Reglament extends Component
     public $koef;
     public $tech_id;
     public $name;
+    public  bool $show_modal=false;
 
     public function render()
     {
@@ -39,8 +40,12 @@ class Reglament extends Component
                 return view('livewire.docs.reglament', [
                     'type_obj' => Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
                     'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
-                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
-                    where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->where('wells', '=', $this->search2)->orderBy('teh_reglament.id')->get(),
+                    'from_param_all', 'min', 'max', 'koef', 'idObj',
+//                        , 'wells',
+                    'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->
+//                    where('wells', '=', $this->search2)->
+                    orderBy('teh_reglament.id')->get(),
                     'visible_wells' => $visible_wells,
                     'si'=> $si,
                     'type_signal'=> $type_signal,
@@ -50,7 +55,9 @@ class Reglament extends Component
                 return view('livewire.docs.reglament', [
                     'type_obj' => Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
                     'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
-                        'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                        'from_param_all', 'min', 'max', 'koef', 'idObj',
+//                        'wells',
+                        'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                     where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
                     'visible_wells' => $visible_wells,
                     'si'=> $si,
@@ -63,7 +70,9 @@ class Reglament extends Component
             return view('livewire.docs.reglament', [
                 'type_obj'=> Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
                 'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
-                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    'from_param_all', 'min', 'max', 'koef', 'idObj',
+//                    'wells',
+                    'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                     where('full_name', 'ilike', $search_name_param)->orderBy('teh_reglament.id')->get(),
                 'visible_wells' => $visible_wells,
                 'si'=> $si,
@@ -77,7 +86,9 @@ class Reglament extends Component
             return view('livewire.docs.reglament', [
                 'type_obj'=> Type_obj::all()->where('type_name', '!=', 'Документация')->where('type_name', '!=', 'Персонал'),
                 'reglaments'=> Tech_reglament::join('tech_reg.param_all', 'teh_reglament.from_param_all', '=', 'param_all.id')->select('teh_reglament.id as id_teh_reglament',
-                    'from_param_all', 'min', 'max', 'koef', 'idObj', 'wells', 'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
+                    'from_param_all', 'min', 'max', 'koef', 'idObj',
+//                    'wells',
+                    'asutp_name', 'full_name', 'from_type_obj', 'kip_name', 'reglament', 'matrix', 'si', 'type', 'descr_full', 'from_project')->
                 where('full_name', 'ilike', $search_name_param)->where('idObj', '=', $this->search1)->orderBy('teh_reglament.id')->get(),
                 'visible_wells' => $visible_wells,
                 'si'=> $si,
@@ -118,6 +129,7 @@ class Reglament extends Component
         $this->min = $tech_r->min;
         $this->max = $tech_r->max;
         $this->koef = $tech_r->koef;
+        $this->show_modal=true;
         AdminController::log_record('Открыл для редактирования запись из справочника технологических регламентов');//пишем в журнал
     }
     public function update()
@@ -139,6 +151,7 @@ class Reglament extends Component
             $this->updateMode = false;
             session()->flash('message', 'Events Updated Successfully.');
             //     $this->resetInputFields();
+            $this->show_modal=false;
             return redirect()->to('/docs/reglament');
         }
     }

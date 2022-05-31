@@ -49,7 +49,7 @@
                             <td>{{$i}}</td>
                             <td>{{$reglament->reglament_to_param->full_name}}</td>
                             <td>{{$reglament->reglament_to_param->asutp_name}}</td>
-                            <td>{{$si[$reglament->reglament_to_param->si]}}</td>
+                            <td>{{$reglament->reglament_to_param->si}}</td>
                             <td>{{$reglament->min}}</td>
                             <td>{{$reglament->max}}</td>
                             <td>{{$reglament->koef}}</td>
@@ -79,8 +79,12 @@
             </div>
 
         </div>
+    @if ($show_modal)
+        <div id="openModal" class="modal" style="display:block">
+            @else
+                <div id="openModal" class="modal">
+                    @endif
 
-    <div id="openModal" class="modal">
         <div class="modal-dialog table_use">
             <div class="modal-content" style="width: 650px">
                 <div class="modal-header">

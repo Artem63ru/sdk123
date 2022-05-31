@@ -17,7 +17,7 @@
                         <td>{{ $user->name }}</td>
                         <td>
                             <a href="#"><img wire:click="delete({{ $user->id }})" alt="" src="{{asset('assets/images/icons/trash.svg')}}" class="trash_i"></a>
-                            <a href="#EditModal""><img wire:click="edit({{ $user->id }})" alt="Редактировать" src="{{asset('assets/images/icons/edit.svg')}}" class="edit_i"></a></td>
+                            <a href="#EditModal"><img wire:click="edit({{ $user->id }})" alt="Редактировать" src="{{asset('assets/images/icons/edit.svg')}}" class="edit_i"></a></td>
                         <td></td>
                     </tr>
                 @endforeach
@@ -36,8 +36,11 @@
             </table>
         </div>
     </div>
-
-    <div id="EditModal" class="modal">
+    @if ($show_modal)
+    <div id="EditModal" class="modal" style="display: block">
+        @else
+            <div id="EditModal" class="modal">
+        @endif
         <div class="modal-dialog table_use" style="margin-right: 900px">
             <div class="modal-content" style="width: 800px">
                 <div class="modal-header">
@@ -78,38 +81,3 @@
         </div>
     </div>
 
-    <div id="openModal" class="modal">
-        <div class="modal-dialog table_use" style="margin-right: 900px">
-            <div class="modal-content" style="width: 800px">
-                <div class="modal-header">
-                    <a href="#close" title="Close" class="close">×</a>
-                </div>
-                <div class="modal-body ">
-                    <h2 style="text-align: center">Добавить возможное событие</h2>
-                    <form wire:submit.prevent="submit">
-                        <table class="modal_table map_hover">
-                            <tbody>
-                            <tr>
-                                <td>Наименование события</td>
-                                <td><input text wire:model="type_name" id="title" style="min-width: 350px" /></td>
-                            </tr>
-
-
-                            <td colspan="2" class="link_td centered"><button type="submit" class="create">
-                                    Сохранить
-                                </button></td>
-                            </tbody>
-
-
-                        </table>
-                    </form>
-                    <div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>

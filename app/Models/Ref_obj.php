@@ -69,7 +69,8 @@ class Ref_obj extends Model
     }
 
     protected $fillable = [
-        'idObj', 'nameObj', 'uppg', 'InUse', 'QP1_TYPE', 'idOPO', 'descObj', 'typeObj', 'status', 'type_project', 'guid',
+        'idObj', 'nameObj', 'uppg', 'InUse', 'QP1_TYPE', 'idOPO', 'descObj', 'typeObj', 'status', 'type_project'
+//        , 'guid',
     ];
 
 

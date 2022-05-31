@@ -22,7 +22,7 @@ class ElemController extends Controller
 
         }
     }
-    public static function view_tu ($elem_id, $oto)
+    public static function view_tu ($elem_id)
     // Вывод ТУ относящихся к конкрентному ото элемента
     {
       $elem1 = Ref_Obj::find($elem_id);

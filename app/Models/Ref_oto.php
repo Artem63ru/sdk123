@@ -16,6 +16,7 @@ class Ref_oto extends Model
     }
 
     protected $fillable = [
-        'idOTO', 'typeObj', 'descOTO', 'typeQuest', 'image',  'guid',
+        'idOTO', 'typeObj', 'descOTO', 'typeQuest', 'image'
+//        ,  'guid',
     ];
 }

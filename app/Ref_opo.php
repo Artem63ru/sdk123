@@ -12,7 +12,8 @@ class Ref_opo extends Model
     public $timestamps = false;
     public $primaryKey = 'idOPO';
     protected $fillable = [
-        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login', 'guid',
+        'descOPO', 'regNumOPO', 'dateReg', 'classHazard', 'fullDescOPO', 'flDel', 'dateMode', 'login'
+//        , 'guid',
     ];
     //************************** Последние 90 записей в ЖАС для конкретного ОПО *********************************************
         public function opo_to_jas()

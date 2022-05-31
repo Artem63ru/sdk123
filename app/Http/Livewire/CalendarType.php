@@ -11,6 +11,7 @@ class CalendarType extends Component
 {
     public $type_name;
     public $type_id;
+    public  bool $show_modal=false;
 
     public function submit()
     {
@@ -34,6 +35,7 @@ class CalendarType extends Component
     public function edit($id)
     {
         $this->updateMode = true;
+        $this->show_modal = true;
         $event= Calendar_type::where('id',$id)->first();
         $this->type_id = $event->id;
         $this->type_name = $event->name;
@@ -51,6 +53,7 @@ class CalendarType extends Component
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
+            $this->show_modal = false;
         AdminController::log_record('Сохранил после редактирования возможное событие в календаре');//пишем в журнал
         return redirect()->to('/docs/calendar_event');
     }
